@@ -1,4 +1,4 @@
-Material Sphinx Theme
+OpenFF Sphinx theme
 =====================
 
 **License**
