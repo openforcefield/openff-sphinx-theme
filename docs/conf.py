@@ -38,7 +38,7 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
-    "sphinx.ext.intersphinx",
+    "sphinx.ext.napoleon",
     "nbsphinx",
     "myst_parser",
     "openff_sphinx_theme",
