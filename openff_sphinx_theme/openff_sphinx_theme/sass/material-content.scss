@@ -404,6 +404,12 @@ dd {
     }
   }
 }
+dl:not([class]), dl.simple {
+  dt {
+    font-weight: 200;
+  }
+}
+
 
 // Image or icon
 img,

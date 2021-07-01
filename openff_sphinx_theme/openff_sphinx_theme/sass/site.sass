@@ -195,6 +195,7 @@ $drawer-transition-time: 0.5s
     a
         code
             color: $breadcrumb-item-color-light
+            background-color: transparent
         color: $breadcrumb-item-color-light
         &:hover
             color: $breadcrumb-item-hover-color-light
@@ -226,6 +227,11 @@ $drawer-transition-time: 0.5s
         margin-top: -$navbar-height
         max-height: 100vh
         +hide-scrollbar
+.menu
+    code
+        background-color: transparent
+        color: unset
+        
 body
     min-height: 100vh
     display: flex

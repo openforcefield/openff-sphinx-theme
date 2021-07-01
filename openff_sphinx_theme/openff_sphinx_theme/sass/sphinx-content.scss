@@ -168,3 +168,36 @@ p:not(.admonition-title) {
 table {
   @extend .table;
 }
+
+// Citations
+dl.citation {
+  // Label for the reference/citation. Block element
+  > dt.label {
+
+  }
+  > dd {
+    margin-top: 0;
+      :first-child {
+        margin-top: 0;
+      }
+  }
+}
+
+
+// Unset Bulma .file class in .content
+.file {
+  align-items: unset;
+  display: unset;
+  justify-content: unset;
+  position: unset;
+}
+
+// Add brackets to references that ask for it
+a.brackets {
+  &::before {
+    content: "[";
+  }
+  &::after {
+    content: "]";
+  }
+}
