@@ -155,3 +155,11 @@ table.highlighttable {
 //   visibility: hidden;
 //   pointer-events: none;
 // }
+
+// Prose paragraphs should wrap at around 80 characters
+// The visual artifact is almost unnoticeable and the
+// improved ease of reading is enormous,
+// and theres no issues with having to condense API stuff
+p:not(.admonition-title) {
+  max-width: 80ex;
+}
