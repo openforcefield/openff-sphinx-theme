@@ -23,7 +23,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
         padding: 1em;
         background-color: $api-bg-color;
         border-radius: 4px;
-        @include z-depth(4);
+        @include z-depth(2);
         &:target {
             &::before {
                 background-color: $body-background-color;
@@ -36,7 +36,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
 
         }
         // Text providing path to the object
-        > code.sig-prename {
+        > .sig-prename {
             padding: 0;
             background-color: transparent;
             font-weight: 200;
@@ -44,7 +44,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
             color: $api-path-color;
         }
         // Text providing the name of the object
-        > code.sig-name {
+        > .sig-name {
             padding: 0;
             background-color: transparent;
             color: $api-name-color;
@@ -253,8 +253,20 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
 
         }
         // Child object - recapitulates structure above
-        >dl:not(.docutils) {
-
+        >dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+            @include z-depth(2);
+            border-radius: 4px;
+            // Inner object header and signature
+            > dt {
+                border-radius: 0px;
+                @include z-depth(0);
+            }
+            // Inner object body
+            > dd {
+                margin-right: 1.5em;
+                margin-left: 1.5em;
+                padding-bottom: 0.75em;
+            }
         }
     }
 }
