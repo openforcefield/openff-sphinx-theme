@@ -69,6 +69,7 @@ $family-monospace: Cousine, monospace
 
 $navbar-height: 4rem
 $below-navbar-spacing: 0.5rem
+$mobile-content-margin-y: 2vw
 
 $bulma-admonitions: false
 
@@ -110,6 +111,11 @@ $breadcrumb-item-separator-color-light: findColorInvert($breadcrumb-item-separat
     font-size: px2rem(16px)
     line-height: 1.6
     color-adjust: exact
+    @media screen and (max-width: $tablet - 1px)
+      width: 100vw - 2 * $mobile-content-margin-y
+      margin-left: $mobile-content-margin-y
+      margin-right: $mobile-content-margin-y
+
 
 header, .navbar.is-primary.has-shadow
     box-shadow: 0 2px 3px 0 $primary
@@ -178,13 +184,6 @@ $drawer-transition-time: 0.5s
         .ff-globaltoc
             position: unset
 
-    .section
-        padding-left: 0.5rem
-        padding-right: 0.5rem
-
-    // Allow scrolling just main on small screens
-    main
-        overflow-x: auto
     header
         word-break: break-word
 
@@ -289,7 +288,7 @@ header
                     &::placeholder
                         color: $input-placeholder-color
 
-main.section
+main
     padding-top: 1rem
 footer
     margin-top: auto
@@ -352,3 +351,8 @@ a:hover:not(.is-active)
 .navbar-burger-spacer
     width: $navbar-height
     display: inline-block
+
+html, body
+    width: auto !important
+    overflow-x: hidden !important
+

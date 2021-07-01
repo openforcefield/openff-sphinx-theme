@@ -82,7 +82,7 @@ table.align-right {
 }
 
 // And now my own rules
-/// Code with line numbers
+/// Code with line numbers in sphinx<4
 table.highlighttable {
   td.linenos {
     @include unselectable;
@@ -90,6 +90,10 @@ table.highlighttable {
     padding-right: 0;
     .linenodiv pre {
       padding-right: 0;
+      // Hide line numbers on mobile
+      @media screen and (max-width: $tablet - 1px) {
+        display: none;
+      }
     }
     + td.code {
       margin-left: 0;
@@ -97,6 +101,12 @@ table.highlighttable {
       padding-right: 0;
       .highlight pre {
         border-left: solid 2px $border;
+        overflow-x: auto;
+        // Hide line numbers on mobile
+        @media screen and (max-width: $tablet - 1px) {
+          width: 100vw - 2 * $mobile-content-margin-y;
+          border-left: none;
+        }
       }
     }
   }
