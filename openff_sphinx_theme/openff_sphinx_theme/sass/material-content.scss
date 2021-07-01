@@ -36,7 +36,7 @@ ul,
 ol,
 dl,
 figure,
-blockquote,
+p,
 pre {
   margin: 1em 0;
 }
@@ -310,14 +310,14 @@ sub {
 blockquote {
   display: flow-root;
   padding-left: px2rem(12px);
-  color: $scheme-invert-bis;
-  border-left: px2rem(4px) solid $scheme-invert-ter;
+  color: $grey-dark;
+  border-left: px2rem(4px) solid $grey;
 
   // Adjust for right-to-left languages
   [dir="rtl"] & {
     padding-right: px2rem(12px);
     padding-left: initial;
-    border-right: px2rem(4px) solid $scheme-invert-ter;
+    border-right: px2rem(4px) solid $grey;
     border-left: initial;
   }
 }
@@ -390,10 +390,18 @@ ol {
 dd {
   margin: 1em 0 1.5em px2em(30px);
 
+  @media screen and (max-width: $tablet) {
+    margin-left: px2em(10px);
+  }
+
   // Adjust for right-to-left languages
   [dir="rtl"] & {
     margin-right: px2em(30px);
     margin-left: initial;
+
+    @media screen and (max-width: $tablet) {
+      margin-right: px2em(10px);
+    }
   }
 }
 
@@ -535,10 +543,9 @@ table {
         border-top: 0;
       }
     }
-
-    // Text link in table
-    a {
-      word-break: normal;
-    }
+  }
+  // Text link in table
+  a, code {
+    word-break: normal;
   }
 }

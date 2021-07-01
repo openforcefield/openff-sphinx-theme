@@ -4,17 +4,18 @@ import hashlib
 import inspect
 import os
 import sys
-from pathlib import Path
 from multiprocessing import Manager
+from pathlib import Path
 from typing import List, Optional
 from xml.etree import ElementTree
 
 import bs4
+import sass
 import slugify
 from bs4 import BeautifulSoup
-from sphinx.util import console, logging
-import sass
+from css_html_js_minify.html_minifier import html_minify
 from sass import SassColor
+from sphinx.util import console, logging
 
 from ._version import get_versions
 
@@ -26,10 +27,10 @@ ROOT_SUFFIX = "--page-root"
 
 def setup(app):
     """Setup connects events to the sitemap builder"""
-    app.connect("html-page-context", register_document)
-    app.connect("build-finished", prettify_minify_html)
-    app.connect("build-finished", compile_css)
     app.connect("builder-inited", register_template_functions)
+    app.connect("env-get-outdated", register_outdated)
+    app.connect("build-finished", postproc_html)
+    app.connect("build-finished", compile_css)
     app.site_pages = []
     app.add_html_theme(
         "openff_sphinx_theme", os.path.join(html_theme_path()[0], "openff_sphinx_theme")
@@ -90,43 +91,50 @@ def compile_css(app, exception):
         print(css, file=f)
 
 
-def register_document(app, pagename, templatename, context, doctree):
-    """As each page is built, collect page names for the sitemap"""
-    minify = app.config["html_theme_options"].get("html_minify", False)
-    prettify = app.config["html_theme_options"].get("html_prettify", False)
-    if minify and prettify:
-        raise ValueError("html_minify and html_prettify cannot both be True")
-    if minify or prettify:
-        app.site_pages.append(os.path.join(app.outdir, pagename + ".html"))
+def register_outdated(app, env, added, changed, removed):
+    env.openff_docs_to_postproc = added | changed
+    return ()
 
 
-def prettify_minify_html(app, exception):
-    if exception is not None or not app.site_pages:
+def postproc_html(app, exception):
+    """Prettify or minify the HTML, as well as wrap tables with .table-container"""
+    if exception is not None:
         return
+
+    target_files = app.env.openff_docs_to_postproc
+    outdir = Path(app.outdir)
+
     minify = app.config["html_theme_options"].get("html_minify", False)
     last = -1
-    npages = len(app.site_pages)
-    transform = "Minifying" if minify else "Prettifying"
-    print("{0} {1} files".format(transform, npages))
-    transform = transform.lower()
-    # TODO: Consider using parallel execution
-    for i, page in enumerate(app.site_pages):
-        if int(100 * (i / npages)) - last >= 10:
-            last = int(100 * (i / npages))
-            color_page = console.colorize("blue", page)
-            msg = "{0} files... [{1}%] {2}".format(transform, last, color_page)
-            sys.stdout.write("\033[K" + msg + "\r")
-        with open(page, "r", encoding="utf-8") as content:
-            if minify:
-                from css_html_js_minify.html_minifier import html_minify
+    npages = len(target_files)
+    print(f"Post-processing {npages} HTML files")
 
-                html = html_minify(content.read())
+    # TODO: Consider using parallel execution
+    for i, doc in enumerate(target_files):
+        page = outdir / app.builder.get_target_uri(doc)
+
+        if int(100 * (i / npages)) - last >= 25:
+            last = int(100 * (i / npages))
+            color_page = console.colorize("blue", str(page))
+            msg = f"Post-processing files... [{last}%] {color_page}"
+            print("\033[K", msg, sep="", end="\r")
+
+        with open(page, "r", encoding="utf-8") as content:
+            soup = BeautifulSoup(content, "lxml")
+            for table in soup.find_all("table"):
+                if "table-container" not in table.parent.get("class", ()):
+                    table.wrap(soup.new_tag("div", **{"class": "table-container"}))
+
+            if minify:
+                html = html_minify(str(soup))
             else:
-                soup = BeautifulSoup(content.read(), features="lxml")
                 html = soup.prettify()
+
         with open(page, "w", encoding="utf-8") as content:
             content.write(html)
-    app.site_pages[:] = []
+
+    msg = f"Post-processing files... [100%]"
+    sys.stdout.write("\033[K" + msg + "\r")
     print()
 
 

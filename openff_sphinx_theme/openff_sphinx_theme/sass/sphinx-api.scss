@@ -16,6 +16,8 @@ $api-type-color: $api-param-value-color;
 // RTD does it like this, but with fewer exceptions, so
 // we should be OK
 dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+    // Allow words to break anywhere, if necessary
+    word-break: break-word;
     // Header and signature
     > dt {
         font-family: $family-monospace;
@@ -169,6 +171,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
                         // Type of the parameter, or type of a named return value
                         >.classifier {
                             color: $api-type-color;
+                            word-break: break-word;
                         }
 
                     }
@@ -269,4 +272,9 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
             }
         }
     }
+}
+
+// Break headings wherever, if necessary
+h1, h2, h3, h4, h5, h6 {
+    word-break: break-word;
 }

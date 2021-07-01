@@ -163,3 +163,8 @@ table.highlighttable {
 p:not(.admonition-title) {
   max-width: 80ex;
 }
+
+// Use Bulma's tables
+table {
+  @extend .table;
+}

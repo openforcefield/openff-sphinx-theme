@@ -87,7 +87,6 @@ html_static_path = ["_static"]
 # If HTML theme settings isn't lines 90-160, remember to change customization.rst
 
 # -- HTML theme settings ------------------------------------------------
-
 html_show_sourcelink = True
 html_sidebars = {
     "**": ["globaltoc.html", "localtoc.html", "searchbox.html"],
@@ -100,7 +99,6 @@ html_theme_options = {
     "repo_url": "https://github.com/openforcefield/openff-sphinx-theme/",
     "repo_name": "openff-sphinx-theme",
     "html_minify": False,
-    "html_prettify": False,
     "css_minify": False,
     "globaltoc_depth": 2,
     "color_accent": "openff-toolkit-blue",

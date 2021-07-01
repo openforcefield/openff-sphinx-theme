@@ -55,6 +55,8 @@ $code-padding: 0.25em
 $menu-item-active-background-color: $accent
 $menu-item-active-color: findColorInvert($accent)
 $viewcode-link: #44AF69
+$background: #FFFFFF
+$body-background-color: $background
 
 $footer-background-color: darken($primary, 12)
 
@@ -83,9 +85,9 @@ $bulma-admonitions: false
 @import "bulma/sass/components/navbar.sass"
 @import "bulma/sass/components/menu.sass"
 @import "bulma/sass/components/tabs.sass"
-@import "bulma/sass/elements/content.sass"
 @import "bulma/sass/elements/icon.sass"
 @import "bulma/sass/elements/image.sass"
+@import "bulma/sass/elements/table.sass"
 @import "bulma/sass/form/_all.sass"
 @import "bulma/sass/helpers/_all.sass"
 @import "bulma/sass/layout/footer.sass"
@@ -139,8 +141,9 @@ $drawer-transition-time: 0.5s
     .burger
         position: fixed
         top: 0
-        right: 0
+        left: 90vw
         z-index: 10
+        width: 10vw
 
         span:nth-child(4)
             opacity: 0%
@@ -181,6 +184,7 @@ $drawer-transition-time: 0.5s
         position: fixed
         display: block
         z-index: 12
+        overflow-y: scroll
         .ff-globaltoc
             position: unset
 
@@ -204,7 +208,7 @@ $drawer-transition-time: 0.5s
 .ff-localtoc, .ff-globaltoc
     position: sticky
     padding: $below-navbar-spacing
-    overflow: auto
+    // overflow: auto
     // Don't know why this is necessary, probably because of drawer shenanigans?
     @media screen and (max-width: $desktop)
         position: fixed
@@ -352,7 +356,5 @@ a:hover:not(.is-active)
     width: $navbar-height
     display: inline-block
 
-html, body
-    width: auto !important
-    overflow-x: hidden !important
-
+main > .columns
+    max-width: 100vw
