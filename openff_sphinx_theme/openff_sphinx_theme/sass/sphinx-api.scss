@@ -36,7 +36,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
 
         }
         // Text providing path to the object
-        > code.sig-prename {
+        > .sig-prename {
             padding: 0;
             background-color: transparent;
             font-weight: 200;
@@ -44,7 +44,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
             color: $api-path-color;
         }
         // Text providing the name of the object
-        > code.sig-name {
+        > .sig-name {
             padding: 0;
             background-color: transparent;
             color: $api-name-color;
