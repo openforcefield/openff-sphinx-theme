@@ -46,6 +46,10 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, .18), 0 8px 16px rgba(0, 0, 0, .36);
 }
 
+@mixin z-depth-0dp($color) {
+  box-shadow: none;
+}
+
 @mixin z-depth-2dp($color) {
   box-shadow: 0 2px 2px 0 rgba($color, .35 * alpha($color)),
               0 1px 5px 0 rgba($color, .3 * alpha($color)),
@@ -89,7 +93,9 @@
 }
 
 @mixin z-depth($dp: 2, $color: rgba(black, .4)) {
-  @if $dp == 2 {
+  @if $dp == 0 {
+    @include z-depth-0dp($color);
+  } @else if $dp == 2 {
     @include z-depth-2dp($color);
   } @else if $dp == 3 {
     @include z-depth-3dp($color);
@@ -124,7 +130,7 @@
   }
 
   // The available values for the shadow depth
-  @each $depth in 2, 3, 4, 6, 8, 16, 24 {
+  @each $depth in 0, 2, 3, 4, 6, 8, 16, 24 {
     &-#{$depth}dp {
       @include z-depth($depth);
     }
