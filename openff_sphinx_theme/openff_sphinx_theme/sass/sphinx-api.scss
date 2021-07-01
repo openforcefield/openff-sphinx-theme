@@ -254,19 +254,25 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
         }
         // Child object - recapitulates structure above
         >dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
-            @include z-depth(2);
-            border-radius: 4px;
-            // Inner object header and signature
-            > dt {
-                border-radius: 0px;
-                @include z-depth(0);
-            }
-            // Inner object body
-            > dd {
-                margin-right: 1.5em;
-                margin-left: 1.5em;
-                padding-bottom: 0.75em;
-            }
+            @extend .autosummary-child-object;
         }
     }
+}
+
+// Child object - for @extend and hackery
+.autosummary-child-object {
+    @include z-depth(2);
+    border-radius: 4px;
+    // Inner object header and signature
+    > dt {
+        border-radius: 0px !important;
+        box-shadow: none !important;
+    }
+    // Inner object body
+    > dd {
+        margin-right: 1.5em;
+        margin-left: 1.5em;
+        padding-bottom: 0.75em;
+    }
+
 }

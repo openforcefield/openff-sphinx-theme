@@ -16,3 +16,4 @@ Rendered
 
 .. automodule:: pydantic_example
     :members:
+    :inherited-members:

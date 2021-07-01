@@ -133,9 +133,10 @@ table.highlighttable {
 }
 
 // Don't let Sphinx try to be clever about what header level the index heading is
-#index h3 {
+#index h1, h2, h3, h4, h5, h6 {
   @extend h2;
 }
+
 // add some invisible spacing before header targets so the navbar is out of the way
 // :target::before {
 //   margin-top: -($navbar-height + $below-navbar-spacing);
@@ -145,3 +146,27 @@ table.highlighttable {
 //   visibility: hidden;
 //   pointer-events: none;
 // }
+
+
+// Sphinx doesn't provide a way to hide a heading, so here's one
+// ```
+// .. rst-class:: hide-header
+//
+// Hidden Heading
+// --------------
+//
+// The heading for this section will appear in TOC, but not in
+// the document
+// ```
+.hide-header {
+  h1, h2, h3, h4, h5, h6 {
+    display: none;
+  }
+}
+
+// Sometimes we need a new section for TOC, but we want it to look
+// like it was nested in the previous dl > dd
+.imitate-nested-in-previous-deflist {
+  margin-left: 1.875em;
+}
+
