@@ -57,7 +57,7 @@ tincidunt. Aenean ullamcorper sit amet nulla at interdum.
   lectus dapibus, eleifend nulla varius, lobortis turpis. In ac hendrerit nisl,
   sit amet laoreet nibh.
   ```
-  var _extends = function(target) {
+  var _extends = function(taarget) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
       for (var key in source) {
@@ -218,7 +218,9 @@ at elementum urna sodales vitae. In in vehicula nulla, quis ornare libero.
 | Left       | Center   | Right   |
 | :--------- | :------: | ------: |
 | Lorem      | *dolor*  | `amet`  |
-| [ipsum](#) | **sit**  |         |
+| [ipsum][#] | **sit**  |         |
+
+[#]: markdown
 
 Vestibulum vitae orci quis ante viverra ultricies ut eget turpis. Sed eu
 lectus dapibus, eleifend nulla varius, lobortis turpis. In ac hendrerit nisl,

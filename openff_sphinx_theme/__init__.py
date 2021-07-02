@@ -28,6 +28,7 @@ ROOT_SUFFIX = "--page-root"
 def setup(app):
     """Setup connects events to the sitemap builder"""
     app.connect("builder-inited", register_template_functions)
+    app.connect("config-inited", set_default_settings)
     app.connect("env-get-outdated", register_outdated)
     app.connect("build-finished", postproc_html)
     app.connect("build-finished", compile_css)
@@ -40,6 +41,17 @@ def setup(app):
         "parallel_read_safe": True,
         "parallel_write_safe": True,
     }
+
+
+def set_default_settings(app, config):
+    if not config.html_sidebars:
+        config.html_sidebars["**"] = [
+            "globaltoc.html",
+            "localtoc.html",
+            "searchbox.html",
+        ]
+    if config.html_permalinks_icon == "¶":
+        config.html_permalinks_icon = "<i class='fas fa-link'></i>"
 
 
 def compile_css(app, exception):
@@ -105,6 +117,7 @@ def postproc_html(app, exception):
     outdir = Path(app.outdir)
 
     minify = app.config["html_theme_options"].get("html_minify", False)
+    prettify = app.config["html_theme_options"].get("html_prettify", False)
     last = -1
     npages = len(target_files)
     print(f"Post-processing {npages} HTML files")
@@ -127,8 +140,10 @@ def postproc_html(app, exception):
 
             if minify:
                 html = html_minify(str(soup))
-            else:
+            elif prettify:
                 html = soup.prettify()
+            else:
+                html = str(soup)
 
         with open(page, "w", encoding="utf-8") as content:
             content.write(html)

@@ -52,9 +52,9 @@ $pre-background: $code-background
 $pre: $code
 $code-link-background-hover: findColorInvert($link-hover)
 $code-padding: 0.25em
-$menu-item-active-background-color: $accent
-$menu-item-active-color: findColorInvert($accent)
-$viewcode-link: #44AF69
+$menu-item-active-background-color: $link-active
+$menu-item-active-color: findColorInvert($link-active)
+$menu-item-hover-color: $link-hover
 $background: #FFFFFF
 $body-background-color: $background
 
@@ -95,7 +95,7 @@ $bulma-admonitions: false
 
 
 $breadcrumb-item-color-light: findColorInvert($breadcrumb-item-color)
-$breadcrumb-item-hover-color-light: $link-hover
+$breadcrumb-item-hover-color-light: $accent-light
 $breadcrumb-item-active-color-light: $accent-light
 $breadcrumb-item-separator-color-light: findColorInvert($breadcrumb-item-separator-color)
 
@@ -231,7 +231,7 @@ $drawer-transition-time: 0.5s
     code
         background-color: transparent
         color: unset
-        
+
 body
     min-height: 100vh
     display: flex

@@ -125,15 +125,10 @@ table.highlighttable {
 // Header links
 .headerlink {
   visibility: hidden;
-  font-size: 14px;
-  font-family: "Font Awesome 5 Free";
-  &::after {
-    font-family: "Font Awesome 5 Free";
-    content: "\f0c1";
-  }
+  font-size: 1em;
+  float: right;
 }
-
-:hover > .headerlink::after {
+:hover > .headerlink {
   visibility: visible;
 }
 

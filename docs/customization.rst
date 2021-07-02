@@ -42,7 +42,7 @@ Configuration Options
 ``html_minify``
    Minify pages after creation using htmlmin.
 ``html_prettify``
-   Prettify pages, usually only for debugging.
+   Prettify pages. Just for debugging, this will change how the page is rendered.
 ``css_minify``
    Minify css files found in the output directory.
 ``master_doc``

@@ -1,13 +1,14 @@
 // The Numpydoc API layout
 
 $api-name-color: $primary;
-$api-property-color: $green;
+$api-property-color: darken($green, 10);
 $api-path-color: $grey;
 $api-bg-color: rgba($accent, 0.1);
 $api-param-symbol-color: $openff-evaluator-orange;
 $api-param-name-color: $openff-toolkit-blue;
 $api-param-value-color: $grey-dark;
-$api-type-color: $api-param-value-color;
+$api-type-color: $grey-dark;
+$api-source-link-color: $openff-evaluator-orange;
 
 // Definition of an object. Hopefully.
 // Could also use dl.py, but this would fail
@@ -74,13 +75,19 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             // Name of a parameter
             > .n > .pre {
                 color: $api-param-name-color;
-
             }
             // Symbols; equals sign, asterisk, etc
             > .o > .pre {
                 color: $api-param-symbol-color;
                 padding-left: 0.2em;
                 padding-right: 0.2em;
+            }
+            // Type anotation
+            .p, .p + .n {
+                .pre {
+                    color: $api-type-color;
+                    font-style: italic;
+                }
             }
             // Default values of arguments
             > .default_value > .pre {
@@ -90,6 +97,15 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             &::before {
                 content: "\a    ";
                 white-space: pre;
+            }
+            // Links
+            a {
+                font-weight: 550;
+                &:hover {
+                    .pre, pre, code {
+                        color: $link-hover !important;
+                    }
+                }
             }
         }
         // Brackets [] denoting optional arguments
@@ -134,10 +150,15 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         // Link to the source code for the object (not present on inherited objects)
         .viewcode-link {
             float: right;
+            color: $api-source-link-color;
+            margin-left: 1em;
+            &:hover {
+                color: $link-hover;
+            }
         }
         // Permalink to the object (to here)
         > a.headerlink {
-
+            font-size: 1em;
         }
     }
     // Content

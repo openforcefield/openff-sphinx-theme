@@ -25,6 +25,7 @@
   {% block fonticon %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{{ pathto('_static/site.css', 1) }}"/>
   {% endblock %}
   <meta name="theme-color" content="#015480;">
   {% include "google_analytics.html" %}
@@ -33,7 +34,6 @@
 
 {%- block extrahead %}
   {{ super() }}
-  <link rel="stylesheet" href="{{ pathto('_static/site.css', 1) }}"/>
 {% endblock %}
 
 {%- block body_tag %}
