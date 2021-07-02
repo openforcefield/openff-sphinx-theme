@@ -124,12 +124,22 @@ table.highlighttable {
 
 // Header links
 .headerlink {
-  visibility: hidden;
   font-size: 1em;
   float: right;
+  color: $grey-light;
+
+  @media screen and (min-width: $tablet) {
+    display: inline-block;
+    transform: translateY(.25rem);
+    transition: transform .25s 0.2s,color .25s,opacity .125s 0.2s;
+    opacity: 0;
+  }
 }
-:hover > .headerlink {
-  visibility: visible;
+*:hover > .headerlink {
+  transition: transform .25s,color .25s,opacity .125s;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  opacity: 1;
 }
 
 // Format captions
