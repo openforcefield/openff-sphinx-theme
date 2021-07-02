@@ -1,0 +1,6 @@
+﻿openff.qcsubmit.datasets.BasicDataset
+=====================================
+
+.. currentmodule:: openff.qcsubmit.datasets
+
+.. autopydantic_model:: BasicDataset
