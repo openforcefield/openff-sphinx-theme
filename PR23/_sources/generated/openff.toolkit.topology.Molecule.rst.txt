@@ -1,0 +1,1316 @@
+﻿openff.toolkit.topology.Molecule
+================================
+
+.. currentmodule:: openff.toolkit.topology
+
+.. autoclass:: Molecule
+    :no-members:
+    :no-inherited-members:
+    :no-special-members:
+    :no-undoc-members:
+
+
+
+.. rst-class:: imitate-nested-in-previous-deflist
+
+.. rst-class:: hide-header
+
+``__init__``
+------------
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.__init__
+
+
+
+.. rst-class:: imitate-nested-in-previous-deflist
+
+Methods
+-------
+
+.. autosummary::
+
+    ~Molecule.__init__
+    ~Molecule.add_atom
+    ~Molecule.add_bond
+    ~Molecule.add_bond_charge_virtual_site
+    ~Molecule.add_conformer
+    ~Molecule.add_divalent_lone_pair_virtual_site
+    ~Molecule.add_monovalent_lone_pair_virtual_site
+    ~Molecule.add_trivalent_lone_pair_virtual_site
+    ~Molecule.apply_elf_conformer_selection
+    ~Molecule.are_isomorphic
+    ~Molecule.assign_fractional_bond_orders
+    ~Molecule.assign_partial_charges
+    ~Molecule.canonical_order_atoms
+    ~Molecule.chemical_environment_matches
+    ~Molecule.compute_partial_charges_am1bcc
+    ~Molecule.enumerate_protomers
+    ~Molecule.enumerate_stereoisomers
+    ~Molecule.enumerate_tautomers
+    ~Molecule.find_rotatable_bonds
+    ~Molecule.from_bson
+    ~Molecule.from_dict
+    ~Molecule.from_file
+    ~Molecule.from_inchi
+    ~Molecule.from_iupac
+    ~Molecule.from_json
+    ~Molecule.from_mapped_smiles
+    ~Molecule.from_messagepack
+    ~Molecule.from_openeye
+    ~Molecule.from_pdb_and_smiles
+    ~Molecule.from_pickle
+    ~Molecule.from_qcschema
+    ~Molecule.from_rdkit
+    ~Molecule.from_smiles
+    ~Molecule.from_toml
+    ~Molecule.from_topology
+    ~Molecule.from_xml
+    ~Molecule.from_yaml
+    ~Molecule.generate_conformers
+    ~Molecule.generate_unique_atom_names
+    ~Molecule.get_bond_between
+    ~Molecule.is_isomorphic_with
+    ~Molecule.remap
+    ~Molecule.strip_atom_stereochemistry
+    ~Molecule.to_bson
+    ~Molecule.to_dict
+    ~Molecule.to_file
+    ~Molecule.to_hill_formula
+    ~Molecule.to_inchi
+    ~Molecule.to_inchikey
+    ~Molecule.to_iupac
+    ~Molecule.to_json
+    ~Molecule.to_messagepack
+    ~Molecule.to_networkx
+    ~Molecule.to_openeye
+    ~Molecule.to_pickle
+    ~Molecule.to_qcschema
+    ~Molecule.to_rdkit
+    ~Molecule.to_smiles
+    ~Molecule.to_toml
+    ~Molecule.to_topology
+    ~Molecule.to_xml
+    ~Molecule.to_yaml
+    ~Molecule.visualize
+
+
+
+
+
+
+.. rst-class:: hide-header
+
+``add_atom``
+************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.add_atom
+
+
+
+
+
+.. rst-class:: hide-header
+
+``add_bond``
+************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.add_bond
+
+
+
+
+
+.. rst-class:: hide-header
+
+``add_bond_charge_virtual_site``
+********************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.add_bond_charge_virtual_site
+
+
+
+
+
+.. rst-class:: hide-header
+
+``add_conformer``
+*****************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.add_conformer
+
+
+
+
+
+.. rst-class:: hide-header
+
+``add_divalent_lone_pair_virtual_site``
+***************************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.add_divalent_lone_pair_virtual_site
+
+
+
+
+
+.. rst-class:: hide-header
+
+``add_monovalent_lone_pair_virtual_site``
+*****************************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.add_monovalent_lone_pair_virtual_site
+
+
+
+
+
+.. rst-class:: hide-header
+
+``add_trivalent_lone_pair_virtual_site``
+****************************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.add_trivalent_lone_pair_virtual_site
+
+
+
+
+
+.. rst-class:: hide-header
+
+``apply_elf_conformer_selection``
+*********************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.apply_elf_conformer_selection
+
+
+
+
+
+.. rst-class:: hide-header
+
+``are_isomorphic``
+******************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.are_isomorphic
+
+
+
+
+
+.. rst-class:: hide-header
+
+``assign_fractional_bond_orders``
+*********************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.assign_fractional_bond_orders
+
+
+
+
+
+.. rst-class:: hide-header
+
+``assign_partial_charges``
+**************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.assign_partial_charges
+
+
+
+
+
+.. rst-class:: hide-header
+
+``canonical_order_atoms``
+*************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.canonical_order_atoms
+
+
+
+
+
+.. rst-class:: hide-header
+
+``chemical_environment_matches``
+********************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.chemical_environment_matches
+
+
+
+
+
+.. rst-class:: hide-header
+
+``compute_partial_charges_am1bcc``
+**********************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.compute_partial_charges_am1bcc
+
+
+
+
+
+.. rst-class:: hide-header
+
+``enumerate_protomers``
+***********************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.enumerate_protomers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``enumerate_stereoisomers``
+***************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.enumerate_stereoisomers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``enumerate_tautomers``
+***********************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.enumerate_tautomers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``find_rotatable_bonds``
+************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.find_rotatable_bonds
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_bson``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_bson
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_dict``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_dict
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_file``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_file
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_inchi``
+**************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_inchi
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_iupac``
+**************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_iupac
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_json``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_json
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_mapped_smiles``
+**********************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_mapped_smiles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_messagepack``
+********************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_messagepack
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_openeye``
+****************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_openeye
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_pdb_and_smiles``
+***********************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_pdb_and_smiles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_pickle``
+***************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_pickle
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_qcschema``
+*****************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_qcschema
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_rdkit``
+**************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_rdkit
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_smiles``
+***************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_smiles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_toml``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_toml
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_topology``
+*****************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_topology
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_xml``
+************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_xml
+
+
+
+
+
+.. rst-class:: hide-header
+
+``from_yaml``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.from_yaml
+
+
+
+
+
+.. rst-class:: hide-header
+
+``generate_conformers``
+***********************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.generate_conformers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``generate_unique_atom_names``
+******************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.generate_unique_atom_names
+
+
+
+
+
+.. rst-class:: hide-header
+
+``get_bond_between``
+********************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.get_bond_between
+
+
+
+
+
+.. rst-class:: hide-header
+
+``is_isomorphic_with``
+**********************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.is_isomorphic_with
+
+
+
+
+
+.. rst-class:: hide-header
+
+``remap``
+*********
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.remap
+
+
+
+
+
+.. rst-class:: hide-header
+
+``strip_atom_stereochemistry``
+******************************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.strip_atom_stereochemistry
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_bson``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_bson
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_dict``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_dict
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_file``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_file
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_hill_formula``
+*******************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_hill_formula
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_inchi``
+************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_inchi
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_inchikey``
+***************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_inchikey
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_iupac``
+************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_iupac
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_json``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_json
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_messagepack``
+******************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_messagepack
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_networkx``
+***************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_networkx
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_openeye``
+**************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_openeye
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_pickle``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_pickle
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_qcschema``
+***************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_qcschema
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_rdkit``
+************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_rdkit
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_smiles``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_smiles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_toml``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_toml
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_topology``
+***************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_topology
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_xml``
+**********
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_xml
+
+
+
+
+
+.. rst-class:: hide-header
+
+``to_yaml``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.to_yaml
+
+
+
+
+
+.. rst-class:: hide-header
+
+``visualize``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. automethod:: Molecule.visualize
+
+
+
+
+
+
+
+
+
+
+.. rst-class:: imitate-nested-in-previous-deflist
+
+Attributes
+----------
+
+.. autosummary::
+
+    ~Molecule.amber_impropers
+    ~Molecule.angles
+    ~Molecule.atoms
+    ~Molecule.bonds
+    ~Molecule.conformers
+    ~Molecule.has_unique_atom_names
+    ~Molecule.hill_formula
+    ~Molecule.impropers
+    ~Molecule.n_angles
+    ~Molecule.n_atoms
+    ~Molecule.n_bonds
+    ~Molecule.n_conformers
+    ~Molecule.n_impropers
+    ~Molecule.n_particles
+    ~Molecule.n_propers
+    ~Molecule.n_rings
+    ~Molecule.n_virtual_particles
+    ~Molecule.n_virtual_sites
+    ~Molecule.name
+    ~Molecule.partial_charges
+    ~Molecule.particles
+    ~Molecule.propers
+    ~Molecule.properties
+    ~Molecule.rings
+    ~Molecule.smirnoff_impropers
+    ~Molecule.torsions
+    ~Molecule.total_charge
+    ~Molecule.virtual_sites
+
+
+
+
+.. rst-class:: hide-header
+
+``amber_impropers``
+*******************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.amber_impropers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``angles``
+**********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.angles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``atoms``
+*********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.atoms
+
+
+
+
+
+.. rst-class:: hide-header
+
+``bonds``
+*********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.bonds
+
+
+
+
+
+.. rst-class:: hide-header
+
+``conformers``
+**************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.conformers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``has_unique_atom_names``
+*************************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.has_unique_atom_names
+
+
+
+
+
+.. rst-class:: hide-header
+
+``hill_formula``
+****************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.hill_formula
+
+
+
+
+
+.. rst-class:: hide-header
+
+``impropers``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.impropers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_angles``
+************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_angles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_atoms``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_atoms
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_bonds``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_bonds
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_conformers``
+****************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_conformers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_impropers``
+***************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_impropers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_particles``
+***************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_particles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_propers``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_propers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_rings``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_rings
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_virtual_particles``
+***********************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_virtual_particles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``n_virtual_sites``
+*******************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.n_virtual_sites
+
+
+
+
+
+.. rst-class:: hide-header
+
+``name``
+********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.name
+
+
+
+
+
+.. rst-class:: hide-header
+
+``partial_charges``
+*******************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.partial_charges
+
+
+
+
+
+.. rst-class:: hide-header
+
+``particles``
+*************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.particles
+
+
+
+
+
+.. rst-class:: hide-header
+
+``propers``
+***********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.propers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``properties``
+**************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.properties
+
+
+
+
+
+.. rst-class:: hide-header
+
+``rings``
+*********
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.rings
+
+
+
+
+
+.. rst-class:: hide-header
+
+``smirnoff_impropers``
+**********************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.smirnoff_impropers
+
+
+
+
+
+.. rst-class:: hide-header
+
+``torsions``
+************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.torsions
+
+
+
+
+
+.. rst-class:: hide-header
+
+``total_charge``
+****************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.total_charge
+
+
+
+
+
+.. rst-class:: hide-header
+
+``virtual_sites``
+*****************
+
+.. rst-class:: autosummary-child-object
+
+.. autoattribute:: Molecule.virtual_sites
+
+
+
+
+
