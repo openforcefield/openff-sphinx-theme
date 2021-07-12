@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
+<link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="Copy to clipboard" name="lang:clipboard.copy"/>
+<meta content="Copied to clipboard" name="lang:clipboard.copied"/>
+<meta content="en" name="lang:search.language"/>
+<meta content="True" name="lang:search.pipeline.stopwords"/>
+<meta content="True" name="lang:search.pipeline.trimmer"/>
+<meta content="No matching documents" name="lang:search.result.none"/>
+<meta content="1 matching document" name="lang:search.result.one"/>
+<meta content="# matching documents" name="lang:search.result.other"/>
+<meta content="[\s\-]+" name="lang:search.tokenizer"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="_static/site.css" rel="stylesheet"/>
+<meta content="#015480;" name="theme-color"/>
+<title>Specimen — OpenFF Sphinx theme</title>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/openff.css" rel="stylesheet" type="text/css"/>
+<link href="_static/autodoc_pydantic.css" rel="stylesheet" type="text/css"/>
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="additional_samples.html" rel="next" title="Additional Samples"/>
+<link href="customization.html" rel="prev" title="Customization"/>
+</head>
+<body class="has-navbar-fixed-top" data-md-color-accent="openff-toolkit-blue" dir="ltr">
+<header data-md-component="header">
+<nav aria-label="main navigation" class="navbar is-primary is-fixed-top is-flex-touch has-shadow" role="navigation">
+<div class="navbar-brand">
+<a class="navbar-item is-hidden-mobile" href="index.html" title="OpenFF Sphinx theme">
+<img alt="OpenFF Sphinx theme logo" src="_static/images/logos/openforcefield_v1_white.png"/>
+</a>
+</div>
+<div class="has-text-light is-hidden-mobile nav-title">
+<div class="breadcrumb">
+<ul>
+<li><a href="index.html">OpenFF Sphinx theme</a></li>
+<li class="is-active"><a href="#">Specimen</a></li>
+</ul>
+</div>
+</div>
+<div class="has-text-light is-hidden-tablet nav-title">
+<span> Specimen </span>
+</div>
+<div class="navbar-end">
+<span class="navbar-item nav-search is-hidden-mobile">
+<form action="search.html" method="GET" name="search">
+<div class="control has-icons-right">
+<span class="icon is-small is-right">
+<i class="fas fa-search"></i>
+</span>
+<input autocapitalize="off" autocomplete="off" class="input is-primary" name="q" placeholder="Search" spellcheck="false" type="text"/>
+</div>
+</form>
+</span>
+<a class="is-family-monospace navbar-item is-hidden-touch has-text-light" href="https://github.com/openforcefield/openff-sphinx-theme/">
+<span class="icon-text">
+<span class="icon">
+<i class="fab fa-github"></i>
+</span>
+<span>
+          
+            openff-sphinx-theme
+          
+            </span>
+</span>
+</a>
+<a class="navbar-item is-hidden-touch" href="https://openforcefield.org/">
+<img alt="Open Force Field Initiative logo" src="_static/images/logos/openforcefield_v2_white.png"/>
+</a>
+</div>
+<span class="navbar-burger-spacer is-hidden-desktop"></span>
+</nav>
+<div class="level is-hidden-mobile nav-tabs">
+<div class="level-item has-text-centered"><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div>
+<div class="level-item has-text-centered"><a href="https://bashtage.github.io/sphinx-material/">Material for Sphinx</a></div>
+<div class="level-item has-text-centered"><a href="https://openforcefield.org">The OpenFF Initiative</a></div>
+<div class="level-item has-text-centered"><a href="https://github.com/openforcefield/openff-sphinx-theme/">openff-sphinx-theme on GitHub</a></div>
+</div>
+</header>
+<main class="mb-6">
+<div class="columns">
+<input class="is-hidden" id="drawer-toggle" type="checkbox"/>
+<label class="navbar-burger burger is-light" for="drawer-toggle" role="button">
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+</label>
+<aside class="column is-2" id="drawer">
+<div class="is-hidden-tablet">
+<a href="index.html" title="OpenFF Sphinx theme">
+<h1>
+                OpenFF Sphinx theme
+              </h1>
+</a>
+<div class="py-3">
+<form action="search.html" method="GET" name="search">
+<div class="control has-icons-right">
+<span class="icon is-small is-right">
+<i class="fas fa-search"></i>
+</span>
+<input autocapitalize="off" autocomplete="off" class="input is-primary" name="q" placeholder="Search" spellcheck="false" type="text"/>
+</div>
+</form>
+</div>
+</div>
+<nav class="menu ff-globaltoc">
+<p class="menu-label"><span class="caption-text">Basic Use</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="customization.html">Customization</a>
+</li>
+<li>
+<a class="is-active" href="#">Specimen</a>
+</li>
+<li>
+<a class="" href="additional_samples.html"><code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Samples</span></code></a>
+</li>
+</ul>
+<p class="menu-label"><span class="caption-text">Other Examples and Uses</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="pymethod.html">Python Methods</a>
+</li>
+<li>
+<a class="" href="numpydoc_example.html">NumPy Docstrings</a>
+</li>
+<li>
+<a class="" href="autodoc_pydantic_example.html">autodoc_pydantic API Docs</a>
+</li>
+<li>
+<a class="" href="numpydoc.html">Openff-toolkit example</a>
+</li>
+<li>
+<a class="" href="pydantic.html">Pydantic API docs</a>
+</li>
+<li>
+<a class="" href="notebook.html">Jupyter Notebooks</a>
+</li>
+<li>
+<a class="" href="markdown.html">Markdown</a>
+</li>
+<li>
+<a class="" href="rst-cheatsheet/rst-cheatsheet.html">rst Cheatsheet</a>
+</li>
+<li>
+<a class="" href="primer.html">reStructuredText Primer</a>
+</li>
+</ul>
+<p class="menu-label"><span class="caption-text">Changes and License</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="change-log.html">Change Log</a>
+</li>
+<li>
+<a class="" href="license.html">License</a>
+</li>
+</ul>
+</nav>
+</aside>
+<div class="column is-8-desktop is-9-tablet">
+<article class="content">
+<section id="specimen">
+<h1>Specimen<a class="headerlink" href="#specimen" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<section id="body-copy">
+<h2>Body copy<a class="headerlink" href="#body-copy" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras arcu
+libero, mollis sed massa vel, <em>ornare viverra ex</em>. Mauris a ullamcorper
+lacus. Nullam urna elit, malesuada eget finibus ut, ullamcorper ac
+tortor. Vestibulum sodales pulvinar nisl, pharetra aliquet est. Quisque
+volutpat erat ac nisi accumsan tempor.</p>
+<p><strong>Sed suscipit</strong>, orci non pretium pretium, quam mi gravida metus, vel
+venenatis justo est condimentum diam. Maecenas non ornare justo. Nam a
+ipsum eros. <a class="reference external" href="#">Nulla aliquam</a> orci sit amet nisl posuere malesuada.
+Proin aliquet nulla velit, quis ultricies orci feugiat et.
+<code class="docutils literal notranslate"><span class="pre">Ut</span> <span class="pre">tincidunt</span> <span class="pre">sollicitudin</span></code> tincidunt. Aenean ullamcorper sit amet
+nulla at interdum.</p>
+</section>
+<section id="headings">
+<h2>Headings<a class="headerlink" href="#headings" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="the-3rd-level">
+<h3>The 3rd level<a class="headerlink" href="#the-3rd-level" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<section id="the-4th-level">
+<h4>The 4th level<a class="headerlink" href="#the-4th-level" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
+<section id="the-5th-level">
+<h5>The 5th level<a class="headerlink" href="#the-5th-level" title="Permalink to this headline"><i class="fas fa-link"></i></a></h5>
+<p>The 6th level</p>
+</section>
+</section>
+</section>
+</section>
+<section id="headings-with-secondary-text">
+<h2>Headings with secondary text<a class="headerlink" href="#headings-with-secondary-text" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="the-3rd-level-with-secondary-text">
+<h3>The 3rd level with secondary text<a class="headerlink" href="#the-3rd-level-with-secondary-text" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<section id="the-4th-level-with-secondary-text">
+<h4>The 4th level with secondary text<a class="headerlink" href="#the-4th-level-with-secondary-text" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
+<section id="the-5th-level-with-secondary-text">
+<h5>The 5th level with secondary text<a class="headerlink" href="#the-5th-level-with-secondary-text" title="Permalink to this headline"><i class="fas fa-link"></i></a></h5>
+<p>The 6th level with secondary text</p>
+</section>
+</section>
+</section>
+</section>
+<section id="blockquotes">
+<h2>Blockquotes<a class="headerlink" href="#blockquotes" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<blockquote>
+<div><p>Morbi eget dapibus felis. Vivamus venenatis porttitor tortor sit amet
+rutrum. Pellentesque aliquet quam enim, eu volutpat urna rutrum a.
+Nam vehicula nunc mauris, a ultricies libero efficitur sed. <em>Class
+aptent</em> taciti sociosqu ad litora torquent per conubia nostra, per
+inceptos himenaeos. Sed molestie imperdiet consectetur.</p>
+</div></blockquote>
+<section id="blockquote-nesting">
+<h3>Blockquote nesting<a class="headerlink" href="#blockquote-nesting" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<blockquote>
+<div><p><strong>Sed aliquet</strong>, neque at rutrum mollis, neque nisi tincidunt nibh,
+vitae faucibus lacus nunc at lacus. Nunc scelerisque, quam id cursus
+sodales, lorem <a class="reference external" href="#">libero fermentum</a> urna, ut efficitur elit
+ligula et nunc.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Mauris dictum mi lacus, sit amet pellentesque urna vehicula
+fringilla. Ut sit amet placerat ante. Proin sed elementum nulla.
+Nunc vitae sem odio. Suspendisse ac eros arcu. Vivamus orci erat,
+volutpat a tempor et, rutrum. eu odio.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Suspendisse</span> <span class="pre">rutrum</span> <span class="pre">facilisis</span> <span class="pre">risus</span></code>, eu posuere neque
+commodo a. Interdum et malesuada fames ac ante ipsum primis in
+faucibus. Sed nec leo bibendum, sodales mauris ut, tincidunt
+massa.</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="other-content-blocks">
+<h3>Other content blocks<a class="headerlink" href="#other-content-blocks" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<blockquote>
+<div><p>Vestibulum vitae orci quis ante viverra ultricies ut eget turpis. Sed
+eu lectus dapibus, eleifend nulla varius, lobortis turpis. In ac
+hendrerit nisl, sit amet laoreet nibh.</p>
+<blockquote>
+<div><p>Praesent at <code class="code javascript docutils literal notranslate"><span class="keyword"><span class="pre">return</span></span> <span class="name other"><span class="pre">target</span></span></code>, sodales nibh vel, tempor
+felis. Fusce vel lacinia lacus. Suspendisse rhoncus nunc non nisi
+iaculis ultrices. Donec consectetur mauris non neque imperdiet,
+eget volutpat libero.</p>
+</div></blockquote>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">_extends</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">source</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">target</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">source</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="hll">  <span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+</span><span class="p">};</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="lists">
+<h2>Lists<a class="headerlink" href="#lists" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="unordered-lists">
+<h3>Unordered lists<a class="headerlink" href="#unordered-lists" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<ul class="simple">
+<li><p>Sed sagittis eleifend rutrum. Donec vitae suscipit est. Nullam tempus
+tellus non sem sollicitudin, quis rutrum leo facilisis. Nulla tempor
+lobortis orci, at elementum urna sodales vitae. In in vehicula nulla,
+quis ornare libero.</p>
+<ul>
+<li><p>Duis mollis est eget nibh volutpat, fermentum aliquet dui mollis.</p></li>
+<li><p>Nam vulputate tincidunt fringilla.</p></li>
+<li><p>Nullam dignissim ultrices urna non auctor.</p></li>
+</ul>
+</li>
+<li><p>Aliquam metus eros, pretium sed nulla venenatis, faucibus auctor ex.
+Proin ut eros sed sapien ullamcorper consequat. Nunc ligula ante,
+fringilla at aliquam ac, aliquet sed mauris.</p></li>
+<li><p>Nulla et rhoncus turpis. Mauris ultricies elementum leo. Duis
+efficitur accumsan nibh eu mattis. Vivamus tempus velit eros,
+porttitor placerat nibh lacinia sed. Aenean in finibus diam.</p></li>
+</ul>
+</section>
+<section id="ordered-lists">
+<h3>Ordered lists<a class="headerlink" href="#ordered-lists" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<ol class="arabic">
+<li><p>Integer vehicula feugiat magna, a mollis tellus. Nam mollis ex ante,
+quis elementum eros tempor rutrum. Aenean efficitur lobortis lacinia.
+Nulla consectetur feugiat sodales.</p></li>
+<li><p>Cum sociis natoque penatibus et magnis dis parturient montes,
+nascetur ridiculus mus. Aliquam ornare feugiat quam et egestas. Nunc
+id erat et quam pellentesque lacinia eu vel odio.</p>
+<ol class="arabic">
+<li><p>Vivamus venenatis porttitor tortor sit amet rutrum. Pellentesque
+aliquet quam enim, eu volutpat urna rutrum a. Nam vehicula nunc
+mauris, a ultricies libero efficitur sed.</p>
+<ol class="arabic simple">
+<li><p>Mauris dictum mi lacus</p></li>
+<li><p>Ut sit amet placerat ante</p></li>
+<li><p>Suspendisse ac eros arcu</p></li>
+</ol>
+</li>
+<li><p>Morbi eget dapibus felis. Vivamus venenatis porttitor tortor sit
+amet rutrum. Pellentesque aliquet quam enim, eu volutpat urna
+rutrum a. Sed aliquet, neque at rutrum mollis, neque nisi
+tincidunt nibh.</p></li>
+<li><p>Pellentesque eget <code class="code javascript docutils literal notranslate"><span class="keyword declaration"><span class="pre">var</span></span> <span class="name other"><span class="pre">_extends</span></span></code> ornare tellus, ut gravida
+mi.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kd">var</span> <span class="nx">_extends</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+</span>  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">source</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">target</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">source</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>Vivamus id mi enim. Integer id turpis sapien. Ut condimentum lobortis
+sagittis. Aliquam purus tellus, faucibus eget urna at, iaculis
+venenatis nulla. Vivamus a pharetra leo.</p></li>
+</ol>
+</section>
+<section id="definition-lists">
+<h3>Definition lists<a class="headerlink" href="#definition-lists" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<dl>
+<dt>Lorem ipsum dolor sit amet</dt><dd><p>Sed sagittis eleifend rutrum. Donec vitae suscipit est. Nullam tempus
+tellus non sem sollicitudin, quis rutrum leo facilisis. Nulla tempor
+lobortis orci, at elementum urna sodales vitae. In in vehicula nulla.</p>
+<p>Duis mollis est eget nibh volutpat, fermentum aliquet dui mollis. Nam
+vulputate tincidunt fringilla. Nullam dignissim ultrices urna non
+auctor.</p>
+</dd>
+<dt>Cras arcu libero</dt><dd><p>Aliquam metus eros, pretium sed nulla venenatis, faucibus auctor ex.
+Proin ut eros sed sapien ullamcorper consequat. Nunc ligula ante,
+fringilla at aliquam ac, aliquet sed mauris.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="code-blocks">
+<h2>Code blocks<a class="headerlink" href="#code-blocks" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="inline">
+<h3>Inline<a class="headerlink" href="#inline" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>Morbi eget <code class="docutils literal notranslate"><span class="pre">dapibus</span> <span class="pre">felis</span></code>. Vivamus <em>``venenatis porttitor``</em> tortor
+sit amet rutrum. Class aptent taciti sociosqu ad litora torquent per
+conubia nostra, per inceptos himenaeos. <a class="reference external" href="#"><code class="docutils literal notranslate"><span class="pre">Pellentesque</span> <span class="pre">aliquet</span> <span class="pre">quam</span> <span class="pre">enim</span></code></a>,
+eu volutpat urna rutrum a.</p>
+<p>Nam vehicula nunc <code class="docutils literal notranslate"><span class="pre">:::js</span> <span class="pre">return</span> <span class="pre">target</span></code> mauris, a ultricies libero
+efficitur sed. Sed molestie imperdiet consectetur. Vivamus a pharetra
+leo. Pellentesque eget ornare tellus, ut gravida mi. Fusce vel lacinia
+lacus.</p>
+</section>
+<section id="listing">
+<h3>Listing<a class="headerlink" href="#listing" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="kd">var</span> <span class="nx">_extends</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+</span>  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">source</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
+<span class="hll">      <span class="nx">target</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">source</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+</span>    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="hll">  <span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+</span><span class="p">};</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="horizontal-rules">
+<h2>Horizontal rules<a class="headerlink" href="#horizontal-rules" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Aenean in finibus diam. Duis mollis est eget nibh volutpat, fermentum
+aliquet dui mollis. Nam vulputate tincidunt fringilla. Nullam dignissim
+ultrices urna non auctor.</p>
+<hr class="docutils"/>
+<p>Integer vehicula feugiat magna, a mollis tellus. Nam mollis ex ante,
+quis elementum eros tempor rutrum. Aenean efficitur lobortis lacinia.
+Nulla consectetur feugiat sodales.</p>
+</section>
+<section id="data-tables">
+<h2>Data tables<a class="headerlink" href="#data-tables" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<div class="table-container"><table class="docutils align-default">
+<colgroup>
+<col style="width: 37%"/>
+<col style="width: 18%"/>
+<col style="width: 17%"/>
+<col style="width: 13%"/>
+<col style="width: 8%"/>
+<col style="width: 7%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Sollicitudo / Pellentesi</p></th>
+<th class="head"><p>consectetur</p></th>
+<th class="head"><p>adipiscing</p></th>
+<th class="head"><p>elit</p></th>
+<th class="head"><p>arcu</p></th>
+<th class="head"><p>sed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Vivamus a pharetra</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ornare viverra ex</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Mauris a ullamcorper</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>partial</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nullam urna elit</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Malesuada eget finibus</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ullamcorper</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Vestibulum sodales</p></td>
+<td><p>yes</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>yes</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pulvinar nisl</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>Pharetra aliquet est</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sed suscipit</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Orci non pretium</p></td>
+<td><p>yes</p></td>
+<td><p>partial</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p>Sed sagittis eleifend rutrum. Donec vitae suscipit est. Nullam tempus
+tellus non sem sollicitudin, quis rutrum leo facilisis. Nulla tempor
+lobortis orci, at elementum urna sodales vitae. In in vehicula nulla,
+quis ornare libero.</p>
+<div class="table-container"><table class="docutils align-center">
+<colgroup>
+<col style="width: 44%"/>
+<col style="width: 26%"/>
+<col style="width: 29%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Left</p></th>
+<th class="head"><p>Center</p></th>
+<th class="head"><p>Right</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Lorem</p></td>
+<td><p><em>dolor</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">amet</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="#">ipsum</a></p></td>
+<td><p><strong>sit</strong></p></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Vestibulum vitae orci quis ante viverra ultricies ut eget turpis. Sed eu
+lectus dapibus, eleifend nulla varius, lobortis turpis. In ac hendrerit
+nisl, sit amet laoreet nibh.</p>
+<div class="table-container"><table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%"/>
+<col style="width: 70%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Table</p></th>
+<th class="head"><p>with colgroups (Pandoc)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Lorem</p></td>
+<td><p>ipsum dolor sit amet.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sed sagittis</p></td>
+<td><p>eleifend rutrum. Donec vitae suscipit est.</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec ipsum a
+eros convallis facilisis eget at leo. Cras eu pulvinar eros, at accumsan dolor.
+Ut gravida massa sed eros imperdiet fermentum. Donec ac diam ut lorem consequat
+laoreet. Maecenas at ex diam. Phasellus tincidunt orci felis, nec commodo nisl
+aliquet ac. Aenean eget ornare tellus. Nullam vel nunc quis nisi sodales
+finibus in ut metus. Praesent ultrices mollis leo, auctor volutpat eros
+consectetur in. Sed ac odio nisi. Cras aliquet ultrices nisl ac mattis. Nulla a
+dui velit. Proin et ipsum quis metus auctor viverra. Proin suscipit massa quis
+magna mattis, vel tincidunt quam tincidunt. Vestibulum nec feugiat metus, nec
+scelerisque eros. Ut ultricies ornare aliquam.</p>
+</section>
+<section id="section-ii">
+<h2>Section II<a class="headerlink" href="#section-ii" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Proin ac mi tempor, ullamcorper ante at, sodales augue. Duis enim turpis,
+volutpat eget consectetur id, facilisis vel nisl. Sed non leo aliquam, tempus
+nisl eu, vestibulum enim. Suspendisse et leo imperdiet, pulvinar lacus sed,
+commodo felis.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Praesent elit mi, pretium nec pellentesque eget, ultricies
+euismod turpis.</p>
+</div>
+<section id="sub-section">
+<h3>Sub section<a class="headerlink" href="#sub-section" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>In lobortis elementum tempus. Nam facilisis orci neque, eget vestibulum lectus
+imperdiet sed. Aenean ac eros sollicitudin, accumsan turpis ac, faucibus arcu.</p>
+</section>
+</section>
+<section id="section-iii">
+<h2>Section III<a class="headerlink" href="#section-iii" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Donec sodales, velit ac sagittis fermentum, metus ante pharetra ex, ac eleifend
+erat ligula in lacus. Donec tincidunt urna est, non mollis turpis lacinia sit
+amet. Duis ac facilisis libero, ut interdum nibh. Sed rutrum dapibus pharetra.
+Ut ac luctus nisi, vitae volutpat arcu. Vivamus venenatis eu nibh ut
+consectetur. Cras tincidunt dui nisi, et facilisis eros feugiat nec.</p>
+<p>Fusce ante:</p>
+<ul class="simple">
+<li><p>libero</p></li>
+<li><p>consequat quis facilisis id</p></li>
+<li><p>sollicitudin et nisl.</p></li>
+</ul>
+<p>Aliquam diam mi, vulputate nec posuere id, consequat id elit. Ut feugiat lectus
+quam, sed aliquet augue placerat nec. Sed volutpat leo ac condimentum
+ullamcorper. Vivamus eleifend magna tellus, sit amet porta nunc ultrices eget.
+Nullam id laoreet ex. Nam ultricies, ante et molestie mollis, magna sem porta
+libero, sed molestie neque risus ut purus. Ut tellus sapien, auctor a lacus eu,
+iaculis congue ex.</p>
+<p>Duis et nisi a odio <strong>scelerisque</strong> sodales ac ut sapien. Ut eleifend blandit
+velit luctus euismod. Curabitur at pulvinar mi. Cras molestie lorem non accumsan
+gravida. Sed vulputate, ligula ut tincidunt congue, metus risus luctus lacus,
+sed rhoncus ligula turpis non erat. Phasellus est est, <em>sollicitudin ut</em>
+elementum vel, placerat in orci. Proin molestie posuere dolor sit amet
+convallis. Donec id urna vel lacus ultrices pulvinar sit amet id metus. Donec
+in venenatis ante. Nam eu rhoncus leo. Quisque posuere, leo vel porttitor
+malesuada, nisi urna dignissim justo, vel consectetur purus elit in mauris.
+Vestibulum lectus arcu, varius ut ligula quis, viverra gravida sem.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pellentesque in enim leo.</p>
+</div>
+</section>
+<section id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="default-alignment">
+<h3>Default Alignment<a class="headerlink" href="#default-alignment" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<img alt="Default image" src="_images/desert-flower.jpg"/>
+</section>
+<section id="center-alignment">
+<h3>Center Alignment<a class="headerlink" href="#center-alignment" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<a class="reference internal image-reference" href="_images/desert-flower.jpg"><img alt="Centered Image, 80% scale" class="align-center" src="_images/desert-flower.jpg" style="width: 409.6px; height: 292.8px;"/></a>
+</section>
+<section id="right-alignment">
+<h3>Right Alignment<a class="headerlink" href="#right-alignment" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<a class="reference internal image-reference" href="_images/desert-flower.jpg"><img alt="Right Image, 60% scale" class="align-right" src="_images/desert-flower.jpg" style="width: 307.2px; height: 219.6px;"/></a>
+</section>
+</section>
+</section>
+</article>
+</div>
+<aside class="column is-hidden-mobile is-2-desktop is-3-tablet">
+<nav class="ff-localtoc menu">
+<p class="menu-label">Contents</p>
+<ul>
+<li><a class="reference internal" href="#">Specimen</a><ul>
+<li><a class="reference internal" href="#body-copy">Body copy</a></li>
+<li><a class="reference internal" href="#headings">Headings</a><ul>
+<li><a class="reference internal" href="#the-3rd-level">The 3rd level</a><ul>
+<li><a class="reference internal" href="#the-4th-level">The 4th level</a><ul>
+<li><a class="reference internal" href="#the-5th-level">The 5th level</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#headings-with-secondary-text">Headings with secondary text</a><ul>
+<li><a class="reference internal" href="#the-3rd-level-with-secondary-text">The 3rd level with secondary text</a><ul>
+<li><a class="reference internal" href="#the-4th-level-with-secondary-text">The 4th level with secondary text</a><ul>
+<li><a class="reference internal" href="#the-5th-level-with-secondary-text">The 5th level with secondary text</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#blockquotes">Blockquotes</a><ul>
+<li><a class="reference internal" href="#blockquote-nesting">Blockquote nesting</a></li>
+<li><a class="reference internal" href="#other-content-blocks">Other content blocks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lists">Lists</a><ul>
+<li><a class="reference internal" href="#unordered-lists">Unordered lists</a></li>
+<li><a class="reference internal" href="#ordered-lists">Ordered lists</a></li>
+<li><a class="reference internal" href="#definition-lists">Definition lists</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#code-blocks">Code blocks</a><ul>
+<li><a class="reference internal" href="#inline">Inline</a></li>
+<li><a class="reference internal" href="#listing">Listing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#horizontal-rules">Horizontal rules</a></li>
+<li><a class="reference internal" href="#data-tables">Data tables</a></li>
+<li><a class="reference internal" href="#section-ii">Section II</a><ul>
+<li><a class="reference internal" href="#sub-section">Sub section</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#section-iii">Section III</a></li>
+<li><a class="reference internal" href="#images">Images</a><ul>
+<li><a class="reference internal" href="#default-alignment">Default Alignment</a></li>
+<li><a class="reference internal" href="#center-alignment">Center Alignment</a></li>
+<li><a class="reference internal" href="#right-alignment">Right Alignment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</div>
+</main>
+<footer class="footer">
+<div class="footer-content">
+<nav class="level">
+<div class="level-left">
+<div class="level-item">
+<a class="icon-text" href="customization.html" rel="prev" title="Customization">
+<span class="icon">
+<i class="fas fa-arrow-left"></i>
+</span>
+<span class="is-size-5">Customization</span>
+</a>
+</div>
+</div>
+<div class="level-right">
+<div class="level-item">
+<a class="icon-text" href="additional_samples.html" rel="next" title="Additional Samples">
+<span class="is-size-5"><code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Samples</span></code></span>
+<span class="icon">
+<i class="fas fa-arrow-right"></i>
+</span>
+</a>
+</div>
+</div>
+</nav>
+<div class="columns">
+<div class="fineprint column">
+<div class="copyright">
+              © Copyright 2021, Open Force Field Initiative.
+              
+          </div>
+          Last updated on
+            Jul 12, 2021.
+          <br/>
+          Created using
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.1.0.
+           and
+          <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
+</div>
+<div class="socials column">
+<p class="pb-3">An <a class="has-text-white" href="https://openforcefield.org/">Open Force Field Initiative</a> project.</p>
+<div>
+<a class="icon has-text-light is-medium" href="https://zenodo.org/communities/openforcefield/" title="OpenFF on Zenodo">
+<i class="fa-lg ai-lg ai ai-zenodo"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://www.youtube.com/channel/UCh0aJSUm_sYr7nuTzhW806g" title="OpenFF on YouTube">
+<i class="fa-lg ai-lg fab fa-youtube"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://github.com/openforcefield" title="OpenFF on GitHub">
+<i class="fa-lg ai-lg fab fa-github"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://twitter.com/openforcefield" title="OpenFF on Twitter">
+<i class="fa-lg ai-lg fab fa-twitter"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://www.linkedin.com/company/openforcefield/" title="OpenFF on LinkedIn">
+<i class="fa-lg ai-lg fab fa-linkedin"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
