@@ -1,375 +1,256 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-
-  
-  <link rel="icon" type="image/svg" href="_static/images/favicon.svg" />
-  <link rel="apple-touch-icon" type="image/svg" href="_static/images/favicon.svg" />
-  
-
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="lang:clipboard.copy" content="Copy to clipboard">
-  <meta name="lang:clipboard.copied" content="Copied to clipboard">
-  <meta name="lang:search.language" content="en">
-  <meta name="lang:search.pipeline.stopwords" content="True">
-  <meta name="lang:search.pipeline.trimmer" content="True">
-  <meta name="lang:search.result.none" content="No matching documents">
-  <meta name="lang:search.result.one" content="1 matching document">
-  <meta name="lang:search.result.other" content="# matching documents">
-  <meta name="lang:search.tokenizer" content="[\s\-]+">
-
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <meta name="theme-color" content="#015480;">
-  
-  
-    <title>autodoc_pydantic API Docs &#8212; OpenFF Sphinx theme</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/openff.css" />
-    <link rel="stylesheet" type="text/css" href="_static/autodoc_pydantic.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Openff-toolkit example" href="numpydoc.html" />
-    <link rel="prev" title="NumPy Docstrings" href="numpydoc_example.html" />
-   
-  <link rel="stylesheet" href="_static/site.css"/>
-
-  </head>
-  <body dir=ltr
-        data-md-color-accent=openff-toolkit-blue
-        class="has-navbar-fixed-top">
-  <header data-md-component="header">
-  <nav class="navbar is-primary is-fixed-top is-flex-touch has-shadow" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a href="index.html" title="OpenFF Sphinx theme" class="navbar-item is-hidden-mobile">
-        
-          <img src="_static/images/logos/openforcefield_v1_white.png" alt="OpenFF Sphinx theme logo">
-        
-      </a>
-    </div>
-
-    <div class="has-text-light is-hidden-mobile nav-title">
-      <div class="breadcrumb">
-  <ul>
-        <li><a href="index.html">OpenFF Sphinx theme</a></li>
-      <li class="is-active"><a href="#">autodoc_pydantic API Docs</a></li>
-  </ul>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
+<link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="Copy to clipboard" name="lang:clipboard.copy"/>
+<meta content="Copied to clipboard" name="lang:clipboard.copied"/>
+<meta content="en" name="lang:search.language"/>
+<meta content="True" name="lang:search.pipeline.stopwords"/>
+<meta content="True" name="lang:search.pipeline.trimmer"/>
+<meta content="No matching documents" name="lang:search.result.none"/>
+<meta content="1 matching document" name="lang:search.result.one"/>
+<meta content="# matching documents" name="lang:search.result.other"/>
+<meta content="[\s\-]+" name="lang:search.tokenizer"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="_static/site.css" rel="stylesheet"/>
+<meta content="#015480;" name="theme-color"/>
+<title>autodoc_pydantic API Docs — OpenFF Sphinx theme</title>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/openff.css" rel="stylesheet" type="text/css"/>
+<link href="_static/autodoc_pydantic.css" rel="stylesheet" type="text/css"/>
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/doctools.js"></script>
+<script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="numpydoc.html" rel="next" title="Openff-toolkit example"/>
+<link href="numpydoc_example.html" rel="prev" title="NumPy Docstrings"/>
+</head>
+<body class="has-navbar-fixed-top" data-md-color-accent="openff-toolkit-blue" dir="ltr">
+<header data-md-component="header">
+<nav aria-label="main navigation" class="navbar is-primary is-fixed-top is-flex-touch has-shadow" role="navigation">
+<div class="navbar-brand">
+<a class="navbar-item is-hidden-mobile" href="index.html" title="OpenFF Sphinx theme">
+<img alt="OpenFF Sphinx theme logo" src="_static/images/logos/openforcefield_v1_white.png"/>
+</a>
 </div>
-    </div>
-    <div class="has-text-light is-hidden-tablet nav-title">
-      <span> autodoc_pydantic API Docs </span>
-    </div>
-
-    <div class="navbar-end">
-      <span class="navbar-item nav-search is-hidden-mobile">
-        
+<div class="has-text-light is-hidden-mobile nav-title">
+<div class="breadcrumb">
+<ul>
+<li><a href="index.html">OpenFF Sphinx theme</a></li>
+<li class="is-active"><a href="#">autodoc_pydantic API Docs</a></li>
+</ul>
+</div>
+</div>
+<div class="has-text-light is-hidden-tablet nav-title">
+<span> autodoc_pydantic API Docs </span>
+</div>
+<div class="navbar-end">
+<span class="navbar-item nav-search is-hidden-mobile">
 <form action="search.html" method="GET" name="search">
-  <div class="control has-icons-right">
-    <span class="icon is-small is-right">
-      <i class="fas fa-search"></i>
-    </span>
-    <input class="input is-primary" type="text"  name="q" placeholder="Search"
-         autocapitalize="off" autocomplete="off" spellcheck="false">
-  </div>
+<div class="control has-icons-right">
+<span class="icon is-small is-right">
+<i class="fas fa-search"></i>
+</span>
+<input autocapitalize="off" autocomplete="off" class="input is-primary" name="q" placeholder="Search" spellcheck="false" type="text"/>
+</div>
 </form>
-
-      </span>
-      
-        <a href="https://github.com/openforcefield/openff-sphinx-theme/" class="is-family-monospace navbar-item is-hidden-touch has-text-light">
-          
-          <span class="icon-text">
-            <span class="icon">
-              <i class="fab fa-github"></i>
-            </span>
-            <span>
+</span>
+<a class="is-family-monospace navbar-item is-hidden-touch has-text-light" href="https://github.com/openforcefield/openff-sphinx-theme/">
+<span class="icon-text">
+<span class="icon">
+<i class="fab fa-github"></i>
+</span>
+<span>
           
             openff-sphinx-theme
           
             </span>
-          </span>
-          
-        </a>
-      
-      <a href="https://openforcefield.org/" class="navbar-item is-hidden-touch">
-        <img
-          src="_static/images/logos/openforcefield_v2_white.png"
-          alt="Open Force Field Initiative logo"
-        >
-      </a>
-    </div>
-    <span class="navbar-burger-spacer is-hidden-desktop"></span>
-  </nav>
-
-  
-
-  <div class="level is-hidden-mobile nav-tabs">
-      
-      <div class="level-item has-text-centered"><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div>
-      
-      <div class="level-item has-text-centered"><a href="https://bashtage.github.io/sphinx-material/">Material for Sphinx</a></div>
-      
-      <div class="level-item has-text-centered"><a href="https://openforcefield.org">The OpenFF Initiative</a></div>
-      
-      <div class="level-item has-text-centered"><a href="https://github.com/openforcefield/openff-sphinx-theme/">openff-sphinx-theme on GitHub</a></div>
-  </div>
-
+</span>
+</a>
+<a class="navbar-item is-hidden-touch" href="https://openforcefield.org/">
+<img alt="Open Force Field Initiative logo" src="_static/images/logos/openforcefield_v2_white.png"/>
+</a>
+</div>
+<span class="navbar-burger-spacer is-hidden-desktop"></span>
+</nav>
+<div class="level is-hidden-mobile nav-tabs">
+<div class="level-item has-text-centered"><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div>
+<div class="level-item has-text-centered"><a href="https://bashtage.github.io/sphinx-material/">Material for Sphinx</a></div>
+<div class="level-item has-text-centered"><a href="https://openforcefield.org">The OpenFF Initiative</a></div>
+<div class="level-item has-text-centered"><a href="https://github.com/openforcefield/openff-sphinx-theme/">openff-sphinx-theme on GitHub</a></div>
+</div>
 </header>
-
-  
-  <main class="mb-6">
-      <div class="columns">
-        <input type="checkbox" id="drawer-toggle" class="is-hidden">
-        <label for="drawer-toggle" role="button" class="navbar-burger burger is-light">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </label>
-
-        <aside class="column is-2" id="drawer">
-          <div class="is-hidden-tablet">
-            <a href="index.html" title="OpenFF Sphinx theme">
-              <h1>
+<main class="mb-6">
+<div class="columns">
+<input class="is-hidden" id="drawer-toggle" type="checkbox"/>
+<label class="navbar-burger burger is-light" for="drawer-toggle" role="button">
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+</label>
+<aside class="column is-2" id="drawer">
+<div class="is-hidden-tablet">
+<a href="index.html" title="OpenFF Sphinx theme">
+<h1>
                 OpenFF Sphinx theme
               </h1>
-            </a>
-            <div class="py-3">
-              
+</a>
+<div class="py-3">
 <form action="search.html" method="GET" name="search">
-  <div class="control has-icons-right">
-    <span class="icon is-small is-right">
-      <i class="fas fa-search"></i>
-    </span>
-    <input class="input is-primary" type="text"  name="q" placeholder="Search"
-         autocapitalize="off" autocomplete="off" spellcheck="false">
-  </div>
+<div class="control has-icons-right">
+<span class="icon is-small is-right">
+<i class="fas fa-search"></i>
+</span>
+<input autocapitalize="off" autocomplete="off" class="input is-primary" name="q" placeholder="Search" spellcheck="false" type="text"/>
+</div>
 </form>
-
-            </div>
-          </div>
-          
-
+</div>
+</div>
 <nav class="menu ff-globaltoc">
-  
-    
-      
-      <p class="menu-label"><span class="caption-text">Basic Use</span></p>
-      <ul class="menu-list">
-    
-    
-      
-      <li>
-        <a href="customization.html" class="">Customization</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="specimen.html" class="">Specimen</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="additional_samples.html" class=""><code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Samples</span></code></a>
-      </li>
-      
-    
-    
-      
-        </ul>
-      
-      <p class="menu-label"><span class="caption-text">Other Examples and Uses</span></p>
-      <ul class="menu-list">
-    
-    
-      
-      <li>
-        <a href="pymethod.html" class="">Python Methods</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="numpydoc_example.html" class="">NumPy Docstrings</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="#" class="is-active">autodoc_pydantic API Docs</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="numpydoc.html" class="">Openff-toolkit example</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="pydantic.html" class="">Pydantic API docs</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="notebook.html" class="">Jupyter Notebooks</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="markdown.html" class="">Markdown</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="rst-cheatsheet/rst-cheatsheet.html" class="">rst Cheatsheet</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="primer.html" class="">reStructuredText Primer</a>
-      </li>
-      
-    
-    
-      
-        </ul>
-      
-      <p class="menu-label"><span class="caption-text">Changes and License</span></p>
-      <ul class="menu-list">
-    
-    
-      
-      <li>
-        <a href="change-log.html" class="">Change Log</a>
-      </li>
-      
-    
-    
-      
-      <li>
-        <a href="license.html" class="">License</a>
-      </li>
-      
-        </ul>
-      
-    
-  </ul>
+<p class="menu-label"><span class="caption-text">Basic Use</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="customization.html">Customization</a>
+</li>
+<li>
+<a class="" href="specimen.html">Specimen</a>
+</li>
+<li>
+<a class="" href="additional_samples.html"><code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Samples</span></code></a>
+</li>
+</ul>
+<p class="menu-label"><span class="caption-text">Other Examples and Uses</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="pymethod.html">Python Methods</a>
+</li>
+<li>
+<a class="" href="numpydoc_example.html">NumPy Docstrings</a>
+</li>
+<li>
+<a class="is-active" href="#">autodoc_pydantic API Docs</a>
+</li>
+<li>
+<a class="" href="numpydoc.html">Openff-toolkit example</a>
+</li>
+<li>
+<a class="" href="pydantic.html">Pydantic API docs</a>
+</li>
+<li>
+<a class="" href="notebook.html">Jupyter Notebooks</a>
+</li>
+<li>
+<a class="" href="markdown.html">Markdown</a>
+</li>
+<li>
+<a class="" href="rst-cheatsheet/rst-cheatsheet.html">rst Cheatsheet</a>
+</li>
+<li>
+<a class="" href="primer.html">reStructuredText Primer</a>
+</li>
+</ul>
+<p class="menu-label"><span class="caption-text">Changes and License</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="change-log.html">Change Log</a>
+</li>
+<li>
+<a class="" href="license.html">License</a>
+</li>
+</ul>
 </nav>
-
-        </aside>
-
-        <div class="column is-8-desktop is-9-tablet">
-          <article class="content">
-            
-  <section id="autodoc-pydantic-api-docs">
-<span id="autodoc-pydantic-example"></span><h1>autodoc_pydantic API Docs<a class="headerlink" href="#autodoc-pydantic-api-docs" title="Permalink to this headline">¶</a></h1>
+</aside>
+<div class="column is-8-desktop is-9-tablet">
+<article class="content">
+<section id="autodoc-pydantic-api-docs">
+<span id="autodoc-pydantic-example"></span><h1>autodoc_pydantic API Docs<a class="headerlink" href="#autodoc-pydantic-api-docs" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
 <section id="source">
-<h2>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h2>
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">validator</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span><span class="k">class</span> <span class="nc">ExampleSettings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
-<span class="linenos"> 5</span>    <span class="sd">&quot;&quot;&quot;Document your project settings very conveniently. Applies like wise</span>
+<span class="linenos"> 5</span>    <span class="sd">"""Document your project settings very conveniently. Applies like wise</span>
 <span class="linenos"> 6</span><span class="sd">    to pydantic models.</span>
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 8</span><span class="sd">    """</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span>    <span class="n">field_plain_with_validator</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="linenos">11</span>    <span class="sd">&quot;&quot;&quot;Show standard field with type annotation.&quot;&quot;&quot;</span>
+<span class="linenos">11</span>    <span class="sd">"""Show standard field with type annotation."""</span>
 <span class="linenos">12</span>
-<span class="linenos">13</span>    <span class="n">field_with_validator_and_alias</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;FooBar&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;BarFoo&quot;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;BarFoo&quot;</span><span class="p">)</span>
-<span class="linenos">14</span>    <span class="sd">&quot;&quot;&quot;Shows corresponding validator with link/anchor.&quot;&quot;&quot;</span>
+<span class="linenos">13</span>    <span class="n">field_with_validator_and_alias</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"FooBar"</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">"BarFoo"</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">"BarFoo"</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="sd">"""Shows corresponding validator with link/anchor."""</span>
 <span class="linenos">15</span>
 <span class="linenos">16</span>    <span class="n">field_with_constraints_and_description</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-<span class="linenos">17</span>        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Shows constraints within doc string.&quot;</span>
+<span class="linenos">17</span>        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Shows constraints within doc string."</span>
 <span class="linenos">18</span>    <span class="p">)</span>
 <span class="linenos">19</span>
-<span class="linenos">20</span>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;field_with_validator_and_alias&quot;</span><span class="p">,</span> <span class="s2">&quot;field_plain_with_validator&quot;</span><span class="p">)</span>
+<span class="linenos">20</span>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"field_with_validator_and_alias"</span><span class="p">,</span> <span class="s2">"field_plain_with_validator"</span><span class="p">)</span>
 <span class="linenos">21</span>    <span class="k">def</span> <span class="nf">check_max_length_ten</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-<span class="linenos">22</span>        <span class="sd">&quot;&quot;&quot;Show corresponding field with link/anchor.&quot;&quot;&quot;</span>
+<span class="linenos">22</span>        <span class="sd">"""Show corresponding field with link/anchor."""</span>
 <span class="linenos">23</span>
 <span class="linenos">24</span>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
-<span class="linenos">25</span>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No more than 10 characters allowed&quot;</span><span class="p">)</span>
+<span class="linenos">25</span>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No more than 10 characters allowed"</span><span class="p">)</span>
 <span class="linenos">26</span>
 <span class="linenos">27</span>    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
-<span class="linenos">28</span>        <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">&quot;foo_&quot;</span>
+<span class="linenos">28</span>        <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">"foo_"</span>
 <span class="linenos">29</span>        <span class="n">allow_mutation</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </section>
 <section id="module-pydantic_example">
-<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-pydantic_example" title="Permalink to this headline">¶</a></h2>
+<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-pydantic_example" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <dl class="py pydantic_settings">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings">
-<em class="property"><span class="pre">pydantic</span> <span class="pre">settings</span> </em><span class="sig-prename descclassname"><span class="pre">pydantic_example.</span></span><span class="sig-name descname"><span class="pre">ExampleSettings</span></span><a class="reference internal" href="_modules/pydantic_example.html#ExampleSettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydantic_example.ExampleSettings" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">pydantic</span> <span class="pre">settings</span> </em><span class="sig-prename descclassname"><span class="pre">pydantic_example.</span></span><span class="sig-name descname"><span class="pre">ExampleSettings</span></span><a class="reference internal" href="_modules/pydantic_example.html#ExampleSettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydantic_example.ExampleSettings" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Document your project settings very conveniently. Applies like wise
 to pydantic models.</p>
-<p><details  class="autodoc_pydantic_collapsable_json">
+<p><details class="autodoc_pydantic_collapsable_json">
 <summary>Show JSON schema</summary><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;ExampleSettings&quot;</span><span class="p">,</span>
-   <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Document your project settings very conveniently. Applies like wise\nto pydantic models.&quot;</span><span class="p">,</span>
-   <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
-   <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;field_plain_with_validator&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Field Plain With Validator&quot;</span><span class="p">,</span>
-         <span class="nt">&quot;default&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-         <span class="nt">&quot;env_names&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;foo_field_plain_with_validator&quot;</span>
+   <span class="nt">"title"</span><span class="p">:</span> <span class="s2">"ExampleSettings"</span><span class="p">,</span>
+   <span class="nt">"description"</span><span class="p">:</span> <span class="s2">"Document your project settings very conveniently. Applies like wise\nto pydantic models."</span><span class="p">,</span>
+   <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"object"</span><span class="p">,</span>
+   <span class="nt">"properties"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"field_plain_with_validator"</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">"title"</span><span class="p">:</span> <span class="s2">"Field Plain With Validator"</span><span class="p">,</span>
+         <span class="nt">"default"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+         <span class="nt">"env_names"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"foo_field_plain_with_validator"</span>
          <span class="p">],</span>
-         <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span>
+         <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"integer"</span>
       <span class="p">},</span>
-      <span class="nt">&quot;BarFoo&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Barfoo&quot;</span><span class="p">,</span>
-         <span class="nt">&quot;default&quot;</span><span class="p">:</span> <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span>
-         <span class="nt">&quot;env&quot;</span><span class="p">:</span> <span class="s2">&quot;BarFoo&quot;</span><span class="p">,</span>
-         <span class="nt">&quot;env_names&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;barfoo&quot;</span>
+      <span class="nt">"BarFoo"</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">"title"</span><span class="p">:</span> <span class="s2">"Barfoo"</span><span class="p">,</span>
+         <span class="nt">"default"</span><span class="p">:</span> <span class="s2">"FooBar"</span><span class="p">,</span>
+         <span class="nt">"env"</span><span class="p">:</span> <span class="s2">"BarFoo"</span><span class="p">,</span>
+         <span class="nt">"env_names"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"barfoo"</span>
          <span class="p">],</span>
-         <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+         <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"string"</span>
       <span class="p">},</span>
-      <span class="nt">&quot;field_with_constraints_and_description&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Field With Constraints And Description&quot;</span><span class="p">,</span>
-         <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Shows constraints within doc string.&quot;</span><span class="p">,</span>
-         <span class="nt">&quot;default&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-         <span class="nt">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-         <span class="nt">&quot;maximum&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-         <span class="nt">&quot;env_names&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;foo_field_with_constraints_and_description&quot;</span>
+      <span class="nt">"field_with_constraints_and_description"</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">"title"</span><span class="p">:</span> <span class="s2">"Field With Constraints And Description"</span><span class="p">,</span>
+         <span class="nt">"description"</span><span class="p">:</span> <span class="s2">"Shows constraints within doc string."</span><span class="p">,</span>
+         <span class="nt">"default"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+         <span class="nt">"minimum"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+         <span class="nt">"maximum"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+         <span class="nt">"env_names"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"foo_field_with_constraints_and_description"</span>
          <span class="p">],</span>
-         <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span>
+         <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"integer"</span>
       <span class="p">}</span>
    <span class="p">},</span>
-   <span class="nt">&quot;additionalProperties&quot;</span><span class="p">:</span> <span class="kc">false</span>
+   <span class="nt">"additionalProperties"</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -396,7 +277,7 @@ to pydantic models.</p>
 </dl>
 <dl class="py pydantic_field">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.field_plain_with_validator">
-<em class="property"><span class="pre">field</span> </em><span class="sig-name descname"><span class="pre">field_plain_with_validator</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">100</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">field</span> </em><span class="sig-name descname"><span class="pre">field_plain_with_validator</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">100</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Show standard field with type annotation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Validated by</dt>
@@ -406,10 +287,9 @@ to pydantic models.</p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py pydantic_field">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.field_with_validator_and_alias">
-<em class="property"><span class="pre">field</span> </em><span class="sig-name descname"><span class="pre">field_with_validator_and_alias</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">'FooBar'</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'BarFoo')</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">field</span> </em><span class="sig-name descname"><span class="pre">field_with_validator_and_alias</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">'FooBar'</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'BarFoo')</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Shows corresponding validator with link/anchor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Constraints</dt>
@@ -424,10 +304,9 @@ to pydantic models.</p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py pydantic_field">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.field_with_constraints_and_description">
-<em class="property"><span class="pre">field</span> </em><span class="sig-name descname"><span class="pre">field_with_constraints_and_description</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">5</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_constraints_and_description" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">field</span> </em><span class="sig-name descname"><span class="pre">field_with_constraints_and_description</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">5</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_constraints_and_description" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Shows constraints within doc string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Constraints</dt>
@@ -438,24 +317,21 @@ to pydantic models.</p>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py pydantic_validator">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.check_max_length_ten">
-<em class="property"><span class="pre">validator</span> </em><span class="sig-name descname"><span class="pre">check_max_length_ten</span></span><em class="autodoc_pydantic_validator_arrow property">&#160; <span class="pre">»</span>&#160; </em><a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="pydantic_example.ExampleSettings.field_with_validator_and_alias"><em class="xref py py-obj"><span class="pre">field_with_validator_and_alias</span></em></a><em class="property"><span class="pre">,</span> </em><a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="pydantic_example.ExampleSettings.field_plain_with_validator"><em class="xref py py-obj"><span class="pre">field_plain_with_validator</span></em></a><a class="reference internal" href="_modules/pydantic_example.html#ExampleSettings.check_max_length_ten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">validator</span> </em><span class="sig-name descname"><span class="pre">check_max_length_ten</span></span><em class="autodoc_pydantic_validator_arrow property">  <span class="pre">»</span>  </em><a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="pydantic_example.ExampleSettings.field_with_validator_and_alias"><em class="xref py py-obj"><span class="pre">field_with_validator_and_alias</span></em></a><em class="property"><span class="pre">,</span> </em><a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="pydantic_example.ExampleSettings.field_plain_with_validator"><em class="xref py py-obj"><span class="pre">field_plain_with_validator</span></em></a><a class="reference internal" href="_modules/pydantic_example.html#ExampleSettings.check_max_length_ten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Show corresponding field with link/anchor.</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.construct">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_fields_set</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">SetStr</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.construct" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_fields_set</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">SetStr</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.construct" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Creates a new model setting __dict__ and __fields_set__ from trusted or pre-validated data.
 Default values are respected, but no other validation is performed.
 Behaves as if <cite>Config.extra = ‘allow’</cite> was set since it adds all passed values</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.copy">
-<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">DictStrAny</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.copy" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">DictStrAny</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.copy" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Duplicate a model, optionally choose which fields to include, exclude and change.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -472,125 +348,97 @@ the new model: you should trust this data</p></li>
 </dd>
 </dl>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.dict">
-<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_unset</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_none</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DictStrAny</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.dict" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_unset</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_none</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">DictStrAny</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.dict" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.from_orm">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_orm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.from_orm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_orm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.from_orm" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.json">
-<span class="sig-name descname"><span class="pre">json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_unset</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_none</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">dumps_kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">unicode</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.json" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_unset</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_none</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">dumps_kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">unicode</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.json" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate a JSON representation of the model, <cite>include</cite> and <cite>exclude</cite> arguments as per <cite>dict()</cite>.</p>
 <p><cite>encoder</cite> is an optional function to supply as <cite>default</cite> to json.dumps(), other arguments as per <cite>json.dumps()</cite>.</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.parse_file">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><span class="pre">pathlib.Path</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'utf8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pydantic.parse.Protocol</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_pickle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.parse_file" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">parse_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.9)"><span class="pre">pathlib.Path</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'utf8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pydantic.parse.Protocol</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_pickle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.parse_file" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.parse_obj">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">parse_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.parse_obj" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">parse_obj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.parse_obj" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.parse_raw">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">parse_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.9)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'utf8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pydantic.parse.Protocol</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_pickle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.parse_raw" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">parse_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.9)"><span class="pre">bytes</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'utf8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pydantic.parse.Protocol</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_pickle</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.parse_raw" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.schema">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_template</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'#/definitions/{model}'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DictStrAny</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.schema" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_template</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'#/definitions/{model}'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">DictStrAny</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.schema" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.schema_json">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">schema_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_template</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'#/definitions/{model}'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">dumps_kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">unicode</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.schema_json" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">schema_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_template</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">unicode</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'#/definitions/{model}'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">dumps_kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">unicode</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.schema_json" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.update_forward_refs">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">update_forward_refs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">localns</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.update_forward_refs" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">update_forward_refs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">localns</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.update_forward_refs" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Try to update ForwardRefs on fields based on this Model, globalns and localns.</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.validate">
-<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.validate" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.validate" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd></dd></dl>
-
 </dd></dl>
-
 </section>
 </section>
-
-
-          </article>
-        </div>
-
-        <aside class="column is-hidden-mobile is-2-desktop is-3-tablet">
-          
+</article>
+</div>
+<aside class="column is-hidden-mobile is-2-desktop is-3-tablet">
 <nav class="ff-localtoc menu">
-  <p class="menu-label">Contents</p>
-  <ul>
+<p class="menu-label">Contents</p>
+<ul>
 <li><a class="reference internal" href="#">autodoc_pydantic API Docs</a><ul>
 <li><a class="reference internal" href="#source">Source</a></li>
 <li><a class="reference internal" href="#module-pydantic_example">Rendered</a></li>
 </ul>
 </li>
 </ul>
-
 </nav>
-        </aside>
-      </div>
-  </main>
-  <footer class="footer">
-  <div class="footer-content">
-        <nav class="level">
-          <div class="level-left">
-            
-              <div class="level-item">
-                <a href="numpydoc_example.html" title="NumPy Docstrings"
-                   class="icon-text"
-                   rel="prev">
-
-                    <span class="icon">
-                      <i class="fas fa-arrow-left"></i>
-                    </span>
-                    <span class="is-size-5">NumPy Docstrings</span>
-                </a>
-              </div>
-            
-          </div>
-          <div class="level-right">
-            
-              <div class="level-item">
-                <a href="numpydoc.html" title="Openff-toolkit example"
-                   class="icon-text"
-                   rel="next">
-
-                    <span class="is-size-5">Openff-toolkit example</span>
-                    <span class="icon">
-                      <i class="fas fa-arrow-right"></i>
-                    </span>
-                </a>
-              </div>
-            
-          </div>
-        </nav>
-      
-    <div class="columns">
-      <div class="fineprint column">
-          <div class="copyright">
-              &#169; Copyright 2021, Open Force Field Initiative.
+</aside>
+</div>
+</main>
+<footer class="footer">
+<div class="footer-content">
+<nav class="level">
+<div class="level-left">
+<div class="level-item">
+<a class="icon-text" href="numpydoc_example.html" rel="prev" title="NumPy Docstrings">
+<span class="icon">
+<i class="fas fa-arrow-left"></i>
+</span>
+<span class="is-size-5">NumPy Docstrings</span>
+</a>
+</div>
+</div>
+<div class="level-right">
+<div class="level-item">
+<a class="icon-text" href="numpydoc.html" rel="next" title="Openff-toolkit example">
+<span class="is-size-5">Openff-toolkit example</span>
+<span class="icon">
+<i class="fas fa-arrow-right"></i>
+</span>
+</a>
+</div>
+</div>
+</nav>
+<div class="columns">
+<div class="fineprint column">
+<div class="copyright">
+              © Copyright 2021, Open Force Field Initiative.
               
           </div>
           Last updated on
@@ -600,48 +448,29 @@ the new model: you should trust this data</p></li>
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.1.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
-      </div>
-      <div class="socials column">
-        <p class="pb-3">An <a href="https://openforcefield.org/" class="has-text-white">Open Force Field Initiative</a> project.</p>
-        <div>
-          
-            
-              
-                <a href="https://zenodo.org/communities/openforcefield/" class="icon has-text-light is-medium" title="OpenFF on Zenodo">
-                  <i class="fa-lg ai-lg ai ai-zenodo"></i>
-                </a>
-              
-            
-              
-                <a href="https://www.youtube.com/channel/UCh0aJSUm_sYr7nuTzhW806g" class="icon has-text-light is-medium" title="OpenFF on YouTube">
-                  <i class="fa-lg ai-lg fab fa-youtube"></i>
-                </a>
-              
-            
-              
-                <a href="https://github.com/openforcefield" class="icon has-text-light is-medium" title="OpenFF on GitHub">
-                  <i class="fa-lg ai-lg fab fa-github"></i>
-                </a>
-              
-            
-              
-                <a href="https://twitter.com/openforcefield" class="icon has-text-light is-medium" title="OpenFF on Twitter">
-                  <i class="fa-lg ai-lg fab fa-twitter"></i>
-                </a>
-              
-            
-              
-                <a href="https://www.linkedin.com/company/openforcefield/" class="icon has-text-light is-medium" title="OpenFF on LinkedIn">
-                  <i class="fa-lg ai-lg fab fa-linkedin"></i>
-                </a>
-              
-            
-          
-        </div>
-
-      </div>
-    </div>
-  </div>
+</div>
+<div class="socials column">
+<p class="pb-3">An <a class="has-text-white" href="https://openforcefield.org/">Open Force Field Initiative</a> project.</p>
+<div>
+<a class="icon has-text-light is-medium" href="https://zenodo.org/communities/openforcefield/" title="OpenFF on Zenodo">
+<i class="fa-lg ai-lg ai ai-zenodo"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://www.youtube.com/channel/UCh0aJSUm_sYr7nuTzhW806g" title="OpenFF on YouTube">
+<i class="fa-lg ai-lg fab fa-youtube"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://github.com/openforcefield" title="OpenFF on GitHub">
+<i class="fa-lg ai-lg fab fa-github"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://twitter.com/openforcefield" title="OpenFF on Twitter">
+<i class="fa-lg ai-lg fab fa-twitter"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://www.linkedin.com/company/openforcefield/" title="OpenFF on LinkedIn">
+<i class="fa-lg ai-lg fab fa-linkedin"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
 </footer>
-  </body>
+</body>
 </html>

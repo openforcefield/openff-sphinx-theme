@@ -92,7 +92,7 @@ fieldset[disabled] .file-name, fieldset[disabled] .select select, .select fields
   width: 0.625em;
 }
 
-.content:not(:last-child), .tabs:not(:last-child), .level:not(:last-child), .breadcrumb:not(:last-child) {
+.table-container:not(:last-child), .table:not(:last-child), .content table:not(:last-child), .tabs:not(:last-child), .level:not(:last-child), .breadcrumb:not(:last-child) {
   margin-bottom: 1.5rem;
 }
 
@@ -231,7 +231,7 @@ th:not([align]) {
 }
 
 html {
-  background-color: white;
+  background-color: #FFFFFF;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -298,7 +298,7 @@ code {
 }
 
 hr {
-  background-color: whitesmoke;
+  background-color: #FFFFFF;
   border: none;
   display: block;
   height: 2px;
@@ -3012,7 +3012,7 @@ table th {
 }
 
 .navbar.has-shadow {
-  box-shadow: 0 2px 0 0 whitesmoke;
+  box-shadow: 0 2px 0 0 #FFFFFF;
 }
 
 .navbar.is-fixed-bottom, .navbar.is-fixed-top {
@@ -3027,7 +3027,7 @@ table th {
 }
 
 .navbar.is-fixed-bottom.has-shadow {
-  box-shadow: 0 -2px 0 0 whitesmoke;
+  box-shadow: 0 -2px 0 0 #FFFFFF;
 }
 
 .navbar.is-fixed-top {
@@ -3212,7 +3212,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 }
 
 .navbar-divider {
-  background-color: whitesmoke;
+  background-color: #FFFFFF;
   border: none;
   display: none;
   height: 2px;
@@ -3301,11 +3301,11 @@ body.has-navbar-fixed-bottom-touch {
     background-color: transparent !important;
   }
   .navbar.is-transparent .navbar-dropdown a.navbar-item:focus, .navbar.is-transparent .navbar-dropdown a.navbar-item:hover {
-    background-color: whitesmoke;
+    background-color: #FFFFFF;
     color: #0a0a0a;
   }
   .navbar.is-transparent .navbar-dropdown a.navbar-item.is-active {
-    background-color: whitesmoke;
+    background-color: #FFFFFF;
     color: #015480;
   }
   .navbar-burger {
@@ -3372,11 +3372,11 @@ body.has-navbar-fixed-bottom-touch {
     padding-right: 3rem;
   }
   .navbar-dropdown a.navbar-item:focus, .navbar-dropdown a.navbar-item:hover {
-    background-color: whitesmoke;
+    background-color: #FFFFFF;
     color: #0a0a0a;
   }
   .navbar-dropdown a.navbar-item.is-active {
-    background-color: whitesmoke;
+    background-color: #FFFFFF;
     color: #015480;
   }
   .navbar.is-spaced .navbar-dropdown, .navbar-dropdown.is-boxed {
@@ -3482,8 +3482,8 @@ body.has-spaced-navbar-fixed-bottom {
 }
 
 .menu-list a:hover {
-  background-color: whitesmoke;
-  color: #363636;
+  background-color: #FFFFFF;
+  color: #2f9ed2;
 }
 
 .menu-list a.is-active {
@@ -3599,7 +3599,7 @@ body.has-spaced-navbar-fixed-bottom {
 }
 
 .tabs.is-boxed a:hover {
-  background-color: whitesmoke;
+  background-color: #FFFFFF;
   border-bottom-color: #dbdbdb;
 }
 
@@ -3623,7 +3623,7 @@ body.has-spaced-navbar-fixed-bottom {
 }
 
 .tabs.is-toggle a:hover {
-  background-color: whitesmoke;
+  background-color: #FFFFFF;
   border-color: #b5b5b5;
   z-index: 2;
 }
@@ -3674,214 +3674,6 @@ body.has-spaced-navbar-fixed-bottom {
 }
 
 .tabs.is-large {
-  font-size: 1.5rem;
-}
-
-.content li + li {
-  margin-top: 0.25em;
-}
-
-.content p:not(:last-child),
-.content dl:not(:last-child),
-.content ol:not(:last-child),
-.content ul:not(:last-child),
-.content blockquote:not(:last-child),
-.content pre:not(:last-child),
-.content table:not(:last-child) {
-  margin-bottom: 1em;
-}
-
-.content h1,
-.content h2,
-.content #index h1,
-.content .toctree-wrapper .caption,
-.content h3,
-.content h4,
-.content h5,
-.content h6 {
-  color: #363636;
-  font-weight: 600;
-  line-height: 1.125;
-}
-
-.content h1 {
-  font-size: 2em;
-  margin-bottom: 0.5em;
-}
-
-.content h1:not(:first-child) {
-  margin-top: 1em;
-}
-
-.content h2, .content #index h1, .content h3, .content h4, .content h5, .content h6, .content .toctree-wrapper .caption {
-  font-size: 1.75em;
-  margin-bottom: 0.5714em;
-}
-
-.content h2:not(:first-child), .content #index h1:not(:first-child), .content h3:not(:first-child), .content h4:not(:first-child), .content h5:not(:first-child), .content h6:not(:first-child), .content .toctree-wrapper .caption:not(:first-child) {
-  margin-top: 1.1428em;
-}
-
-.content h3 {
-  font-size: 1.5em;
-  margin-bottom: 0.6666em;
-}
-
-.content h3:not(:first-child) {
-  margin-top: 1.3333em;
-}
-
-.content h4 {
-  font-size: 1.25em;
-  margin-bottom: 0.8em;
-}
-
-.content h5 {
-  font-size: 1.125em;
-  margin-bottom: 0.8888em;
-}
-
-.content h6 {
-  font-size: 1em;
-  margin-bottom: 1em;
-}
-
-.content blockquote {
-  background-color: whitesmoke;
-  border-left: 5px solid #dbdbdb;
-  padding: 1.25em 1.5em;
-}
-
-.content ol {
-  list-style-position: outside;
-  margin-left: 2em;
-  margin-top: 1em;
-}
-
-.content ol:not([type]) {
-  list-style-type: decimal;
-}
-
-.content ol:not([type]).is-lower-alpha {
-  list-style-type: lower-alpha;
-}
-
-.content ol:not([type]).is-lower-roman {
-  list-style-type: lower-roman;
-}
-
-.content ol:not([type]).is-upper-alpha {
-  list-style-type: upper-alpha;
-}
-
-.content ol:not([type]).is-upper-roman {
-  list-style-type: upper-roman;
-}
-
-.content ul {
-  list-style: disc outside;
-  margin-left: 2em;
-  margin-top: 1em;
-}
-
-.content ul ul {
-  list-style-type: circle;
-  margin-top: 0.5em;
-}
-
-.content ul ul ul {
-  list-style-type: square;
-}
-
-.content dd {
-  margin-left: 2em;
-}
-
-.content figure {
-  margin-left: 2em;
-  margin-right: 2em;
-  text-align: center;
-}
-
-.content figure:not(:first-child) {
-  margin-top: 2em;
-}
-
-.content figure:not(:last-child) {
-  margin-bottom: 2em;
-}
-
-.content figure img {
-  display: inline-block;
-}
-
-.content figure figcaption {
-  font-style: italic;
-}
-
-.content pre {
-  -webkit-overflow-scrolling: touch;
-  overflow-x: auto;
-  padding: 1.25em 1.5em;
-  white-space: pre;
-  word-wrap: normal;
-}
-
-.content sup,
-.content sub {
-  font-size: 75%;
-}
-
-.content table {
-  width: 100%;
-}
-
-.content table td,
-.content table th {
-  border: 1px solid #dbdbdb;
-  border-width: 0 0 1px;
-  padding: 0.5em 0.75em;
-  vertical-align: top;
-}
-
-.content table th {
-  color: #363636;
-}
-
-.content table th:not([align]) {
-  text-align: inherit;
-}
-
-.content table thead td,
-.content table thead th {
-  border-width: 0 0 2px;
-  color: #363636;
-}
-
-.content table tfoot td,
-.content table tfoot th {
-  border-width: 2px 0 0;
-  color: #363636;
-}
-
-.content table tbody tr:last-child td,
-.content table tbody tr:last-child th {
-  border-bottom-width: 0;
-}
-
-.content .tabs li + li {
-  margin-top: 0;
-}
-
-.content.is-small {
-  font-size: 0.75rem;
-}
-
-.content.is-medium {
-  font-size: 1.25rem;
-}
-
-.content.is-large {
   font-size: 1.5rem;
 }
 
@@ -4069,6 +3861,233 @@ div.icon-text {
   width: 128px;
 }
 
+.table, .content table {
+  background-color: white;
+  color: #363636;
+}
+
+.table td, .content table td,
+.table th,
+.content table th {
+  border: 1px solid #dbdbdb;
+  border-width: 0 0 1px;
+  padding: 0.5em 0.75em;
+  vertical-align: top;
+}
+
+.table td.is-white, .content table td.is-white,
+.table th.is-white,
+.content table th.is-white {
+  background-color: white;
+  border-color: white;
+  color: #0a0a0a;
+}
+
+.table td.is-black, .content table td.is-black,
+.table th.is-black,
+.content table th.is-black {
+  background-color: #0a0a0a;
+  border-color: #0a0a0a;
+  color: white;
+}
+
+.table td.is-light, .content table td.is-light,
+.table th.is-light,
+.content table th.is-light {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.table td.is-dark, .content table td.is-dark,
+.table th.is-dark,
+.content table th.is-dark {
+  background-color: #363636;
+  border-color: #363636;
+  color: #fff;
+}
+
+.table td.is-primary, .content table td.is-primary,
+.table th.is-primary,
+.content table th.is-primary {
+  background-color: #015480;
+  border-color: #015480;
+  color: #fff;
+}
+
+.table td.is-link, .content table td.is-link,
+.table th.is-link,
+.content table th.is-link {
+  background-color: #015480;
+  border-color: #015480;
+  color: #fff;
+}
+
+.table td.is-info, .content table td.is-info,
+.table th.is-info,
+.content table th.is-info {
+  background-color: #3298dc;
+  border-color: #3298dc;
+  color: #fff;
+}
+
+.table td.is-success, .content table td.is-success,
+.table th.is-success,
+.content table th.is-success {
+  background-color: #48c774;
+  border-color: #48c774;
+  color: #fff;
+}
+
+.table td.is-warning, .content table td.is-warning,
+.table th.is-warning,
+.content table th.is-warning {
+  background-color: #ffdd57;
+  border-color: #ffdd57;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.table td.is-danger, .content table td.is-danger,
+.table th.is-danger,
+.content table th.is-danger {
+  background-color: #f14668;
+  border-color: #f14668;
+  color: #fff;
+}
+
+.table td.is-narrow, .content table td.is-narrow,
+.table th.is-narrow,
+.content table th.is-narrow {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.table td.is-selected, .content table td.is-selected,
+.table th.is-selected,
+.content table th.is-selected {
+  background-color: #015480;
+  color: #fff;
+}
+
+.table td.is-selected a, .content table td.is-selected a,
+.table td.is-selected strong,
+.content table td.is-selected strong,
+.table th.is-selected a,
+.content table th.is-selected a,
+.table th.is-selected strong,
+.content table th.is-selected strong {
+  color: currentColor;
+}
+
+.table td.is-vcentered, .content table td.is-vcentered,
+.table th.is-vcentered,
+.content table th.is-vcentered {
+  vertical-align: middle;
+}
+
+.table th, .content table th {
+  color: #363636;
+}
+
+.table th:not([align]), .content table th:not([align]) {
+  text-align: inherit;
+}
+
+.table tr.is-selected, .content table tr.is-selected {
+  background-color: #015480;
+  color: #fff;
+}
+
+.table tr.is-selected a, .content table tr.is-selected a,
+.table tr.is-selected strong,
+.content table tr.is-selected strong {
+  color: currentColor;
+}
+
+.table tr.is-selected td, .content table tr.is-selected td,
+.table tr.is-selected th,
+.content table tr.is-selected th {
+  border-color: #fff;
+  color: currentColor;
+}
+
+.table thead, .content table thead {
+  background-color: transparent;
+}
+
+.table thead td, .content table thead td,
+.table thead th,
+.content table thead th {
+  border-width: 0 0 2px;
+  color: #363636;
+}
+
+.table tfoot, .content table tfoot {
+  background-color: transparent;
+}
+
+.table tfoot td, .content table tfoot td,
+.table tfoot th,
+.content table tfoot th {
+  border-width: 2px 0 0;
+  color: #363636;
+}
+
+.table tbody, .content table tbody {
+  background-color: transparent;
+}
+
+.table tbody tr:last-child td, .content table tbody tr:last-child td,
+.table tbody tr:last-child th,
+.content table tbody tr:last-child th {
+  border-bottom-width: 0;
+}
+
+.table.is-bordered td, .content table.is-bordered td,
+.table.is-bordered th,
+.content table.is-bordered th {
+  border-width: 1px;
+}
+
+.table.is-bordered tr:last-child td, .content table.is-bordered tr:last-child td,
+.table.is-bordered tr:last-child th,
+.content table.is-bordered tr:last-child th {
+  border-bottom-width: 1px;
+}
+
+.table.is-fullwidth, .content table.is-fullwidth {
+  width: 100%;
+}
+
+.table.is-hoverable tbody tr:not(.is-selected):hover, .content table.is-hoverable tbody tr:not(.is-selected):hover {
+  background-color: #fafafa;
+}
+
+.table.is-hoverable.is-striped tbody tr:not(.is-selected):hover, .content table.is-hoverable.is-striped tbody tr:not(.is-selected):hover {
+  background-color: #fafafa;
+}
+
+.table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even), .content table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
+  background-color: whitesmoke;
+}
+
+.table.is-narrow td, .content table.is-narrow td,
+.table.is-narrow th,
+.content table.is-narrow th {
+  padding: 0.25em 0.5em;
+}
+
+.table.is-striped tbody tr:not(.is-selected):nth-child(even), .content table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+  background-color: #fafafa;
+}
+
+.table-container {
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
 /* Bulma Form */
 .select select, .textarea, .input {
   background-color: white;
@@ -4103,8 +4122,8 @@ div.icon-text {
 }
 
 .select select[disabled], [disabled].textarea, [disabled].input, fieldset[disabled] .select select, .select fieldset[disabled] select, fieldset[disabled] .textarea, fieldset[disabled] .input {
-  background-color: whitesmoke;
-  border-color: whitesmoke;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
   box-shadow: none;
   color: #7a7a7a;
 }
@@ -4334,7 +4353,7 @@ div.icon-text {
 }
 
 .select select[disabled]:hover, fieldset[disabled] .select select:hover {
-  border-color: whitesmoke;
+  border-color: #FFFFFF;
 }
 
 .select select:not([multiple]) {
@@ -8133,7 +8152,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .content ol,
 .content dl,
 .content figure,
-.content blockquote,
+.content p,
 .content pre {
   margin: 1em 0;
 }
@@ -8349,7 +8368,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
     max-width: 80%;
     margin-top: 2em;
     padding: 0.25rem 0.375rem;
-    color: white;
+    color: #FFFFFF;
     font-size: 0.875rem;
     background-color: #0a0a0a;
     border-radius: 0.125rem;
@@ -8374,14 +8393,14 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .content blockquote {
   display: flow-root;
   padding-left: 0.75rem;
-  color: #121212;
-  border-left: 0.25rem solid #242424;
+  color: #4a4a4a;
+  border-left: 0.25rem solid #7a7a7a;
 }
 
 [dir="rtl"] .content blockquote {
   padding-right: 0.75rem;
   padding-left: initial;
-  border-right: 0.25rem solid #242424;
+  border-right: 0.25rem solid #7a7a7a;
   border-left: initial;
 }
 
@@ -8450,9 +8469,25 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   margin: 1em 0 1.5em 1.875em;
 }
 
+@media screen and (max-width: 769px) {
+  .content dd {
+    margin-left: 0.625em;
+  }
+}
+
 [dir="rtl"] .content dd {
   margin-right: 1.875em;
   margin-left: initial;
+}
+
+@media screen and (max-width: 769px) {
+  [dir="rtl"] .content dd {
+    margin-right: 0.625em;
+  }
+}
+
+.content dl:not([class]) dt, .content dl.simple dt {
+  font-weight: 200;
 }
 
 .content img,
@@ -8505,7 +8540,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   max-width: 100%;
   overflow: auto;
   font-size: 0.8rem;
-  background-color: white;
+  background-color: #FFFFFF;
   border-radius: 0.125rem;
   box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.05), 0 0 0.0625rem rgba(0, 0, 0, 0.1);
   touch-action: auto;
@@ -8546,7 +8581,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .content table.simple th, .content table:not([class]) th {
   min-width: 6.25rem;
   padding: 0.9375em 1.25em;
-  color: white;
+  color: #FFFFFF;
   vertical-align: top;
   background-color: #121212;
 }
@@ -8567,14 +8602,14 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 
 .content table.simple tr:hover, .content table:not([class]) tr:hover {
   background-color: rgba(0, 0, 0, 0.035);
-  box-shadow: 0 0.0625rem 0 white inset;
+  box-shadow: 0 0.0625rem 0 #FFFFFF inset;
 }
 
 .content table.simple tr:first-child td, .content table:not([class]) tr:first-child td {
   border-top: 0;
 }
 
-.content table.simple a, .content table:not([class]) a {
+.content table a, .content table code {
   word-break: normal;
 }
 
@@ -8649,7 +8684,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   text-align: inherit;
 }
 
-.content .rubric, .content dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) > dd > .field-list > dt {
+.content .rubric, .content dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote) > dd > .field-list > dt {
   font-weight: bold;
 }
 
@@ -8667,6 +8702,12 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding-right: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .content table.highlighttable td.linenos .linenodiv pre {
+    display: none;
+  }
+}
+
 .content table.highlighttable td.linenos + td.code {
   margin-left: 0;
   padding-left: 0;
@@ -8675,6 +8716,14 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 
 .content table.highlighttable td.linenos + td.code .highlight pre {
   border-left: solid 2px #dbdbdb;
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .content table.highlighttable td.linenos + td.code .highlight pre {
+    width: 96vw;
+    border-left: none;
+  }
 }
 
 .content .highlight .gp {
@@ -8690,18 +8739,52 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 }
 
 .content .headerlink {
-  visibility: hidden;
-  font-size: 14px;
-  font-family: "Font Awesome 5 Free";
+  font-size: 1em;
+  float: right;
+  color: #b5b5b5;
 }
 
-.content .headerlink::after {
-  font-family: "Font Awesome 5 Free";
-  content: "\f0c1";
+@media screen and (min-width: 769px) {
+  .content .headerlink {
+    display: inline-block;
+    transform: translateY(0.25rem);
+    transition: transform .25s 0.2s,color .25s,opacity .125s 0.2s;
+    opacity: 0;
+  }
 }
 
-.content :hover > .headerlink::after {
-  visibility: visible;
+.content *:hover > .headerlink {
+  transition: transform .25s,color .25s,opacity .125s;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  opacity: 1;
+}
+
+.content p:not(.admonition-title) {
+  max-width: 80ex;
+}
+
+.content dl.citation > dd {
+  margin-top: 0;
+}
+
+.content dl.citation > dd :first-child {
+  margin-top: 0;
+}
+
+.content .file {
+  align-items: unset;
+  display: unset;
+  justify-content: unset;
+  position: unset;
+}
+
+.content a.brackets::before {
+  content: "[";
+}
+
+.content a.brackets::after {
+  content: "]";
 }
 
 .content .hide-header h1, .content .hide-header h2, .content .hide-header .toctree-wrapper .caption, .content .toctree-wrapper .hide-header .caption, .content .hide-header #index h1, .content #index .hide-header h1, .content .hide-header h3, .content .hide-header h4, .content .hide-header h5, .content .hide-header h6, .content .hide-header h3, .content .hide-header h4, .content .hide-header h5, .content .hide-header h6 {
@@ -9185,7 +9268,11 @@ html .content .admonition-title:last-child {
   margin-top: 0;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
+  word-break: break-word;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt {
   font-family: Cousine, monospace;
   font-size: 1.1rem;
   padding: 1em;
@@ -9194,16 +9281,16 @@ html .content .admonition-title:last-child {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt:target::before {
-  background-color: white;
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt:target::before {
+  background-color: #FFFFFF;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .property .pre {
-  color: #48c774;
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .property .pre {
+  color: #34a85c;
   font-size: inherit;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-prename {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-prename {
   padding: 0;
   background-color: transparent;
   font-weight: 200;
@@ -9211,7 +9298,7 @@ html .content .admonition-title:last-child {
   color: #7a7a7a;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-name {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-name {
   padding: 0;
   background-color: transparent;
   color: #015480;
@@ -9219,142 +9306,148 @@ html .content .admonition-title:last-child {
   font-size: inherit;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-name ~ .property .pre {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-name ~ .property .pre {
   color: #4a4a4a;
   font-style: normal;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-paren {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-paren {
   font-size: inherit;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-param {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param {
   font-size: inherit;
   font-style: normal;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-param > .pre {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .pre {
   color: #2f9ed2;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-param > .n > .pre {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .n > .pre {
   color: #2f9ed2;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-param > .o > .pre {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .o > .pre {
   color: #f03a21;
   padding-left: 0.2em;
   padding-right: 0.2em;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-param > .default_value > .pre {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p .pre, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p + .n .pre {
+  color: #4a4a4a;
+  font-style: italic;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .default_value > .pre {
   color: #4a4a4a;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .sig-param::before {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param::before {
   content: "\a    ";
   white-space: pre;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .optional::before {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param a {
+  font-weight: 550;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param a:hover .pre, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param a:hover pre, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param a:hover code {
+  color: #2f9ed2 !important;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .optional::before {
   content: "\a    ";
   white-space: pre;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt > .optional ~ .sig-param::before {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .optional ~ .sig-param::before {
   content: "\a        ";
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt .sig-param + .sig-paren::before, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt .optional + .sig-paren::before {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .sig-param + .sig-paren::before, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .optional + .sig-paren::before {
   content: "\a";
   white-space: pre;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt .autodoc_pydantic_validator_arrow {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .autodoc_pydantic_validator_arrow {
   visibility: hidden;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt .autodoc_pydantic_validator_arrow ~ a .py::before {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .autodoc_pydantic_validator_arrow ~ a .py::before {
   content: "\a    »  ";
   white-space: pre;
   color: #4a4a4a;
   font-style: normal;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt .autodoc_pydantic_validator_arrow ~ a + .property .pre {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .autodoc_pydantic_validator_arrow ~ a + .property .pre {
   visibility: hidden;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt .viewcode-link {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .viewcode-link {
   float: right;
+  color: #f03a21;
+  margin-left: 1em;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > .field-list > dd > dl > dt {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .viewcode-link:hover {
+  color: #2f9ed2;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > a.headerlink {
+  font-size: 1em;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt {
   font-family: Cousine, monospace;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > .field-list > dd > dl > dt > strong {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > strong {
   color: #2f9ed2;
   font-weight: normal;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > .field-list > dd > dl > dt > strong::after {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > strong::after {
   content: ": ";
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > .field-list > dd > dl > dt > .classifier {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > .classifier {
   color: #4a4a4a;
+  word-break: break-word;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > .field-list > dd > dl > dd {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dd {
   margin-top: 0;
   margin-bottom: 0.5em;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > dl.citation {
-  width: 100%;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
+.content h1, .content h2, .content .toctree-wrapper .caption, .content #index h1, .content h3, .content h4, .content h5, .content h6, .content h3, .content h4, .content h5, .content h6 {
+  word-break: break-word;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > dl.citation > dt.label {
-  float: left;
-  width: 5%;
-  /* adjust the width; make sure the total of both is 100% */
-  padding: 0;
-  margin: 0;
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > dl.citation > dt.label .brackets::before {
-  content: "[";
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > dl.citation > dt.label .brackets::after {
-  content: "]";
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd > dl.citation > dd {
-  float: left;
-  width: 95%;
-  padding: 0;
-  margin: 0;
-}
-
-.content .autosummary-child-object, .content dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) > dd > dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) {
+.content .autosummary-child-object, .content dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote) > dd > dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
 
-.content .autosummary-child-object > dt, .content dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) > dd > dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) > dt {
+.content .autosummary-child-object > dt, .content dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote) > dd > dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) > dt {
   border-radius: 0px !important;
   box-shadow: none !important;
 }
 
-.content .autosummary-child-object > dd, .content dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) > dd > dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) > dd {
+.content .autosummary-child-object > dd, .content dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote) > dd > dl[class]:not(.docutils):not(.field-list):not(.simple):not(.citation) > dd {
   margin-right: 1.5em;
   margin-left: 1.5em;
   padding-bottom: 0.75em;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    width: 96vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+  }
 }
 
 header, .navbar.is-primary.has-shadow {
@@ -9377,8 +9470,9 @@ header, .navbar.is-primary.has-shadow {
   .burger {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 90vw;
     z-index: 10;
+    width: 10vw;
   }
   .burger span:nth-child(4) {
     opacity: 0%;
@@ -9419,20 +9513,14 @@ header, .navbar.is-primary.has-shadow {
     max-width: 90vw;
     top: 0;
     height: 100vh;
-    background-color: whitesmoke;
+    background-color: #FFFFFF;
     position: fixed;
     display: block;
     z-index: 12;
+    overflow-y: scroll;
   }
   #drawer .ff-globaltoc {
     position: unset;
-  }
-  .section {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  main {
-    overflow-x: auto;
   }
   header {
     word-break: break-word;
@@ -9445,10 +9533,11 @@ header, .navbar.is-primary.has-shadow {
 
 .has-text-light .breadcrumb a code {
   color: #fff;
+  background-color: transparent;
 }
 
 .has-text-light .breadcrumb a:hover {
-  color: #2f9ed2;
+  color: #add9ed;
 }
 
 .has-text-light .breadcrumb li.is-active a {
@@ -9462,7 +9551,6 @@ header, .navbar.is-primary.has-shadow {
 .ff-localtoc, .ff-globaltoc {
   position: sticky;
   padding: 0.5rem;
-  overflow: auto;
   top: 0;
   padding-top: 4.5rem;
   margin-top: -4rem;
@@ -9480,6 +9568,11 @@ header, .navbar.is-primary.has-shadow {
 
 .ff-localtoc::-webkit-scrollbar, .ff-globaltoc::-webkit-scrollbar {
   display: none;
+}
+
+.menu code {
+  background-color: transparent;
+  color: unset;
 }
 
 body {
@@ -9571,7 +9664,7 @@ header .nav-search input {
   }
 }
 
-main.section {
+main {
   padding-top: 1rem;
 }
 
@@ -9609,7 +9702,7 @@ footer .footer-content {
   margin-right: auto;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   footer .socials {
     margin-top: auto;
     text-align: right;
@@ -9669,5 +9762,9 @@ a:hover:not(.is-active) code, a:hover:not(.is-active) pre {
 .navbar-burger-spacer {
   width: 4rem;
   display: inline-block;
+}
+
+main > .columns {
+  max-width: 100vw;
 }
 

@@ -71,9 +71,8 @@ or ``theme.conf`` for more details.
         # or a tuple of three ints in the range [0, 255] corresponding to
         # a position in RGB space.
         "color_accent": "openff-toolkit-blue",
-        # Content Minification for deployment, prettification for debugging
+        # Content Minification for deployment
         "html_minify": True,
-        "html_prettify": False,
         "css_minify": True,
     }
 
