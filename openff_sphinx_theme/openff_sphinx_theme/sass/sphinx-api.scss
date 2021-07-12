@@ -257,6 +257,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
 // Break headings wherever, if necessary
 h1, h2, h3, h4, h5, h6 {
     word-break: break-word;
+}
 
 // Child object - for @extend and hackery
 .autosummary-child-object {
