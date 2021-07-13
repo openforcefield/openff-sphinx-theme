@@ -32,6 +32,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                 background-color: $body-background-color;
             }
         }
+
         // Text specifying class, function, method, pydantic model, etc. Not always present, eg for plain functions
         > .property .pre {
             color: $api-property-color;
@@ -159,6 +160,8 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         // Permalink to the object (to here)
         > a.headerlink {
             font-size: 1em;
+            opacity: 1;
+            transform: translate(0);
         }
     }
     // Content

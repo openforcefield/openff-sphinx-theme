@@ -100,21 +100,29 @@ table.highlighttable {
       padding-left: 0;
       padding-right: 0;
       .highlight pre {
-        border-left: solid 2px $border;
         overflow-x: auto;
         // Hide line numbers on mobile
         @media screen and (max-width: $tablet - 1px) {
           width: 100vw - 2 * $mobile-content-margin-y;
-          border-left: none;
         }
       }
     }
   }
 }
+/// Code with line numbers in sphinx>=4
+.highlight span.linenos {
+  margin-right: 1.5rem;
+  // Hide line numbers on mobile
+  @media screen and (max-width: $tablet - 1px) {
+    display: none;
+  }
+}
 
-// Unselectable prompts
-.highlight .gp {
-  @include unselectable;
+// Unselectable prompts and line numbers
+.highlight {
+  .gp, .linenos {
+    @include unselectable;
+  }
 }
 
 // Docs button in source on right
