@@ -151,15 +151,6 @@ table.highlighttable {
 #index h3 {
   @extend h2;
 }
-// add some invisible spacing before header targets so the navbar is out of the way
-// :target::before {
-//   margin-top: -($navbar-height + $below-navbar-spacing);
-//   padding-top: ($navbar-height + $below-navbar-spacing);
-//   display: block;
-//   content: "";
-//   visibility: hidden;
-//   pointer-events: none;
-// }
 
 // Prose paragraphs should wrap at around 80 characters
 // The visual artifact is almost unnoticeable and the

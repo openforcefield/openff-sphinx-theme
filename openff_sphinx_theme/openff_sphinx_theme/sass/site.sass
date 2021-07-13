@@ -105,6 +105,10 @@ $breadcrumb-item-separator-color-light: findColorInvert($breadcrumb-item-separat
     &::-webkit-scrollbar
         display: none
 
+// Offset scrolling by the height of the fixed header
+html
+    scroll-padding-top: $navbar-height + $below-navbar-spacing
+
 .content
     @import "material-content.scss"
     @import "sphinx-content.scss"
@@ -209,7 +213,7 @@ $drawer-transition-time: 0.5s
 .ff-localtoc, .ff-globaltoc
     position: sticky
     padding: $below-navbar-spacing
-    // overflow: auto
+    overflow-y: auto
     // Don't know why this is necessary, probably because of drawer shenanigans?
     @media screen and (max-width: $desktop)
         position: fixed
