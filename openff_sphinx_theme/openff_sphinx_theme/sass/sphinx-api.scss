@@ -71,6 +71,13 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                 color: $api-type-color;
                 font-style: normal;
             }
+
+            // If the source link immediately follows the name, don't position it absolutely
+            + a.reference.internal .viewcode-link {
+                position: static !important;
+                float: right;
+                margin-left: 0.5em;
+            }
         }
         // Opening and closing parenthesis
         > .sig-paren {
