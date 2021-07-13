@@ -10,6 +10,8 @@ $api-param-value-color: $grey-dark;
 $api-type-color: $grey-dark;
 $api-source-link-color: $openff-evaluator-orange;
 
+$api-header-padding: 1.1rem;
+
 // Definition of an object. Hopefully.
 // Could also use dl.py, but this would fail
 // if we ever wanted to document something that
@@ -23,9 +25,11 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
     > dt {
         font-family: $family-monospace;
         font-size: 1.1rem;
-        padding: 1em;
+        padding: $api-header-padding;
         background-color: $api-bg-color;
         border-radius: 4px;
+        // Position relative so we can absolutely position source link
+        position: relative;
         @include z-depth(2);
         &:target {
             &::before {
@@ -150,9 +154,11 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         // Link to the source code for the object (not present on inherited objects)
         .viewcode-link {
-            float: right;
+            position: absolute;
+            top: $api-header-padding;
+            right: $api-header-padding;
             color: $api-source-link-color;
-            margin-left: 1em;
+            font-size: $pre-font-size;
             &:hover {
                 color: $link-hover;
             }
@@ -272,4 +278,10 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
 // Break headings wherever, if necessary
 h1, h2, h3, h4, h5, h6 {
     word-break: break-word;
+}
+
+// Docs button in source on right
+.viewcode-back {
+  float: right;
+  color: $api-source-link-color;
 }
