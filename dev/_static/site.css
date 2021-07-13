@@ -8126,6 +8126,10 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding: 3rem 1.5rem;
 }
 
+html {
+  scroll-padding-top: 4.5rem;
+}
+
 .content {
   font-size: 1rem;
   line-height: 1.6;
@@ -9529,6 +9533,7 @@ header, .navbar.is-primary.has-shadow {
 .ff-localtoc, .ff-globaltoc {
   position: sticky;
   padding: 0.5rem;
+  overflow-y: auto;
   top: 0;
   padding-top: 4.5rem;
   margin-top: -4rem;
