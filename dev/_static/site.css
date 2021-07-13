@@ -9303,6 +9303,12 @@ html .content .admonition-title:last-child {
   font-style: normal;
 }
 
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-name + a.reference.internal .viewcode-link {
+  position: static !important;
+  float: right;
+  margin-left: 0.5em;
+}
+
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-paren {
   font-size: inherit;
 }
