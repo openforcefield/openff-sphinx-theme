@@ -8705,18 +8705,26 @@ html {
 }
 
 .content table.highlighttable td.linenos + td.code .highlight pre {
-  border-left: solid 2px #dbdbdb;
   overflow-x: auto;
 }
 
 @media screen and (max-width: 768px) {
   .content table.highlighttable td.linenos + td.code .highlight pre {
     width: 96vw;
-    border-left: none;
   }
 }
 
-.content .highlight .gp {
+.content .highlight span.linenos {
+  margin-right: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .content .highlight span.linenos {
+    display: none;
+  }
+}
+
+.content .highlight .gp, .content .highlight .linenos {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9379,6 +9387,8 @@ html .content .admonition-title:last-child {
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > a.headerlink {
   font-size: 1em;
+  opacity: 1;
+  transform: translate(0);
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt {
