@@ -10,7 +10,9 @@ $api-param-value-color: $grey-dark;
 $api-type-color: $grey-dark;
 $api-source-link-color: $openff-evaluator-orange;
 
-$api-header-padding: 1.1rem;
+$api-header-font-size: 1.1rem;
+$api-header-padding: 1 * $api-header-font-size;
+$api-arguments-indent: 2 * $api-header-font-size;
 
 // Definition of an object. Hopefully.
 // Could also use dl.py, but this would fail
@@ -24,7 +26,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
     // Header and signature
     > dt {
         font-family: $family-monospace;
-        font-size: 1.1rem;
+        font-size: $api-header-font-size;
         padding: $api-header-padding;
         background-color: $api-bg-color;
         border-radius: 4px;
@@ -35,6 +37,12 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             &::before {
                 background-color: $body-background-color;
             }
+        }
+
+        // Indent the argument list
+        padding-left: $api-header-padding + $api-arguments-indent;
+        > :first-child {
+            margin-left: -$api-arguments-indent;
         }
 
         // Text specifying class, function, method, pydantic model, etc. Not always present, eg for plain functions
@@ -100,7 +108,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             }
             // After each parameter, newline
             &::before {
-                content: "\a    ";
+                content: "\a";
                 white-space: pre;
             }
             // Links
@@ -118,12 +126,12 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         > .optional {
             // Put optional [] brackets on their own lines
             &::before {
-                content: "\a    ";
+                content: "\a";
                 white-space: pre;
             }
             // Optional parameters need extra indentation
             ~ .sig-param::before {
-                content: "\a        ";
+                content: "\a    ";
             }
         }
         // Closing parenthesis
@@ -137,20 +145,6 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         // Pydantic validator arrow
         .autodoc_pydantic_validator_arrow {
-            visibility: hidden;
-            // Validators? validated?
-            ~ a .py {
-                &::before {
-                    content: "\a    »  ";
-                    white-space: pre;
-                    color: $api-type-color;
-                    font-style: normal;
-                }
-            }
-            // Comma after validated thing
-            ~ a + .property .pre {
-                visibility: hidden;
-            }
         }
         // Link to the source code for the object (not present on inherited objects)
         .viewcode-link {
@@ -172,6 +166,9 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
     }
     // Content
     >dd {
+        &:empty {
+            padding-bottom: 0 !important;
+        }
         // Description/docstring
         >p {
 
