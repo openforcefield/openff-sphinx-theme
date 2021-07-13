@@ -9266,10 +9266,15 @@ html .content .admonition-title:last-child {
   border-radius: 4px;
   position: relative;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  padding-left: 3.3rem;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt:target::before {
   background-color: #FFFFFF;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > :first-child {
+  margin-left: -2.2rem;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .property .pre {
@@ -9331,7 +9336,7 @@ html .content .admonition-title:last-child {
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param::before {
-  content: "\a    ";
+  content: "\a";
   white-space: pre;
 }
 
@@ -9344,32 +9349,17 @@ html .content .admonition-title:last-child {
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .optional::before {
-  content: "\a    ";
+  content: "\a";
   white-space: pre;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .optional ~ .sig-param::before {
-  content: "\a        ";
+  content: "\a    ";
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .sig-param + .sig-paren::before, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .optional + .sig-paren::before {
   content: "\a";
   white-space: pre;
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .autodoc_pydantic_validator_arrow {
-  visibility: hidden;
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .autodoc_pydantic_validator_arrow ~ a .py::before {
-  content: "\a    »  ";
-  white-space: pre;
-  color: #4a4a4a;
-  font-style: normal;
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .autodoc_pydantic_validator_arrow ~ a + .property .pre {
-  visibility: hidden;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .viewcode-link {
@@ -9388,6 +9378,10 @@ html .content .admonition-title:last-child {
   font-size: 1em;
   opacity: 1;
   transform: translate(0);
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd:empty {
+  padding-bottom: 0 !important;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt {
@@ -9565,6 +9559,10 @@ header, .navbar.is-primary.has-shadow {
 
 .ff-localtoc::-webkit-scrollbar, .ff-globaltoc::-webkit-scrollbar {
   display: none;
+}
+
+.menu {
+  word-break: break-word;
 }
 
 .menu code {
