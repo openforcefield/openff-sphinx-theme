@@ -64,7 +64,7 @@ def compile_css(app, exception):
     src = theme_path / "sass/site.sass"
     dest = Path(app.outdir) / "_static/site.css"
 
-    if not dest.exists():
+    if not dest.parent.exists():
         return
 
     accent_color = app.config["html_theme_options"].get(
