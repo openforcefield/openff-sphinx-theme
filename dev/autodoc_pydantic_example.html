@@ -224,18 +224,14 @@ to pydantic models.</p>
       <span class="nt">"field_plain_with_validator"</span><span class="p">:</span> <span class="p">{</span>
          <span class="nt">"title"</span><span class="p">:</span> <span class="s2">"Field Plain With Validator"</span><span class="p">,</span>
          <span class="nt">"default"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-         <span class="nt">"env_names"</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">"foo_field_plain_with_validator"</span>
-         <span class="p">],</span>
+         <span class="nt">"env_names"</span><span class="p">:</span> <span class="s2">"{'foo_field_plain_with_validator'}"</span><span class="p">,</span>
          <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"integer"</span>
       <span class="p">},</span>
       <span class="nt">"BarFoo"</span><span class="p">:</span> <span class="p">{</span>
          <span class="nt">"title"</span><span class="p">:</span> <span class="s2">"Barfoo"</span><span class="p">,</span>
          <span class="nt">"default"</span><span class="p">:</span> <span class="s2">"FooBar"</span><span class="p">,</span>
          <span class="nt">"env"</span><span class="p">:</span> <span class="s2">"BarFoo"</span><span class="p">,</span>
-         <span class="nt">"env_names"</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">"barfoo"</span>
-         <span class="p">],</span>
+         <span class="nt">"env_names"</span><span class="p">:</span> <span class="s2">"{'barfoo'}"</span><span class="p">,</span>
          <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"string"</span>
       <span class="p">},</span>
       <span class="nt">"field_with_constraints_and_description"</span><span class="p">:</span> <span class="p">{</span>
@@ -244,9 +240,7 @@ to pydantic models.</p>
          <span class="nt">"default"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
          <span class="nt">"minimum"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
          <span class="nt">"maximum"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-         <span class="nt">"env_names"</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">"foo_field_with_constraints_and_description"</span>
-         <span class="p">],</span>
+         <span class="nt">"env_names"</span><span class="p">:</span> <span class="s2">"{'foo_field_with_constraints_and_description'}"</span><span class="p">,</span>
          <span class="nt">"type"</span><span class="p">:</span> <span class="s2">"integer"</span>
       <span class="p">}</span>
    <span class="p">},</span>
@@ -292,13 +286,8 @@ to pydantic models.</p>
 <em class="property"><span class="pre">field</span> </em><span class="sig-name descname"><span class="pre">field_with_validator_and_alias</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">'FooBar'</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'BarFoo')</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Shows corresponding validator with link/anchor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Constraints</dt>
+<dt class="field-odd">Validated by</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>env</strong> = BarFoo</p></li>
-</ul>
-</dd>
-<dt class="field-even">Validated by</dt>
-<dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="pydantic_example.ExampleSettings.check_max_length_ten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_max_length_ten</span></code></a></p></li>
 </ul>
 </dd>
@@ -442,10 +431,10 @@ the new model: you should trust this data</p></li>
               
           </div>
           Last updated on
-            Jul 13, 2021.
+            Sep 16, 2021.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.1.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>

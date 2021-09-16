@@ -315,6 +315,7 @@
     <span class="n">validator</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">qcelemental</span> <span class="kn">import</span> <span class="n">constants</span>
+<span class="kn">from</span> <span class="nn">qcelemental.models.common_models</span> <span class="kn">import</span> <span class="n">Model</span>
 <span class="kn">from</span> <span class="nn">qcelemental.models.results</span> <span class="kn">import</span> <span class="n">WavefunctionProtocolEnum</span>
 <span class="kn">from</span> <span class="nn">qcportal.models.common_models</span> <span class="kn">import</span> <span class="n">DriverEnum</span>
 
@@ -353,6 +354,40 @@
             <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
             <span class="n">Enum</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
         <span class="p">}</span>
+
+
+<span class="k">class</span> <span class="nc">SCFProperties</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The type of SCF property that should be extracted from a single point calculation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Dipole</span> <span class="o">=</span> <span class="s2">&quot;dipole&quot;</span>
+    <span class="n">Quadrupole</span> <span class="o">=</span> <span class="s2">&quot;quadrupole&quot;</span>
+    <span class="n">MullikenCharges</span> <span class="o">=</span> <span class="s2">&quot;mulliken_charges&quot;</span>
+    <span class="n">LowdinCharges</span> <span class="o">=</span> <span class="s2">&quot;lowdin_charges&quot;</span>
+    <span class="n">WibergLowdinIndices</span> <span class="o">=</span> <span class="s2">&quot;wiberg_lowdin_indices&quot;</span>
+    <span class="n">MayerIndices</span> <span class="o">=</span> <span class="s2">&quot;mayer_indices&quot;</span>
+    <span class="n">MBISCharges</span> <span class="o">=</span> <span class="s2">&quot;mbis_charges&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_missing_</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        overwrite the missing method to handle properties with incorrect capitalization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">member</span><span class="o">.</span><span class="n">_value_</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">member</span>
+        <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> is not a valid </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> please chose from </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+
+<span class="n">DefaultProperties</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Dipole</span><span class="p">,</span>
+    <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Quadrupole</span><span class="p">,</span>
+    <span class="n">SCFProperties</span><span class="o">.</span><span class="n">WibergLowdinIndices</span><span class="p">,</span>
+    <span class="n">SCFProperties</span><span class="o">.</span><span class="n">MayerIndices</span><span class="p">,</span>
+<span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">ComponentProperties</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -646,6 +681,19 @@
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If PCM is to be used with psi4 this is the full description of the settings that should be used.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The maximum number of SCF iterations in QM calculations this will be ignored by programs where this does not make sense.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">scf_properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Dipole</span><span class="p">,</span>
+            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Quadrupole</span><span class="p">,</span>
+            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">WibergLowdinIndices</span><span class="p">,</span>
+            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">MayerIndices</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The SCF properties which should be extracted after every single point calculation.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
         <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">]]</span>
     <span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -664,6 +712,8 @@
         <span class="n">spec_description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Standard OpenFF optimization quantum chemistry specification.&quot;</span><span class="p">,</span>
         <span class="n">store_wavefunction</span><span class="p">:</span> <span class="n">WavefunctionProtocolEnum</span> <span class="o">=</span> <span class="n">WavefunctionProtocolEnum</span><span class="o">.</span><span class="n">none</span><span class="p">,</span>
         <span class="n">implicit_solvent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PCMSettings</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="n">scf_properties</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultProperties</span><span class="p">,</span>
         <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
             <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">]]</span>
         <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -752,6 +802,8 @@
             <span class="n">spec_description</span><span class="o">=</span><span class="n">spec_description</span><span class="p">,</span>
             <span class="n">store_wavefunction</span><span class="o">=</span><span class="n">store_wavefunction</span><span class="p">,</span>
             <span class="n">implicit_solvent</span><span class="o">=</span><span class="n">implicit_solvent</span><span class="p">,</span>
+            <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span>
+            <span class="n">scf_properties</span><span class="o">=</span><span class="n">scf_properties</span><span class="p">,</span>
             <span class="n">keywords</span><span class="o">=</span><span class="n">keywords</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -778,6 +830,30 @@
         <span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;store_wavefunction&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
             <span class="n">data</span><span class="p">[</span><span class="s2">&quot;store_wavefunction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">if</span> <span class="s2">&quot;scf_properties&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;scf_properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scf_properties</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">qc_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return the qcelmental schema for this method and basis.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Model</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">qc_keywords</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the formatted keywords for this calculation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">,</span> <span class="s2">&quot;scf_properties&quot;</span><span class="p">})</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">implicit_solvent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;psi4&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+                    <span class="s2">&quot;PCM can only be used with PSI4 please set implicit solvent to None.&quot;</span>
+                <span class="p">)</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pcm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pcm__input&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">implicit_solvent</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">data</span>
 
 
@@ -820,7 +896,7 @@
     <span class="k">def</span> <span class="nf">_check_qc_specs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_qc_specs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;There are no QCSpecifications for this dataset please add some using `add_qc_spec`&quot;</span>
+                <span class="s2">&quot;There are no QCSpecifications for this dataset please add some using `add_qc_spec`&quot;</span>
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">add_qc_spec</span><span class="p">(</span>
@@ -833,6 +909,8 @@
         <span class="n">store_wavefunction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
         <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">implicit_solvent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PCMSettings</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="n">scf_properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
             <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">]]</span>
         <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -849,6 +927,8 @@
 <span class="sd">            store_wavefunction: what parts of the wavefunction that should be saved</span>
 <span class="sd">            overwrite: If there is a spec under this name already overwrite it</span>
 <span class="sd">            implicit_solvent: The implicit solvent settings if it is to be used.</span>
+<span class="sd">            maxiter: The maximum number of SCF iterations that should be done.</span>
+<span class="sd">            scf_properties: The list of SCF properties that should be extracted from the calculation.</span>
 <span class="sd">            keywords: Program specific computational keywords that should be passed to</span>
 <span class="sd">                the program</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -859,6 +939,8 @@
             <span class="n">spec_name</span><span class="o">=</span><span class="n">spec_name</span><span class="p">,</span>
             <span class="n">spec_description</span><span class="o">=</span><span class="n">spec_description</span><span class="p">,</span>
             <span class="n">store_wavefunction</span><span class="o">=</span><span class="n">store_wavefunction</span><span class="p">,</span>
+            <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span>
+            <span class="n">scf_properties</span><span class="o">=</span><span class="n">scf_properties</span> <span class="ow">or</span> <span class="n">DefaultProperties</span><span class="p">,</span>
             <span class="n">implicit_solvent</span><span class="o">=</span><span class="n">implicit_solvent</span><span class="p">,</span>
             <span class="n">keywords</span><span class="o">=</span><span class="n">keywords</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1102,53 +1184,14 @@
         <span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">SCFProperties</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The type of SCF property that should be extracted from a single point calculation.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">Dipole</span> <span class="o">=</span> <span class="s2">&quot;dipole&quot;</span>
-    <span class="n">Quadrupole</span> <span class="o">=</span> <span class="s2">&quot;quadrupole&quot;</span>
-    <span class="n">MullikenCharges</span> <span class="o">=</span> <span class="s2">&quot;mulliken_charges&quot;</span>
-    <span class="n">LowdinCharges</span> <span class="o">=</span> <span class="s2">&quot;lowdin_charges&quot;</span>
-    <span class="n">WibergLowdinIndices</span> <span class="o">=</span> <span class="s2">&quot;wiberg_lowdin_indices&quot;</span>
-    <span class="n">MayerIndices</span> <span class="o">=</span> <span class="s2">&quot;mayer_indices&quot;</span>
-    <span class="n">MBISCharges</span> <span class="o">=</span> <span class="s2">&quot;mbis_charges&quot;</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_missing_</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        overwrite the missing method to handle properties with incorrect capitalization.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">member</span><span class="o">.</span><span class="n">_value_</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
-                <span class="k">return</span> <span class="n">member</span>
-        <span class="k">raise</span> <span class="n">DatasetInputError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> is not a valid </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> please chose from </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
-
-
 <span class="k">class</span> <span class="nc">CommonBase</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">,</span> <span class="n">IndexCleaner</span><span class="p">,</span> <span class="n">ClientHandler</span><span class="p">,</span> <span class="n">QCSpecificationHandler</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A common base structure which the dataset and factory classes derive from.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="mi">200</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The maximum number of SCF iterations in QM calculations this will be ignored by programs where this does not make sense.&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
     <span class="n">driver</span><span class="p">:</span> <span class="n">DriverEnum</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">DriverEnum</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The type of single point calculations which will be computed. Note some services require certain calculations for example optimizations require graident calculations.&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">scf_properties</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Dipole</span><span class="p">,</span>
-            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Quadrupole</span><span class="p">,</span>
-            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">WibergLowdinIndices</span><span class="p">,</span>
-            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">MayerIndices</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The SCF properties which should be extracted after every single point calculation.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">priority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
@@ -1162,36 +1205,6 @@
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The tag the computes tasks will be assigned to, managers wishing to execute these tasks should use this compute tag.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">add_scf_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scf_property</span><span class="p">:</span> <span class="n">SCFProperties</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add an scf_property to the list of scf_properties requested during a calculation.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            scf_property: The name of the property which should be entered into the list.</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            DatasetInputError: If the scf_property is not valid.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># make sure the property is valid first</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">validated_property</span> <span class="o">=</span> <span class="n">SCFProperties</span><span class="p">(</span><span class="n">scf_property</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">DatasetInputError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scf_property</span><span class="si">}</span><span class="s2"> is not a valid SCF property please chose from </span><span class="si">{</span><span class="n">SCFProperties</span><span class="o">.</span><span class="n">__members__</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
-        <span class="k">if</span> <span class="n">validated_property</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scf_properties</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">scf_properties</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">validated_property</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">remove_scf_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scf_property</span><span class="p">:</span> <span class="n">SCFProperties</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Remove an scf_property from the validated list.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            scf_property: The name of the property which should be removed.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">scf_property</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scf_properties</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">scf_properties</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">scf_property</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-
     <span class="k">def</span> <span class="nf">dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Overwrite the dict method to handle any enums when saving to yaml/json via a dict call.</span>
@@ -1200,8 +1213,6 @@
         <span class="c1"># now add the enum values</span>
         <span class="k">if</span> <span class="s2">&quot;driver&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
             <span class="n">data</span><span class="p">[</span><span class="s2">&quot;driver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">value</span>
-        <span class="k">if</span> <span class="s2">&quot;scf_properties&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;scf_properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scf_properties</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">data</span>
 </pre></div>
 
@@ -1222,10 +1233,10 @@
               
           </div>
           Last updated on
-            Jul 13, 2021.
+            Sep 16, 2021.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.1.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>

@@ -296,8 +296,12 @@
 
 <span class="sd">.. todo ::</span>
 
-<span class="sd">   Currently, the ``openff-toolkit`` toolkit package requires a number of dependencies to support all of these serialization protocols.</span>
-<span class="sd">   Instead, should we not include these by default, and instead raise a helpful exception with installation instructions if one of the serialization schemes is called but the requisite library is not installed?</span>
+<span class="sd">   Currently, the ``openff-toolkit`` toolkit package requires a number</span>
+<span class="sd">   of dependencies to support all of these serialization protocols.</span>
+<span class="sd">   Instead, should we not include these by default, and instead raise</span>
+<span class="sd">   a helpful exception with installation instructions if one of the</span>
+<span class="sd">   serialization schemes is called but the requisite library is not</span>
+<span class="sd">   installed?</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -317,7 +321,9 @@
 <span class="k">class</span> <span class="nc">Serializable</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Mix-in to add serialization and deserialization support via JSON, YAML, BSON, TOML, MessagePack, and XML.</span>
 
-<span class="sd">    For more information on these formats, see: `JSON &lt;https://www.json.org/&gt;`_, `BSON &lt;http://bsonspec.org/&gt;`_, `YAML &lt;http://yaml.org/&gt;`_, `TOML &lt;https://github.com/toml-lang/toml&gt;`_, `MessagePack &lt;https://msgpack.org/index.html&gt;`_, and `XML &lt;https://www.w3.org/XML/&gt;`_.</span>
+<span class="sd">    For more information on these formats, see: `JSON &lt;https://www.json.org/&gt;`_,</span>
+<span class="sd">    `BSON &lt;http://bsonspec.org/&gt;`_, `YAML &lt;http://yaml.org/&gt;`_, `TOML &lt;https://github.com/toml-lang/toml&gt;`_,</span>
+<span class="sd">    `MessagePack &lt;https://msgpack.org/index.html&gt;`_, and `XML &lt;https://www.w3.org/XML/&gt;`_.</span>
 
 <span class="sd">    To use this mix-in, the class inheriting from this class must have implemented ``to_dict()`` and ``from_dict()`` methods</span>
 <span class="sd">    that utilize dictionaries containing only serialiable Python objects.</span>
@@ -798,10 +804,10 @@
               
           </div>
           Last updated on
-            Jul 13, 2021.
+            Sep 16, 2021.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.1.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>

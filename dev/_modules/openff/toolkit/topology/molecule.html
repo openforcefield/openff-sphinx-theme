@@ -327,11 +327,11 @@
 
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">simtk</span> <span class="kn">import</span> <span class="n">unit</span>
 <span class="kn">from</span> <span class="nn">simtk.openmm.app</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">element</span>
@@ -357,7 +357,7 @@
 
 
 <span class="k">class</span> <span class="nc">NotAttachedToMoleculeError</span><span class="p">(</span><span class="n">MessageException</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Exception for when a component does not belong to a Molecule object, but is queried &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Exception for when a component does not belong to a Molecule object, but is queried&quot;&quot;&quot;</span>
 
 
 <span class="c1"># =============================================================================================</span>
@@ -848,6 +848,144 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_site</span><span class="o">.</span><span class="n">orientations</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orientation</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_positions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculations the position of a virtual particle, as defined by the OpenMM</span>
+<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite` definition.</span>
+
+<span class="sd">        The frame is first constructed using the input atoms, where the weights defined</span>
+<span class="sd">        by each virtual site are used. The virtual particle positions are then</span>
+<span class="sd">        determined by setting the displacements, also determined uniquely by each</span>
+<span class="sd">        virtual site definition.</span>
+
+<span class="sd">        Note that, following the definition of the OpenMM LocalCoordinatesSite, the</span>
+<span class="sd">        frame is forced to be orthogonal. This is first enforced by only allowing the</span>
+<span class="sd">        x- and y-axis to be defined, since the z-axis must be normal to this plane.</span>
+<span class="sd">        Then, y is then reset to be normal to the zx plane. This should ensure that the</span>
+<span class="sd">        frame is orthonormal (after normalization).</span>
+
+<span class="sd">        Note that this returns a 1D flat list as it is meant to be appended into a</span>
+<span class="sd">        (M, 3) array via the public interface.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        atom_positions: iterable of int</span>
+<span class="sd">            The indices of the atoms, relative to the indices defined by the owning</span>
+<span class="sd">            molecule. This is necessary since this particle has a certain orientation,</span>
+<span class="sd">            so the input atoms must be in the original input ordering which was used to</span>
+<span class="sd">            define the orientation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstrom wrapping an</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Although the above docstring claims that we fully implement</span>
+        <span class="c1"># the OpenMM behavior, it has not been compared to OpenMM</span>
+        <span class="c1"># at the source code level. If positions seem to be inconsistent,</span>
+        <span class="c1"># please submit a bug report! We have tests to make sure our</span>
+        <span class="c1"># implemented types are correct, so we are interested in cases</span>
+        <span class="c1"># where custom virtual sites cause breakage.</span>
+
+        <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_site</span><span class="o">.</span><span class="n">local_frame_weights</span>
+        <span class="n">disp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_site</span><span class="o">.</span><span class="n">local_frame_position</span>
+        <span class="n">_unit</span> <span class="o">=</span> <span class="n">disp</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">disp</span> <span class="o">/</span> <span class="n">_unit</span>
+
+        <span class="c1"># this pulls the correct ordering of the atoms</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span><span class="p">:</span>
+            <span class="n">pos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom_positions</span><span class="p">[</span><span class="n">atom</span><span class="p">])</span>
+
+        <span class="n">atom_positions</span> <span class="o">=</span> <span class="n">pos</span>
+
+        <span class="n">originwt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">originwt</span><span class="p">)</span>
+        <span class="n">atom_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">atom_positions</span><span class="p">)</span>
+
+        <span class="n">origin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">originwt</span><span class="p">,</span> <span class="n">atom_positions</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span><span class="p">)),</span> <span class="n">atom_positions</span><span class="p">)</span>
+
+        <span class="n">zaxis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span><span class="p">)</span>
+        <span class="n">yaxis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">zaxis</span><span class="p">,</span> <span class="n">xaxis</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">_normalize</span><span class="p">(</span><span class="n">axis</span><span class="p">):</span>
+            <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">L</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="n">axis</span> <span class="o">/=</span> <span class="n">L</span>
+            <span class="k">return</span> <span class="n">axis</span>
+
+        <span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span><span class="p">,</span> <span class="n">zaxis</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">_normalize</span><span class="p">,</span> <span class="p">(</span><span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span><span class="p">,</span> <span class="n">zaxis</span><span class="p">))</span>
+
+        <span class="n">position</span> <span class="o">=</span> <span class="n">origin</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="n">xaxis</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">yaxis</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">zaxis</span>
+
+        <span class="k">return</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">_unit</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_extract_position_from_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conformation</span><span class="p">):</span>
+
+        <span class="n">indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_site</span><span class="o">.</span><span class="n">atoms</span><span class="p">]</span>
+
+        <span class="n">atom_positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">conformation</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">atom_positions</span>
+
+    <span class="k">def</span> <span class="nf">_get_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conformer_idx</span><span class="p">):</span>
+
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">conformers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+        <span class="n">conformer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">conformers</span><span class="p">[</span><span class="n">conformer_idx</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">conformer</span>
+
+    <span class="k">def</span> <span class="nf">compute_position_from_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conformer_idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the position of this virtual particle given an existing</span>
+<span class="sd">        conformer owned by the parent molecule/virtual site.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        conformer_idx : int</span>
+<span class="sd">            The index of the conformer in the owning molecule.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
+<span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
+<span class="sd">            belonging to this virtual site.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">atom_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_conformer</span><span class="p">(</span><span class="n">conformer_idx</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_position_from_atom_positions</span><span class="p">(</span><span class="n">atom_positions</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_position_from_atom_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_positions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the position of this virtual site particle given a set of coordinates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        atom_positions : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of all atoms in the molecule. The array is the size (N, 3)</span>
+<span class="sd">            where N is the number of atoms in the molecule.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
+<span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
+<span class="sd">            belonging to this virtual site.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position</span><span class="p">(</span><span class="n">atom_positions</span><span class="p">)</span>
+
 
 <span class="c1"># =============================================================================================</span>
 <span class="c1"># VirtualSite</span>
@@ -890,14 +1028,12 @@
 
 <span class="sd">        .. todo ::</span>
 
-<span class="sd">           * This will need to be generalized for virtual sites to allow out-of-plane sites, which are not simply a linear combination of atomic positions</span>
-<span class="sd">           * Add checking for allowed virtual site types</span>
-<span class="sd">           * How do we want users to specify virtual site types?</span>
+<span class="sd">           * change sigma/epsilon/rmin_half to have units</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        atoms : list of Atom of shape [N]</span>
-<span class="sd">            atoms[index] is the corresponding Atom for weights[index]</span>
+<span class="sd">            atoms[index] is the corresponding Atom</span>
 <span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
 <span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put in the VirtualSite. Indexing in this list should match the ordering in the atoms list. Default is None.</span>
 <span class="sd">        sigma : float, default=None</span>
@@ -909,11 +1045,12 @@
 <span class="sd">        name : string or None, default=None</span>
 <span class="sd">            The name of this virtual site. Default is None.</span>
 
-
 <span class="sd">        virtual_site_type : str</span>
 <span class="sd">            Virtual site type.</span>
 <span class="sd">        name : str or None, default=None</span>
 <span class="sd">            The name of this virtual site. Default is None</span>
+<span class="sd">        orientation : list of int tuples or None, default=None</span>
+<span class="sd">            The ordering of the atoms used to define the frame of the virtual site.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Ensure we have as many charge_increments as we do atoms</span>
@@ -924,6 +1061,14 @@
                         <span class="nb">len</span><span class="p">(</span><span class="n">charge_increments</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">charge_increments</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">))</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
+
+        <span class="c1"># set sane defaults for OpenMM</span>
+        <span class="k">if</span> <span class="n">epsilon</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">rmin_half</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">kilocalorie_per_mole</span>
+        <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">rmin_half</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span>
 
         <span class="c1"># VdW parameters can either be epsilon+rmin_half or epsilon+sigma, but not both</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">epsilon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
@@ -1063,6 +1208,19 @@
         <span class="k">return</span> <span class="n">VirtualSite</span><span class="p">(</span><span class="o">**</span><span class="n">vsite_dict_units</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">index_of_orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">virtual_particle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the orientation used by the given virtual particle.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        virtual_particle : VirtualParticle</span>
+<span class="sd">            The virtual particle contained in this virual site</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A tuple of atom indices</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">particles</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">vp</span><span class="o">.</span><span class="n">orientation</span> <span class="o">==</span> <span class="n">virtual_particle</span><span class="o">.</span><span class="n">orientation</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">i</span>
@@ -1072,6 +1230,48 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">orientations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The orientations used by the virtual site particles.</span>
+
+<span class="sd">        Orientations are an implementation to allow generation and coupling of multiple</span>
+<span class="sd">        particles using the same physical definition. We can do this by allowing each</span>
+<span class="sd">        particle to use a specific ordering of bases when calculating the positions.</span>
+<span class="sd">        This is similar to improper torsion angles: the angle you find depends on the</span>
+<span class="sd">        atom ordering used in the calculation.</span>
+
+<span class="sd">        Before the positions are constructed, the parent atoms are reordered according</span>
+<span class="sd">        to the particle&#39;s orientation. Each virtual particle has exactly one</span>
+<span class="sd">        orientation. Since the frame of the virtual site is defined by a static list of</span>
+<span class="sd">        weights and masks, we are able to influence how the local frame is constructed</span>
+<span class="sd">        by crafting specific ordering the parent atoms.</span>
+
+<span class="sd">        As a concrete example, we could define a TIP5 water by using one virtual site,</span>
+<span class="sd">        and the particles have orientations (0, 1, 2) and (2, 1, 0). This means that,</span>
+<span class="sd">        given that we are using a right-handed coordinate system, the z-axis will</span>
+<span class="sd">        point in opposite directions for each particle. Using the same</span>
+<span class="sd">        ``out_of_plane_angle`` and ``distance`` will therefore result in two unique</span>
+<span class="sd">        particle positions.</span>
+
+<span class="sd">        Using the toolkit API allows arbitrary selection of orientations. The SMIRNOFF</span>
+<span class="sd">        specification, via the offxml file format, the orientations are controlled</span>
+<span class="sd">        bondtype the &quot;match&quot; attribute. In this case, only the keywords &quot;once&quot; and</span>
+<span class="sd">        &quot;all_permuations&quot; are allowed, meaning only the first orientation or all</span>
+<span class="sd">        possible orientations are generated.</span>
+
+<span class="sd">        The virtual site adders via :class:`Molecule` simplify this by optionally using</span>
+<span class="sd">        a ``symmetric`` kwarg, which is the equivalent to the XML ``match`` keyword</span>
+<span class="sd">        described above. However, the symmetric kwarg is not available for sites</span>
+<span class="sd">        which symmetry is not possible, e.g. :class:`TrivalentLonePairVirtualSite`,</span>
+<span class="sd">        provided a layer of sanity checking.  For the TIP5 example above, setting</span>
+<span class="sd">        ``symmetric=True`` (the default) should automatically produce both particles.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        List of tuples of ints specifying the ordering of the parent atoms.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span>
 
     <span class="nd">@property</span>
@@ -1168,6 +1368,69 @@
         <span class="sd">&quot;&quot;&quot;The type of this VirtualSite (returns the class name as string)&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
 
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">local_frame_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The per-atom weights used to define the virtual site frame.</span>
+
+<span class="sd">        The SMIRNOFF virtual sites use the definition of</span>
+<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite` implemented by OpenMM.</span>
+<span class="sd">        As such, the weights are used to determine the origin and the x and y axes of</span>
+<span class="sd">        the local frame. Since the frame is an orthogonal bases, the z axis is not</span>
+<span class="sd">        specified as it is assumed to be the cross of the x and y axes (using a</span>
+<span class="sd">        right-handed coordinates).</span>
+
+<span class="sd">        The weights defined refer to the weights of each atom&#39;s positions. For the</span>
+<span class="sd">        origin, the weights must sum to 1. For the x and y axes, the weights much each</span>
+<span class="sd">        sum to 0. For example, for a custom bond charge virtual site with two atoms:</span>
+
+<span class="sd">        - Origin: [.5, .5] The origin of the frame is always in between atom 1 and</span>
+<span class="sd">          atom 2. The calculation is 0.5 * atom1.xyz + 0.5 * atom2.xyz</span>
+<span class="sd">        - X-Axis: [-1, 1] The x-axis points from atom 1 to atom 2. Positive</span>
+<span class="sd">          displacements of this axis are closer to atom 2.</span>
+<span class="sd">        - Y-Axis: [0, 0] This axis must be defined, so here we set it to the null</span>
+<span class="sd">          space. Any displacements along y are sent to 0. Because of this, the z-axis</span>
+<span class="sd">          will also be 0.</span>
+
+<span class="sd">        The displacements along the axes defined here are defined/returned by</span>
+<span class="sd">        :attr:`VirtualSite.local_frame_position`.</span>
+
+<span class="sd">        To implement a new virtual site type (using a LocalCoordinatesSite</span>
+<span class="sd">        definition), override this function.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Tuple of list of weights used to define the origin, x-axis, and y-axis</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">local_frame_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The displacements of the virtual site relative to the local frame.</span>
+
+<span class="sd">        The SMIRNOFF virtual sites use the definition of</span>
+<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite` as implemented by OpenMM.</span>
+<span class="sd">        As such, the frame positions refer to positions as defined by the frame, or the</span>
+<span class="sd">        local axes defined by the owning atoms (see</span>
+<span class="sd">        :attr:`VirtualSite.local_frame_weights`).</span>
+
+<span class="sd">        To implement a new virtual site type (using a LocalCoordinatesSite</span>
+<span class="sd">        definition), override this function.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of</span>
+<span class="sd">        displacements in the local frame for the x, y, and z directions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># TODO: Also include particle_index, which molecule this atom belongs to?</span>
         <span class="k">return</span> <span class="s2">&quot;VirtualSite(name=</span><span class="si">{}</span><span class="s2">, type=</span><span class="si">{}</span><span class="s2">, atoms=</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -1179,6 +1442,68 @@
         <span class="k">return</span> <span class="s2">&quot;&lt;VirtualSite name=</span><span class="si">{}</span><span class="s2"> type=</span><span class="si">{}</span><span class="s2"> atoms=</span><span class="si">{}</span><span class="s2"> particles=</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_particles</span>
         <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+
+        <span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="kn">import</span> <span class="n">LocalCoordinatesSite</span>
+
+        <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_frame_weights</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_frame_position</span>
+
+        <span class="k">return</span> <span class="n">LocalCoordinatesSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_positions_from_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conformer_idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the position of the virtual site particles given an existing conformer</span>
+<span class="sd">        owned by the parent molecule.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        conformer_idx : int</span>
+<span class="sd">            The index of the conformer in the owning molecule.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
+<span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
+<span class="sd">            belonging to this virtual site.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">vp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">particles</span><span class="p">:</span>
+            <span class="n">vp_pos</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">compute_position_from_conformer</span><span class="p">(</span><span class="n">conformer_idx</span><span class="p">)</span>
+            <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vp_pos</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_positions_from_atom_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_positions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the positions of the virtual site particles given a set of coordinates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        atom_positions : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of all atoms in the molecule. The array is the size (N, 3)</span>
+<span class="sd">            where N is the number of atoms in the molecule.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
+<span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
+<span class="sd">            belonging to this virtual site.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">vp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">particles</span><span class="p">:</span>
+            <span class="n">vp_pos</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">compute_position_from_atom_positions</span><span class="p">(</span><span class="n">atom_positions</span><span class="p">)</span>
+            <span class="n">positions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">vp_pos</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">BondChargeVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
@@ -1208,7 +1533,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        atoms : list of openff.toolkit.topology.molecule.Atom objects of shape [N]</span>
 <span class="sd">            The atoms defining the virtual site&#39;s position</span>
-<span class="sd">        distance : float</span>
+
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        weights : list of floats of shape [N] or None, optional, default=None</span>
 <span class="sd">            weights[index] is the weight of particles[index] contributing to the position of the virtual site. Default is None</span>
@@ -1268,61 +1594,71 @@
         <span class="sd">&quot;&quot;&quot;The distance parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span>
 
-    <span class="k">def</span> <span class="nf">get_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">local_frame_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the OpenMMVirtualSite corresponding to this BondChargeVirtualSite.</span>
+<span class="sd">        Returns the local frame weights used to calculate the particle positions.</span>
+<span class="sd">        See :attr:`VirtualSite.local_frame_weights` for a general description.</span>
+
+<span class="sd">        Bond charge virtual sites are defined by the axis defined by the two</span>
+<span class="sd">        atoms that define the bond. Since the virtual site position is defined</span>
+<span class="sd">        solely by this axis, the other y-axis is defined but not used.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : iterable of int</span>
-<span class="sd">            The indices of the atoms involved in this virtual site (not assumed to be</span>
-<span class="sd">            the same as the molecule indices as this method may be accessed with regard</span>
-<span class="sd">            to particles in a Topology).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        virtual_site : a simtk.openmm LocalCoordinatesSite</span>
+<span class="sd">        Tuple of list of weights used to define the origin, x-axis, and y-axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="kn">import</span> <span class="n">LocalCoordinatesSite</span>
 
-        <span class="n">originwt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
-        <span class="n">originwt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># first atom is origin</span>
+        <span class="n">originwt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>  <span class="c1"># first atom is origin</span>
 
-        <span class="n">xdir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
+        <span class="n">xdir</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
 
-        <span class="n">xdir</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>  <span class="c1"># total sum == 0; x points from atom 1 to 2</span>
-        <span class="n">xdir</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1">#</span>
+        <span class="n">ydir</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
 
-        <span class="c1"># Seems ydir and zdir don&#39;t matter for BondCharge, since</span>
-        <span class="c1"># from openmm, zdir = cross(xdir, ydir) and then ydir set to</span>
-        <span class="c1"># cross(zdir, xdir).</span>
-        <span class="c1"># We therefore allow ydir == zdir == 0, and just displace along xdir</span>
-        <span class="n">ydir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xdir</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">local_frame_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The displacements of the virtual site relative to the local frame.</span>
+<span class="sd">        See :attr:`VirtualSite.local_frame_position` for a general description.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of</span>
+<span class="sd">        displacements in the local frame for the x, y, and z directions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># since the origin is atom 1, and xdir is a unit vector pointing</span>
         <span class="c1"># towards the center of the other atoms, we want the</span>
         <span class="c1"># vsite to point away from the unit vector to achieve the desired</span>
         <span class="c1"># distance</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>  <span class="c1"># pos of the vsite in local crds</span>
-        <span class="k">return</span> <span class="n">LocalCoordinatesSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="n">_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">_unit</span> <span class="o">*</span> <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
+        <span class="k">return</span> <span class="n">pos</span>
 
-<span class="k">class</span> <span class="nc">_LonePairVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Private base class for mono/di/trivalent lone pair virtual sites.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the OpenMM virtual site corresponding to this BondChargeVirtualSite.</span>
 
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">vsite_dict</span><span class="p">):</span>
-        <span class="n">base_dict</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">)</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        atoms : iterable of int</span>
+<span class="sd">            The indices of the atoms involved in this virtual site.</span>
 
-        <span class="c1"># Make sure it&#39;s the right type of virtual site</span>
-        <span class="k">assert</span> <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
-        <span class="n">base_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">base_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">base_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;out_of_plane_angle&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">base_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;in_plane_angle&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">vsite</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="o">**</span><span class="n">base_dict</span><span class="p">)</span>
-        <span class="n">vsite</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">vsite</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_openmm_virtual_site</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">MonovalentLonePairVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
@@ -1352,11 +1688,14 @@
 <span class="sd">        ----------</span>
 <span class="sd">        atoms : list of three openff.toolkit.topology.molecule.Atom objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-<span class="sd">        distance : float</span>
 
-<span class="sd">        out_of_plane_angle : float</span>
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        in_plane_angle : float</span>
+<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        a scalar</span>
+
+<span class="sd">        in_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping a</span>
+<span class="sd">        scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -1440,47 +1779,79 @@
         <span class="sd">&quot;&quot;&quot;The out_of_plane_angle parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span>
 
-    <span class="k">def</span> <span class="nf">get_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">local_frame_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the OpenMMVirtualSite corresponding to this MonovalentLonePairVirtualSite.</span>
+<span class="sd">        Returns the local frame weights used to calculate the particle positions.</span>
+<span class="sd">        See :attr:`VirtualSite.local_frame_weights` for a general description.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : iterable of int</span>
-<span class="sd">            The indices of the atoms involved in this virtual site (not assumed to be</span>
-<span class="sd">            the same as the molecule indices as this method may be accessed with regard</span>
-<span class="sd">            to particles in a Topology).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        virtual_site : a simtk.openmm LocalCoordinatesSite</span>
+<span class="sd">        Tuple of list of weights used to define the origin, x-axis, and y-axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span>
-        <span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="kn">import</span> <span class="n">LocalCoordinatesSite</span>
-
-        <span class="n">originwt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
-        <span class="n">originwt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1">#</span>
+        <span class="n">originwt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
         <span class="n">xdir</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
         <span class="n">ydir</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
 
+        <span class="k">return</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">local_frame_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The displacements of the virtual site relative to the local frame.</span>
+<span class="sd">        See :attr:`VirtualSite.local_frame_position` for a general description.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of displacements</span>
+<span class="sd">        in the local frame for the x, y, and z directions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_plane_angle</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">radians</span><span class="p">)</span>
         <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">radians</span><span class="p">)</span>
 
-        <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
-        <span class="p">]</span>  <span class="c1"># pos of the vsite in local crds</span>
-        <span class="k">return</span> <span class="n">LocalCoordinatesSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="n">_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">unit</span><span class="o">=</span><span class="n">_unit</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pos</span>
+
+    <span class="k">def</span> <span class="nf">get_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the OpenMM virtual site corresponding to this</span>
+<span class="sd">        MonovalentLonePairVirtualSite.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        atoms : iterable of int</span>
+<span class="sd">            The indices of the atoms involved in this virtual site.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_openmm_virtual_site</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">DivalentLonePairVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A particle representing a &quot;Divalent Lone Pair&quot;-type virtual site, in which the location of the charge is specified by the positions of three atoms. This is suitable for cases like four-point and five-point water models as well as pyrimidine; a charge site S lies a specified distance d from the central atom among three atoms along the bisector of the angle between the atoms (if out_of_plane_angle is zero) or out of the plane by the specified angle (if out_of_plane_angle is nonzero) with its projection along the bisector. For positive values of the distance d the virtual site lies outside the 2-1-3 angle and for negative values it lies inside.</span>
-
-<span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -1502,9 +1873,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        atoms : list of 3 openff.toolkit.topology.molecule.Atom objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-<span class="sd">        distance : float</span>
 
-<span class="sd">        out_of_plane_angle : float</span>
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+
+<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -1577,39 +1950,70 @@
         <span class="sd">&quot;&quot;&quot;The out_of_plane_angle parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span>
 
-    <span class="k">def</span> <span class="nf">get_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">local_frame_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the OpenMMVirtualSite corresponding to this DivalentLonePairVirtualSite.</span>
+<span class="sd">        Returns the local frame weights used to calculate the particle positions.</span>
+<span class="sd">        See :attr:`VirtualSite.local_frame_weights` for a general description.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : iterable of int</span>
-<span class="sd">            The indices of the atoms involved in this virtual site (not assumed to be</span>
-<span class="sd">            the same as the molecule indices as this method may be accessed with regard</span>
-<span class="sd">            to particles in a Topology).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        virtual_site : a simtk.openmm LocalCoordinatesSite</span>
+<span class="sd">        Tuple of list of weights used to define the origin, x-axis, and y-axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span>
-        <span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="kn">import</span> <span class="n">LocalCoordinatesSite</span>
-
-        <span class="n">originwt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
-        <span class="n">originwt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1">#</span>
+        <span class="n">originwt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
         <span class="n">xdir</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
         <span class="n">ydir</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
+        <span class="k">return</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">local_frame_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The displacements of the virtual site relative to the local frame.</span>
+<span class="sd">        See :attr:`VirtualSite.local_frame_position` for a general description.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of</span>
+<span class="sd">        displacements in the local frame for the x, y, and z directions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">radians</span><span class="p">)</span>
 
-        <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
+        <span class="n">_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
+
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">_unit</span> <span class="o">*</span> <span class="p">[</span>
+            <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
             <span class="mf">0.0</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
         <span class="p">]</span>  <span class="c1"># pos of the vsite in local crds</span>
-        <span class="k">return</span> <span class="n">LocalCoordinatesSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pos</span>
+
+    <span class="k">def</span> <span class="nf">get_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the OpenMM virtual site corresponding to this</span>
+<span class="sd">        DivalentLonePairVirtualSite.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        atoms : iterable of int</span>
+<span class="sd">            The indices of the atoms involved in this virtual site.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_openmm_virtual_site</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">TrivalentLonePairVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
@@ -1637,7 +2041,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        atoms : list of 4 openff.toolkit.topology.molecule.Atom objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-<span class="sd">        distance : float</span>
+
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -1700,35 +2105,66 @@
         <span class="sd">&quot;&quot;&quot;The distance parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span>
 
-    <span class="k">def</span> <span class="nf">get_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">local_frame_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the OpenMMVirtualSite corresponding to this TrivalentLonePairVirtualSite.</span>
+<span class="sd">        Returns the local frame weights used to calculate the particle positions.</span>
+<span class="sd">        See :attr:`VirtualSite.local_frame_weights` for a general description.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : iterable of int</span>
-<span class="sd">            The indices of the atoms involved in this virtual site (not assumed to be</span>
-<span class="sd">            the same as the molecule indices as this method amy be accessed with regard</span>
-<span class="sd">            to particles in a Topology).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        virtual_site : a simtk.openmm LocalCoordinatesSite</span>
+<span class="sd">        Tuple of list of weights used to define the origin, x-axis, and y-axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span>
-        <span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="kn">import</span> <span class="n">LocalCoordinatesSite</span>
-
-        <span class="n">originwt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
-        <span class="n">originwt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1">#</span>
+        <span class="n">originwt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
         <span class="n">xdir</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">]</span>
 
         <span class="c1"># ydir does not matter</span>
         <span class="n">ydir</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
-        <span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>  <span class="c1"># pos of the vsite in local crds</span>
-        <span class="k">return</span> <span class="n">LocalCoordinatesSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">local_frame_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The displacements of the virtual site relative to the local frame.</span>
+<span class="sd">        See :attr:`VirtualSite.local_frame_position` for a general description.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of</span>
+<span class="sd">        displacements in the local frame for the x, y, and z directions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">([</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="n">_unit</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pos</span>
+
+    <span class="k">def</span> <span class="nf">get_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the OpenMM virtual site corresponding to this</span>
+<span class="sd">        TrivalentLonePairVirtualSite.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        atoms : iterable of int</span>
+<span class="sd">            The indices of the atoms involved in this virtual site.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_openmm_virtual_site</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
 
 
 <span class="c1"># =============================================================================================</span>
@@ -2625,7 +3061,8 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        make cis-1,2-Dichloroethene</span>
+<span class="sd">        Make cis-1,2-Dichloroethene:</span>
+
 <span class="sd">        &gt;&gt;&gt; molecule = Molecule.from_inchi(&#39;InChI=1S/C2H2Cl2/c3-1-2-4/h1-2H/b2-1-&#39;)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -2913,6 +3350,8 @@
         <span class="c1"># Here we should work out what data type we have, also deal with lists?</span>
         <span class="k">def</span> <span class="nf">to_networkx</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;For the given data type, return the networkx graph&quot;&quot;&quot;</span>
+            <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
             <span class="kn">from</span> <span class="nn">openff.toolkit.topology</span> <span class="kn">import</span> <span class="n">TopologyMolecule</span>
 
             <span class="k">if</span> <span class="n">strip_pyrimidal_n_atom_stereo</span><span class="p">:</span>
@@ -2936,6 +3375,7 @@
                         <span class="n">SMARTS</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">toolkit_registry</span>
                     <span class="p">)</span>
                 <span class="k">return</span> <span class="n">ref_mol</span><span class="o">.</span><span class="n">to_networkx</span><span class="p">()</span>
+
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">data</span>
 
@@ -2943,7 +3383,7 @@
                 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;The input type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> is not supported,&quot;</span>
                     <span class="sa">f</span><span class="s2">&quot;please supply an openff.toolkit.topology.molecule.Molecule,&quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;openff.toolkit.topology.topology.TopologyMolecule or networkx &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;openff.toolkit.topology.topology.TopologyMolecule or networkx.Graph &quot;</span>
                     <span class="sa">f</span><span class="s2">&quot;representation of the molecule.&quot;</span>
                 <span class="p">)</span>
 
@@ -3041,8 +3481,10 @@
         <span class="n">clear_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generate conformers for this molecule using an underlying toolkit. If n_conformers=0, no toolkit wrapper</span>
-<span class="sd">        will be called. If n_conformers=0 and clear_existing=True, molecule.conformers will be set to None.</span>
+<span class="sd">        Generate conformers for this molecule using an underlying toolkit.</span>
+
+<span class="sd">        If ``n_conformers=0``, no toolkit wrapper will be called. If ``n_conformers=0``</span>
+<span class="sd">        and ``clear_existing=True``, ``molecule.conformers`` will be set to ``None``.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -3052,8 +3494,8 @@
 <span class="sd">            The maximum number of conformers to produce</span>
 <span class="sd">        rms_cutoff : simtk.Quantity-wrapped float, in units of distance, optional, default=None</span>
 <span class="sd">            The minimum RMS value at which two conformers are considered redundant and one is deleted. Precise</span>
-<span class="sd">            implementation of this cutoff may be toolkit-dependent. If None, the cutoff is set to be the default value</span>
-<span class="sd">            for each ToolkitWrapper (generally 1 Angstrom).</span>
+<span class="sd">            implementation of this cutoff may be toolkit-dependent. If ``None``, the cutoff is set to be the default value</span>
+<span class="sd">            for each ``ToolkitWrapper`` (generally 1 Angstrom).</span>
 <span class="sd">        clear_existing : bool, default=True</span>
 <span class="sd">            Whether to overwrite existing conformers for the molecule</span>
 
@@ -3097,6 +3539,59 @@
                     <span class="nb">type</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">)</span>
                 <span class="p">)</span>
             <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_virtual_site_positions_from_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conformer_idx</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the position of all virtual sites given an existing</span>
+<span class="sd">        conformer specified by its index.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        conformer_idx : int</span>
+<span class="sd">            The index of the conformer.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
+<span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
+<span class="sd">            belonging to this virtual site.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">atom_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span><span class="p">[</span><span class="n">conformer_idx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_virtual_site_positions_from_atom_positions</span><span class="p">(</span><span class="n">atom_positions</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute_virtual_site_positions_from_atom_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_positions</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the positions of the virtual sites in this molecule given a set of</span>
+<span class="sd">        external coordinates. The coordinates do not need come from an internal</span>
+<span class="sd">        conformer, but are assumed to have the same shape and be in the same order.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        atom_positions : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of all atoms in the molecule. The array is the size (N, 3)</span>
+<span class="sd">            where N is the number of atoms in the molecule.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        numpy.ndarray</span>
+<span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
+<span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
+<span class="sd">            belonging to this virtual site.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">vsite</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_sites</span><span class="p">:</span>
+            <span class="n">vsite_pos</span> <span class="o">=</span> <span class="n">vsite</span><span class="o">.</span><span class="n">compute_positions_from_atom_positions</span><span class="p">(</span><span class="n">atom_positions</span><span class="p">)</span>
+            <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vsite_pos</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">apply_elf_conformer_selection</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -3163,7 +3658,7 @@
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate partial atomic charges for this molecule using AM1-BCC run by an underlying toolkit</span>
-<span class="sd">        and assign them to this molecule&#39;s partial_charges attribute.</span>
+<span class="sd">        and assign them to this molecule&#39;s ``partial_charges`` attribute.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -3202,6 +3697,7 @@
         <span class="n">strict_n_conformers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">use_conformers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
+        <span class="n">normalize_partial_charges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate partial atomic charges for this molecule using an underlying toolkit, and assign</span>
@@ -3218,6 +3714,10 @@
 <span class="sd">            Coordinates to use for partial charge calculation. If None, an appropriate number of conformers will be generated.</span>
 <span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for the calculation.</span>
+<span class="sd">        normalize_partial_charges : bool, default=True</span>
+<span class="sd">            Whether to offset partial charges so that they sum to the total formal charge of the molecule.</span>
+<span class="sd">            This is used to prevent accumulation of rounding errors when the partial charge assignment method</span>
+<span class="sd">            returns values at limited precision.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -3242,6 +3742,7 @@
                 <span class="n">partial_charge_method</span><span class="o">=</span><span class="n">partial_charge_method</span><span class="p">,</span>
                 <span class="n">use_conformers</span><span class="o">=</span><span class="n">use_conformers</span><span class="p">,</span>
                 <span class="n">strict_n_conformers</span><span class="o">=</span><span class="n">strict_n_conformers</span><span class="p">,</span>
+                <span class="n">normalize_partial_charges</span><span class="o">=</span><span class="n">normalize_partial_charges</span><span class="p">,</span>
                 <span class="n">raise_exception_types</span><span class="o">=</span><span class="p">[],</span>
                 <span class="n">_cls</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span>
             <span class="p">)</span>
@@ -3252,6 +3753,7 @@
                 <span class="n">partial_charge_method</span><span class="o">=</span><span class="n">partial_charge_method</span><span class="p">,</span>
                 <span class="n">use_conformers</span><span class="o">=</span><span class="n">use_conformers</span><span class="p">,</span>
                 <span class="n">strict_n_conformers</span><span class="o">=</span><span class="n">strict_n_conformers</span><span class="p">,</span>
+                <span class="n">normalize_partial_charges</span><span class="o">=</span><span class="n">normalize_partial_charges</span><span class="p">,</span>
                 <span class="n">_cls</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -3259,6 +3761,21 @@
                 <span class="sa">f</span><span class="s2">&quot;Invalid toolkit_registry passed to assign_partial_charges.&quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;Expected ToolkitRegistry or ToolkitWrapper. Got  </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_normalize_partial_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add offsets to each partial charge to ensure that they sum to the formal charge of the molecule,</span>
+<span class="sd">        to the limit of a python float&#39;s precision. Modifies the partial charges in-place.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">expected_charge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_charge</span>
+
+        <span class="n">current_charge</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
+        <span class="k">for</span> <span class="n">pc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">partial_charges</span><span class="p">:</span>
+            <span class="n">current_charge</span> <span class="o">+=</span> <span class="n">pc</span>
+
+        <span class="n">charge_offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">expected_charge</span> <span class="o">-</span> <span class="n">current_charge</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">partial_charges</span> <span class="o">+=</span> <span class="n">charge_offset</span>
 
     <span class="k">def</span> <span class="nf">assign_fractional_bond_orders</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -3268,7 +3785,7 @@
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update and store list of bond orders this molecule. Bond orders are stored on each</span>
-<span class="sd">        bond, in the `bond.fractional_bond_order` attribute.</span>
+<span class="sd">        bond, in the ``bond.fractional_bond_order`` attribute.</span>
 
 <span class="sd">        .. warning :: This API is experimental and subject to change.</span>
 
@@ -3277,9 +3794,9 @@
 <span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for SMILES-to-molecule conversion</span>
 <span class="sd">        bond_order_model : string, optional. Default=None</span>
-<span class="sd">            The bond order model to use for fractional bond order calculation. If None, &quot;am1-wiberg&quot; will be used.</span>
+<span class="sd">            The bond order model to use for fractional bond order calculation. If ``None``, &quot;am1-wiberg&quot; will be used.</span>
 <span class="sd">        use_conformers : iterable of simtk.unit.Quantity(np.array) with shape (n_atoms, 3) and dimension of distance, optional, default=None</span>
-<span class="sd">            The conformers to use for fractional bond order calculation. If None, an appropriate number</span>
+<span class="sd">            The conformers to use for fractional bond order calculation. If ``None``, an appropriate number</span>
 <span class="sd">            of conformers will be generated by an available ToolkitWrapper.</span>
 
 <span class="sd">        Examples</span>
@@ -3543,7 +4060,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        atoms : list of openff.toolkit.topology.molecule.Atom objects of shape [N]</span>
 <span class="sd">            The atoms defining the virtual site&#39;s position</span>
-<span class="sd">        distance : float</span>
+
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
 <span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put in the VirtualSite. Indexing in this</span>
@@ -3571,7 +4089,6 @@
         <span class="n">vsite</span> <span class="o">=</span> <span class="n">BondChargeVirtualSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_invalidate_cached_properties</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_monovalent_lone_pair_virtual_site</span><span class="p">(</span>
@@ -3583,13 +4100,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of three openff.toolkit.topology.molecule.Atom objects</span>
+<span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-<span class="sd">        distance : float</span>
 
-<span class="sd">        out_of_plane_angle : float</span>
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        in_plane_angle : float</span>
+<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        a scalar</span>
+
+<span class="sd">        in_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping a</span>
+<span class="sd">        scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -3616,7 +4136,6 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_invalidate_cached_properties</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_divalent_lone_pair_virtual_site</span><span class="p">(</span>
@@ -3628,13 +4147,13 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of 3 openff.toolkit.topology.molecule.Atom objects</span>
+<span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-<span class="sd">        distance : float</span>
 
-<span class="sd">        out_of_plane_angle : float</span>
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        in_plane_angle : float</span>
+<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -3661,7 +4180,6 @@
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_invalidate_cached_properties</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_trivalent_lone_pair_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -3671,13 +4189,10 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of 4 openff.toolkit.topology.molecule.Atom objects or atom indices</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-<span class="sd">        distance : float</span>
+<span class="sd">        atoms : list of 4 :class:`openff.toolkit.topology.molecule.Atom` objects</span>
+<span class="sd">            The four atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        out_of_plane_angle : float</span>
-
-<span class="sd">        in_plane_angle : float</span>
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -3694,7 +4209,6 @@
         <span class="n">vsite</span> <span class="o">=</span> <span class="n">TrivalentLonePairVirtualSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_invalidate_cached_properties</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_bond</span><span class="p">(</span>
@@ -4088,6 +4602,57 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">amber_impropers</span>
 
+    <span class="k">def</span> <span class="nf">_nth_degree_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_degrees</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+        <span class="n">mol_graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_networkx</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">node_i</span> <span class="ow">in</span> <span class="n">mol_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">node_j</span> <span class="ow">in</span> <span class="n">mol_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">node_i</span> <span class="o">==</span> <span class="n">node_j</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">path_length</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path_length</span><span class="p">(</span><span class="n">mol_graph</span><span class="p">,</span> <span class="n">node_i</span><span class="p">,</span> <span class="n">node_j</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">path_length</span> <span class="o">==</span> <span class="n">n_degrees</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">node_i</span> <span class="o">&gt;</span> <span class="n">node_j</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="k">yield</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">node_i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">node_j</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">nth_degree_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_degrees</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return canonicalized pairs of atoms whose shortest separation is `exactly` n bonds.</span>
+<span class="sd">        Only pairs with increasing atom indices are returned.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        n: int</span>
+<span class="sd">            The number of bonds separating atoms in each pair</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        neighbors: iterator of tuple of Atom</span>
+<span class="sd">            Tuples (len 2) of atom that are separated by ``n`` bonds.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+
+<span class="sd">        The criteria used here relies on minimum distances; when there are multiple valid</span>
+<span class="sd">        paths between atoms, such as atoms in rings, the shortest path is considered.</span>
+<span class="sd">        For example, two atoms in &quot;meta&quot; positions with respect to each other in a benzene</span>
+<span class="sd">        are separated by two paths, one length 2 bonds and the other length 4 bonds. This</span>
+<span class="sd">        function would consider them to be 2 apart and would not include them if ``n=4`` was</span>
+<span class="sd">        passed.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">n_degrees</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Cannot consider neighbors separated by 0 or fewer atoms. Asked to consider &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;path lengths of </span><span class="si">{</span><span class="n">n_degrees</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nth_degree_neighbors</span><span class="p">(</span><span class="n">n_degrees</span><span class="o">=</span><span class="n">n_degrees</span><span class="p">)</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">total_charge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -4134,8 +4699,10 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">to_hill_formula</span><span class="p">(</span><span class="n">molecule</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generate the Hill formula from either a FrozenMolecule, TopologyMolecule or</span>
-<span class="sd">        nx.Graph() of the molecule</span>
+<span class="sd">        Generate the Hill formula from either a :class:`FrozenMolecule`, :class:`TopologyMolecule` or</span>
+<span class="sd">        ``nx.Graph()`` of the molecule</span>
+
+<span class="sd">        .. TODO: Set up Intersphinx for nx.Graph(), above</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        -----------</span>
@@ -4211,7 +4778,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        query : str or ChemicalEnvironment</span>
-<span class="sd">            SMARTS string (with one or more tagged atoms) or ``ChemicalEnvironment`` query</span>
+<span class="sd">            SMARTS string (with one or more tagged atoms) or ``ChemicalEnvironment`` query.</span>
 <span class="sd">            Query will internally be resolved to SMIRKS using ``query.asSMIRKS()`` if it has an ``.asSMIRKS`` method.</span>
 <span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=GLOBAL_TOOLKIT_REGISTRY</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for chemical environment matches</span>
@@ -4684,9 +5251,8 @@
 <span class="sd">        max_states: int optional, default=20</span>
 <span class="sd">            The maximum amount of molecules that should be returned</span>
 
-<span class="sd">        toolkit_registry: openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper,</span>
-<span class="sd">        optional, default=GLOBAL_TOOLKIT_REGISTRY</span>
-<span class="sd">            `ToolkitRegistry` or :class:`ToolkitWrapper` to use to enumerate the tautomers.</span>
+<span class="sd">        toolkit_registry: openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, default=GLOBAL_TOOLKIT_REGISTRY</span>
+<span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use to enumerate the tautomers.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -4732,14 +5298,13 @@
 <span class="sd">        rationalise: bool optional, default=True</span>
 <span class="sd">            If we should try to build and rationalise the molecule to ensure it can exist</span>
 
-<span class="sd">        toolkit_registry: openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper,</span>
-<span class="sd">        optional, default=GLOBAL_TOOLKIT_REGISTRY</span>
-<span class="sd">            `ToolkitRegistry` or :class:`ToolkitWrapper` to use to enumerate the stereoisomers.</span>
+<span class="sd">        toolkit_registry: openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, default=GLOBAL_TOOLKIT_REGISTRY</span>
+<span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use to enumerate the stereoisomers.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        --------</span>
 <span class="sd">        molecules: List[openff.toolkit.topology.Molecule]</span>
-<span class="sd">            A list of openff.toolkit.topology.Molecule instances not including the input molecule.</span>
+<span class="sd">            A list of :class:`Molecule` instances not including the input molecule.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -4803,9 +5368,9 @@
 <span class="sd">        rdmol : rkit.RDMol</span>
 <span class="sd">            An RDKit molecule</span>
 <span class="sd">        allow_undefined_stereo : bool, default=False</span>
-<span class="sd">            If false, raises an exception if oemol contains undefined stereochemistry.</span>
+<span class="sd">            If ``False``, raises an exception if ``rdmol`` contains undefined stereochemistry.</span>
 <span class="sd">        hydrogens_are_explicit : bool, default=False</span>
-<span class="sd">            If False, RDKit will perform hydrogen addition using Chem.AddHs</span>
+<span class="sd">            If ``False``, RDKit will perform hydrogen addition using ``Chem.AddHs``</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -4846,7 +5411,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        rdmol : rkit.RDMol</span>
+<span class="sd">        rdmol : rdkit.RDMol</span>
 <span class="sd">            An RDKit molecule</span>
 
 <span class="sd">        Examples</span>
@@ -4867,7 +5432,7 @@
     <span class="nd">@OpenEyeToolkitWrapper</span><span class="o">.</span><span class="n">requires_toolkit</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">from_openeye</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">oemol</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a Molecule from an OpenEye molecule.</span>
+<span class="sd">        Create a ``Molecule`` from an OpenEye molecule.</span>
 
 <span class="sd">        Requires the OpenEye toolkit to be installed.</span>
 
@@ -4876,7 +5441,7 @@
 <span class="sd">        oemol : openeye.oechem.OEMol</span>
 <span class="sd">            An OpenEye molecule</span>
 <span class="sd">        allow_undefined_stereo : bool, default=False</span>
-<span class="sd">            If false, raises an exception if oemol contains undefined stereochemistry.</span>
+<span class="sd">            If ``False``, raises an exception if oemol contains undefined stereochemistry.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -4886,7 +5451,7 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 
-<span class="sd">        Create a Molecule from an OpenEye OEMol</span>
+<span class="sd">        Create a ``Molecule`` from an OpenEye OEMol</span>
 
 <span class="sd">        &gt;&gt;&gt; from openeye import oechem</span>
 <span class="sd">        &gt;&gt;&gt; from openff.toolkit.tests.utils import get_data_file_path</span>
@@ -4912,13 +5477,13 @@
 <span class="sd">        ----------</span>
 <span class="sd">        multiplicity : int, default=1,</span>
 <span class="sd">            The multiplicity of the molecule;</span>
-<span class="sd">            sets `molecular_multiplicity` field for QCElemental Molecule.</span>
+<span class="sd">            sets ``molecular_multiplicity`` field for QCElemental Molecule.</span>
 
 <span class="sd">        conformer : int, default=0,</span>
 <span class="sd">            The index of the conformer to use for the QCElemental Molecule geometry.</span>
 
 <span class="sd">        extras : dict, default=None</span>
-<span class="sd">            A dictionary that should be included in the `extras` field on the QCElemental Molecule.</span>
+<span class="sd">            A dictionary that should be included in the ``extras`` field on the QCElemental Molecule.</span>
 <span class="sd">            This can be used to include extra information, such as a smiles representation.</span>
 
 <span class="sd">        Returns</span>
@@ -4938,8 +5503,10 @@
 
 <span class="sd">        Raises</span>
 <span class="sd">        --------</span>
-<span class="sd">        MissingDependencyError : qcelemental is not installed, the qcschema can not be validated.</span>
-<span class="sd">        InvalidConformerError : no conformer found at the given index.</span>
+<span class="sd">        MissingDependencyError</span>
+<span class="sd">            If qcelemental is not installed, the qcschema can not be validated.</span>
+<span class="sd">        InvalidConformerError</span>
+<span class="sd">            No conformer found at the given index.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -4992,7 +5559,7 @@
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create an openff.toolkit.topology.molecule.Molecule from a mapped SMILES made with cmiles.</span>
+<span class="sd">        Create an :class:`Molecule` from a mapped SMILES made with cmiles.</span>
 <span class="sd">        The molecule will be in the order of the indexing in the mapped smiles string.</span>
 
 <span class="sd">        .. warning :: This API is experimental and subject to change.</span>
@@ -5002,7 +5569,7 @@
 <span class="sd">        mapped_smiles: str,</span>
 <span class="sd">            A CMILES-style mapped smiles string with explicit hydrogens.</span>
 
-<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
+<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for SMILES-to-molecule conversion</span>
 
 <span class="sd">        allow_undefined_stereo : bool, default=False</span>
@@ -5015,7 +5582,8 @@
 
 <span class="sd">        Raises</span>
 <span class="sd">        --------</span>
-<span class="sd">        SmilesParsingError : if the given SMILES had no indexing picked up by the toolkits.</span>
+<span class="sd">        SmilesParsingError</span>
+<span class="sd">            If the given SMILES had no indexing picked up by the toolkits.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># create the molecule from the smiles and check we have the right number of indexes</span>
@@ -5066,7 +5634,7 @@
 <span class="sd">        For a dataset entry, if a corresponding client instance is provided,</span>
 <span class="sd">        the starting geometry for that entry will be used as a conformer.</span>
 
-<span class="sd">        A QCElemental Molecule produced from `Molecule.to_qcschema` can be round-tripped</span>
+<span class="sd">        A QCElemental Molecule produced from ``Molecule.to_qcschema`` can be round-tripped</span>
 <span class="sd">        through this method to produce a new, valid Molecule.</span>
 
 <span class="sd">        Parameters</span>
@@ -5076,13 +5644,13 @@
 
 <span class="sd">        client : optional, default=None,</span>
 <span class="sd">            A qcportal.FractalClient instance to use for fetching an initial geometry.</span>
-<span class="sd">            Only used if `qca_record` is a dataset entry.</span>
+<span class="sd">            Only used if ``qca_record`` is a dataset entry.</span>
 
-<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
+<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for SMILES-to-molecule conversion</span>
 
 <span class="sd">        allow_undefined_stereo : bool, default=False</span>
-<span class="sd">            If false, raises an exception if oemol contains undefined stereochemistry.</span>
+<span class="sd">            If false, raises an exception if qca_record contains undefined stereochemistry.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -5111,12 +5679,15 @@
 
 <span class="sd">        Raises</span>
 <span class="sd">        -------</span>
-<span class="sd">        AttributeError : if the record dict can not be made from a record instance.</span>
-<span class="sd">            if a client is passed, because the client could not retrive the initial molecule.</span>
+<span class="sd">        AttributeError</span>
+<span class="sd">            - If the record dict can not be made from ``qca_record``.</span>
+<span class="sd">            - If a ``client`` is passed and it could not retrieve the initial molecule.</span>
 
-<span class="sd">        KeyError : if the dict does not contain the canonical_isomeric_explicit_hydrogen_mapped_smiles.</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            If the dict does not contain the ``canonical_isomeric_explicit_hydrogen_mapped_smiles``.</span>
 
-<span class="sd">        InvalidConformerError : silent error, if the conformer could not be attached.</span>
+<span class="sd">        InvalidConformerError</span>
+<span class="sd">            Silent error, if the conformer could not be attached.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># We can accept the Dataset entry record or the dict with JSON encoding</span>
@@ -5213,18 +5784,20 @@
 
 <span class="sd">        The molecule is created and sanitised based on the SMILES string, we then find a mapping</span>
 <span class="sd">        between this molecule and one from the PDB based only on atomic number and connections.</span>
-<span class="sd">        The SMILES molecule is then reindex to match the PDB, the conformer is attached and the</span>
+<span class="sd">        The SMILES molecule is then reindexed to match the PDB, the conformer is attached, and the</span>
 <span class="sd">        molecule returned.</span>
+
+<span class="sd">        Note that any stereochemistry in the molecule is set by the SMILES, and not the coordinates</span>
+<span class="sd">        of the PDB.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        file_path: str</span>
 <span class="sd">            PDB file path</span>
 <span class="sd">        smiles : str</span>
-<span class="sd">            a valid smiles string for the pdb, used for seterochemistry and bond order</span>
-
+<span class="sd">            a valid smiles string for the pdb, used for stereochemistry, formal charges, and bond order</span>
 <span class="sd">        allow_undefined_stereo : bool, default=False</span>
-<span class="sd">            If false, raises an exception if oemol contains undefined stereochemistry.</span>
+<span class="sd">            If false, raises an exception if SMILES contains undefined stereochemistry.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        --------</span>
@@ -5233,7 +5806,8 @@
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
-<span class="sd">        InvalidConformerError : if the SMILES and PDB molecules are not isomorphic.</span>
+<span class="sd">        InvalidConformerError</span>
+<span class="sd">            If the SMILES and PDB molecules are not isomorphic.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">toolkit</span> <span class="o">=</span> <span class="n">RDKitToolkitWrapper</span><span class="p">()</span>
@@ -5249,7 +5823,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
+<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for SMILES-to-molecule conversion</span>
 
 <span class="sd">         Returns</span>
@@ -5279,9 +5853,10 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        mapping_dict : dict,</span>
-<span class="sd">            A dictionary of the mapping between in the indexes, this should start from 0.</span>
+<span class="sd">            A dictionary of the mapping between indexes, this should start from 0.</span>
 <span class="sd">        current_to_new : bool, default=True</span>
-<span class="sd">            The dict is {current_index: new_index} if True else {new_index: current_index}</span>
+<span class="sd">            If this is ``True``, then ``mapping_dict`` is of the form ``{current_index: new_index}``;</span>
+<span class="sd">            otherwise, it is of the form ``{new_index: current_index}``</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -5712,10 +6287,10 @@
 <span class="sd">        formal_charge : int</span>
 <span class="sd">            Formal charge of the atom</span>
 <span class="sd">        is_aromatic : bool</span>
-<span class="sd">            If True, atom is aromatic; if False, not aromatic</span>
+<span class="sd">            If ``True``, atom is aromatic; if ``False``, not aromatic</span>
 <span class="sd">        stereochemistry : str, optional, default=None</span>
-<span class="sd">            Either &#39;R&#39; or &#39;S&#39; for specified stereochemistry, or None if stereochemistry is irrelevant</span>
-<span class="sd">        name : str, optional, default=None</span>
+<span class="sd">            Either ``&#39;R&#39;`` or ``&#39;S&#39;`` for specified stereochemistry, or ``None`` if stereochemistry is irrelevant</span>
+<span class="sd">        name : str, optional</span>
 <span class="sd">            An optional name for the atom</span>
 
 <span class="sd">        Returns</span>
@@ -5756,30 +6331,28 @@
 
 <span class="sd">        Create a bond charge-type virtual site, in which the location of the</span>
 <span class="sd">        charge is specified by the position of two atoms. This supports</span>
-<span class="sd">        placement of a virtual site S along a vector between two specified</span>
+<span class="sd">        placement of a virtual site :math:`S` along a vector between two specified</span>
 <span class="sd">        atoms, e.g. to allow for a sigma hole for halogens or similar contexts.</span>
 <span class="sd">        With positive values of the distance, the virtual site lies outside the</span>
 <span class="sd">        first indexed atom.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of openff.toolkit.topology.molecule.Atom objects or ints of shape [N]</span>
-<span class="sd">            The atoms defining the virtual site&#39;s position or their indices</span>
-<span class="sd">        distance : float</span>
+<span class="sd">        atoms : list of :class:`openff.toolkit.topology.molecule.Atom` objects</span>
+<span class="sd">            The atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        weights : list of floats of shape [N] or None, optional, default=None</span>
-<span class="sd">            weights[index] is the weight of particles[index] contributing to</span>
-<span class="sd">            the position of the virtual site. Default is None</span>
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+
 <span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
 <span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put</span>
 <span class="sd">            in the VirtualSite. Indexing in this list should match the ordering</span>
 <span class="sd">            in the atoms list. Default is None.</span>
 <span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
+<span class="sd">            Epsilon term for VdW properties of virtual site. Default is ``None``.</span>
 <span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
+<span class="sd">            Sigma term for VdW properties of virtual site. Default is ``None``.</span>
 <span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
+<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is ``None``.</span>
 <span class="sd">        name : string or None, default=&#39;&#39;</span>
 <span class="sd">            The name of this virtual site. Default is &#39;&#39;.</span>
 <span class="sd">        symmetric : bool, default=True</span>
@@ -5810,13 +6383,16 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of three openff.toolkit.topology.molecule.Atom objects or ints</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position or their molecule atom indices</span>
-<span class="sd">        distance : float</span>
+<span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
+<span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        out_of_plane_angle : float</span>
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        in_plane_angle : float</span>
+<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        a scalar</span>
+
+<span class="sd">        in_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping a</span>
+<span class="sd">        scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -5860,11 +6436,13 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of 3 openff.toolkit.topology.molecule.Atom objects or ints</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position or their molecule atom indices</span>
-<span class="sd">        distance : float</span>
+<span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
+<span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        out_of_plane_angle : float</span>
+<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+
+<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -5903,9 +6481,10 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of 4 openff.toolkit.topology.molecule.Atom objects or ints</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position or their molecule atom indices</span>
-<span class="sd">        distance : float</span>
+<span class="sd">        atoms : list of four :class:`openff.toolkit.topology.molecule.Atom` objects</span>
+<span class="sd">            The four atoms defining the virtual site&#39;s position</span>
+
+<span class="sd">        distance : simtk.unit.Quantity of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -5957,7 +6536,7 @@
 <span class="sd">        is_aromatic : bool</span>
 <span class="sd">            True if this bond is aromatic, False otherwise</span>
 <span class="sd">        stereochemistry : str, optional, default=None</span>
-<span class="sd">            Either &#39;E&#39; or &#39;Z&#39; for specified stereochemistry, or None if stereochemistry is irrelevant</span>
+<span class="sd">            Either ``&#39;E&#39;`` or ``&#39;Z&#39;`` for specified stereochemistry, or ``None`` if stereochemistry is irrelevant</span>
 <span class="sd">        fractional_bond_order : float, optional, default=None</span>
 <span class="sd">            The fractional (eg. Wiberg) bond order</span>
 
@@ -6006,22 +6585,26 @@
 <span class="sd">        ----------</span>
 <span class="sd">        backend : str, optional, default=&#39;rdkit&#39;</span>
 <span class="sd">            Which visualization engine to use. Choose from:</span>
+
 <span class="sd">            - rdkit</span>
 <span class="sd">            - openeye</span>
 <span class="sd">            - nglview (conformers needed)</span>
+
 <span class="sd">        width : int, optional, default=500</span>
 <span class="sd">            Width of the generated representation (only applicable to</span>
-<span class="sd">            backend=openeye)</span>
+<span class="sd">            ``backend=openeye``)</span>
 <span class="sd">        height : int, optional, default=300</span>
 <span class="sd">            Width of the generated representation (only applicable to</span>
-<span class="sd">            backend=openeye)</span>
+<span class="sd">            ``backend=openeye``)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        object</span>
 <span class="sd">            Depending on the backend chosen:</span>
-<span class="sd">            - rdkit, openeye -&gt; IPython.display.Image</span>
-<span class="sd">            - nglview -&gt; nglview.NGLWidget</span>
+
+<span class="sd">            - rdkit, openeye → IPython.display.Image</span>
+<span class="sd">            - nglview → nglview.NGLWidget</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">openff.toolkit.utils.toolkits</span> <span class="kn">import</span> <span class="n">OPENEYE_AVAILABLE</span><span class="p">,</span> <span class="n">RDKIT_AVAILABLE</span>
 
@@ -6129,10 +6712,10 @@
               
           </div>
           Last updated on
-            Jul 13, 2021.
+            Sep 16, 2021.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.1.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>

@@ -28,6 +28,8 @@
       ~Molecule.canonical_order_atoms
       ~Molecule.chemical_environment_matches
       ~Molecule.compute_partial_charges_am1bcc
+      ~Molecule.compute_virtual_site_positions_from_atom_positions
+      ~Molecule.compute_virtual_site_positions_from_conformer
       ~Molecule.enumerate_protomers
       ~Molecule.enumerate_stereoisomers
       ~Molecule.enumerate_tautomers
@@ -54,6 +56,7 @@
       ~Molecule.generate_unique_atom_names
       ~Molecule.get_bond_between
       ~Molecule.is_isomorphic_with
+      ~Molecule.nth_degree_neighbors
       ~Molecule.remap
       ~Molecule.strip_atom_stereochemistry
       ~Molecule.to_bson
