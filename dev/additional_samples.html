@@ -278,7 +278,7 @@ reStructuredText used to create these examples.</p>
 <span class="linenos"> 64</span>    <span class="n">src</span> <span class="o">=</span> <span class="n">theme_path</span> <span class="o">/</span> <span class="s2">"sass/site.sass"</span>
 <span class="linenos"> 65</span>    <span class="n">dest</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">outdir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">"_static/site.css"</span>
 <span class="linenos"> 66</span>
-<span class="linenos"> 67</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">dest</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+<span class="linenos"> 67</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">dest</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
 <span class="linenos"> 68</span>        <span class="k">return</span>
 <span class="linenos"> 69</span>
 <span class="linenos"> 70</span>    <span class="n">accent_color</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">"html_theme_options"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
