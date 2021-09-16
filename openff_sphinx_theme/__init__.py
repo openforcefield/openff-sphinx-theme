@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 from css_html_js_minify.html_minifier import html_minify
 from sass import SassColor
 from sphinx.util import console, logging
+import sphinx
 
 from ._version import get_versions
 
@@ -63,6 +64,9 @@ def compile_css(app, exception):
     src = theme_path / "sass/site.sass"
     dest = Path(app.outdir) / "_static/site.css"
 
+    if not dest.exists():
+        return
+
     accent_color = app.config["html_theme_options"].get(
         "color_accent", "openff-toolkit-blue"
     )
@@ -104,7 +108,10 @@ def compile_css(app, exception):
 
 
 def register_outdated(app, env, added, changed, removed):
-    env.openff_docs_to_postproc = added | changed
+    if isinstance(app.builder, sphinx.builders.html.StandaloneHTMLBuilder):
+        env.openff_docs_to_postproc = added | changed
+    else:
+        env.openff_docs_to_postproc = None
     return ()
 
 
@@ -114,6 +121,10 @@ def postproc_html(app, exception):
         return
 
     target_files = app.env.openff_docs_to_postproc
+
+    if target_files is None:
+        return
+
     outdir = Path(app.outdir)
 
     minify = app.config["html_theme_options"].get("html_minify", False)
@@ -124,13 +135,21 @@ def postproc_html(app, exception):
 
     # TODO: Consider using parallel execution
     for i, doc in enumerate(target_files):
-        page = outdir / app.builder.get_target_uri(doc)
+        try:
+            page = outdir / app.builder.get_target_uri(doc)
+        except sphinx.errors.NoUri as e:
+            print(doc, "has no URI; skipping")
+            continue
 
         if int(100 * (i / npages)) - last >= 25:
             last = int(100 * (i / npages))
             color_page = console.colorize("blue", str(page))
             msg = f"Post-processing files... [{last}%] {color_page}"
             print("\033[K", msg, sep="", end="\r")
+
+        if not page.exists():
+            print(page, "does not exist; skipping")
+            continue
 
         with open(page, "r", encoding="utf-8") as content:
             soup = BeautifulSoup(content, "lxml")
@@ -150,7 +169,6 @@ def postproc_html(app, exception):
 
     msg = f"Post-processing files... [100%]"
     sys.stdout.write("\033[K" + msg + "\r")
-    print()
 
 
 def register_template_functions(app):
