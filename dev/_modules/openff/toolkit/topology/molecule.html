@@ -321,10 +321,6 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c1"># =============================================================================================</span>
-<span class="c1"># GLOBAL IMPORTS</span>
-<span class="c1"># =============================================================================================</span>
-
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
@@ -333,14 +329,21 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">simtk</span> <span class="kn">import</span> <span class="n">unit</span>
-<span class="kn">from</span> <span class="nn">simtk.openmm.app</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">element</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">openmm</span> <span class="kn">import</span> <span class="n">LocalCoordinatesSite</span><span class="p">,</span> <span class="n">unit</span>
+    <span class="kn">from</span> <span class="nn">openmm.app</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">element</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">simtk</span> <span class="kn">import</span> <span class="n">unit</span>
+    <span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="kn">import</span> <span class="n">LocalCoordinatesSite</span>
+    <span class="kn">from</span> <span class="nn">simtk.openmm.app</span> <span class="kn">import</span> <span class="n">Element</span><span class="p">,</span> <span class="n">element</span>
 
 <span class="kn">import</span> <span class="nn">openff.toolkit</span>
-<span class="kn">from</span> <span class="nn">openff.toolkit.utils</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">MessageException</span><span class="p">,</span>
-    <span class="n">quantity_to_string</span><span class="p">,</span>
-    <span class="n">string_to_quantity</span><span class="p">,</span>
+<span class="kn">from</span> <span class="nn">openff.toolkit.utils</span> <span class="kn">import</span> <span class="n">quantity_to_string</span><span class="p">,</span> <span class="n">string_to_quantity</span>
+<span class="kn">from</span> <span class="nn">openff.toolkit.utils.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">InvalidConformerError</span><span class="p">,</span>
+    <span class="n">NotAttachedToMoleculeError</span><span class="p">,</span>
+    <span class="n">SmilesParsingError</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">openff.toolkit.utils.serialization</span> <span class="kn">import</span> <span class="n">Serializable</span>
 <span class="kn">from</span> <span class="nn">openff.toolkit.utils.toolkits</span> <span class="kn">import</span> <span class="p">(</span>
@@ -354,11 +357,6 @@
     <span class="n">UndefinedStereochemistryError</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">openff.toolkit.utils.utils</span> <span class="kn">import</span> <span class="n">MissingDependencyError</span><span class="p">,</span> <span class="n">requires_package</span>
-
-
-<span class="k">class</span> <span class="nc">NotAttachedToMoleculeError</span><span class="p">(</span><span class="n">MessageException</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Exception for when a component does not belong to a Molecule object, but is queried&quot;&quot;&quot;</span>
-
 
 <span class="c1"># =============================================================================================</span>
 <span class="c1"># GLOBAL PARAMETERS</span>
@@ -484,7 +482,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        atomic_number : int</span>
 <span class="sd">            Atomic number of the atom</span>
-<span class="sd">        formal_charge : int or simtk.unit.Quantity-wrapped int with dimension &quot;charge&quot;</span>
+<span class="sd">        formal_charge : int or openmm.unit.Quantity-wrapped int with dimension &quot;charge&quot;</span>
 <span class="sd">            Formal charge of the atom</span>
 <span class="sd">        is_aromatic : bool</span>
 <span class="sd">            If True, atom is aromatic; if False, not aromatic</span>
@@ -551,7 +549,9 @@
         <span class="c1"># TODO</span>
         <span class="n">atom_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;atomic_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atomic_number</span>
-        <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;formal_charge&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formal_charge</span> <span class="o">/</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
+        <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;formal_charge&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formal_charge</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span>
+            <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
+        <span class="p">)</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;is_aromatic&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_aromatic</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;stereochemistry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stereochemistry</span>
         <span class="c1"># TODO: Should we let atoms have names?</span>
@@ -579,7 +579,7 @@
         <span class="kn">from</span> <span class="nn">openff.toolkit.utils.utils</span> <span class="kn">import</span> <span class="n">check_units_are_compatible</span>
 
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Set the atom&#39;s formal charge. Accepts either ints or simtk.unit.Quantity-wrapped ints with units of charge.</span>
+<span class="sd">        Set the atom&#39;s formal charge. Accepts either ints or openmm.unit.Quantity-wrapped ints with units of charge.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_formal_charge</span> <span class="o">=</span> <span class="n">other</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
@@ -594,7 +594,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        simtk.unit.Quantity with dimension of atomic charge, or None if no charge has been specified</span>
+<span class="sd">        openmm.unit.Quantity with dimension of atomic charge, or None if no charge has been specified</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -636,7 +636,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        simtk.openmm.app.element.Element</span>
+<span class="sd">        openmm.openmm.app.element.Element</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">element</span><span class="o">.</span><span class="n">Element</span><span class="o">.</span><span class="n">getByAtomicNumber</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_atomic_number</span><span class="p">)</span>
 
@@ -851,7 +851,7 @@
     <span class="k">def</span> <span class="nf">_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_positions</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculations the position of a virtual particle, as defined by the OpenMM</span>
-<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite` definition.</span>
+<span class="sd">        :class:`openmm.openmm.openmm.LocalCoordinatesSite` definition.</span>
 
 <span class="sd">        The frame is first constructed using the input atoms, where the weights defined</span>
 <span class="sd">        by each virtual site are used. The virtual particle positions are then</span>
@@ -877,7 +877,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstrom wrapping an</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] in unit Angstrom wrapping an</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -888,10 +888,11 @@
         <span class="c1"># implemented types are correct, so we are interested in cases</span>
         <span class="c1"># where custom virtual sites cause breakage.</span>
 
+        <span class="n">atom_positions_unit</span> <span class="o">=</span> <span class="n">atom_positions</span><span class="o">.</span><span class="n">unit</span>
+
         <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_site</span><span class="o">.</span><span class="n">local_frame_weights</span>
         <span class="n">disp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_site</span><span class="o">.</span><span class="n">local_frame_position</span>
-        <span class="n">_unit</span> <span class="o">=</span> <span class="n">disp</span><span class="o">.</span><span class="n">unit</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">disp</span> <span class="o">/</span> <span class="n">_unit</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">disp</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">disp</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
         <span class="c1"># this pulls the correct ordering of the atoms</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="p">[]</span>
@@ -920,7 +921,7 @@
 
         <span class="n">position</span> <span class="o">=</span> <span class="n">origin</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="n">xaxis</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">yaxis</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">zaxis</span>
 
-        <span class="k">return</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">_unit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">atom_positions_unit</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_extract_position_from_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conformation</span><span class="p">):</span>
 
@@ -951,7 +952,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
 <span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
@@ -969,14 +970,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atom_positions : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a</span>
+<span class="sd">        atom_positions : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of all atoms in the molecule. The array is the size (N, 3)</span>
 <span class="sd">            where N is the number of atoms in the molecule.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
 <span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
@@ -1375,7 +1376,7 @@
 <span class="sd">        The per-atom weights used to define the virtual site frame.</span>
 
 <span class="sd">        The SMIRNOFF virtual sites use the definition of</span>
-<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite` implemented by OpenMM.</span>
+<span class="sd">        :class:`openmm.LocalCoordinatesSite` implemented by OpenMM.</span>
 <span class="sd">        As such, the weights are used to determine the origin and the x and y axes of</span>
 <span class="sd">        the local frame. Since the frame is an orthogonal bases, the z axis is not</span>
 <span class="sd">        specified as it is assumed to be the cross of the x and y axes (using a</span>
@@ -1414,7 +1415,7 @@
 <span class="sd">        The displacements of the virtual site relative to the local frame.</span>
 
 <span class="sd">        The SMIRNOFF virtual sites use the definition of</span>
-<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite` as implemented by OpenMM.</span>
+<span class="sd">        :class:`openmm.LocalCoordinatesSite` as implemented by OpenMM.</span>
 <span class="sd">        As such, the frame positions refer to positions as defined by the frame, or the</span>
 <span class="sd">        local axes defined by the owning atoms (see</span>
 <span class="sd">        :attr:`VirtualSite.local_frame_weights`).</span>
@@ -1427,7 +1428,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] wrapping a list of</span>
 <span class="sd">        displacements in the local frame for the x, y, and z directions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1444,9 +1445,6 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
-
-        <span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="kn">import</span> <span class="n">LocalCoordinatesSite</span>
-
         <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_frame_weights</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_frame_position</span>
 
@@ -1464,7 +1462,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
 <span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
@@ -1484,14 +1482,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atom_positions : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a</span>
+<span class="sd">        atom_positions : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of all atoms in the molecule. The array is the size (N, 3)</span>
 <span class="sd">            where N is the number of atoms in the molecule.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
 <span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
@@ -1534,7 +1532,7 @@
 <span class="sd">        atoms : list of openff.toolkit.topology.molecule.Atom objects of shape [N]</span>
 <span class="sd">            The atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        weights : list of floats of shape [N] or None, optional, default=None</span>
 <span class="sd">            weights[index] is the weight of particles[index] contributing to the position of the virtual site. Default is None</span>
@@ -1631,7 +1629,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] wrapping a list of</span>
 <span class="sd">        displacements in the local frame for the x, y, and z directions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1639,8 +1637,8 @@
         <span class="c1"># towards the center of the other atoms, we want the</span>
         <span class="c1"># vsite to point away from the unit vector to achieve the desired</span>
         <span class="c1"># distance</span>
-        <span class="n">_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="n">_unit</span> <span class="o">*</span> <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+        <span class="n">distance_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">distance_unit</span> <span class="o">*</span> <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">distance_unit</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">pos</span>
 
@@ -1655,7 +1653,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite`</span>
+<span class="sd">        :class:`openmm.LocalCoordinatesSite`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_openmm_virtual_site</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
@@ -1689,12 +1687,12 @@
 <span class="sd">        atoms : list of three openff.toolkit.topology.molecule.Atom objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
 
-<span class="sd">        in_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping a</span>
+<span class="sd">        in_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping a</span>
 <span class="sd">        scalar</span>
 
 <span class="sd">        epsilon : float</span>
@@ -1811,21 +1809,25 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of displacements</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] wrapping a list of displacements</span>
 <span class="sd">        in the local frame for the x, y, and z directions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_plane_angle</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">radians</span><span class="p">)</span>
         <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">radians</span><span class="p">)</span>
 
-        <span class="n">_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">distance_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">distance_unit</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">distance_unit</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">distance_unit</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">psi</span><span class="p">),</span>
             <span class="p">],</span>
-            <span class="n">unit</span><span class="o">=</span><span class="n">_unit</span><span class="p">,</span>
+            <span class="n">unit</span><span class="o">=</span><span class="n">distance_unit</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">pos</span>
@@ -1842,7 +1844,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite`</span>
+<span class="sd">        :class:`openmm.LocalCoordinatesSite`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span>
@@ -1874,9 +1876,9 @@
 <span class="sd">        atoms : list of 3 openff.toolkit.topology.molecule.Atom objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
 
 <span class="sd">        epsilon : float</span>
@@ -1982,18 +1984,18 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] wrapping a list of</span>
 <span class="sd">        displacements in the local frame for the x, y, and z directions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">radians</span><span class="p">)</span>
 
-        <span class="n">_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">distance_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
 
-        <span class="n">pos</span> <span class="o">=</span> <span class="n">_unit</span> <span class="o">*</span> <span class="p">[</span>
-            <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">distance_unit</span> <span class="o">*</span> <span class="p">[</span>
+            <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">distance_unit</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
             <span class="mf">0.0</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">distance_unit</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
         <span class="p">]</span>  <span class="c1"># pos of the vsite in local crds</span>
         <span class="k">return</span> <span class="n">pos</span>
 
@@ -2009,7 +2011,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite`</span>
+<span class="sd">        :class:`openmm.LocalCoordinatesSite`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span>
@@ -2042,7 +2044,7 @@
 <span class="sd">        atoms : list of 4 openff.toolkit.topology.molecule.Atom objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -2139,12 +2141,14 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] wrapping a list of</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] wrapping a list of</span>
 <span class="sd">        displacements in the local frame for the x, y, and z directions.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">([</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">/</span> <span class="n">_unit</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="n">_unit</span><span class="p">)</span>
+        <span class="n">distance_unit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">unit</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
+            <span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">distance_unit</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="n">distance_unit</span>
+        <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">pos</span>
 
@@ -2160,7 +2164,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.openmm.openmm.LocalCoordinatesSite`</span>
+<span class="sd">        :class:`openmm.LocalCoordinatesSite`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span>
@@ -2650,7 +2654,10 @@
     <span class="k">def</span> <span class="nf">generate_unique_atom_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate unique atom names using element name and number of times that element has occurred</span>
-<span class="sd">        e.g. &#39;C1&#39;, &#39;H1&#39;, &#39;O1&#39;, &#39;C2&#39;, ...</span>
+<span class="sd">        e.g. &#39;C1x&#39;, &#39;H1x&#39;, &#39;O1x&#39;, &#39;C2x&#39;, ...</span>
+
+<span class="sd">        The character &#39;x&#39; is appended to these generated names to reduce the odds that they clash with an atom name or</span>
+<span class="sd">        type imported from another source.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
@@ -2659,7 +2666,12 @@
         <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">:</span>
             <span class="n">symbol</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span>
             <span class="n">element_counts</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">atom</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">symbol</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element_counts</span><span class="p">[</span><span class="n">symbol</span><span class="p">])</span>
+            <span class="c1"># TODO: It may be worth exposing this as a user option, i.e. to avoid multiple ligands</span>
+            <span class="c1"># parameterized with OpenFF clashing because they have atom names like O1x, H3x, etc.</span>
+            <span class="c1"># i.e. an optional argument could enable a user to `generate_unique_atom_names(blah=&quot;y&quot;)</span>
+            <span class="c1"># to have one ligand be O1y, etc.</span>
+            <span class="c1"># https://github.com/openforcefield/openff-toolkit/pull/1096#pullrequestreview-767227391</span>
+            <span class="n">atom</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">symbol</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">element_counts</span><span class="p">[</span><span class="n">symbol</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;x&quot;</span>
 
     <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -2746,7 +2758,7 @@
                 <span class="s2">&quot;conformers_unit&quot;</span>
             <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;angstrom&quot;</span>  <span class="c1"># Have this defined as a class variable?</span>
             <span class="k">for</span> <span class="n">conf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span><span class="p">:</span>
-                <span class="n">conf_unitless</span> <span class="o">=</span> <span class="n">conf</span> <span class="o">/</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span>
+                <span class="n">conf_unitless</span> <span class="o">=</span> <span class="n">conf</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
                 <span class="n">conf_serialized</span><span class="p">,</span> <span class="n">conf_shape</span> <span class="o">=</span> <span class="n">serialize_numpy</span><span class="p">((</span><span class="n">conf_unitless</span><span class="p">))</span>
                 <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;conformers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conf_serialized</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -2754,7 +2766,9 @@
             <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;partial_charges_unit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">charges_unitless</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">/</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
+            <span class="n">charges_unitless</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span>
+                <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
+            <span class="p">)</span>
             <span class="n">charges_serialized</span><span class="p">,</span> <span class="n">charges_shape</span> <span class="o">=</span> <span class="n">serialize_numpy</span><span class="p">(</span><span class="n">charges_unitless</span><span class="p">)</span>
             <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;partial_charges&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">charges_serialized</span>
             <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;partial_charges_unit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;elementary_charge&quot;</span>
@@ -2898,10 +2912,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the SMILES of this molecule&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="s2">&quot;Molecule with name &#39;</span><span class="si">{}</span><span class="s2">&#39; and SMILES &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">()</span>
-        <span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;Return a summary of this molecule; SMILES if valid, Hill formula if not.&quot;&quot;&quot;</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Molecule with name &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">smiles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">hill</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">to_hill_formula</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">description</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; with bad SMILES and Hill formula &#39;</span><span class="si">{</span><span class="n">hill</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+        <span class="k">return</span> <span class="n">description</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; and SMILES &#39;</span><span class="si">{</span><span class="n">smiles</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
@@ -3389,7 +3407,7 @@
 
         <span class="n">mol1_netx</span> <span class="o">=</span> <span class="n">to_networkx</span><span class="p">(</span><span class="n">mol1</span><span class="p">)</span>
         <span class="n">mol2_netx</span> <span class="o">=</span> <span class="n">to_networkx</span><span class="p">(</span><span class="n">mol2</span><span class="p">)</span>
-        <span class="kn">from</span> <span class="nn">networkx.algorithms.isomorphism</span> <span class="kn">import</span> <span class="n">GraphMatcher</span>
+        <span class="kn">from</span> <span class="nn">networkx.algorithms.isomorphism</span> <span class="kn">import</span> <span class="n">GraphMatcher</span>  <span class="c1"># type: ignore</span>
 
         <span class="n">GM</span> <span class="o">=</span> <span class="n">GraphMatcher</span><span class="p">(</span>
             <span class="n">mol1_netx</span><span class="p">,</span> <span class="n">mol2_netx</span><span class="p">,</span> <span class="n">node_match</span><span class="o">=</span><span class="n">node_match_func</span><span class="p">,</span> <span class="n">edge_match</span><span class="o">=</span><span class="n">edge_match_func</span>
@@ -3492,7 +3510,7 @@
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for SMILES-to-molecule conversion</span>
 <span class="sd">        n_conformers : int, default=1</span>
 <span class="sd">            The maximum number of conformers to produce</span>
-<span class="sd">        rms_cutoff : simtk.Quantity-wrapped float, in units of distance, optional, default=None</span>
+<span class="sd">        rms_cutoff : openmm.unit.Quantity-wrapped float, in units of distance, optional, default=None</span>
 <span class="sd">            The minimum RMS value at which two conformers are considered redundant and one is deleted. Precise</span>
 <span class="sd">            implementation of this cutoff may be toolkit-dependent. If ``None``, the cutoff is set to be the default value</span>
 <span class="sd">            for each ``ToolkitWrapper`` (generally 1 Angstrom).</span>
@@ -3524,6 +3542,7 @@
                 <span class="n">n_conformers</span><span class="o">=</span><span class="n">n_conformers</span><span class="p">,</span>
                 <span class="n">rms_cutoff</span><span class="o">=</span><span class="n">rms_cutoff</span><span class="p">,</span>
                 <span class="n">clear_existing</span><span class="o">=</span><span class="n">clear_existing</span><span class="p">,</span>
+                <span class="n">raise_exception_types</span><span class="o">=</span><span class="p">[],</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">toolkit</span> <span class="o">=</span> <span class="n">toolkit_registry</span>
@@ -3552,7 +3571,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
 <span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
@@ -3570,14 +3589,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atom_positions : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a</span>
+<span class="sd">        atom_positions : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of all atoms in the molecule. The array is the size (N, 3)</span>
 <span class="sd">            where N is the number of atoms in the molecule.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`simtk.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
+<span class="sd">        :class:`openmm.unit.Quantity` of dimension [Length] in unit Angstroms wrapping a</span>
 <span class="sd">        numpy.ndarray</span>
 <span class="sd">            The positions of the virtual particles belonging to this virtual site.</span>
 <span class="sd">            The array is the size (M, 3) where M is the number of virtual particles</span>
@@ -3640,7 +3659,7 @@
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">toolkit</span> <span class="o">=</span> <span class="n">toolkit_registry</span>
-            <span class="n">toolkit</span><span class="o">.</span><span class="n">apply_elf_conformer_selection</span><span class="p">(</span>
+            <span class="n">toolkit</span><span class="o">.</span><span class="n">apply_elf_conformer_selection</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">percentage</span><span class="o">=</span><span class="n">percentage</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -3665,7 +3684,7 @@
 <span class="sd">        strict_n_conformers : bool, default=False</span>
 <span class="sd">            Whether to raise an exception if an invalid number of conformers is provided for the given charge method.</span>
 <span class="sd">            If this is False and an invalid number of conformers is found, a warning will be raised.</span>
-<span class="sd">        use_conformers : iterable of simtk.unit.Quantity-wrapped numpy arrays, each with shape (n_atoms, 3) and dimension of distance. Optional, default=None</span>
+<span class="sd">        use_conformers : iterable of openmm.unit.Quantity-wrapped numpy arrays, each with shape (n_atoms, 3) and dimension of distance. Optional, default=None</span>
 <span class="sd">            Coordinates to use for partial charge calculation.</span>
 <span class="sd">            If None, an appropriate number of conformers for the given charge method will be generated.</span>
 <span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
@@ -3710,7 +3729,7 @@
 <span class="sd">        strict_n_conformers : bool, default=False</span>
 <span class="sd">            Whether to raise an exception if an invalid number of conformers is provided for the given charge method.</span>
 <span class="sd">            If this is False and an invalid number of conformers is found, a warning will be raised.</span>
-<span class="sd">        use_conformers : iterable of simtk.unit.Quantity-wrapped numpy arrays, each with shape (n_atoms, 3) and dimension of distance. Optional, default=None</span>
+<span class="sd">        use_conformers : iterable of openmm.unit.Quantity-wrapped numpy arrays, each with shape (n_atoms, 3) and dimension of distance. Optional, default=None</span>
 <span class="sd">            Coordinates to use for partial charge calculation. If None, an appropriate number of conformers will be generated.</span>
 <span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for the calculation.</span>
@@ -3795,7 +3814,7 @@
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for SMILES-to-molecule conversion</span>
 <span class="sd">        bond_order_model : string, optional. Default=None</span>
 <span class="sd">            The bond order model to use for fractional bond order calculation. If ``None``, &quot;am1-wiberg&quot; will be used.</span>
-<span class="sd">        use_conformers : iterable of simtk.unit.Quantity(np.array) with shape (n_atoms, 3) and dimension of distance, optional, default=None</span>
+<span class="sd">        use_conformers : iterable of openmm.unit.Quantity(np.array) with shape (n_atoms, 3) and dimension of distance, optional, default=None</span>
 <span class="sd">            The conformers to use for fractional bond order calculation. If ``None``, an appropriate number</span>
 <span class="sd">            of conformers will be generated by an available ToolkitWrapper.</span>
 
@@ -3811,6 +3830,8 @@
 <span class="sd">            If an invalid object is passed as the toolkit_registry parameter</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bond_order_model</span> <span class="o">=</span> <span class="n">bond_order_model</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitRegistry</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
                 <span class="s2">&quot;assign_fractional_bond_orders&quot;</span><span class="p">,</span>
@@ -3820,7 +3841,6 @@
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">toolkit</span> <span class="o">=</span> <span class="n">toolkit_registry</span>
-            <span class="n">bond_order_model</span> <span class="o">=</span> <span class="n">bond_order_model</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">assign_fractional_bond_orders</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">bond_order_model</span><span class="o">=</span><span class="n">bond_order_model</span><span class="p">,</span> <span class="n">use_conformers</span><span class="o">=</span><span class="n">use_conformers</span>
             <span class="p">)</span>
@@ -4061,7 +4081,7 @@
 <span class="sd">        atoms : list of openff.toolkit.topology.molecule.Atom objects of shape [N]</span>
 <span class="sd">            The atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
 <span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put in the VirtualSite. Indexing in this</span>
@@ -4103,12 +4123,12 @@
 <span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
 
-<span class="sd">        in_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping a</span>
+<span class="sd">        in_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping a</span>
 <span class="sd">        scalar</span>
 
 <span class="sd">        epsilon : float</span>
@@ -4150,9 +4170,9 @@
 <span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
 
 <span class="sd">        epsilon : float</span>
@@ -4192,7 +4212,7 @@
 <span class="sd">        atoms : list of 4 :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The four atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -4280,7 +4300,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        coordinates: simtk.unit.Quantity(np.array) with shape (n_atoms, 3) and dimension of distance</span>
+<span class="sd">        coordinates: openmm.unit.Quantity(np.array) with shape (n_atoms, 3) and dimension of distance</span>
 <span class="sd">            Coordinates of the new conformer, with the first dimension of the array corresponding to the atom index in</span>
 <span class="sd">            the Molecule&#39;s indexing system.</span>
 
@@ -4304,7 +4324,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                 <span class="s2">&quot;Coordinates passed to Molecule._add_conformer without units. Ensure that coordinates are &quot;</span>
-                <span class="s2">&quot;of type simtk.units.Quantity&quot;</span>
+                <span class="s2">&quot;of type openmm.units.Quantity&quot;</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -4320,7 +4340,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        partial_charges : a simtk.unit.Quantity - wrapped numpy array [1 x n_atoms] or None</span>
+<span class="sd">        partial_charges : a openmm.unit.Quantity - wrapped numpy array [1 x n_atoms] or None</span>
 <span class="sd">            The partial charges on this Molecule&#39;s atoms. Returns None if no charges have been specified.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span>
@@ -4332,8 +4352,8 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        charges : None or a simtk.unit.Quantity - wrapped numpy array [1 x n_atoms]</span>
-<span class="sd">            The partial charges to assign to the molecule. If not None, must be in units compatible with simtk.unit.elementary_charge</span>
+<span class="sd">        charges : None or a openmm.unit.Quantity - wrapped numpy array [1 x n_atoms]</span>
+<span class="sd">            The partial charges to assign to the molecule. If not None, must be in units compatible with openmm.unit.elementary_charge</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">charges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -4437,7 +4457,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">conformers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the list of conformers for this molecule. This returns a list of simtk.unit.Quantity-wrapped numpy</span>
+<span class="sd">        Returns the list of conformers for this molecule. This returns a list of openmm.unit.Quantity-wrapped numpy</span>
 <span class="sd">        arrays, of shape (3 x n_atoms) and with dimensions of distance. The return value is the actual list of</span>
 <span class="sd">        conformers, and changes to the contents affect the original FrozenMolecule.</span>
 
@@ -4771,7 +4791,10 @@
         <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">chemical_environment_matches</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">query</span><span class="p">,</span>
+        <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Retrieve all matches for a given chemical environment query.</span>
 
@@ -4815,9 +4838,18 @@
         <span class="c1"># TODO: Simplify this by requiring a toolkit registry for the molecule?</span>
         <span class="c1"># TODO: Do we have to pass along an aromaticity model?</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitRegistry</span><span class="p">):</span>
-            <span class="n">matches</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;find_smarts_matches&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">smirks</span><span class="p">)</span>
+            <span class="n">matches</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
+                <span class="s2">&quot;find_smarts_matches&quot;</span><span class="p">,</span>
+                <span class="bp">self</span><span class="p">,</span>
+                <span class="n">smirks</span><span class="p">,</span>
+                <span class="n">unique</span><span class="o">=</span><span class="n">unique</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
-            <span class="n">matches</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">find_smarts_matches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">smirks</span><span class="p">)</span>
+            <span class="n">matches</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">find_smarts_matches</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span>
+                <span class="n">smirks</span><span class="p">,</span>
+                <span class="n">unique</span><span class="o">=</span><span class="n">unique</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InvalidToolkitRegistryError</span><span class="p">(</span>
                 <span class="s2">&quot;&#39;toolkit_registry&#39; must be either a ToolkitRegistry or a ToolkitWrapper&quot;</span>
@@ -5522,7 +5554,7 @@
             <span class="p">)</span>
 
         <span class="c1"># Gather the required qcschema data</span>
-        <span class="n">charge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_charge</span> <span class="o">/</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
+        <span class="n">charge</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_charge</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="p">)</span>
         <span class="n">connectivity</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">atom1_index</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">atom2_index</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">bond_order</span><span class="p">)</span> <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span>
         <span class="p">]</span>
@@ -5543,7 +5575,8 @@
         <span class="n">schema_dict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;symbols&quot;</span><span class="p">:</span> <span class="n">symbols</span><span class="p">,</span>
             <span class="s2">&quot;geometry&quot;</span><span class="p">:</span> <span class="n">geometry</span><span class="p">,</span>
-            <span class="s2">&quot;connectivity&quot;</span><span class="p">:</span> <span class="n">connectivity</span><span class="p">,</span>
+            <span class="c1"># If we have no bonds we must supply None</span>
+            <span class="s2">&quot;connectivity&quot;</span><span class="p">:</span> <span class="n">connectivity</span> <span class="k">if</span> <span class="n">connectivity</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="s2">&quot;molecular_charge&quot;</span><span class="p">:</span> <span class="n">charge</span><span class="p">,</span>
             <span class="s2">&quot;molecular_multiplicity&quot;</span><span class="p">:</span> <span class="n">multiplicity</span><span class="p">,</span>
             <span class="s2">&quot;extras&quot;</span><span class="p">:</span> <span class="n">extras</span><span class="p">,</span>
@@ -6341,7 +6374,7 @@
 <span class="sd">        atoms : list of :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
 <span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put</span>
@@ -6386,12 +6419,12 @@
 <span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
 
-<span class="sd">        in_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping a</span>
+<span class="sd">        in_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping a</span>
 <span class="sd">        scalar</span>
 
 <span class="sd">        epsilon : float</span>
@@ -6439,9 +6472,9 @@
 <span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The three atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : :class:`simtk.unit.Quantity` of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
-<span class="sd">        out_of_plane_angle : :class:`simtk.unit.Quantity` of dimension [Angle] wrapping</span>
+<span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
 
 <span class="sd">        epsilon : float</span>
@@ -6484,7 +6517,7 @@
 <span class="sd">        atoms : list of four :class:`openff.toolkit.topology.molecule.Atom` objects</span>
 <span class="sd">            The four atoms defining the virtual site&#39;s position</span>
 
-<span class="sd">        distance : simtk.unit.Quantity of dimension [Length] wrapping a scalar</span>
+<span class="sd">        distance : openmm.unit.Quantity of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        epsilon : float</span>
 <span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
@@ -6562,7 +6595,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        coordinates: simtk.unit.Quantity(np.array) with shape (n_atoms, 3) and dimension of distance</span>
+<span class="sd">        coordinates: openmm.unit.Quantity(np.array) with shape (n_atoms, 3) and dimension of distance</span>
 <span class="sd">            Coordinates of the new conformer, with the first dimension of the array corresponding to the atom index in</span>
 <span class="sd">            the Molecule&#39;s indexing system.</span>
 
@@ -6577,7 +6610,13 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_conformer</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Molecule.visualize"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.visualize">[docs]</a>    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;rdkit&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">):</span>
+<div class="viewcode-block" id="Molecule.visualize"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.visualize">[docs]</a>    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;rdkit&quot;</span><span class="p">,</span>
+        <span class="n">width</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">show_all_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Render a visualization of the molecule in Jupyter</span>
 
@@ -6592,17 +6631,21 @@
 
 <span class="sd">        width : int, optional, default=500</span>
 <span class="sd">            Width of the generated representation (only applicable to</span>
-<span class="sd">            ``backend=openeye``)</span>
+<span class="sd">            ``backend=openeye`` or ``backend=rdkit``)</span>
 <span class="sd">        height : int, optional, default=300</span>
 <span class="sd">            Width of the generated representation (only applicable to</span>
-<span class="sd">            ``backend=openeye``)</span>
+<span class="sd">            ``backend=openeye`` or ``backend=rdkit``)</span>
+<span class="sd">        show_all_hydrogens : bool, optional, default=True</span>
+<span class="sd">            Whether to explicitly depict all hydrogen atoms. (only applicable to</span>
+<span class="sd">            ``backend=openeye`` or ``backend=rdkit``)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        object</span>
 <span class="sd">            Depending on the backend chosen:</span>
 
-<span class="sd">            - rdkit, openeye → IPython.display.Image</span>
+<span class="sd">            - rdkit → IPython.display.SVG</span>
+<span class="sd">            - openeye → IPython.display.Image</span>
 <span class="sd">            - nglview → nglview.NGLWidget</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -6615,6 +6658,19 @@
                 <span class="kn">import</span> <span class="nn">nglview</span> <span class="k">as</span> <span class="nn">nv</span>
             <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">MissingDependencyError</span><span class="p">(</span><span class="s2">&quot;nglview&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">width</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">height</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># TODO: More specific exception</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;The width, height, and show_all_hydrogens arguments do not apply to the nglview backend.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">show_all_hydrogens</span><span class="p">:</span>
+                <span class="c1"># TODO: More specific exception</span>
+                <span class="c1"># TODO: Implement this? Should be able to just strip hydrogens from the PDB</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;show_all_hydrogens=False is not supported by the nglview backend&quot;</span>
+                <span class="p">)</span>
+
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">conformers</span><span class="p">:</span>
                 <span class="kn">from</span> <span class="nn">openff.toolkit.utils.viz</span> <span class="kn">import</span> <span class="n">_OFFTrajectoryNGLView</span>
 
@@ -6622,20 +6678,46 @@
                 <span class="n">widget</span> <span class="o">=</span> <span class="n">nv</span><span class="o">.</span><span class="n">NGLWidget</span><span class="p">(</span><span class="n">trajectory_like</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">widget</span>
             <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># TODO: More specific exception</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="s2">&quot;Visualizing with NGLview requires that the molecule has &quot;</span>
                     <span class="s2">&quot;conformers.&quot;</span>
                 <span class="p">)</span>
+
+        <span class="n">width</span> <span class="o">=</span> <span class="mi">500</span> <span class="k">if</span> <span class="n">width</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">width</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="mi">300</span> <span class="k">if</span> <span class="n">height</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">height</span>
+        <span class="n">show_all_hydrogens</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">show_all_hydrogens</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">show_all_hydrogens</span>
+
         <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;rdkit&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">RDKIT_AVAILABLE</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">rdkit.Chem.Draw</span> <span class="kn">import</span> <span class="n">IPythonConsole</span>
+                <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+                <span class="kn">from</span> <span class="nn">rdkit.Chem.Draw</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># type: ignore[import]</span>
+                    <span class="n">rdDepictor</span><span class="p">,</span>
+                    <span class="n">rdMolDraw2D</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="kn">from</span> <span class="nn">rdkit.Chem.rdmolops</span> <span class="kn">import</span> <span class="n">RemoveHs</span>  <span class="c1"># type: ignore[import]</span>
 
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_rdkit</span><span class="p">()</span>
+                <span class="n">rdmol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_rdkit</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">show_all_hydrogens</span><span class="p">:</span>
+                    <span class="c1"># updateExplicitCount: Keep a record of the hydrogens we remove.</span>
+                    <span class="c1"># This is used in visualization to distinguish eg radicals from normal species</span>
+                    <span class="n">rdmol</span> <span class="o">=</span> <span class="n">RemoveHs</span><span class="p">(</span><span class="n">rdmol</span><span class="p">,</span> <span class="n">updateExplicitCount</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="n">rdDepictor</span><span class="o">.</span><span class="n">SetPreferCoordGen</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">rdDepictor</span><span class="o">.</span><span class="n">Compute2DCoords</span><span class="p">(</span><span class="n">rdmol</span><span class="p">)</span>
+                <span class="n">rdmol</span> <span class="o">=</span> <span class="n">rdMolDraw2D</span><span class="o">.</span><span class="n">PrepareMolForDrawing</span><span class="p">(</span><span class="n">rdmol</span><span class="p">)</span>
+
+                <span class="n">drawer</span> <span class="o">=</span> <span class="n">rdMolDraw2D</span><span class="o">.</span><span class="n">MolDraw2DSVG</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+                <span class="n">drawer</span><span class="o">.</span><span class="n">DrawMolecule</span><span class="p">(</span><span class="n">rdmol</span><span class="p">)</span>
+                <span class="n">drawer</span><span class="o">.</span><span class="n">FinishDrawing</span><span class="p">()</span>
+
+                <span class="k">return</span> <span class="n">SVG</span><span class="p">(</span><span class="n">drawer</span><span class="o">.</span><span class="n">GetDrawingText</span><span class="p">())</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                     <span class="s2">&quot;RDKit was requested as a visualization backend but &quot;</span>
                     <span class="s2">&quot;it was not found to be installed. Falling back to &quot;</span>
-                    <span class="s2">&quot;trying to using OpenEye for visualization.&quot;</span>
+                    <span class="s2">&quot;trying to use OpenEye for visualization.&quot;</span>
                 <span class="p">)</span>
                 <span class="n">backend</span> <span class="o">=</span> <span class="s2">&quot;openeye&quot;</span>
         <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;openeye&quot;</span><span class="p">:</span>
@@ -6649,6 +6731,9 @@
                     <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">oedepict</span><span class="o">.</span><span class="n">OEScale_AutoScale</span>
                 <span class="p">)</span>
 
+                <span class="k">if</span> <span class="n">show_all_hydrogens</span><span class="p">:</span>
+                    <span class="n">opts</span><span class="o">.</span><span class="n">SetHydrogenStyle</span><span class="p">(</span><span class="n">oedepict</span><span class="o">.</span><span class="n">OEHydrogenStyle_ImplicitAll</span><span class="p">)</span>
+
                 <span class="n">oedepict</span><span class="o">.</span><span class="n">OEPrepareDepiction</span><span class="p">(</span><span class="n">oemol</span><span class="p">)</span>
                 <span class="n">img</span> <span class="o">=</span> <span class="n">oedepict</span><span class="o">.</span><span class="n">OEImage</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
                 <span class="n">display</span> <span class="o">=</span> <span class="n">oedepict</span><span class="o">.</span><span class="n">OE2DMolDisplay</span><span class="p">(</span><span class="n">oemol</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
@@ -6656,6 +6741,7 @@
                 <span class="n">png</span> <span class="o">=</span> <span class="n">oedepict</span><span class="o">.</span><span class="n">OEWriteImageToString</span><span class="p">(</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">Image</span><span class="p">(</span><span class="n">png</span><span class="p">)</span>
 
+        <span class="c1"># TODO: More specific exception</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not find an appropriate backend&quot;</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_ipython_display_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -6675,24 +6761,6 @@
             <span class="k">return</span> <span class="n">display</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s2">&quot;openeye&quot;</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">pass</span></div>
-
-
-<span class="k">class</span> <span class="nc">InvalidConformerError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This error is raised when the conformer added to the molecule</span>
-<span class="sd">    has a different connectivity to that already defined.</span>
-<span class="sd">    or anyother conformer related issues.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">pass</span>
-
-
-<span class="k">class</span> <span class="nc">SmilesParsingError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This error is rasied when parsing a smiles string results in an error.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">pass</span>
 </pre></div>
 
           </article>
@@ -6712,7 +6780,7 @@
               
           </div>
           Last updated on
-            Sep 16, 2021.
+            Nov 08, 2021.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.2.0.

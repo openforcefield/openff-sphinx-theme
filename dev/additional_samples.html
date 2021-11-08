@@ -754,7 +754,7 @@ This also references the second item <a class="footnote-reference brackets" href
 <li><p><strong>etype</strong> – exception type</p></li>
 <li><p><strong>value</strong> – exception value</p></li>
 <li><p><strong>tb</strong> – traceback object</p></li>
-<li><p><strong>limit</strong> (<em>integer</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a>) – maximum number of stack frames to show</p></li>
+<li><p><strong>limit</strong> (<em>integer</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a>) – maximum number of stack frames to show</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -805,12 +805,12 @@ source files for one Sphinx project.</p>
 <h2>Production Lists<a class="headerlink" href="#production-lists" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <pre>
 <strong id="grammar-token-try_stmt"><span id="grammar-token-try-stmt"></span>try_stmt </strong> ::=  try1_stmt | try2_stmt
-<strong id="grammar-token-try1_stmt"><span id="grammar-token-try1-stmt"></span>try1_stmt</strong> ::=  "try" ":" <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html#grammar-token-suite" title="(in Python v3.9)"><code class="xref docutils literal notranslate"><span class="pre">suite</span></code></a>
-               ("except" [<a class="reference external" href="https://docs.python.org/3/reference/expressions.html#grammar-token-expression" title="(in Python v3.9)"><code class="xref docutils literal notranslate"><span class="pre">expression</span></code></a> ["," <a class="reference external" href="https://docs.python.org/3/reference/simple_stmts.html#grammar-token-target" title="(in Python v3.9)"><code class="xref docutils literal notranslate"><span class="pre">target</span></code></a>]] ":" <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html#grammar-token-suite" title="(in Python v3.9)"><code class="xref docutils literal notranslate"><span class="pre">suite</span></code></a>)+
-               ["else" ":" <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html#grammar-token-suite" title="(in Python v3.9)"><code class="xref docutils literal notranslate"><span class="pre">suite</span></code></a>]
-               ["finally" ":" <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html#grammar-token-suite" title="(in Python v3.9)"><code class="xref docutils literal notranslate"><span class="pre">suite</span></code></a>]
-<strong id="grammar-token-try2_stmt"><span id="grammar-token-try2-stmt"></span>try2_stmt</strong> ::=  "try" ":" <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html#grammar-token-suite" title="(in Python v3.9)"><code class="xref docutils literal notranslate"><span class="pre">suite</span></code></a>
-               "finally" ":" <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html#grammar-token-suite" title="(in Python v3.9)"><code class="xref docutils literal notranslate"><span class="pre">suite</span></code></a>
+<strong id="grammar-token-try1_stmt"><span id="grammar-token-try1-stmt"></span>try1_stmt</strong> ::=  "try" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>
+               ("except" [<code class="xref docutils literal notranslate"><span class="pre">expression</span></code> ["," <code class="xref docutils literal notranslate"><span class="pre">target</span></code>]] ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>)+
+               ["else" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>]
+               ["finally" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>]
+<strong id="grammar-token-try2_stmt"><span id="grammar-token-try2-stmt"></span>try2_stmt</strong> ::=  "try" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>
+               "finally" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>
 </pre>
 </section>
 </section>
@@ -896,7 +896,7 @@ source files for one Sphinx project.</p>
               
           </div>
           Last updated on
-            Sep 16, 2021.
+            Nov 08, 2021.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.2.0.

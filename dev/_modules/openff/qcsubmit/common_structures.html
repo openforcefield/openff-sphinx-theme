@@ -324,6 +324,7 @@
     <span class="n">PCMSettingError</span><span class="p">,</span>
     <span class="n">QCSpecificationError</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">openff.qcsubmit.utils.smirnoff</span> <span class="kn">import</span> <span class="n">split_openff_molecule</span>
 
 
 <span class="k">class</span> <span class="nc">DatasetConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -695,7 +696,9 @@
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The SCF properties which should be extracted after every single point calculation.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
-        <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">]]</span>
+        <span class="n">Dict</span><span class="p">[</span>
+            <span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">StrictFloat</span><span class="p">]]</span>
+        <span class="p">]</span>
     <span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;An optional set of program specific computational keywords that &quot;</span>
@@ -715,7 +718,10 @@
         <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
         <span class="n">scf_properties</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultProperties</span><span class="p">,</span>
         <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
-            <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">]]</span>
+            <span class="n">Dict</span><span class="p">[</span>
+                <span class="nb">str</span><span class="p">,</span>
+                <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">StrictFloat</span><span class="p">]],</span>
+            <span class="p">]</span>
         <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -912,7 +918,10 @@
         <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
         <span class="n">scf_properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
-            <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">]]</span>
+            <span class="n">Dict</span><span class="p">[</span>
+                <span class="nb">str</span><span class="p">,</span>
+                <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">StrictFloat</span><span class="p">]],</span>
+            <span class="p">]</span>
         <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1123,6 +1132,10 @@
     <span class="n">fixed_hydrogen_inchi_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The non-standard inchikey with a fixed hydrogen layer.&quot;</span>
     <span class="p">)</span>
+    <span class="n">unique_fixed_hydrogen_inchi_keys</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The list of unique non-standard inchikey with a fixed hydrogen layer.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_openff_molecule</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Molecule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;MoleculeAttributes&quot;</span><span class="p">:</span>
@@ -1147,7 +1160,12 @@
 <span class="sd">            - `inchi_key`</span>
 <span class="sd">            - `fixed_hydrogen_inchi`</span>
 <span class="sd">            - `fixed_hydrogen_inchi_key`</span>
+<span class="sd">            - `unique_fixed_hydrogen_inchi_keys`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">molecules</span> <span class="o">=</span> <span class="n">split_openff_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="n">unique_fixed_hydrogen_inchi_keys</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">mol</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">molecules</span>
+        <span class="p">}</span>
 
         <span class="n">cmiles</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;canonical_smiles&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
@@ -1170,6 +1188,7 @@
             <span class="s2">&quot;inchi_key&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
             <span class="s2">&quot;fixed_hydrogen_inchi&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_inchi</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
             <span class="s2">&quot;fixed_hydrogen_inchi_key&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="s2">&quot;unique_fixed_hydrogen_inchi_keys&quot;</span><span class="p">:</span> <span class="n">unique_fixed_hydrogen_inchi_keys</span><span class="p">,</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">MoleculeAttributes</span><span class="p">(</span><span class="o">**</span><span class="n">cmiles</span><span class="p">)</span>
@@ -1233,7 +1252,7 @@
               
           </div>
           Last updated on
-            Sep 16, 2021.
+            Nov 08, 2021.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
