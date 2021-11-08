@@ -106,7 +106,7 @@ hr {
 // Text link
 a {
   color: $link;
-  word-break: break-word;
+  overflow-wrap: break-word;
 
   // Also enable color transition on pseudo elements
   &,
@@ -147,7 +147,7 @@ kbd {
 code {
   padding: 0 px2em(4px, 13.6px);
   font-size: px2em(13.6px);
-  word-break: break-word;
+  overflow-wrap: break-word;
   background-color: $code-background;
   border-radius: px2rem(2px);
   box-decoration-break: clone;
@@ -240,7 +240,7 @@ kbd {
   color: $scheme-invert;
   font-size: px2em(12px);
   vertical-align: text-top;
-  word-break: break-word;
+  overflow-wrap: break-word;
   background-color: $scheme-main-ter;
   border-radius: px2rem(2px);
   box-shadow:
@@ -252,7 +252,7 @@ kbd {
 // Text highlighting marker
 mark {
   color: inherit;
-  word-break: break-word;
+  overflow-wrap: break-word;
   background-color: $yellow;
   box-decoration-break: clone;
 }
