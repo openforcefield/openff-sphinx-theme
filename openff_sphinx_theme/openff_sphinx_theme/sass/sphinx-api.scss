@@ -168,6 +168,22 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         // Pydantic validator arrow
         .autodoc_pydantic_validator_arrow {
+            &::before {
+                content: "\a";
+                white-space: pre;
+            }
+            // Comma separating validated fields
+            ~ .property {
+                &::after {
+                    content: "\a      ";
+                    white-space: pre;
+                }
+            }
+            ~ .headerlink {
+                position: absolute;
+                bottom: $api-header-padding;
+                right: $api-header-padding;
+            }
         }
         // Link to the source code for the object (not present on inherited objects)
         .viewcode-link {
