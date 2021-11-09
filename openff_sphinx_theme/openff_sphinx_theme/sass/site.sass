@@ -36,10 +36,15 @@ $openff-blue: rgb(1, 84, 128)
 $openff-toolkit-blue: rgb(47, 158, 210)
 $openff-dataset-yellow: rgb(240, 133, 33)
 $openff-evaluator-orange: rgb(240, 58, 33)
+$openff-green: rgb(9, 188, 138)
 
 $primary: $openff-blue
 $accent: accent_color()
 $text: rgba(0,0,0,.87)
+$green: $openff-green
+$blue: $openff-blue
+$yellow: $openff-dataset-yellow
+$orange: $openff-evaluator-orange
 
 $link: $primary
 $link-hover: $accent
@@ -193,7 +198,7 @@ $drawer-transition-time: 0.5s
             position: unset
 
     header
-        word-break: break-word
+        overflow-wrap: break-word
 
 .has-text-light .breadcrumb
     a
@@ -232,7 +237,7 @@ $drawer-transition-time: 0.5s
         max-height: 100vh
         +hide-scrollbar
 .menu
-    word-break: break-word
+    overflow-wrap: break-word
     code
         background-color: transparent
         color: unset
@@ -307,7 +312,7 @@ main
     padding-top: 1rem
 footer
     margin-top: auto
-    word-break: break-word
+    overflow-wrap: break-word
     nav
         margin-bottom: 3rem !important
     .fineprint

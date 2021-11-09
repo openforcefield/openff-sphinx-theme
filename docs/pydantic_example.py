@@ -27,3 +27,6 @@ class ExampleSettings(BaseSettings):
     class Config:
         env_prefix = "foo_"
         allow_mutation = True
+
+    def method_without_sig(self) -> BaseSettings:
+        return BaseSettings()

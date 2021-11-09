@@ -21,8 +21,6 @@ $api-arguments-indent: 2 * $api-header-font-size;
 // RTD does it like this, but with fewer exceptions, so
 // we should be OK
 dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    // Allow words to break anywhere, if necessary
-    word-break: break-word;
     // Header and signature
     > dt {
         font-family: $family-monospace;
@@ -30,6 +28,8 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         padding: $api-header-padding;
         background-color: $api-bg-color;
         border-radius: 4px;
+        // Allow words to break anywhere, if necessary
+        word-break: break-all;
         // Position relative so we can absolutely position source link
         position: relative;
         @include z-depth(2);
@@ -148,10 +148,42 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                     content: "\a";
                     white-space: pre;
                 }
+
+                // Unindent closing paren, and everything following (except source link)
+                position: relative;
+                left: -$api-arguments-indent;
+                ~*:not(a.reference.internal, .headerlink) {
+                    position: relative;
+                    left: -$api-arguments-indent;
+                    max-width: calc(100% + #{$api-arguments-indent} - 4em);
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                ~ .headerlink {
+                    position: absolute;
+                    bottom: $api-header-padding;
+                    right: $api-header-padding;
+                }
             }
         }
         // Pydantic validator arrow
         .autodoc_pydantic_validator_arrow {
+            &::before {
+                content: "\a";
+                white-space: pre;
+            }
+            // Comma separating validated fields
+            ~ .property {
+                &::after {
+                    content: "\a      ";
+                    white-space: pre;
+                }
+            }
+            ~ .headerlink {
+                position: absolute;
+                bottom: $api-header-padding;
+                right: $api-header-padding;
+            }
         }
         // Link to the source code for the object (not present on inherited objects)
         .viewcode-link {
@@ -205,7 +237,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                         // Type of the parameter, or type of a named return value
                         >.classifier {
                             color: $api-type-color;
-                            word-break: break-word;
+                            overflow-wrap: break-word;
                         }
 
                     }
@@ -281,7 +313,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
 
 // Break headings wherever, if necessary
 h1, h2, h3, h4, h5, h6 {
-    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 // Docs button in source on right
