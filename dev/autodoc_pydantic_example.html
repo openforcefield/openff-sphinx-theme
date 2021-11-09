@@ -205,6 +205,9 @@
 <span class="linenos">27</span>    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
 <span class="linenos">28</span>        <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">"foo_"</span>
 <span class="linenos">29</span>        <span class="n">allow_mutation</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>    <span class="k">def</span> <span class="nf">method_without_sig</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseSettings</span><span class="p">:</span>
+<span class="linenos">32</span>        <span class="k">return</span> <span class="n">BaseSettings</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -264,7 +267,7 @@ to pydantic models.</p>
 </dd>
 <dt class="field-odd">Validators</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="pydantic_example.ExampleSettings.check_max_length_ten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_max_length_ten</span></code></a> » <a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="pydantic_example.ExampleSettings.field_plain_with_validator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_plain_with_validator</span></code></a></p></li>
+<li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="pydantic_example.ExampleSettings.check_max_length_ten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_max_length_ten</span></code></a> » <a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="pydantic_example.ExampleSettings.field_with_validator_and_alias"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_with_validator_and_alias</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -307,7 +310,7 @@ to pydantic models.</p>
 </dd></dl>
 <dl class="py pydantic_validator">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.check_max_length_ten">
-<em class="property"><span class="pre">validator</span> </em><span class="sig-name descname"><span class="pre">check_max_length_ten</span></span><em class="autodoc_pydantic_validator_arrow property">  <span class="pre">»</span>  </em><a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="pydantic_example.ExampleSettings.field_with_validator_and_alias"><em class="xref py py-obj"><span class="pre">field_with_validator_and_alias</span></em></a><em class="property"><span class="pre">,</span> </em><a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="pydantic_example.ExampleSettings.field_plain_with_validator"><em class="xref py py-obj"><span class="pre">field_plain_with_validator</span></em></a><a class="reference internal" href="_modules/pydantic_example.html#ExampleSettings.check_max_length_ten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">validator</span> </em><span class="sig-name descname"><span class="pre">check_max_length_ten</span></span><em class="autodoc_pydantic_validator_arrow property">  <span class="pre">»</span>  </em><a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="pydantic_example.ExampleSettings.field_plain_with_validator"><em class="xref py py-obj"><span class="pre">field_plain_with_validator</span></em></a><em class="property"><span class="pre">,</span> </em><a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="pydantic_example.ExampleSettings.field_with_validator_and_alias"><em class="xref py py-obj"><span class="pre">field_with_validator_and_alias</span></em></a><a class="reference internal" href="_modules/pydantic_example.html#ExampleSettings.check_max_length_ten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Show corresponding field with link/anchor.</p>
 </dd></dl>
 <dl class="py method">
@@ -380,6 +383,10 @@ the new model: you should trust this data</p></li>
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.validate">
 <em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.validate" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pydantic_example.ExampleSettings.method_without_sig">
+<span class="sig-name descname"><span class="pre">method_without_sig</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pydantic.env_settings.BaseSettings</span></span></span><a class="reference internal" href="_modules/pydantic_example.html#ExampleSettings.method_without_sig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydantic_example.ExampleSettings.method_without_sig" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd></dd></dl>
 </dd></dl>
 </section>
 </section>
@@ -430,7 +437,7 @@ the new model: you should trust this data</p></li>
               
           </div>
           Last updated on
-            Nov 08, 2021.
+            Nov 09, 2021.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
