@@ -123,6 +123,11 @@ table.highlighttable {
   .gp, .linenos {
     @include unselectable;
   }
+  // Neat but expandable code blocks;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: scroll;
+  min-width: 80ex;
 }
 
 // Header links
