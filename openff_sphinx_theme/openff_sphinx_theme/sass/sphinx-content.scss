@@ -126,8 +126,9 @@ table.highlighttable {
   // Neat but expandable code blocks;
   width: fit-content;
   max-width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
   min-width: 80ex;
+  border-radius: 4px;
 }
 
 // Header links
