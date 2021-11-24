@@ -8717,6 +8717,7 @@ html {
 .content .highlight {
   background-color: #f8f8f8;
   border-radius: 4px;
+  overflow-x: auto;
 }
 
 .content .highlight .gp, .content .highlight .linenos {
@@ -8727,15 +8728,15 @@ html {
   user-select: none;
 }
 
+.content .highlight pre {
+  overflow-x: unset;
+}
+
 @media screen and (min-width: 1024px) {
   .content .highlight {
     width: fit-content;
     max-width: 100%;
-    overflow-x: auto;
     min-width: 80ex;
-  }
-  .content .highlight pre {
-    overflow-x: unset;
   }
 }
 
