@@ -8714,21 +8714,8 @@ html {
   }
 }
 
-.content .highlight span.linenos {
-  margin-right: 1.5rem;
-}
-
-@media screen and (max-width: 768px) {
-  .content .highlight span.linenos {
-    display: none;
-  }
-}
-
 .content .highlight {
-  width: fit-content;
-  max-width: 100%;
-  overflow-x: auto;
-  min-width: 80ex;
+  background-color: #f8f8f8;
   border-radius: 4px;
 }
 
@@ -8738,6 +8725,25 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .content .highlight {
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    min-width: 80ex;
+  }
+}
+
+.content .highlight span.linenos {
+  margin-right: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .content .highlight span.linenos {
+    display: none;
+  }
 }
 
 .content .headerlink {
