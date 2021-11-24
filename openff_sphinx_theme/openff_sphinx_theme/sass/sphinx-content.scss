@@ -123,6 +123,9 @@ table.highlighttable {
     max-width: 100%;
     overflow-x: auto;
     min-width: 80ex;
+    pre {
+      overflow-x: unset;
+    }
   }
   /// Code with line numbers in sphinx>=4
   span.linenos {
