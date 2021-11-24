@@ -8734,6 +8734,9 @@ html {
     overflow-x: auto;
     min-width: 80ex;
   }
+  .content .highlight pre {
+    overflow-x: unset;
+  }
 }
 
 .content .highlight span.linenos {
