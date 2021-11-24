@@ -8714,14 +8714,10 @@ html {
   }
 }
 
-.content .highlight span.linenos {
-  margin-right: 1.5rem;
-}
-
-@media screen and (max-width: 768px) {
-  .content .highlight span.linenos {
-    display: none;
-  }
+.content .highlight {
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  overflow-x: auto;
 }
 
 .content .highlight .gp, .content .highlight .linenos {
@@ -8730,6 +8726,28 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.content .highlight pre {
+  overflow-x: unset;
+}
+
+@media screen and (min-width: 1024px) {
+  .content .highlight {
+    width: fit-content;
+    max-width: 100%;
+    min-width: 80ex;
+  }
+}
+
+.content .highlight span.linenos {
+  margin-right: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .content .highlight span.linenos {
+    display: none;
+  }
 }
 
 .content .headerlink {
@@ -9260,7 +9278,7 @@ html .content .admonition-title:last-child {
   padding: 1.1rem;
   background-color: rgba(47, 158, 210, 0.1);
   border-radius: 4px;
-  word-break: break-all;
+  overflow-wrap: break-word;
   position: relative;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   padding-left: 3.3rem;
