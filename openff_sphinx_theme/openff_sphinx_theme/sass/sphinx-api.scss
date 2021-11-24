@@ -29,7 +29,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         background-color: $api-bg-color;
         border-radius: 4px;
         // Allow words to break anywhere, if necessary
-        word-break: break-all;
+        overflow-wrap: break-word;
         // Position relative so we can absolutely position source link
         position: relative;
         @include z-depth(2);

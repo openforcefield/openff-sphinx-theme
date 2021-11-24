@@ -109,19 +109,32 @@ table.highlighttable {
     }
   }
 }
-/// Code with line numbers in sphinx>=4
-.highlight span.linenos {
-  margin-right: 1.5rem;
-  // Hide line numbers on mobile
-  @media screen and (max-width: $tablet - 1px) {
-    display: none;
-  }
-}
 
-// Unselectable prompts and line numbers
 .highlight {
+  background-color: $code-background;
+  border-radius: 4px;
+  // Unselectable prompts and line numbers
   .gp, .linenos {
     @include unselectable;
+  }
+  // Scrollbar on the .highlight, not the inner pre
+  overflow-x: auto;
+  pre {
+    overflow-x: unset;
+  }
+  // Neat but expandable code blocks;
+  @media screen and (min-width: $desktop) {
+    width: fit-content;
+    max-width: 100%;
+    min-width: 80ex;
+  }
+  /// Code with line numbers in sphinx>=4
+  span.linenos {
+    margin-right: 1.5rem;
+    // Hide line numbers on mobile
+    @media screen and (max-width: $tablet - 1px) {
+      display: none;
+    }
   }
 }
 
