@@ -117,15 +117,16 @@ table.highlighttable {
   .gp, .linenos {
     @include unselectable;
   }
+  // Scrollbar on the .highlight, not the inner pre
+  overflow-x: auto;
+  pre {
+    overflow-x: unset;
+  }
   // Neat but expandable code blocks;
   @media screen and (min-width: $desktop) {
     width: fit-content;
     max-width: 100%;
-    overflow-x: auto;
     min-width: 80ex;
-    pre {
-      overflow-x: unset;
-    }
   }
   /// Code with line numbers in sphinx>=4
   span.linenos {
