@@ -117,10 +117,12 @@ table.highlighttable {
   .gp, .linenos {
     @include unselectable;
   }
-  // Scrollbar on the .highlight, not the inner pre
+  // Scrollbar and margins on the .highlight, not the inner pre
   overflow-x: auto;
+  margin: 1em 0;
   pre {
     overflow-x: unset;
+    margin: unset;
   }
   // Neat but expandable code blocks;
   @media screen and (min-width: $desktop) {
@@ -212,4 +214,47 @@ a.brackets {
   &::after {
     content: "]";
   }
+}
+
+
+// Add language identifiers to code blocks
+@mixin language-identifier($langname) {
+  .highlight pre::before {
+    content: $langname;
+    color: #696969;
+    font-size: 80%;
+    font-family: $family-monospace;
+    padding: 0;
+    margin: -1rem;
+    float: right;
+    font-variant: small-caps;
+  }
+}
+
+.highlight-python {
+  @include language-identifier("Python");
+}
+
+.highlight-sh, .highlight-shell-session {
+  @include language-identifier("Shell");
+}
+
+.highlight-yaml {
+  @include language-identifier("YAML");
+}
+
+.highlight-json {
+  @include language-identifier("JSON");
+}
+
+.highlight-html {
+  @include language-identifier("HTML");
+}
+
+.highlight-javascript {
+  @include language-identifier("JavaScript");
+}
+
+.highlight-jinja {
+  @include language-identifier("Jinja");
 }
