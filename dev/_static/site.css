@@ -8718,6 +8718,7 @@ html {
   background-color: #f8f8f8;
   border-radius: 4px;
   overflow-x: auto;
+  margin: 1em 0;
 }
 
 .content .highlight .gp, .content .highlight .linenos {
@@ -8730,6 +8731,7 @@ html {
 
 .content .highlight pre {
   overflow-x: unset;
+  margin: unset;
 }
 
 @media screen and (min-width: 1024px) {
@@ -8797,6 +8799,83 @@ html {
 
 .content a.brackets::after {
   content: "]";
+}
+
+.content .highlight-python .highlight pre::before {
+  content: "Python";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-sh .highlight pre::before, .content .highlight-shell-session .highlight pre::before {
+  content: "Shell";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-yaml .highlight pre::before {
+  content: "YAML";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-json .highlight pre::before {
+  content: "JSON";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-html .highlight pre::before {
+  content: "HTML";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-javascript .highlight pre::before {
+  content: "JavaScript";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-jinja .highlight pre::before {
+  content: "Jinja";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
 }
 
 .content .admonition {
