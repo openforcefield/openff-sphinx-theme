@@ -10,8 +10,16 @@ class ExampleSettings(BaseSettings):
     field_plain_with_validator: int = 100
     """Show standard field with type annotation."""
 
+    field_plain = 100
+    """Show standard field without type annotation."""
+
     field_with_validator_and_alias: str = Field("FooBar", alias="BarFoo", env="BarFoo")
     """Shows corresponding validator with link/anchor."""
+
+    field_with_validator_and_alias_typeless = Field(
+        "FooBar", alias="BarFoo", env="BarFoo"
+    )
+    """Shows corresponding validator with link/anchor but without type annotation."""
 
     field_with_constraints_and_description: int = Field(
         default=5, ge=0, le=100, description="Shows constraints within doc string."

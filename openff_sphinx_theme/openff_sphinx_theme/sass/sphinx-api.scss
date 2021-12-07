@@ -103,7 +103,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                 padding-right: 0.2em;
             }
             // Type anotation
-            .p, .p + .n {
+            .p, .p + .n, .p + .w + .n {
                 .pre {
                     color: $api-type-color;
                     font-style: italic;
@@ -307,6 +307,23 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                 margin-left: 1.5em;
                 padding-bottom: 0.75em;
             }
+        }
+    }
+}
+
+// Pydantic fields have their own stuff going on
+// We still want types to be the right colour, and italicised
+// This works as long as the type annotation is defined,
+// but can cause the field's name to be italicised if eg no
+// type is defined and the field has an alias
+.pydantic_field .sig {
+    > .sig-name + .property:not(:last-of-type) {
+        a {
+            font-weight: bold;
+        }
+        .pre {
+            color: $api-type-color;
+            font-style: italic !important;
         }
     }
 }
