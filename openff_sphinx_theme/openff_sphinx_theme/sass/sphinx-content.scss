@@ -291,3 +291,21 @@ a.brackets {
 .highlight-r {
   @include language-identifier("R");
 }
+
+.highlight-restructuredtext, .highlight-rst, .highlight-rest {
+  @include language-identifier("reStructuredText");
+}
+
+.highlight-md, .highlight-markdown {
+  @include language-identifier("Markdown");
+}
+
+.highlight-tex {
+  @include language-identifier("TeX");
+}
+
+
+.highlight-latex {
+  @include language-identifier("LaTeX");
+}
+
