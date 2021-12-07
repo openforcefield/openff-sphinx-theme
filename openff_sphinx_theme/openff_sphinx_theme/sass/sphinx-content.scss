@@ -220,6 +220,7 @@ a.brackets {
 // Add language identifiers to code blocks
 @mixin language-identifier($langname) {
   .highlight pre::before {
+    @include unselectable;
     content: $langname;
     color: #696969;
     font-size: 80%;
@@ -231,16 +232,24 @@ a.brackets {
   }
 }
 
-.highlight-python {
+.highlight-python, .highlight-py, .highlight-python3, .highlight-py3 {
   @include language-identifier("Python");
 }
 
-.highlight-sh, .highlight-shell-session {
+.highlight-sh, .highlight-shell-session, .highlight-shell {
   @include language-identifier("Shell");
 }
 
-.highlight-yaml {
+.highlight-bash {
+  @include language-identifier("BASH");
+}
+
+.highlight-yaml, .highlight-yml {
   @include language-identifier("YAML");
+}
+
+.highlight-toml {
+  @include language-identifier("TOML");
 }
 
 .highlight-json {
@@ -251,10 +260,34 @@ a.brackets {
   @include language-identifier("HTML");
 }
 
-.highlight-javascript {
+.highlight-xml {
+  @include language-identifier("XML");
+}
+
+.highlight-javascript, .highlight-js {
   @include language-identifier("JavaScript");
 }
 
 .highlight-jinja {
   @include language-identifier("Jinja");
+}
+
+.highlight-c {
+  @include language-identifier("C");
+}
+
+.highlight-cxx, .highlight-cpp, .highlight-c\+\+ {
+  @include language-identifier("C++");
+}
+
+.highlight-rs, .highlight-rust {
+  @include language-identifier("Rust");
+}
+
+.highlight-julia {
+  @include language-identifier("Julia");
+}
+
+.highlight-r {
+  @include language-identifier("R");
 }
