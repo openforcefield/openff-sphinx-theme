@@ -9041,6 +9041,70 @@ html {
   font-variant: small-caps;
 }
 
+.content .highlight-restructuredtext .highlight pre::before, .content .highlight-rst .highlight pre::before, .content .highlight-rest .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "reStructuredText";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-md .highlight pre::before, .content .highlight-markdown .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "Markdown";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-tex .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "TeX";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-latex .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "LaTeX";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
 .content .admonition {
   margin: 1.25rem 0;
   padding: 0 0.75rem;
