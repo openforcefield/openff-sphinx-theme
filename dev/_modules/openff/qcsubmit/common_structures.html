@@ -293,6 +293,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This file contains common starting structures which can be mixed into datasets, results and factories.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">getpass</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">datetime</span>
@@ -408,7 +409,7 @@
 
     <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
         <span class="n">allow_mutation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="s2">&quot;forbid&quot;</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="s2">&quot;forbid&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">TDSettings</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">):</span>
@@ -434,6 +435,10 @@
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The threshold if the energy of a grid point that is higher than the current global minimum, to &quot;</span>
         <span class="s2">&quot;start new optimizations, in unit of a.u. I.e. if energy_upper_limit = 0.05, current global &quot;</span>
         <span class="s2">&quot;minimum energy is -9.9 , then a new task starting with energy -9.8 will be skipped.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">additional_keywords</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">{},</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Additional keywords to add to the torsiondrive&#39;s optimization runs&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
 
@@ -1166,28 +1171,30 @@
         <span class="n">unique_fixed_hydrogen_inchi_keys</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">mol</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">molecules</span>
         <span class="p">}</span>
-
+        <span class="n">off_mol</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;atom_map&quot;</span> <span class="ow">in</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s2">&quot;atom_map&quot;</span><span class="p">]</span>
         <span class="n">cmiles</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;canonical_smiles&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+            <span class="s2">&quot;canonical_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
                 <span class="n">isomeric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span>
             <span class="p">),</span>
-            <span class="s2">&quot;canonical_isomeric_smiles&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+            <span class="s2">&quot;canonical_isomeric_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
                 <span class="n">isomeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span>
             <span class="p">),</span>
-            <span class="s2">&quot;canonical_explicit_hydrogen_smiles&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+            <span class="s2">&quot;canonical_explicit_hydrogen_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
                 <span class="n">isomeric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span>
             <span class="p">),</span>
-            <span class="s2">&quot;canonical_isomeric_explicit_hydrogen_smiles&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+            <span class="s2">&quot;canonical_isomeric_explicit_hydrogen_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
                 <span class="n">isomeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span>
             <span class="p">),</span>
-            <span class="s2">&quot;canonical_isomeric_explicit_hydrogen_mapped_smiles&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+            <span class="s2">&quot;canonical_isomeric_explicit_hydrogen_mapped_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
                 <span class="n">isomeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">True</span>
             <span class="p">),</span>
-            <span class="s2">&quot;molecular_formula&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">hill_formula</span><span class="p">,</span>
-            <span class="s2">&quot;standard_inchi&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_inchi</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-            <span class="s2">&quot;inchi_key&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-            <span class="s2">&quot;fixed_hydrogen_inchi&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_inchi</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-            <span class="s2">&quot;fixed_hydrogen_inchi_key&quot;</span><span class="p">:</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="s2">&quot;molecular_formula&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">hill_formula</span><span class="p">,</span>
+            <span class="s2">&quot;standard_inchi&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_inchi</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="s2">&quot;inchi_key&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="s2">&quot;fixed_hydrogen_inchi&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_inchi</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="s2">&quot;fixed_hydrogen_inchi_key&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
             <span class="s2">&quot;unique_fixed_hydrogen_inchi_keys&quot;</span><span class="p">:</span> <span class="n">unique_fixed_hydrogen_inchi_keys</span><span class="p">,</span>
         <span class="p">}</span>
 
@@ -1252,10 +1259,10 @@
               
           </div>
           Last updated on
-            Nov 25, 2021.
+            Jan 25, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.3.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>

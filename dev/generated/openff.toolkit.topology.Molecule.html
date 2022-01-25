@@ -29,8 +29,8 @@
 <script src="../_static/underscore.js"></script>
 <script src="../_static/doctools.js"></script>
 <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link href="../genindex.html" rel="index" title="Index"/>
 <link href="../search.html" rel="search" title="Search"/>
 <link href="../pydantic.html" rel="next" title="Pydantic API docs"/>
@@ -449,8 +449,8 @@ than one molecule is found?</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_file" title="openff.toolkit.topology.Molecule.to_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_file</span></code></a>(file_path, file_format[, ...])</p></td>
 <td><p>Write the current molecule to a file or file-like object</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="openff.toolkit.topology.Molecule.to_hill_formula"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_hill_formula</span></code></a>(molecule)</p></td>
-<td><p>Generate the Hill formula from either a <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenMolecule</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TopologyMolecule</span></code> or <code class="docutils literal notranslate"><span class="pre">nx.Graph()</span></code> of the molecule</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="openff.toolkit.topology.Molecule.to_hill_formula"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_hill_formula</span></code></a>()</p></td>
+<td><p>Generate the Hill formula of this molecule.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_inchi" title="openff.toolkit.topology.Molecule.to_inchi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_inchi</span></code></a>([fixed_hydrogens, toolkit_registry])</p></td>
 <td><p>Create an InChI string for the molecule using the requested toolkit backend.</p></td>
@@ -631,7 +631,7 @@ each tuple.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.apply_elf_conformer_selection">
-<span class="sig-name descname"><span class="pre">apply_elf_conformer_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">openff.toolkit.utils.toolkit_registry.ToolkitRegistry</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">openff.toolkit.utils.base_wrapper.ToolkitWrapper</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.apply_elf_conformer_selection" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">apply_elf_conformer_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">openff.toolkit.utils.toolkit_registry.ToolkitRegistry</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">openff.toolkit.utils.base_wrapper.ToolkitWrapper</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.apply_elf_conformer_selection" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Applies the <a class="reference external" href="https://docs.eyesopen.com/toolkits/python/quacpactk/molchargetheory.html#elf-conformer-selection">ELF method</a>
 to select a set of diverse conformers which have minimal
 electrostatically strongly interacting functional groups from a
@@ -1142,7 +1142,7 @@ is passed into this function.</p>
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_iupac">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_iupac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iupac_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry=ToolkitRegistry</span> <span class="pre">containing</span> <span class="pre">The</span> <span class="pre">RDKit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AmberTools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Built-in</span> <span class="pre">Toolkit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_iupac" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate a molecule from IUPAC or common name</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>iupac_name</strong><span class="classifier">str</span></dt><dd><p>IUPAC name of molecule to be generated</p>
@@ -1157,12 +1157,8 @@ is passed into this function.</p>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">Molecule</span></dt><dd><p>The resulting molecule with position</p>
 </dd>
+<dt><strong>.. note</strong><span class="classifier">: This method requires the OpenEye toolkit to be installed.</span></dt><dd></dd>
 </dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This method requires the OpenEye toolkit to be installed.
-..</p>
-</div>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -1896,7 +1892,7 @@ of these three terms will always return a consistent energy.</p>
 determined in this method, since it requires sorting the particle indices, and
 those indices may change when this molecule is added to a Topology.</p>
 <p>For more details on the use of three-fold (‘trefoil’) impropers, see
-<a class="reference external" href="https://open-forcefield-toolkit.readthedocs.io/en/latest/smirnoff.html#impropertorsions">https://open-forcefield-toolkit.readthedocs.io/en/latest/smirnoff.html#impropertorsions</a></p>
+<a class="reference external" href="https://openforcefield.github.io/standards/standards/smirnoff/#impropertorsions">https://openforcefield.github.io/standards/standards/smirnoff/#impropertorsions</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
@@ -2001,22 +1997,16 @@ the highest-precedence toolkit is used</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.to_hill_formula">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_hill_formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
-<dd><p>Generate the Hill formula from either a <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenMolecule</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TopologyMolecule</span></code> or
-<code class="docutils literal notranslate"><span class="pre">nx.Graph()</span></code> of the molecule</p>
+<span class="sig-name descname"><span class="pre">to_hill_formula</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd><p>Generate the Hill formula of this molecule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>molecule</strong><span class="classifier">FrozenMolecule, TopologyMolecule or nx.Graph()</span></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
 <dt><strong>formula</strong><span class="classifier">the Hill formula of the molecule</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><dl class="simple">
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
 <dt><strong>NotImplementedError</strong><span class="classifier">if the molecule is not of one of the specified types.</span></dt><dd></dd>
 </dl>
 </dd>
@@ -2088,17 +2078,13 @@ InChI string of the molecule.</p>
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.to_iupac">
 <span class="sig-name descname"><span class="pre">to_iupac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_iupac" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate IUPAC name from Molecule</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>iupac_name</strong><span class="classifier">str</span></dt><dd><p>IUPAC name of the molecule</p>
 </dd>
+<dt><strong>.. note</strong><span class="classifier">: This method requires the OpenEye toolkit to be installed.</span></dt><dd></dd>
 </dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This method requires the OpenEye toolkit to be installed.
-..</p>
-</div>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2739,10 +2725,10 @@ the Molecule’s indexing system.</p>
               
           </div>
           Last updated on
-            Nov 25, 2021.
+            Jan 25, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.3.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>
