@@ -223,33 +223,40 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             }
             // Content
             >dd {
-                >dl {
-                    >dt {
+                >ul.simple {
+                    margin-left: 0;
+                }
+                >ul.simple>li {
+                    list-style: none;
+                    margin-left: 0;
+                }
+                >dl>dt, >ul.simple>li>p:first-child, >p:first-child {
+                    // Name of the parameter or return value
+                    >strong {
                         font-family: $family-monospace;
-                        // Name of the parameter or return value
-                        >strong {
-                            color: $api-param-name-color;
-                            font-weight: normal;
-                            &::after {
-                                content: ": ";
-                            }
-                        }
-                        // Type of the parameter, or type of a named return value
-                        >.classifier {
-                            color: $api-type-color;
-                            overflow-wrap: break-word;
-                        }
-
+                        color: $api-param-name-color;
+                        font-weight: normal;
                     }
-                    // Description of the parameter, return value, or exception
-                    >dd {
-                        margin-top: 0;
-                        margin-bottom: 0.5em;
+                    // Type of the parameter, or type of a named return value
+                    >.classifier {
+                        font-family: $family-monospace;
+                        color: $api-type-color;
+                        overflow-wrap: break-word;
+                    }
+                    >a.reference>em {
+                        font-family: $family-monospace;
+                        font-style: normal;
                     }
                 }
-
+                >dl>dt>strong::after {
+                    content: ": ";
+                }
+                // Description of the parameter, return value, or exception
+                >dl>dd, >ul.simple>li>p:not(:first-child) {
+                    margin-top: 0;
+                    margin-bottom: 0.5em;
+                }
             }
-
         }
         // Notes, References, Methods, Attributes, and Examples headings
         >.rubric {
