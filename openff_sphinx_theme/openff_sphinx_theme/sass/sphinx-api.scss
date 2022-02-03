@@ -106,7 +106,6 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             .p, .p + .n, .p + .w + .n {
                 .pre {
                     color: $api-type-color;
-                    font-style: italic;
                 }
             }
             // Default values of arguments
@@ -312,9 +311,9 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
 }
 
 // Pydantic fields have their own stuff going on
-// We still want types to be the right colour, and italicised
+// We still want types to be the right colour
 // This works as long as the type annotation is defined,
-// but can cause the field's name to be italicised if eg no
+// but can cause the field's name to be recoloured if eg no
 // type is defined and the field has an alias
 .pydantic_field .sig {
     > .sig-name + .property:not(:last-of-type) {
@@ -323,7 +322,6 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         .pre {
             color: $api-type-color;
-            font-style: italic !important;
         }
     }
 }
