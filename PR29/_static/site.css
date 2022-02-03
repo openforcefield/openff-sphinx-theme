@@ -8752,6 +8752,14 @@ html {
   }
 }
 
+@media screen and (min-width: 1024px) {
+  .content .math {
+    width: fit-content;
+    max-width: 100%;
+    min-width: 80ex;
+  }
+}
+
 .content .headerlink {
   font-size: 1em;
   margin-left: 0.5em;
@@ -8801,7 +8809,12 @@ html {
   content: "]";
 }
 
-.content .highlight-python .highlight pre::before {
+.content .highlight-python .highlight pre::before, .content .highlight-py .highlight pre::before, .content .highlight-python3 .highlight pre::before, .content .highlight-py3 .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   content: "Python";
   color: #696969;
   font-size: 80%;
@@ -8812,7 +8825,12 @@ html {
   font-variant: small-caps;
 }
 
-.content .highlight-sh .highlight pre::before, .content .highlight-shell-session .highlight pre::before {
+.content .highlight-sh .highlight pre::before, .content .highlight-shell-session .highlight pre::before, .content .highlight-shell .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   content: "Shell";
   color: #696969;
   font-size: 80%;
@@ -8823,7 +8841,28 @@ html {
   font-variant: small-caps;
 }
 
-.content .highlight-yaml .highlight pre::before {
+.content .highlight-bash .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "BASH";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-yaml .highlight pre::before, .content .highlight-yml .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   content: "YAML";
   color: #696969;
   font-size: 80%;
@@ -8834,7 +8873,28 @@ html {
   font-variant: small-caps;
 }
 
+.content .highlight-toml .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "TOML";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
 .content .highlight-json .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   content: "JSON";
   color: #696969;
   font-size: 80%;
@@ -8846,6 +8906,11 @@ html {
 }
 
 .content .highlight-html .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   content: "HTML";
   color: #696969;
   font-size: 80%;
@@ -8856,7 +8921,28 @@ html {
   font-variant: small-caps;
 }
 
-.content .highlight-javascript .highlight pre::before {
+.content .highlight-xml .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "XML";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-javascript .highlight pre::before, .content .highlight-js .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   content: "JavaScript";
   color: #696969;
   font-size: 80%;
@@ -8868,7 +8954,156 @@ html {
 }
 
 .content .highlight-jinja .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   content: "Jinja";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-c .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "C";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-cxx .highlight pre::before, .content .highlight-cpp .highlight pre::before, .content .highlight-c\+\+ .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "C++";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-rs .highlight pre::before, .content .highlight-rust .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "Rust";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-julia .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "Julia";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-r .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "R";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-restructuredtext .highlight pre::before, .content .highlight-rst .highlight pre::before, .content .highlight-rest .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "reStructuredText";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-md .highlight pre::before, .content .highlight-markdown .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "Markdown";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-tex .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "TeX";
+  color: #696969;
+  font-size: 80%;
+  font-family: Cousine, monospace;
+  padding: 0;
+  margin: -1rem;
+  float: right;
+  font-variant: small-caps;
+}
+
+.content .highlight-latex .highlight pre::before {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  content: "LaTeX";
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
@@ -9429,9 +9664,8 @@ html .content .admonition-title:last-child {
   padding-right: 0.2em;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p .pre, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p + .n .pre {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p .pre, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p + .n .pre, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p + .w + .n .pre {
   color: #4a4a4a;
-  font-style: italic;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .default_value > .pre {
@@ -9571,6 +9805,14 @@ html .content .admonition-title:last-child {
   margin-right: 1.5em;
   margin-left: 1.5em;
   padding-bottom: 0.75em;
+}
+
+.content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) a {
+  font-weight: bold;
+}
+
+.content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) .pre {
+  color: #4a4a4a;
 }
 
 .content h1, .content h2, .content .toctree-wrapper .caption, .content #index h3, .content h3, .content h4, .content h5, .content h6 {

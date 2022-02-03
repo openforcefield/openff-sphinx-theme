@@ -188,26 +188,34 @@
 <span class="linenos">10</span>    <span class="n">field_plain_with_validator</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="linenos">11</span>    <span class="sd">"""Show standard field with type annotation."""</span>
 <span class="linenos">12</span>
-<span class="linenos">13</span>    <span class="n">field_with_validator_and_alias</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"FooBar"</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">"BarFoo"</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">"BarFoo"</span><span class="p">)</span>
-<span class="linenos">14</span>    <span class="sd">"""Shows corresponding validator with link/anchor."""</span>
+<span class="linenos">13</span>    <span class="n">field_plain</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="linenos">14</span>    <span class="sd">"""Show standard field without type annotation."""</span>
 <span class="linenos">15</span>
-<span class="linenos">16</span>    <span class="n">field_with_constraints_and_description</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-<span class="linenos">17</span>        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Shows constraints within doc string."</span>
-<span class="linenos">18</span>    <span class="p">)</span>
-<span class="linenos">19</span>
-<span class="linenos">20</span>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"field_with_validator_and_alias"</span><span class="p">,</span> <span class="s2">"field_plain_with_validator"</span><span class="p">)</span>
-<span class="linenos">21</span>    <span class="k">def</span> <span class="nf">check_max_length_ten</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-<span class="linenos">22</span>        <span class="sd">"""Show corresponding field with link/anchor."""</span>
+<span class="linenos">16</span>    <span class="n">field_with_validator_and_alias</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">"FooBar"</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">"BarFoo"</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">"BarFoo"</span><span class="p">)</span>
+<span class="linenos">17</span>    <span class="sd">"""Shows corresponding validator with link/anchor."""</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>    <span class="n">field_with_validator_and_alias_typeless</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+<span class="linenos">20</span>        <span class="s2">"FooBar"</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">"BarFoo"</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">"BarFoo"</span>
+<span class="linenos">21</span>    <span class="p">)</span>
+<span class="linenos">22</span>    <span class="sd">"""Shows corresponding validator with link/anchor but without type annotation."""</span>
 <span class="linenos">23</span>
-<span class="linenos">24</span>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
-<span class="linenos">25</span>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No more than 10 characters allowed"</span><span class="p">)</span>
-<span class="linenos">26</span>
-<span class="linenos">27</span>    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
-<span class="linenos">28</span>        <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">"foo_"</span>
-<span class="linenos">29</span>        <span class="n">allow_mutation</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="linenos">30</span>
-<span class="linenos">31</span>    <span class="k">def</span> <span class="nf">method_without_sig</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseSettings</span><span class="p">:</span>
-<span class="linenos">32</span>        <span class="k">return</span> <span class="n">BaseSettings</span><span class="p">()</span>
+<span class="linenos">24</span>    <span class="n">field_with_constraints_and_description</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+<span class="linenos">25</span>        <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Shows constraints within doc string."</span>
+<span class="linenos">26</span>    <span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">"field_with_validator_and_alias"</span><span class="p">,</span> <span class="s2">"field_plain_with_validator"</span><span class="p">)</span>
+<span class="linenos">29</span>    <span class="k">def</span> <span class="nf">check_max_length_ten</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="linenos">30</span>        <span class="sd">"""Show corresponding field with link/anchor."""</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+<span class="linenos">33</span>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No more than 10 characters allowed"</span><span class="p">)</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+<span class="linenos">36</span>        <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">"foo_"</span>
+<span class="linenos">37</span>        <span class="n">allow_mutation</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span>    <span class="k">def</span> <span class="nf">method_without_sig</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseSettings</span><span class="p">:</span>
+<span class="linenos">40</span>        <span class="k">return</span> <span class="n">BaseSettings</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -245,6 +253,12 @@ to pydantic models.</p>
 <span class="w">         </span><span class="nt">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"></span>
 <span class="w">         </span><span class="nt">"env_names"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{'foo_field_with_constraints_and_description'}"</span><span class="p">,</span><span class="w"></span>
 <span class="w">         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="nt">"field_plain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field Plain"</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="nt">"env_names"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{'foo_field_plain'}"</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="w"></span>
 <span class="w">      </span><span class="p">}</span><span class="w"></span>
 <span class="w">   </span><span class="p">},</span><span class="w"></span>
 <span class="w">   </span><span class="nt">"additionalProperties"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
@@ -260,9 +274,11 @@ to pydantic models.</p>
 </dd>
 <dt class="field-even">Fields</dt>
 <dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain" title="pydantic_example.ExampleSettings.field_plain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_plain</span> <span class="pre">()</span></code></a></p></li>
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="pydantic_example.ExampleSettings.field_plain_with_validator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_plain_with_validator</span> <span class="pre">(int)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_constraints_and_description" title="pydantic_example.ExampleSettings.field_with_constraints_and_description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_with_constraints_and_description</span> <span class="pre">(int)</span></code></a></p></li>
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="pydantic_example.ExampleSettings.field_with_validator_and_alias"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_with_validator_and_alias</span> <span class="pre">(str)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias_typeless" title="pydantic_example.ExampleSettings.field_with_validator_and_alias_typeless"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_with_validator_and_alias_typeless</span> <span class="pre">()</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-odd">Validators</dt>
@@ -284,6 +300,11 @@ to pydantic models.</p>
 </dl>
 </dd></dl>
 <dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pydantic_example.ExampleSettings.field_plain">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">field_plain</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_plain" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd><p>Show standard field without type annotation.</p>
+</dd></dl>
+<dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.field_with_validator_and_alias">
 <em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">field_with_validator_and_alias</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'FooBar'</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'BarFoo')</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Shows corresponding validator with link/anchor.</p>
@@ -294,6 +315,11 @@ to pydantic models.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+<dl class="py attribute pydantic_field">
+<dt class="sig sig-object py" id="pydantic_example.ExampleSettings.field_with_validator_and_alias_typeless">
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">field_with_validator_and_alias_typeless</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'FooBar'</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'BarFoo')</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias_typeless" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd><p>Shows corresponding validator with link/anchor but without type annotation.</p>
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings.field_with_constraints_and_description">
