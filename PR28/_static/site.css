@@ -9655,7 +9655,6 @@ html .content .admonition-title:last-child {
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p .pre, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p + .n .pre, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param .p + .w + .n .pre {
   color: #4a4a4a;
-  font-style: italic;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .default_value > .pre {
@@ -9746,25 +9745,37 @@ html .content .admonition-title:last-child {
   padding-bottom: 0 !important;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt {
-  font-family: Cousine, monospace;
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > ul.simple {
+  margin-left: 0;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > strong {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > ul.simple > li {
+  list-style: none;
+  margin-left: 0;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > strong, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > ul.simple > li > p:first-child > strong, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > p:first-child > strong {
+  font-family: Cousine, monospace;
   color: #2f9ed2;
   font-weight: normal;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > .classifier, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > ul.simple > li > p:first-child > .classifier, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > p:first-child > .classifier {
+  font-family: Cousine, monospace;
+  color: #4a4a4a;
+  overflow-wrap: break-word;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > a.reference > em, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > ul.simple > li > p:first-child > a.reference > em, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > p:first-child > a.reference > em {
+  font-family: Cousine, monospace;
+  font-style: normal;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > strong::after {
   content: ": ";
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dt > .classifier {
-  color: #4a4a4a;
-  overflow-wrap: break-word;
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dd {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > dl > dd, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > ul.simple > li > p:not(:first-child) {
   margin-top: 0;
   margin-bottom: 0.5em;
 }
@@ -9791,7 +9802,6 @@ html .content .admonition-title:last-child {
 
 .content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) .pre {
   color: #4a4a4a;
-  font-style: italic !important;
 }
 
 .content h1, .content h2, .content .toctree-wrapper .caption, .content #index h3, .content h3, .content h4, .content h5, .content h6 {
