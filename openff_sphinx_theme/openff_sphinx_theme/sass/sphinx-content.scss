@@ -313,8 +313,61 @@ a.brackets {
   @include language-identifier("TeX");
 }
 
-
 .highlight-latex {
   @include language-identifier("LaTeX");
 }
 
+// Nbsphinx notebooks
+// !important: Override built in stylesheet
+
+.nbinput, .nboutput {
+  // Hide the prompt
+  >.prompt {
+    display: None;
+  }
+  >.output_area, >.input_area {
+    border: None !important;
+    border-right: 1px solid #e0e0e0 !important;
+  }
+  &.nblast {
+    >.output_area, >.input_area {
+      border-bottom: 1px solid #e0e0e0 !important;
+    }
+  }
+  .highlight {
+    width: 100%;
+  }
+}
+
+.nbinput {
+  // Stdin cell with attached output
+  &:not(.nblast)>.input_area {
+    border-radius: 4px 0 0 0 !important;
+  }
+  // Stdin cell without attached output
+  &.nblast>.input_area {
+    border-radius: 4px 0 0 4px !important;
+  }
+  // Stdin cell
+  >.input_area {
+    border-left: medium green solid !important;
+    border-top: 1px solid #e0e0e0 !important;
+  }
+}
+
+.nboutput {
+  // Final output cell
+  &.nblast>.output_area {
+    border-radius: 0 0 0 4px !important;
+  }
+  // Stderr cell
+  >.stderr.output_area {
+    border-left: medium red solid !important;
+    background: #fdd !important;
+  }
+  // Stdout cell
+  >:not(.stderr).output_area {
+    border-left: medium orange solid !important;
+    background: #fffffa !important;
+  }
+}
