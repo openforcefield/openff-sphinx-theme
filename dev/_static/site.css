@@ -8752,6 +8752,14 @@ html {
   }
 }
 
+@media screen and (min-width: 1024px) {
+  .content .math {
+    width: fit-content;
+    max-width: 100%;
+    min-width: 80ex;
+  }
+}
+
 .content .headerlink {
   font-size: 1em;
   margin-left: 0.5em;
@@ -9113,6 +9121,9 @@ html {
   page-break-inside: avoid;
   border-left: 0.25rem solid #2f9ed2;
   border-radius: 0.125rem;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 80ex;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
@@ -9818,6 +9829,12 @@ html .content .admonition-title:last-child {
     width: 96vw;
     margin-left: 2vw;
     margin-right: 2vw;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  .content {
+    margin-left: 2vw;
   }
 }
 
