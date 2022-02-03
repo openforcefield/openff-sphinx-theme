@@ -128,7 +128,7 @@ table.highlighttable {
   @media screen and (min-width: $desktop) {
     width: fit-content;
     max-width: 100%;
-    min-width: 80ex;
+    min-width: $para-width;
   }
   /// Code with line numbers in sphinx>=4
   span.linenos {
@@ -175,7 +175,7 @@ table.highlighttable {
 // improved ease of reading is enormous,
 // and theres no issues with having to condense API stuff
 p:not(.admonition-title) {
-  max-width: 80ex;
+  max-width: $para-width;
 }
 
 // Use Bulma's tables
