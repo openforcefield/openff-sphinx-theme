@@ -9113,6 +9113,50 @@ html {
   font-variant: small-caps;
 }
 
+.content .nbinput > .prompt, .content .nboutput > .prompt {
+  display: None;
+}
+
+.content .nbinput > .output_area, .content .nbinput > .input_area, .content .nboutput > .output_area, .content .nboutput > .input_area {
+  border: None !important;
+  border-right: 1px solid #e0e0e0 !important;
+}
+
+.content .nbinput.nblast > .output_area, .content .nbinput.nblast > .input_area, .content .nboutput.nblast > .output_area, .content .nboutput.nblast > .input_area {
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.content .nbinput .highlight, .content .nboutput .highlight {
+  width: 100%;
+}
+
+.content .nbinput:not(.nblast) > .input_area {
+  border-radius: 4px 0 0 0 !important;
+}
+
+.content .nbinput.nblast > .input_area {
+  border-radius: 4px 0 0 4px !important;
+}
+
+.content .nbinput > .input_area {
+  border-left: medium green solid !important;
+  border-top: 1px solid #e0e0e0 !important;
+}
+
+.content .nboutput.nblast > .output_area {
+  border-radius: 0 0 0 4px !important;
+}
+
+.content .nboutput > .stderr.output_area {
+  border-left: medium red solid !important;
+  background: #fdd !important;
+}
+
+.content .nboutput > :not(.stderr).output_area {
+  border-left: medium orange solid !important;
+  background: #fffffa !important;
+}
+
 .content .admonition {
   margin: 1.25rem 0;
   padding: 0 0.75rem;
