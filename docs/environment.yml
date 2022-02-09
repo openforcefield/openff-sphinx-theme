@@ -15,10 +15,11 @@ dependencies:
   - notebook
   - nbconvert
   - ipykernel
-  - myst-parser
+  - autodoc-pydantic
+  - myst-parser>=0.13.6
+  - myst-nb
   - pandoc
   - wheel
   - pip:
-    - autodoc_pydantic
     - git+https://github.com/openforcefield/openff-sphinx-theme.git@main
 

@@ -41,6 +41,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "nbsphinx",
     "myst_parser",
+    # "myst_nb",
     "openff_sphinx_theme",
     "sphinxcontrib.autodoc_pydantic",
 ]
