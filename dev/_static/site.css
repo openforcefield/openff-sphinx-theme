@@ -9119,11 +9119,7 @@ html {
 
 .content .nbinput > .output_area, .content .nbinput > .input_area, .content .nboutput > .output_area, .content .nboutput > .input_area {
   border: None !important;
-  border-right: 1px solid #e0e0e0 !important;
-}
-
-.content .nbinput.nblast > .output_area, .content .nbinput.nblast > .input_area, .content .nboutput.nblast > .output_area, .content .nboutput.nblast > .input_area {
-  border-bottom: 1px solid #e0e0e0 !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 .content .nbinput .highlight, .content .nboutput .highlight {
@@ -9140,7 +9136,10 @@ html {
 
 .content .nbinput > .input_area {
   border-left: medium green solid !important;
-  border-top: 1px solid #e0e0e0 !important;
+}
+
+.content .nbinput > .input_area pre {
+  padding: 1.25rem 1.5rem !important;
 }
 
 .content .nboutput.nblast > .output_area {
@@ -9148,13 +9147,62 @@ html {
 }
 
 .content .nboutput > .stderr.output_area {
-  border-left: medium red solid !important;
+  border-left: medium gray solid !important;
   background: #fdd !important;
 }
 
 .content .nboutput > :not(.stderr).output_area {
-  border-left: medium orange solid !important;
-  background: #fffffa !important;
+  border-left: medium gray solid !important;
+  background: #fff !important;
+}
+
+.content .cell.container {
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.content .cell.container > .cell_input {
+  border: none;
+  border-left: medium green solid;
+}
+
+.content .cell.container > .cell_input:last-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.content .cell.container > .cell_input:not(:last-child) {
+  border-radius: 4px 0 0 0;
+}
+
+.content .cell.container > .cell_output {
+  border-radius: 0 0 0 4px;
+  border-left: medium gray solid;
+  margin-top: -1em;
+  padding-left: 0;
+}
+
+.content .cell.container > .cell_output > .output, .content .cell.container > .cell_output > img {
+  margin-top: 0;
+}
+
+.content .cell.container > .cell_output > .output.stderr, .content .cell.container > .cell_output > img.stderr {
+  background: #fdd;
+}
+
+.content .cell.container > .cell_output > .output.stderr .highlight, .content .cell.container > .cell_output > .output.stderr pre, .content .cell.container > .cell_output > img.stderr .highlight, .content .cell.container > .cell_output > img.stderr pre {
+  background: None;
+}
+
+.content .cell.container > .cell_output > .output:not(.stderr), .content .cell.container > .cell_output > img:not(.stderr) {
+  background: #fff;
+}
+
+.content .cell.container > .cell_output > .output.traceback, .content .cell.container > .cell_output > img.traceback {
+  border: None;
+}
+
+.content .cell.container > .cell_output > .output pre, .content .cell.container > .cell_output > img pre {
+  padding: 5px;
 }
 
 .content .admonition {
