@@ -327,12 +327,7 @@ a.brackets {
   }
   >.output_area, >.input_area {
     border: None !important;
-    border-right: 1px solid #e0e0e0 !important;
-  }
-  &.nblast {
-    >.output_area, >.input_area {
-      border-bottom: 1px solid #e0e0e0 !important;
-    }
+    @include z-depth(2);
   }
   .highlight {
     width: 100%;
@@ -351,7 +346,9 @@ a.brackets {
   // Stdin cell
   >.input_area {
     border-left: medium green solid !important;
-    border-top: 1px solid #e0e0e0 !important;
+    pre {
+      padding: 1.25rem 1.5rem !important;
+    }
   }
 }
 
@@ -362,12 +359,50 @@ a.brackets {
   }
   // Stderr cell
   >.stderr.output_area {
-    border-left: medium red solid !important;
+    border-left: medium gray solid !important;
     background: #fdd !important;
   }
   // Stdout cell
   >:not(.stderr).output_area {
-    border-left: medium orange solid !important;
+    border-left: medium gray solid !important;
     background: #fffffa !important;
+  }
+}
+
+// MyST-nb notebooks
+
+.cell.container {
+  border: none;
+  @include z-depth(2);
+  >.cell_input {
+    border: none;
+    border-left: medium green solid;
+    &:last-child {
+      border-radius: 4px 0 0 4px;
+    }
+    &:not(:last-child) {
+      border-radius: 4px 0 0 0;
+    }
+  }
+  >.cell_output {
+    border-radius: 0 0 0 4px;
+    border-left: medium gray solid;
+    margin-top: -1em; // Not sure why this is needed
+    padding-left: 0;
+    >.output, >img {
+      margin-top: 0;
+      &.stderr {
+        background: #fdd;
+        .highlight, pre {
+          background: None;
+        }
+      }
+      &.traceback {
+        border: None;
+      }
+      pre {
+        padding: 5px;
+      }
+    }
   }
 }
