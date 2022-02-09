@@ -365,6 +365,7 @@ a.brackets {
   // Stdout cell
   >:not(.stderr).output_area {
     border-left: medium gray solid !important;
+    background: #fff !important;
   }
 }
 
@@ -395,6 +396,9 @@ a.brackets {
         .highlight, pre {
           background: None;
         }
+      }
+      &:not(.stderr) {
+        background: #fff;
       }
       &.traceback {
         border: None;
