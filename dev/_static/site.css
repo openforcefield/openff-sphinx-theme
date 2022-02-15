@@ -9251,6 +9251,10 @@ html .content .admonition > :last-child {
   margin-bottom: 0.75rem;
 }
 
+.content .admonition > p:not(.admonition-title) {
+  max-width: calc(80ex - 2  * 1.25rem);
+}
+
 .content .admonition.note, .content .admonition.admonition-note {
   border-left-color: #7a7a7a;
 }
