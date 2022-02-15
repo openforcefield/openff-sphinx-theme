@@ -9153,7 +9153,7 @@ html {
 
 .content .nboutput > :not(.stderr).output_area {
   border-left: medium gray solid !important;
-  background: #fff !important;
+  background: #FFFFFF !important;
 }
 
 .content .cell.container {
@@ -9194,7 +9194,7 @@ html {
 }
 
 .content .cell.container > .cell_output > .output:not(.stderr), .content .cell.container > .cell_output > img:not(.stderr) {
-  background: #fff;
+  background: #FFFFFF;
 }
 
 .content .cell.container > .cell_output > .output.traceback, .content .cell.container > .cell_output > img.traceback {
