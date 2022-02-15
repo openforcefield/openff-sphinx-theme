@@ -117,7 +117,7 @@
     // ----------------------------------------------------------------------------
     // Admonition
     .admonition
-      margin: 1.25rem 0
+      margin: $admonition-margin 0
       padding: 0 0.75rem
       overflow: hidden
       color: $text
@@ -159,6 +159,8 @@
       html & > :last-child
         margin-bottom: 0.75rem
 
+      >p:not(.admonition-title)
+        max-width: calc(80ex - 2  * #{$admonition-margin})
 
       &.note, &.admonition-note
           @include material_admonitions($grey, "Font Awesome 5 Free", "\f303")
