@@ -21,6 +21,7 @@ $api-arguments-indent: 2 * $api-header-font-size;
 // RTD does it like this, but with fewer exceptions, so
 // we should be OK
 dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
+    @include expandable;
     // Header and signature
     > dt {
         font-family: $family-monospace;

@@ -124,12 +124,7 @@ table.highlighttable {
     overflow-x: unset;
     margin: unset;
   }
-  // Neat but expandable code blocks;
-  @media screen and (min-width: $desktop) {
-    width: fit-content;
-    max-width: 100%;
-    min-width: $para-width;
-  }
+  @include expandable;
   /// Code with line numbers in sphinx>=4
   span.linenos {
     margin-right: 1.5rem;
@@ -141,12 +136,8 @@ table.highlighttable {
 }
 
 // Neat but expandable maths;
-.math {
-  @media screen and (min-width: $desktop) {
-    width: fit-content;
-    max-width: 100%;
-    min-width: $para-width;
-  }
+div.math {
+  @include expandable;
 }
 
 // Header links
@@ -177,14 +168,6 @@ table.highlighttable {
 // Don't let Sphinx try to be clever about what header level the index heading is
 #index h3 {
   @extend h2;
-}
-
-// Prose paragraphs should wrap at around 80 characters
-// The visual artifact is almost unnoticeable and the
-// improved ease of reading is enormous,
-// and theres no issues with having to condense API stuff
-p:not(.admonition-title) {
-  max-width: $para-width;
 }
 
 // Use Bulma's tables
@@ -332,6 +315,7 @@ a.brackets {
   .highlight {
     width: 100%;
   }
+  @include expandable;
 }
 
 .nbinput {
@@ -372,6 +356,7 @@ a.brackets {
 // MyST-nb notebooks
 
 .cell.container {
+  @include expandable;
   border: none;
   @include z-depth(2);
   >.cell_input {
