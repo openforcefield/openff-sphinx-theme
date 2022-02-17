@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "utf-8"
 
 @font-face
     font-family: Montserrat
@@ -6,7 +6,7 @@
     font-weight: 100
 
 @font-face
-    font-family: Montserrat;
+    font-family: Montserrat
     src: url(https://openforcefield.org/fonts/Montserrat/Montserrat-Regular.ttf)
     font-weight: 200
 
@@ -131,7 +131,9 @@ html
       margin-right: $mobile-content-margin-y
     @media screen and (min-width: $tablet) and (max-width: $desktop - 1px)
       margin-left: $mobile-content-margin-y
-
+    @media screen and (min-width: $desktop)
+      max-width: $para-width
+      margin: auto
 
 header, .navbar.is-primary.has-shadow
     box-shadow: 0 2px 3px 0 $primary
