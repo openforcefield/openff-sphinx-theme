@@ -131,10 +131,9 @@ html
       margin-right: $mobile-content-margin-y
     @media screen and (min-width: $tablet) and (max-width: $desktop - 1px)
       margin-left: $mobile-content-margin-y
-
-article.content
-    max-width: $para-width
-    margin: auto
+    @media screen and (min-width: $desktop)
+      max-width: $para-width
+      margin: auto
 
 header, .navbar.is-primary.has-shadow
     box-shadow: 0 2px 3px 0 $primary
