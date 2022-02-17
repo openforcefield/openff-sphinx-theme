@@ -5,6 +5,12 @@
 
 {%- block htmltitle %}
 
+  <link rel="preload" href="https://openforcefield.org/fonts/Montserrat/Montserrat-Light.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="https://openforcefield.org/fonts/Montserrat/Montserrat-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="https://openforcefield.org/fonts/Montserrat/Montserrat-Medium.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="https://openforcefield.org/fonts/Montserrat/Montserrat-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="https://openforcefield.org/fonts/Montserrat/Montserrat-Bold.ttf" as="font" type="font/ttf" crossorigin>
+
   {% if not favicon and not favicon_url %}
   <link rel="icon" type="image/svg" href="{{ pathto('_static/images/favicon.svg', 1) }}" />
   <link rel="apple-touch-icon" type="image/svg" href="{{ pathto('_static/images/favicon.svg', 1) }}" />
@@ -23,8 +29,11 @@
   <meta name="lang:search.tokenizer" content="[\s\-]+">
 
   {% block fonticon %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
+
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
   <link rel="stylesheet" href="{{ pathto('_static/site.css', 1) }}"/>
   {% endblock %}
   <meta name="theme-color" content="#015480;">
