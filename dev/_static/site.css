@@ -9934,6 +9934,13 @@ html .content .admonition-title:last-child {
   }
 }
 
+@media screen and (min-width: 1024px) {
+  .content {
+    max-width: 80ex;
+    margin: auto;
+  }
+}
+
 header, .navbar.is-primary.has-shadow {
   box-shadow: 0 2px 3px 0 #015480;
 }
