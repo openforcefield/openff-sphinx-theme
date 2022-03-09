@@ -8736,7 +8736,9 @@ html {
 
 @media screen and (min-width: 1024px) {
   .content .highlight {
-    width: 100%;
+    width: fit-content;
+    max-width: 100%;
+    min-width: 80ex;
   }
 }
 
@@ -8747,6 +8749,14 @@ html {
 @media screen and (max-width: 768px) {
   .content .highlight span.linenos {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .content .math {
+    width: fit-content;
+    max-width: 100%;
+    min-width: 80ex;
   }
 }
 
@@ -8774,8 +8784,6 @@ html {
 
 .content p:not(.admonition-title) {
   max-width: 80ex;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .content dl.citation > dd {
@@ -9205,7 +9213,10 @@ html {
   page-break-inside: avoid;
   border-left: 0.25rem solid #2f9ed2;
   border-radius: 0.125rem;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
+  width: fit-content;
+  max-width: 100%;
+  min-width: 80ex;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 @media print {
@@ -9674,25 +9685,6 @@ html .content .admonition-title:last-child {
   margin-top: 0;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-  padding-bottom: 0.5em;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    margin-left: calc(-0.5 * (57vw - 80ex));
-    width: 57vw;
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    margin-left: -7.5ex;
-    width: 95ex;
-  }
-}
-
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt {
   font-family: Cousine, monospace;
   font-size: 1.1rem;
@@ -9701,6 +9693,7 @@ html .content .admonition-title:last-child {
   border-radius: 4px;
   overflow-wrap: break-word;
   position: relative;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   padding-left: 3.3rem;
 }
 
@@ -9855,10 +9848,6 @@ html .content .admonition-title:last-child {
   transform: translate(0);
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd {
-  margin: 1em;
-}
-
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd:empty {
   padding-bottom: 0 !important;
 }
@@ -9899,20 +9888,13 @@ html .content .admonition-title:last-child {
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
-  padding-bottom: 0;
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-}
-
-@media screen and (min-width: 1216px) {
-  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
-    margin-left: 0;
-    width: 100%;
-  }
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt {
   border-radius: 0px;
+  box-shadow: none;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd {
