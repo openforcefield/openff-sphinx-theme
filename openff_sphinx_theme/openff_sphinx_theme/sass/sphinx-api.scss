@@ -14,6 +14,9 @@ $api-header-font-size: 1.1rem;
 $api-header-padding: 1 * $api-header-font-size;
 $api-arguments-indent: 2 * $api-header-font-size;
 
+$api-widescreen-width: 57vw;
+$api-fullhd-width: 95ex;
+
 // Definition of an object. Hopefully.
 // Could also use dl.py, but this would fail
 // if we ever wanted to document something that
@@ -21,6 +24,17 @@ $api-arguments-indent: 2 * $api-header-font-size;
 // RTD does it like this, but with fewer exceptions, so
 // we should be OK
 dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
+    // Give ourselves some more room on big screens
+    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+        margin-left: calc(-0.5 * (#{$api-widescreen-width} - #{$para-width}));
+        width: $api-widescreen-width;
+    }
+    @media screen and (min-width: $fullhd) {
+        margin-left: -0.5 * ($api-fullhd-width - $para-width);
+        width: $api-fullhd-width;
+    }
+    padding-bottom: 0.5em;
+    @include z-depth(2);
     // Header and signature
     > dt {
         font-family: $family-monospace;
@@ -32,7 +46,6 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         overflow-wrap: break-word;
         // Position relative so we can absolutely position source link
         position: relative;
-        @include z-depth(2);
         &:target {
             &::before {
                 background-color: $body-background-color;
@@ -204,6 +217,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
     }
     // Content
     >dd {
+        margin: 1em;
         &:empty {
             padding-bottom: 0 !important;
         }
@@ -300,12 +314,16 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         // Child object - recapitulates structure above
         >dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
-            @include z-depth(2);
+            @media screen and (min-width: $widescreen) {
+                margin-left: 0;
+                width: 100%;
+            }
+            padding-bottom: 0;
+            @include z-depth(4);
             border-radius: 4px;
             // Inner object header and signature
             > dt {
                 border-radius: 0px;
-                @include z-depth(0);
             }
             // Inner object body
             > dd {
