@@ -126,9 +126,7 @@ table.highlighttable {
   }
   // Neat but expandable code blocks;
   @media screen and (min-width: $desktop) {
-    width: fit-content;
-    max-width: 100%;
-    min-width: $para-width;
+    width: 100%;
   }
   /// Code with line numbers in sphinx>=4
   span.linenos {
@@ -137,15 +135,6 @@ table.highlighttable {
     @media screen and (max-width: $tablet - 1px) {
       display: none;
     }
-  }
-}
-
-// Neat but expandable maths;
-.math {
-  @media screen and (min-width: $desktop) {
-    width: fit-content;
-    max-width: 100%;
-    min-width: $para-width;
   }
 }
 
@@ -185,6 +174,8 @@ table.highlighttable {
 // and theres no issues with having to condense API stuff
 p:not(.admonition-title) {
   max-width: $para-width;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // Use Bulma's tables
