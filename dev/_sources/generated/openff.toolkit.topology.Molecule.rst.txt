@@ -103,7 +103,6 @@
       ~Molecule.n_impropers
       ~Molecule.n_particles
       ~Molecule.n_propers
-      ~Molecule.n_rings
       ~Molecule.n_virtual_particles
       ~Molecule.n_virtual_sites
       ~Molecule.name
@@ -111,7 +110,6 @@
       ~Molecule.particles
       ~Molecule.propers
       ~Molecule.properties
-      ~Molecule.rings
       ~Molecule.smirnoff_impropers
       ~Molecule.torsions
       ~Molecule.total_charge

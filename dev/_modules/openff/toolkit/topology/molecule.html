@@ -347,7 +347,6 @@
 <span class="kn">from</span> <span class="nn">openff.toolkit.utils</span> <span class="kn">import</span> <span class="n">quantity_to_string</span><span class="p">,</span> <span class="n">string_to_quantity</span>
 <span class="kn">from</span> <span class="nn">openff.toolkit.utils.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">InvalidConformerError</span><span class="p">,</span>
-    <span class="n">NotAttachedToMoleculeError</span><span class="p">,</span>
     <span class="n">SmilesParsingError</span><span class="p">,</span>
     <span class="n">UnsupportedFileTypeError</span><span class="p">,</span>
 <span class="p">)</span>
@@ -737,18 +736,21 @@
                     <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_in_ring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_in_ring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return whether or not this atom is in a ring(s) (of any size)</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NotAttachedToMoleculeError</span><span class="p">(</span>
-                <span class="s2">&quot;This Atom does not belong to a Molecule object&quot;</span>
-            <span class="p">)</span>
+<span class="sd">        This Atom is expected to be attached to a molecule (`Atom.molecule`).</span>
 
-        <span class="k">return</span> <span class="nb">any</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="ow">in</span> <span class="n">ring</span> <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">rings</span><span class="p">])</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        toolkit_registry: openff.toolkit.utils.toolkits.ToolkitRegistry, default=GLOBAL_TOOLKIT_REGISTRY</span>
+<span class="sd">            :class:`ToolkitRegistry` to use to enumerate the tautomers.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_is_in_ring</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;atom_is_in_ring&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">_is_in_ring</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">virtual_sites</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -2388,22 +2390,29 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;This Atom does not belong to a Molecule object&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_in_ring</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_in_ring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return whether or not this bond is in a ring(s) (of any size)</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NotAttachedToMoleculeError</span><span class="p">(</span>
-                <span class="s2">&quot;This Bond does not belong to a Molecule object&quot;</span>
-            <span class="p">)</span>
+<span class="sd">        This Bond is expected to be attached to a molecule (`Bond.molecule`).</span>
 
-        <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">rings</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom1</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="ow">in</span> <span class="n">ring</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom2</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="ow">in</span> <span class="n">ring</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="kc">False</span>
+<span class="sd">        Note: Bonds containing atoms that are only in separate rings, i.e. the central bond in a biphenyl,</span>
+<span class="sd">            are not considered to be bonded by this criteria.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        toolkit_registry: openff.toolkit.utils.toolkits.ToolkitRegistry, default=GLOBAL_TOOLKIT_REGISTRY</span>
+<span class="sd">            :class:`ToolkitRegistry` to use to enumerate the tautomers.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        is_in_ring: bool</span>
+<span class="sd">            Whether or not this bond is in a ring.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_is_in_ring</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;bond_is_in_ring&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">_is_in_ring</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Bond(atom1 index=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">atom1_index</span><span class="si">}</span><span class="s2">, atom2 index=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">atom2_index</span><span class="si">}</span><span class="s2">)&quot;</span>
@@ -3505,6 +3514,7 @@
         <span class="n">n_conformers</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">rms_cutoff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">clear_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">make_carboxylic_acids_cis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate conformers for this molecule using an underlying toolkit.</span>
@@ -3524,6 +3534,11 @@
 <span class="sd">            for each ``ToolkitWrapper`` (generally 1 Angstrom).</span>
 <span class="sd">        clear_existing : bool, default=True</span>
 <span class="sd">            Whether to overwrite existing conformers for the molecule</span>
+<span class="sd">        make_carboxylic_acids_cis: bool, default=True</span>
+<span class="sd">            Guarantee all conformers have exclusively cis carboxylic acid groups (COOH)</span>
+<span class="sd">            by rotating the proton in any trans carboxylic acids 180 degrees around the</span>
+<span class="sd">            C-O bond. Works around a bug in conformer generation by the OpenEye toolkit</span>
+<span class="sd">            where trans COOH is much more common than it should be.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -3551,6 +3566,7 @@
                 <span class="n">rms_cutoff</span><span class="o">=</span><span class="n">rms_cutoff</span><span class="p">,</span>
                 <span class="n">clear_existing</span><span class="o">=</span><span class="n">clear_existing</span><span class="p">,</span>
                 <span class="n">raise_exception_types</span><span class="o">=</span><span class="p">[],</span>
+                <span class="n">make_carboxylic_acids_cis</span><span class="o">=</span><span class="n">make_carboxylic_acids_cis</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">toolkit</span> <span class="o">=</span> <span class="n">toolkit_registry</span>
@@ -3559,6 +3575,7 @@
                 <span class="n">n_conformers</span><span class="o">=</span><span class="n">n_conformers</span><span class="p">,</span>
                 <span class="n">rms_cutoff</span><span class="o">=</span><span class="n">rms_cutoff</span><span class="p">,</span>
                 <span class="n">clear_existing</span><span class="o">=</span><span class="n">clear_existing</span><span class="p">,</span>
+                <span class="n">make_carboxylic_acids_cis</span><span class="o">=</span><span class="n">make_carboxylic_acids_cis</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InvalidToolkitRegistryError</span><span class="p">(</span>
@@ -3566,6 +3583,151 @@
                     <span class="nb">type</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">)</span>
                 <span class="p">)</span>
             <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_carboxylic_acids_cis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Rotate dihedral angle of any conformers with trans COOH groups so they are cis</span>
+
+<span class="sd">        Carboxylic acid groups almost always exist in nature in the cis conformation,</span>
+<span class="sd">        with the hydrogen atom in between the two oxygen atoms::</span>
+
+<span class="sd">                  O----H</span>
+<span class="sd">                 /</span>
+<span class="sd">                /</span>
+<span class="sd">               /</span>
+<span class="sd">            --C</span>
+<span class="sd">               \\</span>
+<span class="sd">                \\</span>
+<span class="sd">                  O</span>
+
+<span class="sd">        However, the OpenEye toolkit frequently produces carboxylic acid geometries</span>
+<span class="sd">        in the unrealistic trans conformation::</span>
+
+<span class="sd">             H----O</span>
+<span class="sd">                 /</span>
+<span class="sd">                /</span>
+<span class="sd">               /</span>
+<span class="sd">            --C</span>
+<span class="sd">               \\</span>
+<span class="sd">                \\</span>
+<span class="sd">                  O</span>
+
+<span class="sd">        This method converts all conformers in the Molecule with the trans conformation</span>
+<span class="sd">        into the corresponding cis conformer by rotating the OH bond around the CO bond</span>
+<span class="sd">        by 180 degrees. Carboxylic acids that are already cis are unchanged. Carboxylic</span>
+<span class="sd">        acid groups are considered cis if their O-C-O-H dihedral angle is acute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
+<span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for SMILES-to-molecule conversion</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Return early if there are no conformers</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Convert all conformers into one big array</span>
+        <span class="n">conformers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">q</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Scan the molecule for carboxylic acids</span>
+        <span class="n">cooh_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_environment_matches</span><span class="p">(</span>
+            <span class="s2">&quot;[C:2]([O:3][H:4])=[O:1]&quot;</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">toolkit_registry</span>
+        <span class="p">)</span>
+        <span class="n">n_conformers</span><span class="p">,</span> <span class="n">n_cooh_groups</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">conformers</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">cooh_indices</span><span class="p">)</span>
+        <span class="c1"># Exit early if there are no carboxylic acids</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n_cooh_groups</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="c1"># Pull out the coordinates of all carboxylic acid groups into cooh_xyz</span>
+        <span class="n">cooh_xyz</span> <span class="o">=</span> <span class="n">conformers</span><span class="p">[:,</span> <span class="n">cooh_indices</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">assert</span> <span class="n">cooh_xyz</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_conformers</span><span class="p">,</span> <span class="n">n_cooh_groups</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Compute dot product along last axis of arrays&quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Compute norm along last axis of array&quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">dihedral</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;Compute dihedrals of array with shape (..., 4, 3)&quot;&quot;&quot;</span>
+            <span class="c1"># Praxeolitic formula</span>
+            <span class="c1"># 1 sqrt, 1 cross product</span>
+            <span class="c1"># from https://stackoverflow.com/questions/20305272/dihedral-torsion-angle-from-four-points-in-cartesian-coordinates-in-python</span>
+            <span class="n">p0</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">p1</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">p2</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">p3</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">:]</span>
+
+            <span class="n">b0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">p1</span> <span class="o">-</span> <span class="n">p0</span><span class="p">)</span>
+            <span class="n">b1</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span>
+            <span class="n">b2</span> <span class="o">=</span> <span class="n">p3</span> <span class="o">-</span> <span class="n">p2</span>
+
+            <span class="c1"># normalize b1 so that it does not influence magnitude of vector</span>
+            <span class="c1"># rejections that come next</span>
+            <span class="n">b1</span> <span class="o">/=</span> <span class="n">norm</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+
+            <span class="c1"># vector rejections</span>
+            <span class="c1"># v = projection of b0 onto plane perpendicular to b1</span>
+            <span class="c1">#   = b0 minus component that aligns with b1</span>
+            <span class="c1"># w = projection of b2 onto plane perpendicular to b1</span>
+            <span class="c1">#   = b2 minus component that aligns with b1</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">b0</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span> <span class="o">*</span> <span class="n">b1</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">b2</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">b2</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span> <span class="o">*</span> <span class="n">b1</span>
+
+            <span class="c1"># angle between v and w in a plane is the torsion angle</span>
+            <span class="c1"># v and w may not be normalized but that&#39;s fine since tan is y/x</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">b1</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">w</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+        <span class="n">dihedrals</span> <span class="o">=</span> <span class="n">dihedral</span><span class="p">(</span><span class="n">cooh_xyz</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">dihedrals</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_conformers</span><span class="p">,</span> <span class="n">n_cooh_groups</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">dihedrals</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_conformers</span><span class="p">,</span> <span class="n">n_cooh_groups</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Get indices of trans COOH groups</span>
+        <span class="n">trans_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">((</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">dihedrals</span><span class="p">,</span> <span class="n">dihedrals</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="c1"># Expand array so it can be used to index cooh_xyz</span>
+        <span class="n">trans_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">trans_indices</span><span class="p">,</span> <span class="n">repeats</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">trans_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">trans_indices</span><span class="p">,</span> <span class="n">repeats</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="c1"># Get indices of individual atoms in trans COOH groups (except terminal O)</span>
+        <span class="n">trans_indices_h</span> <span class="o">=</span> <span class="n">trans_indices</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">trans_indices_h</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">trans_indices_c</span> <span class="o">=</span> <span class="n">trans_indices</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">trans_indices_c</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">trans_indices_o</span> <span class="o">=</span> <span class="n">trans_indices</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">trans_indices_o</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Rotate OH around CO bond</span>
+        <span class="c1"># We want to rotate H 180 degrees around the CO bond (b1)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">cooh_xyz</span><span class="p">[</span><span class="n">trans_indices_c</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">cooh_xyz</span><span class="p">[</span><span class="n">trans_indices_o</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">cooh_xyz</span><span class="p">[</span><span class="n">trans_indices_h</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="c1"># Axis is defined as the line from the origin along a unit vector, so</span>
+        <span class="c1"># move C to the origin and normalize</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="n">h</span> <span class="o">-</span> <span class="n">c</span>
+        <span class="n">axis</span> <span class="o">=</span> <span class="n">o</span> <span class="o">-</span> <span class="n">c</span>
+        <span class="n">axis</span> <span class="o">/=</span> <span class="n">norm</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+        <span class="c1"># Do the rotation</span>
+        <span class="c1"># https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle</span>
+        <span class="n">rotated</span> <span class="o">=</span> <span class="n">axis</span> <span class="o">*</span> <span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">point</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">point</span><span class="p">),</span> <span class="n">axis</span><span class="p">)</span>
+        <span class="c1"># Move rotated point back to original coordinates</span>
+        <span class="n">rotated</span> <span class="o">=</span> <span class="n">rotated</span> <span class="o">+</span> <span class="n">c</span>
+
+        <span class="c1"># Update the coordinates</span>
+        <span class="n">cooh_xyz</span><span class="p">[</span><span class="n">trans_indices_h</span><span class="p">]</span> <span class="o">=</span> <span class="n">rotated</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1"># Update conformers with rotated coordinates</span>
+        <span class="n">conformers</span><span class="p">[:,</span> <span class="n">cooh_indices</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">cooh_xyz</span>
+
+        <span class="c1"># Return conformers to original type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span> <span class="o">=</span> <span class="p">[</span><span class="n">conf</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span> <span class="k">for</span> <span class="n">conf</span> <span class="ow">in</span> <span class="n">conformers</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">compute_virtual_site_positions_from_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conformer_idx</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -3668,7 +3830,7 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">toolkit</span> <span class="o">=</span> <span class="n">toolkit_registry</span>
             <span class="n">toolkit</span><span class="o">.</span><span class="n">apply_elf_conformer_selection</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
-                <span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">percentage</span><span class="o">=</span><span class="n">percentage</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="n">molecule</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">percentage</span><span class="o">=</span><span class="n">percentage</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InvalidToolkitRegistryError</span><span class="p">(</span>
@@ -3870,7 +4032,6 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_cached_smiles</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># TODO: Clear fractional bond orders</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rings</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">to_networkx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generate a NetworkX undirected graph from the Molecule.</span>
@@ -4429,22 +4590,6 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_rings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the number of rings found in the Molecule</span>
-
-<span class="sd">        Requires the RDKit to be installed.</span>
-
-<span class="sd">        .. note ::</span>
-
-<span class="sd">            For systems containing some special cases of connected rings, this</span>
-<span class="sd">            function may not be well-behaved and may report a different number</span>
-<span class="sd">            rings than expected. Some problematic cases include networks of many</span>
-<span class="sd">            (5+) rings or bicyclic moieties (i.e. norbornane).</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rings</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">particles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterate over all Particle objects.</span>
@@ -4878,7 +5023,8 @@
             <span class="n">molecule</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">from_iupac</span><span class="p">(</span>
                 <span class="n">iupac_name</span><span class="p">,</span>
                 <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="n">allow_undefined_stereo</span><span class="p">,</span>
-                <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span> <span class="o">**</span> <span class="n">kwargs</span><span class="p">,</span>
+                <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
@@ -6119,53 +6265,6 @@
 
         <span class="k">raise</span> <span class="n">NotBondedError</span><span class="p">(</span><span class="s2">&quot;No bond between atom </span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">rings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the number of rings in this molecule.</span>
-
-<span class="sd">        Requires the RDKit to be installed.</span>
-
-<span class="sd">        .. note ::</span>
-
-<span class="sd">            For systems containing some special cases of connected rings, this</span>
-<span class="sd">            function may not be well-behaved and may report a different number</span>
-<span class="sd">            rings than expected. Some problematic cases include networks of many</span>
-<span class="sd">            (5+) rings or bicyclic moieties (i.e. norbornane).</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rings</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_get_rings</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rings</span>
-
-    <span class="nd">@RDKitToolkitWrapper</span><span class="o">.</span><span class="n">requires_toolkit</span><span class="p">()</span>
-    <span class="k">def</span> <span class="nf">_get_rings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Call out to RDKitToolkitWrapper methods to find the rings in this molecule.</span>
-
-<span class="sd">        Requires the RDKit to be installed.</span>
-
-<span class="sd">        .. note ::</span>
-
-<span class="sd">            For systems containing some special cases of connected rings, this</span>
-<span class="sd">            function may not be well-behaved and may report a different number</span>
-<span class="sd">            rings than expected. Some problematic cases include networks of many</span>
-<span class="sd">            (5+) rings or bicyclic moieties (i.e. norbornane).</span>
-
-<span class="sd">        .. todo :: This could be refactored to use ToolkitWrapper.call() to flexibly</span>
-<span class="sd">            access other toolkits, if find_rings is implemented.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        rings : tuple of tuple of int</span>
-<span class="sd">            A nested tuple with one subtuple per ring and each subtuple containing</span>
-<span class="sd">            a tuple of the indices of atoms containing with it. If no rings are</span>
-<span class="sd">            found, a single empty tuple is returned.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">toolkit</span> <span class="o">=</span> <span class="n">RDKitToolkitWrapper</span><span class="p">()</span>
-        <span class="n">rings</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">find_rings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rings</span> <span class="o">=</span> <span class="n">rings</span>
-
 
 <div class="viewcode-block" id="Molecule"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule">[docs]</a><span class="k">class</span> <span class="nc">Molecule</span><span class="p">(</span><span class="n">FrozenMolecule</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -6836,7 +6935,7 @@
               
           </div>
           Last updated on
-            Feb 18, 2022.
+            Mar 09, 2022.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.4.0.

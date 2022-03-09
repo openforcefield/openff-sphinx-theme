@@ -631,7 +631,7 @@
             <span class="k">if</span> <span class="s2">&quot;cavity_Area&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
                 <span class="n">cavity_Area</span> <span class="o">=</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="s2">&quot;cavity_Area&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span>
-                    <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">bohr2angstroms</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">bohr2angstroms</span><span class="o">**</span><span class="mi">2</span>
                 <span class="p">)</span>
                 <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;cavity_Area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cavity_Area</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PCMSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1259,7 +1259,7 @@
               
           </div>
           Last updated on
-            Feb 18, 2022.
+            Mar 09, 2022.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.4.0.

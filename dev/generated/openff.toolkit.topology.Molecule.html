@@ -554,32 +554,26 @@ than one molecule is found?</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.n_propers" title="openff.toolkit.topology.Molecule.n_propers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_propers</span></code></a></p></td>
 <td><p>number of proper torsions in the Molecule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.n_rings" title="openff.toolkit.topology.Molecule.n_rings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_rings</span></code></a></p></td>
-<td><p>Return the number of rings found in the Molecule</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.n_virtual_particles" title="openff.toolkit.topology.Molecule.n_virtual_particles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_virtual_particles</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.n_virtual_particles" title="openff.toolkit.topology.Molecule.n_virtual_particles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_virtual_particles</span></code></a></p></td>
 <td><p>The number of VirtualParticle objects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.n_virtual_sites" title="openff.toolkit.topology.Molecule.n_virtual_sites"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_virtual_sites</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.n_virtual_sites" title="openff.toolkit.topology.Molecule.n_virtual_sites"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_virtual_sites</span></code></a></p></td>
 <td><p>The number of VirtualSite objects.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.name" title="openff.toolkit.topology.Molecule.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.name" title="openff.toolkit.topology.Molecule.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
 <td><p>The name (or title) of the molecule</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.partial_charges" title="openff.toolkit.topology.Molecule.partial_charges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partial_charges</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.partial_charges" title="openff.toolkit.topology.Molecule.partial_charges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partial_charges</span></code></a></p></td>
 <td><p>Returns the partial charges (if present) on the molecule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.particles" title="openff.toolkit.topology.Molecule.particles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">particles</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.particles" title="openff.toolkit.topology.Molecule.particles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">particles</span></code></a></p></td>
 <td><p>Iterate over all Particle objects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.propers" title="openff.toolkit.topology.Molecule.propers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propers</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.propers" title="openff.toolkit.topology.Molecule.propers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">propers</span></code></a></p></td>
 <td><p>Iterate over all proper torsions in the molecule</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.properties" title="openff.toolkit.topology.Molecule.properties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">properties</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.properties" title="openff.toolkit.topology.Molecule.properties"><code class="xref py py-obj docutils literal notranslate"><span class="pre">properties</span></code></a></p></td>
 <td><p>The properties dictionary of the molecule</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.rings" title="openff.toolkit.topology.Molecule.rings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rings</span></code></a></p></td>
-<td><p>Return the number of rings in this molecule.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.smirnoff_impropers" title="openff.toolkit.topology.Molecule.smirnoff_impropers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">smirnoff_impropers</span></code></a></p></td>
 <td><p>Iterate over improper torsions in the molecule, but only those with trivalent centers, reporting the central atom second in each improper.</p></td>
@@ -1559,7 +1553,7 @@ Note that OpenMM and MDTraj <code class="docutils literal notranslate"><span cla
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.generate_conformers">
-<span class="sig-name descname"><span class="pre">generate_conformers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_conformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rms_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_existing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.generate_conformers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">generate_conformers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_conformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rms_cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_existing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_carboxylic_acids_cis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.generate_conformers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate conformers for this molecule using an underlying toolkit.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">n_conformers=0</span></code>, no toolkit wrapper will be called. If <code class="docutils literal notranslate"><span class="pre">n_conformers=0</span></code>
 and <code class="docutils literal notranslate"><span class="pre">clear_existing=True</span></code>, <code class="docutils literal notranslate"><span class="pre">molecule.conformers</span></code> will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
@@ -1575,6 +1569,11 @@ implementation of this cutoff may be toolkit-dependent. If <code class="docutils
 for each <code class="docutils literal notranslate"><span class="pre">ToolkitWrapper</span></code> (generally 1 Angstrom).</p>
 </dd>
 <dt><strong>clear_existing</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether to overwrite existing conformers for the molecule</p>
+</dd>
+<dt><strong>make_carboxylic_acids_cis: bool, default=True</strong></dt><dd><p>Guarantee all conformers have exclusively cis carboxylic acid groups (COOH)
+by rotating the proton in any trans carboxylic acids 180 degrees around the
+C-O bond. Works around a bug in conformer generation by the OpenEye toolkit
+where trans COOH is much more common than it should be.</p>
 </dd>
 </dl>
 </dd>
@@ -1748,19 +1747,6 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 </dl>
 </dd></dl>
 <dl class="py property">
-<dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.n_rings">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_rings</span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_rings" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
-<dd><p>Return the number of rings found in the Molecule</p>
-<p>Requires the RDKit to be installed.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For systems containing some special cases of connected rings, this
-function may not be well-behaved and may report a different number
-rings than expected. Some problematic cases include networks of many
-(5+) rings or bicyclic moieties (i.e. norbornane).</p>
-</div>
-</dd></dl>
-<dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.n_virtual_particles">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_virtual_particles</span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_virtual_particles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The number of VirtualParticle objects.</p>
@@ -1861,19 +1847,6 @@ otherwise, it is of the form <code class="docutils literal notranslate"><span cl
 </dl>
 </dd>
 </dl>
-</dd></dl>
-<dl class="py property">
-<dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.rings">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rings</span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.rings" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
-<dd><p>Return the number of rings in this molecule.</p>
-<p>Requires the RDKit to be installed.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For systems containing some special cases of connected rings, this
-function may not be well-behaved and may report a different number
-rings than expected. Some problematic cases include networks of many
-(5+) rings or bicyclic moieties (i.e. norbornane).</p>
-</div>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.smirnoff_impropers">
@@ -2725,7 +2698,7 @@ the Molecule’s indexing system.</p>
               
           </div>
           Last updated on
-            Feb 18, 2022.
+            Mar 09, 2022.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
