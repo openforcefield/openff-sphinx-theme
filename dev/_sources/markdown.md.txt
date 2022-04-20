@@ -248,3 +248,28 @@ sit amet laoreet nibh.
     </tr>
   </tbody>
 </table>
+
+
+## MyST
+
+MyST MarkDown has some extra tricks up its sleeve. This theme is designed to be used with the following MyST extensions:
+
+```python
+myst_enable_extensions = [
+    "dollarmath",
+    "colon_fence",
+    "smartquotes",
+    "replacements",
+    "deflist",
+]
+```
+
+### Figures
+
+:::{figure-md} fig-target
+![Photo of a desert flower](desert-flower.jpg)
+
+This is a caption in **Markdown**
+:::
+
+[Reference to the above figure](fig-target).

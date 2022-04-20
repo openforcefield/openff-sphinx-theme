@@ -320,13 +320,13 @@
 <span class="sd">   * Speed up overall import time by putting non-global imports only where they are needed</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-
+<span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -821,17 +821,17 @@
 <span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vsite</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vsite</span><span class="p">:</span> <span class="s2">&quot;VirtualSite&quot;</span><span class="p">,</span> <span class="n">orientation</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A single particle owned by a VirtualSite</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        vsite : openff.toolkit.topology.VirtualSite</span>
+<span class="sd">        vsite</span>
 <span class="sd">            The parent VirtualSite of this VirtualParticle</span>
-<span class="sd">        orientation : tuple of int</span>
+<span class="sd">        orientation</span>
 <span class="sd">            Molecule atom indices of parent atoms</span>
-<span class="sd">        name : str, optional</span>
+<span class="sd">        name</span>
 <span class="sd">            The name of the particle</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -840,21 +840,36 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span> <span class="o">=</span> <span class="n">orientation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
 
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_name</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">orientation</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_site</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_virtual_site</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_molecule</span>
+        <span class="p">)</span>
+
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;VirtualSite&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_site</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">virtual_site_particle_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;Atom&quot;</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Atoms on whose position this VirtualParticle depends&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">virtual_site_particle_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The index of the particle relative to its owning virtual site. Normally</span>
 <span class="sd">        this should either be 0 or 1.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_site</span><span class="o">.</span><span class="n">orientations</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orientation</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">virtual_site</span><span class="o">.</span><span class="n">orientations</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_orientation</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_positions</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1001,7 +1016,7 @@
 <span class="c1"># =============================================================================================</span>
 
 
-<span class="k">class</span> <span class="nc">VirtualSite</span><span class="p">(</span><span class="n">Particle</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">VirtualSite</span><span class="p">(</span><span class="n">Particle</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A container representing one or more virtual particles whose positions are</span>
 <span class="sd">    defined in terms of ``Atom`` positions. This container enables the coupling</span>
@@ -1012,7 +1027,6 @@
 
 <span class="sd">    Note that chemical atoms are represented by the ``Atom``.</span>
 
-
 <span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 
 <span class="sd">    .. todo::</span>
@@ -1022,149 +1036,21 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">atoms</span><span class="p">,</span>
-        <span class="n">charge_increments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">epsilon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">rmin_half</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">orientations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">orientations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Base class for VirtualSites</span>
-
-<span class="sd">        .. todo ::</span>
-
-<span class="sd">           * change sigma/epsilon/rmin_half to have units</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of Atom of shape [N]</span>
-<span class="sd">            atoms[index] is the corresponding Atom</span>
-<span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
-<span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put in the VirtualSite. Indexing in this list should match the ordering in the atoms list. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        name : string or None, default=None</span>
-<span class="sd">            The name of this virtual site. Default is None.</span>
-
-<span class="sd">        virtual_site_type : str</span>
-<span class="sd">            Virtual site type.</span>
-<span class="sd">        name : str or None, default=None</span>
-<span class="sd">            The name of this virtual site. Default is None</span>
-<span class="sd">        orientation : list of int tuples or None, default=None</span>
-<span class="sd">            The ordering of the atoms used to define the frame of the virtual site.</span>
+<span class="sd">        name</span>
+<span class="sd">            The name of this virtual site.</span>
+<span class="sd">        orientations</span>
+<span class="sd">            The indices of the atoms used to define the frame of the virtual site.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Ensure we have as many charge_increments as we do atoms</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">charge_increments</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">charge_increments</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)):</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                    <span class="s2">&quot;VirtualSite definition must have same number of charge_increments (</span><span class="si">{}</span><span class="s2">) and atoms(</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="nb">len</span><span class="p">(</span><span class="n">charge_increments</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">charge_increments</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">))</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Molecule&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span>
 
-        <span class="c1"># set sane defaults for OpenMM</span>
-        <span class="k">if</span> <span class="n">epsilon</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">rmin_half</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">kilocalorie_per_mole</span>
-        <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">rmin_half</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span>
-
-        <span class="c1"># VdW parameters can either be epsilon+rmin_half or epsilon+sigma, but not both</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">epsilon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">rmin_half</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sigma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                    <span class="s2">&quot;VirtualSite constructor given epsilon (value : </span><span class="si">{}</span><span class="s2">), rmin_half (value : </span><span class="si">{}</span><span class="s2">), and sigma (value : </span><span class="si">{}</span><span class="s2">). If epsilon is nonzero, it should receive either rmin_half OR sigma&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">epsilon</span><span class="p">,</span> <span class="n">rmin_half</span><span class="p">,</span> <span class="n">sigma</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">rmin_half</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                    <span class="s2">&quot;VirtualSite constructor given epsilon (value : </span><span class="si">{}</span><span class="s2">) but not given rmin_half (value : </span><span class="si">{}</span><span class="s2">) or sigma (value : </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">epsilon</span><span class="p">,</span> <span class="n">rmin_half</span><span class="p">,</span> <span class="n">sigma</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-            <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="c1"># TODO: Save the 6th root of 2 if this starts being slow.</span>
-                <span class="n">sigma</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">rmin_half</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mi">6</span><span class="p">))</span>
-
-        <span class="k">elif</span> <span class="n">epsilon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">rmin_half</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">sigma</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                    <span class="s2">&quot;VirtualSite constructor given rmin_half (value : </span><span class="si">{}</span><span class="s2">) or sigma (value : </span><span class="si">{}</span><span class="s2">), but not epsilon (value : </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                        <span class="n">rmin_half</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">epsilon</span>
-                    <span class="p">)</span>
-                <span class="p">)</span>
-
-        <span class="c1"># Perform type-checking</span>
-        <span class="c1"># for atom in atoms:</span>
-        <span class="c1">#     assert isinstance(atom, Atom)</span>
-        <span class="c1"># for atom_index in range(len(atoms) - 1):</span>
-        <span class="c1">#     assert atoms[atom_index].molecule is atoms[atom_index + 1].molecule</span>
-        <span class="c1"># assert isinstance(atoms[1].molecule, FrozenMolecule)</span>
-
-        <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
-            <span class="k">assert</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">sigma</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">epsilon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_epsilon</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">epsilon</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
-            <span class="k">assert</span> <span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">kilojoule_per_mole</span><span class="p">)</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">epsilon</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_epsilon</span> <span class="o">=</span> <span class="n">epsilon</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">kilojoule_per_mole</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">charge_increments</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_charge_increments</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="n">charge_increments</span><span class="p">:</span>
-                <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ci</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
-                <span class="k">assert</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charges</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">ci</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_charge_increments</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">ci</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">elementary_charges</span><span class="p">)</span> <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="n">charge_increments</span>
-            <span class="p">]</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charges</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-
-        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
-            <span class="n">atom</span><span class="o">.</span><span class="n">add_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="o">=</span> <span class="n">atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">molecule</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
-
-        <span class="k">if</span> <span class="n">orientations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ornt</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">)]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span> <span class="o">=</span> <span class="n">ornt</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_particles</span> <span class="o">=</span> <span class="p">{</span><span class="n">ornt</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">VirtualParticle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ornt</span><span class="p">[</span><span class="mi">0</span><span class="p">])}</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ornt</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">orientations</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
-                <span class="n">ornt</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">orientations</span><span class="p">)]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">ornt</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span> <span class="o">=</span> <span class="n">ornt</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_particles</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-                <span class="p">{</span><span class="n">order</span><span class="p">:</span> <span class="n">VirtualParticle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span> <span class="k">for</span> <span class="n">order</span> <span class="ow">in</span> <span class="n">ornt</span><span class="p">}</span>
-            <span class="p">)</span>
-
-        <span class="c1"># Subclassing makes _type unnecessary</span>
-        <span class="c1"># self._type = None</span>
-        <span class="c1"># TODO: Validate site types against allowed values</span>
-
-        <span class="c1"># self._weights = np.array(weights) # make a copy and convert to array internally</span>
+        <span class="n">orientations</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span> <span class="o">=</span> <span class="n">orientations</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">),</span> <span class="n">VirtualSite</span><span class="p">):</span>
@@ -1172,11 +1058,12 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="n">same_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span>
-        <span class="n">same_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">atoms</span>
+        <span class="n">same_indices</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">orientations</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">orientations</span><span class="p">)</span>
         <span class="n">same_mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule</span> <span class="ow">is</span> <span class="n">other</span><span class="o">.</span><span class="n">molecule</span>
         <span class="n">same_vsite</span> <span class="o">=</span> <span class="n">same_name</span> <span class="ow">and</span> <span class="n">same_indices</span> <span class="ow">and</span> <span class="n">same_mol</span>
         <span class="k">return</span> <span class="n">same_vsite</span>
 
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a dict representation of the virtual site.</span>
@@ -1185,36 +1072,18 @@
         <span class="c1"># Each subclass should have its own to_dict</span>
         <span class="n">vsite_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
         <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
-        <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;atoms&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">])</span>
-        <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;charge_increments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantity_to_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_charge_increments</span><span class="p">)</span>
-
-        <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;epsilon&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantity_to_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_epsilon</span><span class="p">)</span>
-
-        <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantity_to_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span><span class="p">)</span>
         <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span>
-
-        <span class="c1"># skip packing the particles; they are created dynamically</span>
 
         <span class="k">return</span> <span class="n">vsite_dict</span>
 
     <span class="nd">@classmethod</span>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">vsite_dict</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a virtual site from a dict representation.&quot;&quot;&quot;</span>
-        <span class="c1"># Each subclass needs to have its own from_dict</span>
 
-        <span class="c1"># Make a copy of the vsite_dict, where we&#39;ll unit-wrap the appropriate values</span>
-        <span class="n">vsite_dict_units</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">)</span>
-
-        <span class="c1"># Attach units to epsilon term</span>
-        <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;epsilon&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;epsilon&quot;</span><span class="p">])</span>
-        <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">])</span>
-        <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;charge_increments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span>
-            <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;charge_increments&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">VirtualSite</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">orientations</span><span class="o">=</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span>
         <span class="p">)</span>
-
-        <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;orientation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_orientation</span>
-
-        <span class="k">return</span> <span class="n">VirtualSite</span><span class="p">(</span><span class="o">**</span><span class="n">vsite_dict_units</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">index_of_orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">virtual_particle</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1238,7 +1107,7 @@
         <span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">orientations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">orientations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The orientations used by the virtual site particles.</span>
 
@@ -1284,15 +1153,16 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">particles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">particles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">VirtualParticle</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Particles owned by this VirtualSite</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">vp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_particles</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="k">yield</span> <span class="n">vp</span>
+
+        <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">VirtualParticle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orientation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_particles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">n_particles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of particles that the virtual site represents</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1300,10 +1170,10 @@
         <span class="c1"># Assume a 1 to 1 mapping of orientations to particles for now</span>
         <span class="c1"># This means a virtualsite can only represent a single physical set</span>
         <span class="c1"># of parameters (distance, angle, etc)</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_particles</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">molecule_virtual_site_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">molecule_virtual_site_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The index of this VirtualSite within the list of virtual sites within ``Molecule``</span>
 <span class="sd">        Note that this can be different from ``particle_index``.</span>
@@ -1312,7 +1182,10 @@
         <span class="c1">#    raise ValueError(&#39;This VirtualSite does not belong to a Topology object&#39;)</span>
         <span class="c1"># TODO: This will be slow; can we cache this and update it only when needed?</span>
         <span class="c1">#       Deleting atoms/molecules in the Topology would have to invalidate the cached index.</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;This virtual site does not belong to a molecule&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="c1"># @property</span>
     <span class="c1"># def molecule_particle_index(self):</span>
@@ -1327,53 +1200,39 @@
     <span class="c1">#     return self._molecule.particles.index(self)</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Molecule&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span>
+
+    <span class="nd">@molecule</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;Molecule&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the virtual site&#39;s parent molecule. Can not be changed after assignment&quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;parent molecule already set&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Atoms on whose position this VirtualSite depends.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span>
-        <span class="c1"># for atom in self._atoms:</span>
-        <span class="c1">#    yield atom</span>
+
+        <span class="c1"># The previous definition makes no sense anymore. Consider a symmetric carboxyl</span>
+        <span class="c1"># group e.g. [*:3][C:2](=[O:1])[*:4]. The the two possible orientations will</span>
+        <span class="c1"># have different atoms, i.e. [0, 1, 2], [0, 1, 3] respectively...</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;This property is no longer supported since 0.10.4. See &quot;</span>
+            <span class="s2">&quot;VirtualParticle.atoms instead.&quot;</span>
+        <span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">charge_increments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Charges taken from this VirtualSite&#39;s atoms and given to the VirtualSite</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_charge_increments</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">epsilon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The VdW epsilon term of this VirtualSite</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_epsilon</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The VdW sigma term of this VirtualSite</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">rmin_half</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The VdW rmin_half term of this VirtualSite</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">rmin</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sigma</span>
-        <span class="n">rmin_half</span> <span class="o">=</span> <span class="n">rmin</span> <span class="o">/</span> <span class="mi">2</span>
-        <span class="k">return</span> <span class="n">rmin_half</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The name of this VirtualSite</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The type of this VirtualSite (returns the class name as string)&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
 
@@ -1442,14 +1301,14 @@
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># TODO: Also include particle_index, which molecule this atom belongs to?</span>
-        <span class="k">return</span> <span class="s2">&quot;VirtualSite(name=</span><span class="si">{}</span><span class="s2">, type=</span><span class="si">{}</span><span class="s2">, atoms=</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span>
+        <span class="k">return</span> <span class="s2">&quot;VirtualSite(name=</span><span class="si">{}</span><span class="s2">, type=</span><span class="si">{}</span><span class="s2">, orientations=</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orientations</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># TODO: Also include particle_index, which molecule this atom belongs to?</span>
-        <span class="k">return</span> <span class="s2">&quot;&lt;VirtualSite name=</span><span class="si">{}</span><span class="s2"> type=</span><span class="si">{}</span><span class="s2"> atoms=</span><span class="si">{}</span><span class="s2"> particles=</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_particles</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;VirtualSite name=</span><span class="si">{}</span><span class="s2"> type=</span><span class="si">{}</span><span class="s2"> orientations=</span><span class="si">{}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">orientations</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_openmm_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">):</span>
@@ -1514,74 +1373,46 @@
 
 <span class="k">class</span> <span class="nc">BondChargeVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A particle representing a &quot;Bond Charge&quot;-type virtual site, in which the location of the charge is specified by the positions of two atoms. This supports placement of a virtual site S along a vector between two specified atoms, e.g. to allow for a sigma hole for halogens or similar contexts. With positive values of the distance, the virtual site lies outside the first indexed atom.</span>
+<span class="sd">    A particle representing a &quot;Bond Charge&quot;-type virtual site, in which the location</span>
+<span class="sd">    of the charge is specified by the positions of two atoms. This supports placement</span>
+<span class="sd">    of a virtual site S along a vector between two specified atoms, e.g. to allow for a</span>
+<span class="sd">    sigma hole for halogens or similar contexts. With positive values of the distance,</span>
+<span class="sd">    the virtual site lies outside the first indexed atom.</span>
 
 <span class="sd">    .. warning :: This API is experimental and subject to change.</span>
+
+<span class="sd">    TODO: One of the examples in the SMIRNOFF spec has a BondCharge defined with</span>
+<span class="sd">          three atoms -- How does that work?</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">atoms</span><span class="p">,</span>
-        <span class="n">distance</span><span class="p">,</span>
-        <span class="n">charge_increments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">epsilon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">rmin_half</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">orientations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">distance</span><span class="p">:</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">orientations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a bond charge-type virtual site, in which the location of the charge is specified by the position of two atoms. This supports placement of a virtual site S along a vector between two specified atoms, e.g. to allow for a sigma hole for halogens or similar contexts. With positive values of the distance, the virtual site lies outside the first indexed atom.</span>
-
-<span class="sd">        TODO: One of the examples in the SMIRNOFF spec has a BondCharge defined with three atoms -- How does that work?</span>
-<span class="sd">        https://openforcefield.github.io/standards/standards/smirnoff/#virtualsites-virtual-sites-for-off-atom-charges</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of openff.toolkit.topology.molecule.Atom objects of shape [N]</span>
-<span class="sd">            The atoms defining the virtual site&#39;s position</span>
-
-<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
-
-<span class="sd">        weights : list of floats of shape [N] or None, optional, default=None</span>
-<span class="sd">            weights[index] is the weight of particles[index] contributing to the position of the virtual site. Default is None</span>
-<span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
-<span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put in the VirtualSite. Indexing in this list should match the ordering in the atoms list. Default is None.</span>
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        name : string or None, default=None</span>
-<span class="sd">            The name of this virtual site. Default is None.</span>
-<span class="sd">        orientations : list of tuples of 3 Atoms or ints</span>
-<span class="sd">            The permutations of the matched atoms that should be used to define</span>
-<span class="sd">            the orientation of each virtual site particle</span>
+<span class="sd">        distance</span>
+<span class="sd">            A quantity with dimension [Length] wrapping a scalar</span>
+<span class="sd">        name</span>
+<span class="sd">            The name of this virtual site.</span>
+<span class="sd">        orientations</span>
+<span class="sd">            The indices of the atoms used to define the frame of the virtual site.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">distance</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span>
-            <span class="n">charge_increments</span><span class="o">=</span><span class="n">charge_increments</span><span class="p">,</span>
-            <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
-            <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span>
-            <span class="n">rmin_half</span><span class="o">=</span><span class="n">rmin_half</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">vsite_dict</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
         <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quantity_to_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_distance</span><span class="p">)</span>
-
         <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
-        <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orientations</span>
 
         <span class="k">return</span> <span class="n">vsite_dict</span>
 
@@ -1590,14 +1421,12 @@
         <span class="n">base_dict</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">)</span>
         <span class="c1"># Make sure it&#39;s the right type of virtual site</span>
         <span class="k">assert</span> <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;BondChargeVirtualSite&quot;</span>
-        <span class="n">base_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">)</span>
-        <span class="n">base_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">)</span>
         <span class="n">vsite</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="o">**</span><span class="n">base_dict</span><span class="p">)</span>
         <span class="n">vsite</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">vsite</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The distance parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span>
 
@@ -1670,54 +1499,38 @@
 
 <span class="k">class</span> <span class="nc">MonovalentLonePairVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A particle representing a &quot;Monovalent Lone Pair&quot;-type virtual site, in which the location of the charge is specified by the positions of three atoms. This is originally intended for situations like a carbonyl, and allows placement of a virtual site S at a specified distance d, in_plane_angle, and out_of_plane_angle relative to a central atom and two connected atoms.</span>
+<span class="sd">    A particle representing a &quot;Monovalent Lone Pair&quot;-type virtual site, in which the</span>
+<span class="sd">    location of the charge is specified by the positions of three atoms. This is</span>
+<span class="sd">    originally intended for situations like a carbonyl, and allows placement of a virtual</span>
+<span class="sd">    site S at a specified distance d, in_plane_angle, and out_of_plane_angle relative to</span>
+<span class="sd">    a central atom and two connected atoms.</span>
 
 <span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">atoms</span><span class="p">,</span>
-        <span class="n">distance</span><span class="p">,</span>
-        <span class="n">out_of_plane_angle</span><span class="p">,</span>
-        <span class="n">in_plane_angle</span><span class="p">,</span>
-        <span class="n">charge_increments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">epsilon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">rmin_half</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">orientations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">distance</span><span class="p">:</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span>
+        <span class="n">out_of_plane_angle</span><span class="p">:</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span>
+        <span class="n">in_plane_angle</span><span class="p">:</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">orientations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a bond charge-type virtual site, in which the location of the charge is specified by the position of three atoms.</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of three openff.toolkit.topology.molecule.Atom objects</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-
-<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
-
-<span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
-<span class="sd">        a scalar</span>
-
-<span class="sd">        in_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping a</span>
-<span class="sd">        scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        name : string or None, default=None</span>
-<span class="sd">            The name of this virtual site. Default is None.</span>
-<span class="sd">        orientations : list of tuples of 3 Atoms or ints</span>
-<span class="sd">            The permutations of the matched atoms that should be used to define</span>
-<span class="sd">            the orientation of each virtual site particle</span>
+<span class="sd">        distance</span>
+<span class="sd">            A quantity with dimension [Length] wrapping a scalar</span>
+<span class="sd">        out_of_plane_angle</span>
+<span class="sd">            A quantity with dimension [Angle] wrapping a scalar</span>
+<span class="sd">        in_plane_angle</span>
+<span class="sd">            A quantity with dimension [Angle] wrapping a scalar</span>
+<span class="sd">        name</span>
+<span class="sd">            The name of this virtual site.</span>
+<span class="sd">        orientations</span>
+<span class="sd">            The indices of the atoms used to define the frame of the virtual site.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># assert isinstance(distance, unit.Quantity)</span>
-        <span class="c1"># TODO: Check for proper number of atoms</span>
+
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">distance</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">in_plane_angle</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
@@ -1725,16 +1538,10 @@
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">unit</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">out_of_plane_angle</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span>
-            <span class="n">charge_increments</span><span class="o">=</span><span class="n">charge_increments</span><span class="p">,</span>
-            <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
-            <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span>
-            <span class="n">rmin_half</span><span class="o">=</span><span class="n">rmin_half</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span> <span class="o">=</span> <span class="n">out_of_plane_angle</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_in_plane_angle</span> <span class="o">=</span> <span class="n">in_plane_angle</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
@@ -1747,13 +1554,11 @@
         <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
         <span class="k">return</span> <span class="n">vsite_dict</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">vsite_dict</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Construct a new MonovalentLonePairVirtualSite from an serialized dictionary representation.</span>
+<span class="sd">        Construct a new MonovalentLonePairVirtualSite from an serialized dictionary</span>
+<span class="sd">        representation.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1765,24 +1570,26 @@
 <span class="sd">        The newly created MonovalentLonePairVirtualSite</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># The function is overridden only to have a custom docstring.</span>
+
+        <span class="k">assert</span> <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MonovalentLonePairVirtualSite&quot;</span>
         <span class="n">vsite</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">)</span>
+        <span class="n">vsite</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">])</span>
         <span class="n">vsite</span><span class="o">.</span><span class="n">_out_of_plane_angle</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;out_of_plane_angle&quot;</span><span class="p">])</span>
         <span class="n">vsite</span><span class="o">.</span><span class="n">_in_plane_angle</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;in_plane_angle&quot;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">vsite</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The distance parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">in_plane_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">in_plane_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The in_plane_angle parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_plane_angle</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">out_of_plane_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">out_of_plane_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The out_of_plane_angle parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span>
 
@@ -1862,67 +1669,45 @@
 
 <span class="k">class</span> <span class="nc">DivalentLonePairVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A particle representing a &quot;Divalent Lone Pair&quot;-type virtual site, in which the location of the charge is specified by the positions of three atoms. This is suitable for cases like four-point and five-point water models as well as pyrimidine; a charge site S lies a specified distance d from the central atom among three atoms along the bisector of the angle between the atoms (if out_of_plane_angle is zero) or out of the plane by the specified angle (if out_of_plane_angle is nonzero) with its projection along the bisector. For positive values of the distance d the virtual site lies outside the 2-1-3 angle and for negative values it lies inside.</span>
+<span class="sd">    A particle representing a &quot;Divalent Lone Pair&quot;-type virtual site, in which the</span>
+<span class="sd">    location of the charge is specified by the positions of three atoms. This is suitable</span>
+<span class="sd">    for cases like four-point and five-point water models as well as pyrimidine; a charge</span>
+<span class="sd">    site S lies a specified distance d from the central atom among three atoms along the</span>
+<span class="sd">    bisector of the angle between the atoms (if out_of_plane_angle is zero) or out of the</span>
+<span class="sd">    plane by the specified angle (if out_of_plane_angle is nonzero) with its projection</span>
+<span class="sd">    along the bisector. For positive values of the distance d the virtual site lies</span>
+<span class="sd">    outside the 2-1-3 angle and for negative values it lies inside.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">atoms</span><span class="p">,</span>
         <span class="n">distance</span><span class="p">,</span>
         <span class="n">out_of_plane_angle</span><span class="p">,</span>
-        <span class="n">charge_increments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">epsilon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">rmin_half</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">orientations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">,</span>
+        <span class="n">orientations</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a divalent lone pair-type virtual site, in which the location of the charge is specified by the position of three atoms.</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of 3 openff.toolkit.topology.molecule.Atom objects</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-
-<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
-
-<span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
-<span class="sd">        a scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        name : string or None, default=None</span>
-<span class="sd">            The name of this virtual site. Default is None.</span>
-<span class="sd">        orientations : list of tuples of 3 Atoms or ints</span>
-<span class="sd">            The permutations of the matched atoms that should be used to define</span>
-<span class="sd">            the orientation of each virtual site particle</span>
+<span class="sd">        distance</span>
+<span class="sd">            A quantity with dimension [Length] wrapping a scalar</span>
+<span class="sd">        out_of_plane_angle</span>
+<span class="sd">            A quantity with dimension [Angle] wrapping a scalar</span>
+<span class="sd">        name</span>
+<span class="sd">            The name of this virtual site.</span>
+<span class="sd">        orientations</span>
+<span class="sd">            The indices of the atoms used to define the frame of the virtual site.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">distance</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
-
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">unit</span><span class="o">.</span><span class="n">degree</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">out_of_plane_angle</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span>
-            <span class="n">charge_increments</span><span class="o">=</span><span class="n">charge_increments</span><span class="p">,</span>
-            <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
-            <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span>
-            <span class="n">rmin_half</span><span class="o">=</span><span class="n">rmin_half</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span> <span class="o">=</span> <span class="n">out_of_plane_angle</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">degree</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">vsite_dict</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
@@ -1934,7 +1719,8 @@
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">vsite_dict</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Construct a new DivalentLonePairVirtualSite from an serialized dictionary representation.</span>
+<span class="sd">        Construct a new DivalentLonePairVirtualSite from an serialized dictionary</span>
+<span class="sd">        representation.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1946,18 +1732,19 @@
 <span class="sd">        The newly created DivalentLonePairVirtualSite</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># The function is overridden only to have a custom docstring.</span>
+        <span class="k">assert</span> <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DivalentLonePairVirtualSite&quot;</span>
         <span class="n">vsite</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">)</span>
+        <span class="n">vsite</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">])</span>
         <span class="n">vsite</span><span class="o">.</span><span class="n">_out_of_plane_angle</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;out_of_plane_angle&quot;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">vsite</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The distance parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">out_of_plane_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">out_of_plane_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The out_of_plane_angle parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_out_of_plane_angle</span>
 
@@ -1975,10 +1762,10 @@
 <span class="sd">        Tuple of list of weights used to define the origin, x-axis, and y-axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">originwt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+        <span class="n">originwt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
-        <span class="n">xdir</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
-        <span class="n">ydir</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+        <span class="n">xdir</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+        <span class="n">ydir</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span>
 
@@ -2029,62 +1816,40 @@
 
 <span class="k">class</span> <span class="nc">TrivalentLonePairVirtualSite</span><span class="p">(</span><span class="n">VirtualSite</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A particle representing a &quot;Trivalent Lone Pair&quot;-type virtual site, in which the location of the charge is specified by the positions of four atoms. This is suitable for planar or tetrahedral nitrogen lone pairs; a charge site S lies above the central atom (e.g. nitrogen a distance d along the vector perpendicular to the plane of the three connected atoms (2,3,4). With positive values of d the site lies above the nitrogen and with negative values it lies below the nitrogen.</span>
+<span class="sd">    A particle representing a &quot;Trivalent Lone Pair&quot;-type virtual site, in which the</span>
+<span class="sd">    location of the charge is specified by the positions of four atoms. This is suitable</span>
+<span class="sd">    for planar or tetrahedral nitrogen lone pairs; a charge site S lies above the central</span>
+<span class="sd">    atom (e.g. nitrogen a distance d along the vector perpendicular to the plane of the</span>
+<span class="sd">    three connected atoms (2,3,4). With positive values of d the site lies above the</span>
+<span class="sd">    nitrogen and with negative values it lies below the nitrogen.</span>
 
 <span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">atoms</span><span class="p">,</span>
         <span class="n">distance</span><span class="p">,</span>
-        <span class="n">charge_increments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">epsilon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">rmin_half</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">orientations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">orientations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a trivalent lone pair-type virtual site, in which the location of the charge is specified by the position of four atoms.</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of 4 openff.toolkit.topology.molecule.Atom objects</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-
-<span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        name : string or None, default=None</span>
-<span class="sd">            The name of this virtual site. Default is None.</span>
-<span class="sd">        orientations : list of tuples of 3 Atoms or ints</span>
-<span class="sd">            The permutations of the matched atoms that should be used to define</span>
-<span class="sd">            the orientation of each virtual site particle</span>
+<span class="sd">        distance</span>
+<span class="sd">            A quantity with dimension [Length] wrapping a scalar</span>
+<span class="sd">        name</span>
+<span class="sd">            The name of this virtual site.</span>
+<span class="sd">        orientations</span>
+<span class="sd">            The indices of the atoms used to define the frame of the virtual site.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
+
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">orientation</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="n">orientations</span><span class="p">)</span>
 
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="o">.</span><span class="n">is_compatible</span><span class="p">(</span><span class="n">distance</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span>
-            <span class="n">charge_increments</span><span class="o">=</span><span class="n">charge_increments</span><span class="p">,</span>
-            <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
-            <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span>
-            <span class="n">rmin_half</span><span class="o">=</span><span class="n">rmin_half</span><span class="p">,</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">distance</span><span class="o">.</span><span class="n">in_units_of</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">vsite_dict</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
@@ -2095,13 +1860,13 @@
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">vsite_dict</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Construct a new TrivalentPairVirtualSite from an serialized dictionary representation.</span>
+<span class="sd">        Construct a new TrivalentPairVirtualSite from an serialized dictionary</span>
+<span class="sd">        representation.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        vsite_dict : dict</span>
 <span class="sd">            The VirtualSite to deserialize.</span>
-
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2109,10 +1874,13 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># The function is overridden only to have a custom docstring.</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;TrivalentLonePairVirtualSite&quot;</span>
+        <span class="n">vsite</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">)</span>
+        <span class="n">vsite</span><span class="o">.</span><span class="n">_distance</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">vsite</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The distance parameter of the virtual site&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_distance</span>
 
@@ -2130,12 +1898,12 @@
 <span class="sd">        Tuple of list of weights used to define the origin, x-axis, and y-axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">originwt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+        <span class="n">originwt</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
-        <span class="n">xdir</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">]</span>
+        <span class="n">xdir</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">]</span>
 
         <span class="c1"># ydir does not matter</span>
-        <span class="n">ydir</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+        <span class="n">ydir</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">originwt</span><span class="p">,</span> <span class="n">xdir</span><span class="p">,</span> <span class="n">ydir</span>
 
@@ -2844,17 +2612,9 @@
             <span class="n">vsite_dict_units</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">)</span>
 
             <span class="c1"># Attach units to epsilon term</span>
-            <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;epsilon&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;epsilon&quot;</span><span class="p">])</span>
-            <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span><span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">])</span>
-            <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;charge_increments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span>
-                <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;charge_increments&quot;</span><span class="p">]</span>
-            <span class="p">)</span>
             <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vsite_dict</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span>
 
             <span class="c1"># Call the correct molecule._add_X_virtual_site function, based on the stated type</span>
-            <span class="c1"># Also generate the Atom objects from the atom indices</span>
-            <span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;atoms&quot;</span><span class="p">]]</span>
-            <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;atoms&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">atoms</span>
             <span class="k">if</span> <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;BondChargeVirtualSite&quot;</span><span class="p">:</span>
                 <span class="k">del</span> <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;vsite_type&quot;</span><span class="p">]</span>
                 <span class="n">vsite_dict_units</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_to_quantity</span><span class="p">(</span>
@@ -4218,6 +3978,18 @@
 
     <span class="k">def</span> <span class="nf">_add_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">replaced</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">vsite</span><span class="o">.</span><span class="n">molecule</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">vsite</span><span class="o">.</span><span class="n">molecule</span> <span class="o">=</span> <span class="bp">self</span>
+
+            <span class="n">vsite_atoms</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">atom</span><span class="o">.</span><span class="n">molecule_atom_index</span><span class="p">:</span> <span class="n">atom</span>
+                <span class="k">for</span> <span class="n">particle</span> <span class="ow">in</span> <span class="n">vsite</span><span class="o">.</span><span class="n">particles</span>
+                <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">particle</span><span class="o">.</span><span class="n">atoms</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">vsite_atoms</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">atom</span><span class="o">.</span><span class="n">add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
+
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">existing_vsite</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="p">):</span>
             <span class="n">same_vsite</span> <span class="o">=</span> <span class="n">existing_vsite</span> <span class="o">==</span> <span class="n">vsite</span>
             <span class="k">if</span> <span class="n">same_vsite</span><span class="p">:</span>
@@ -4237,7 +4009,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_add_bond_charge_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add_bond_charge_virtual_site</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">orientations</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a bond charge-type virtual site, in which the location of the charge is specified by the position of two</span>
 <span class="sd">        atoms. This supports placement of a virtual site S along a vector between two specified atoms, e.g. to allow</span>
@@ -4246,25 +4020,11 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of openff.toolkit.topology.molecule.Atom objects of shape [N]</span>
-<span class="sd">            The atoms defining the virtual site&#39;s position</span>
-
+<span class="sd">        orientations : list of tuple of int</span>
+<span class="sd">            The indices of the atoms defining the virtual site&#39;s position</span>
 <span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
-
-<span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
-<span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put in the VirtualSite. Indexing in this</span>
-<span class="sd">            list should match the ordering in the atoms list. Default is None.</span>
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
 <span class="sd">        name : string or None, default=None</span>
 <span class="sd">            The name of this virtual site. Default is None.</span>
-<span class="sd">        orientations : list of int 2-tuples</span>
-<span class="sd">            The orientations that should be used to create the virtual site.</span>
-<span class="sd">            Each orientation corresponds to an individual virtual particle.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -4272,44 +4032,40 @@
 <span class="sd">            The index of the newly-added virtual site in the molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">replace</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
-        <span class="n">vsite</span> <span class="o">=</span> <span class="n">BondChargeVirtualSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">vsite</span> <span class="o">=</span> <span class="n">BondChargeVirtualSite</span><span class="p">(</span>
+            <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;EP&quot;</span><span class="p">,</span>
+            <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_monovalent_lone_pair_virtual_site</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="n">in_plane_angle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">orientations</span><span class="p">,</span>
+        <span class="n">distance</span><span class="p">,</span>
+        <span class="n">out_of_plane_angle</span><span class="p">,</span>
+        <span class="n">in_plane_angle</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a bond charge-type virtual site, in which the location of the charge is specified by the position of</span>
-<span class="sd">        three atoms.</span>
+<span class="sd">        Create a bond charge-type virtual site, in which the location of the charge is</span>
+<span class="sd">        specified by the position of three atoms.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-
+<span class="sd">        orientations : list of tuple of int</span>
+<span class="sd">            The indices of the atoms defining the virtual site&#39;s position</span>
 <span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
-
 <span class="sd">        in_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping a</span>
 <span class="sd">        scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
 <span class="sd">        name : string or None, default=None</span>
 <span class="sd">            The name of this virtual site. Default is None.</span>
-<span class="sd">        orientations : list of int 3-tuples</span>
-<span class="sd">            The orientations that should be used to create the virtual site.</span>
-<span class="sd">            Each orientation corresponds to an individual virtual particle.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -4317,43 +4073,34 @@
 <span class="sd">            The index of the newly-added virtual site in the molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">replace</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
         <span class="n">vsite</span> <span class="o">=</span> <span class="n">MonovalentLonePairVirtualSite</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="n">in_plane_angle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;EP&quot;</span><span class="p">,</span>
+            <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">,</span>
+            <span class="n">out_of_plane_angle</span><span class="o">=</span><span class="n">out_of_plane_angle</span><span class="p">,</span>
+            <span class="n">in_plane_angle</span><span class="o">=</span><span class="n">in_plane_angle</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_divalent_lone_pair_virtual_site</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">orientations</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a divalent lone pair-type virtual site, in which the location of the charge is specified by the position</span>
-<span class="sd">        of three atoms.</span>
+<span class="sd">        Create a divalent lone pair-type virtual site, in which the location of the</span>
+<span class="sd">        charge is specified by the position of three atoms.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of three :class:`openff.toolkit.topology.molecule.Atom` objects</span>
-<span class="sd">            The three atoms defining the virtual site&#39;s position</span>
-
+<span class="sd">        orientations : list of tuple of int</span>
+<span class="sd">            The indices of the atoms defining the virtual site&#39;s position</span>
 <span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
 
 <span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
 <span class="sd">        name : string or None, default=None</span>
 <span class="sd">            The name of this virtual site. Default is None.</span>
-<span class="sd">        orientations : list of int 3-tuples</span>
-<span class="sd">            The orientations that should be used to create the virtual site.</span>
-<span class="sd">            Each orientation corresponds to an individual virtual particle.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -4361,40 +4108,37 @@
 <span class="sd">            The index of the newly-added virtual site in the molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">replace</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
         <span class="n">vsite</span> <span class="o">=</span> <span class="n">DivalentLonePairVirtualSite</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;EP&quot;</span><span class="p">,</span>
+            <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">,</span>
+            <span class="n">out_of_plane_angle</span><span class="o">=</span><span class="n">out_of_plane_angle</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_add_trivalent_lone_pair_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add_trivalent_lone_pair_virtual_site</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">orientations</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a trivalent lone pair-type virtual site, in which the location of the charge is specified by the position</span>
 <span class="sd">         of four atoms.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        atoms : list of 4 :class:`openff.toolkit.topology.molecule.Atom` objects</span>
-<span class="sd">            The four atoms defining the virtual site&#39;s position</span>
-
+<span class="sd">        orientations : list of tuple of int</span>
+<span class="sd">            The indices of the atoms defining the virtual site&#39;s position</span>
 <span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
 <span class="sd">        name : string or None, default=None</span>
 <span class="sd">            The name of this virtual site. Default is None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">replace</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
-        <span class="n">vsite</span> <span class="o">=</span> <span class="n">TrivalentLonePairVirtualSite</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">vsite</span> <span class="o">=</span> <span class="n">TrivalentLonePairVirtualSite</span><span class="p">(</span>
+            <span class="n">orientations</span><span class="o">=</span><span class="n">orientations</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;EP&quot;</span><span class="p">,</span>
+            <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_virtual_site</span><span class="p">(</span><span class="n">vsite</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="n">replace</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_virtual_sites</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">vsite</span><span class="p">)</span>
@@ -6435,7 +6179,9 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">atom_index</span></div>
 
-<div class="viewcode-block" id="Molecule.add_bond_charge_virtual_site"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.add_bond_charge_virtual_site">[docs]</a>    <span class="k">def</span> <span class="nf">add_bond_charge_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Molecule.add_bond_charge_virtual_site"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.add_bond_charge_virtual_site">[docs]</a>    <span class="k">def</span> <span class="nf">add_bond_charge_virtual_site</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">symmetric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a virtual site representing the charge on a bond.</span>
 
@@ -6452,17 +6198,6 @@
 <span class="sd">            The atoms defining the virtual site&#39;s position</span>
 
 <span class="sd">        distance : :class:`openmm.unit.Quantity` of dimension [Length] wrapping a scalar</span>
-
-<span class="sd">        charge_increments : list of floats of shape [N], optional, default=None</span>
-<span class="sd">            The amount of charge to remove from the VirtualSite&#39;s atoms and put</span>
-<span class="sd">            in the VirtualSite. Indexing in this list should match the ordering</span>
-<span class="sd">            in the atoms list. Default is None.</span>
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is ``None``.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is ``None``.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is ``None``.</span>
 <span class="sd">        name : string or None, default=&#39;&#39;</span>
 <span class="sd">            The name of this virtual site. Default is &#39;&#39;.</span>
 <span class="sd">        symmetric : bool, default=True</span>
@@ -6476,17 +6211,27 @@
 <span class="sd">            The index of the newly-added virtual site in the molecule</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;symmetric&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;symmetric&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="n">vsite_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_bond_charge_virtual_site</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">orientation_indices</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="k">if</span> <span class="n">symmetric</span> <span class="ow">is</span> <span class="kc">True</span> <span class="k">else</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+        <span class="n">orientations</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">tuple</span><span class="p">(</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">orientation</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="n">orientation_indices</span>
+        <span class="p">]</span>
+
+        <span class="n">vsite_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_bond_charge_virtual_site</span><span class="p">(</span>
+            <span class="n">orientations</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">replace</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="n">vsite_index</span></div>
 
 <div class="viewcode-block" id="Molecule.add_monovalent_lone_pair_virtual_site"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.add_monovalent_lone_pair_virtual_site">[docs]</a>    <span class="k">def</span> <span class="nf">add_monovalent_lone_pair_virtual_site</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="n">in_plane_angle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">atoms</span><span class="p">,</span>
+        <span class="n">distance</span><span class="p">,</span>
+        <span class="n">out_of_plane_angle</span><span class="p">,</span>
+        <span class="n">in_plane_angle</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">symmetric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a bond charge-type virtual site, in which the location of the charge is specified by the position of three atoms.</span>
@@ -6503,13 +6248,6 @@
 
 <span class="sd">        in_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping a</span>
 <span class="sd">        scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
 <span class="sd">        name : string or None, default=&#39;&#39;</span>
 <span class="sd">            The name of this virtual site. Default is &#39;&#39;.</span>
 <span class="sd">        symmetric : bool, default=False</span>
@@ -6526,20 +6264,28 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;symmetric&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;symmetric&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">orientation_indices</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="k">if</span> <span class="n">symmetric</span> <span class="ow">is</span> <span class="kc">True</span> <span class="k">else</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="n">orientations</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">tuple</span><span class="p">(</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">orientation</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="n">orientation_indices</span>
+        <span class="p">]</span>
 
         <span class="n">vsite_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_monovalent_lone_pair_virtual_site</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="n">in_plane_angle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="n">orientations</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="n">in_plane_angle</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">replace</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">vsite_index</span></div>
 
     <span class="c1"># def add_divalent_lone_pair_virtual_site(self, atoms, distance, out_of_plane_angle, in_plane_angle, charge_increments=None, weights=None, epsilon=None, sigma=None, rmin_half=None, name=None):</span>
 <div class="viewcode-block" id="Molecule.add_divalent_lone_pair_virtual_site"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.add_divalent_lone_pair_virtual_site">[docs]</a>    <span class="k">def</span> <span class="nf">add_divalent_lone_pair_virtual_site</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">atoms</span><span class="p">,</span>
+        <span class="n">distance</span><span class="p">,</span>
+        <span class="n">out_of_plane_angle</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">symmetric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a divalent lone pair-type virtual site, in which the location of the charge is specified by the position of three atoms.</span>
@@ -6553,13 +6299,6 @@
 
 <span class="sd">        out_of_plane_angle : :class:`openmm.unit.Quantity` of dimension [Angle] wrapping</span>
 <span class="sd">        a scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
 <span class="sd">        name : string or None, default=&#39;&#39;</span>
 <span class="sd">            The name of this virtual site. Default is &#39;&#39;.</span>
 <span class="sd">        symmetric : bool, default=True</span>
@@ -6574,18 +6313,22 @@
 <span class="sd">            The index of the newly-added virtual site in the molecule</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;symmetric&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;symmetric&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">orientation_indices</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">if</span> <span class="n">symmetric</span> <span class="ow">is</span> <span class="kc">True</span> <span class="k">else</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="n">orientations</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">tuple</span><span class="p">(</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">orientation</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="n">orientation_indices</span>
+        <span class="p">]</span>
 
         <span class="n">vsite_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_divalent_lone_pair_virtual_site</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="n">orientations</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">out_of_plane_angle</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">replace</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">vsite_index</span></div>
 
-<div class="viewcode-block" id="Molecule.add_trivalent_lone_pair_virtual_site"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.add_trivalent_lone_pair_virtual_site">[docs]</a>    <span class="k">def</span> <span class="nf">add_trivalent_lone_pair_virtual_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Molecule.add_trivalent_lone_pair_virtual_site"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.add_trivalent_lone_pair_virtual_site">[docs]</a>    <span class="k">def</span> <span class="nf">add_trivalent_lone_pair_virtual_site</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a trivalent lone pair-type virtual site, in which the location of the charge is specified by the position of four atoms.</span>
 
@@ -6595,13 +6338,6 @@
 <span class="sd">            The four atoms defining the virtual site&#39;s position</span>
 
 <span class="sd">        distance : openmm.unit.Quantity of dimension [Length] wrapping a scalar</span>
-
-<span class="sd">        epsilon : float</span>
-<span class="sd">            Epsilon term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        sigma : float, default=None</span>
-<span class="sd">            Sigma term for VdW properties of virtual site. Default is None.</span>
-<span class="sd">        rmin_half : float</span>
-<span class="sd">            Rmin_half term for VdW properties of virtual site. Default is None.</span>
 <span class="sd">        name : string or None, default=&#39;&#39;</span>
 <span class="sd">            The name of this virtual site. Default is &#39;&#39;.</span>
 
@@ -6614,11 +6350,14 @@
 
         <span class="c1"># This virtual site only makes sense with a single orientation</span>
 
-        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;orientations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;symmetric&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">orientation_indices</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+        <span class="n">orientations</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">tuple</span><span class="p">(</span><span class="n">atoms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">orientation</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">orientation</span> <span class="ow">in</span> <span class="n">orientation_indices</span>
+        <span class="p">]</span>
 
         <span class="n">vsite_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_trivalent_lone_pair_virtual_site</span><span class="p">(</span>
-            <span class="n">atoms</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="n">orientations</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">replace</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">vsite_index</span></div>
 
@@ -6935,10 +6674,10 @@
               
           </div>
           Last updated on
-            Mar 09, 2022.
+            Apr 20, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>

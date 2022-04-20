@@ -296,7 +296,7 @@ than one molecule is found?</p></li>
 </div>
 </dd></dl>
 <p class="rubric">Methods</p>
-<div class="table-container"><table class="longtable docutils align-default">
+<div class="table-container"><table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%"/>
 <col style="width: 90%"/>
@@ -311,7 +311,7 @@ than one molecule is found?</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.add_bond" title="openff.toolkit.topology.Molecule.add_bond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_bond</span></code></a>(atom1, atom2, bond_order, is_aromatic)</p></td>
 <td><p>Add a bond between two specified atom indices</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.add_bond_charge_virtual_site" title="openff.toolkit.topology.Molecule.add_bond_charge_virtual_site"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_bond_charge_virtual_site</span></code></a>(atoms, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.add_bond_charge_virtual_site" title="openff.toolkit.topology.Molecule.add_bond_charge_virtual_site"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_bond_charge_virtual_site</span></code></a>(atoms, distance)</p></td>
 <td><p>Add a virtual site representing the charge on a bond.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.add_conformer" title="openff.toolkit.topology.Molecule.add_conformer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_conformer</span></code></a>(coordinates)</p></td>
@@ -503,7 +503,7 @@ than one molecule is found?</p></li>
 </tbody>
 </table></div>
 <p class="rubric">Attributes</p>
-<div class="table-container"><table class="longtable docutils align-default">
+<div class="table-container"><table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%"/>
 <col style="width: 90%"/>
@@ -589,6 +589,80 @@ than one molecule is found?</p></li>
 </tr>
 </tbody>
 </table></div>
+<dl class="py method">
+<dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.add_atom">
+<span class="sig-name descname"><span class="pre">add_atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formal_charge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_aromatic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stereochemistry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_atom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_atom" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd><p>Add an atom</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>atomic_number</strong><span class="classifier">int</span></dt><dd><p>Atomic number of the atom</p>
+</dd>
+<dt><strong>formal_charge</strong><span class="classifier">int</span></dt><dd><p>Formal charge of the atom</p>
+</dd>
+<dt><strong>is_aromatic</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, atom is aromatic; if <code class="docutils literal notranslate"><span class="pre">False</span></code>, not aromatic</p>
+</dd>
+<dt><strong>stereochemistry</strong><span class="classifier">str, optional, default=None</span></dt><dd><p>Either <code class="docutils literal notranslate"><span class="pre">'R'</span></code> or <code class="docutils literal notranslate"><span class="pre">'S'</span></code> for specified stereochemistry, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if stereochemistry is irrelevant</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str, optional</span></dt><dd><p>An optional name for the atom</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the atom in the molecule</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Define a methane molecule</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'methane'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H2</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H3</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">H4</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H3</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H4</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.add_bond_charge_virtual_site">
+<span class="sig-name descname"><span class="pre">add_bond_charge_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_bond_charge_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_bond_charge_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd><p>Add a virtual site representing the charge on a bond.</p>
+<p>Create a bond charge-type virtual site, in which the location of the
+charge is specified by the position of two atoms. This supports
+placement of a virtual site <span class="math notranslate nohighlight">\(S\)</span> along a vector between two specified
+atoms, e.g. to allow for a sigma hole for halogens or similar contexts.
+With positive values of the distance, the virtual site lies outside the
+first indexed atom.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>atoms</strong><span class="classifier">list of <code class="xref py py-class docutils literal notranslate"><span class="pre">openff.toolkit.topology.molecule.Atom</span></code> objects</span></dt><dd><p>The atoms defining the virtual site’s position</p>
+</dd>
+<dt><strong>distance</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">openmm.unit.Quantity</span></code> of dimension [Length] wrapping a scalar</span></dt><dd></dd>
+<dt><strong>name</strong><span class="classifier">string or None, default=’’</span></dt><dd><p>The name of this virtual site. Default is ‘’.</p>
+</dd>
+<dt><strong>symmetric</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether to make virtual site symmetric by creating two particles
+instead of just one. As an example, for N_2 this should be set to
+True to model both lone pairs with the same parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the newly-added virtual site in the molecule</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.amber_impropers">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">amber_impropers</span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.amber_impropers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
@@ -2390,92 +2464,8 @@ Note that i-j-k-i torsions (cycles) are excluded.</p>
 <dd><p>Iterate over all VirtualSite objects.</p>
 </dd></dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.add_atom">
-<span class="sig-name descname"><span class="pre">add_atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formal_charge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_aromatic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stereochemistry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_atom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_atom" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
-<dd><p>Add an atom</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>atomic_number</strong><span class="classifier">int</span></dt><dd><p>Atomic number of the atom</p>
-</dd>
-<dt><strong>formal_charge</strong><span class="classifier">int</span></dt><dd><p>Formal charge of the atom</p>
-</dd>
-<dt><strong>is_aromatic</strong><span class="classifier">bool</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, atom is aromatic; if <code class="docutils literal notranslate"><span class="pre">False</span></code>, not aromatic</p>
-</dd>
-<dt><strong>stereochemistry</strong><span class="classifier">str, optional, default=None</span></dt><dd><p>Either <code class="docutils literal notranslate"><span class="pre">'R'</span></code> or <code class="docutils literal notranslate"><span class="pre">'S'</span></code> for specified stereochemistry, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if stereochemistry is irrelevant</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">str, optional</span></dt><dd><p>An optional name for the atom</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the atom in the molecule</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<p>Define a methane molecule</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'methane'</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">C</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H1</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H2</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H3</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H4</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H3</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H4</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.add_bond_charge_virtual_site">
-<span class="sig-name descname"><span class="pre">add_bond_charge_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_bond_charge_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_bond_charge_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
-<dd><p>Add a virtual site representing the charge on a bond.</p>
-<p>Create a bond charge-type virtual site, in which the location of the
-charge is specified by the position of two atoms. This supports
-placement of a virtual site <span class="math notranslate nohighlight">\(S\)</span> along a vector between two specified
-atoms, e.g. to allow for a sigma hole for halogens or similar contexts.
-With positive values of the distance, the virtual site lies outside the
-first indexed atom.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>atoms</strong><span class="classifier">list of <code class="xref py py-class docutils literal notranslate"><span class="pre">openff.toolkit.topology.molecule.Atom</span></code> objects</span></dt><dd><p>The atoms defining the virtual site’s position</p>
-</dd>
-<dt><strong>distance</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">openmm.unit.Quantity</span></code> of dimension [Length] wrapping a scalar</span></dt><dd></dd>
-<dt><strong>charge_increments</strong><span class="classifier">list of floats of shape [N], optional, default=None</span></dt><dd><p>The amount of charge to remove from the VirtualSite’s atoms and put
-in the VirtualSite. Indexing in this list should match the ordering
-in the atoms list. Default is None.</p>
-</dd>
-<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Epsilon term for VdW properties of virtual site. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</dd>
-<dt><strong>sigma</strong><span class="classifier">float, default=None</span></dt><dd><p>Sigma term for VdW properties of virtual site. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</dd>
-<dt><strong>rmin_half</strong><span class="classifier">float</span></dt><dd><p>Rmin_half term for VdW properties of virtual site. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-</dd>
-<dt><strong>name</strong><span class="classifier">string or None, default=’’</span></dt><dd><p>The name of this virtual site. Default is ‘’.</p>
-</dd>
-<dt><strong>symmetric</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether to make virtual site symmetric by creating two particles
-instead of just one. As an example, for N_2 this should be set to
-True to model both lone pairs with the same parameters.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the newly-added virtual site in the molecule</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.add_monovalent_lone_pair_virtual_site">
-<span class="sig-name descname"><span class="pre">add_monovalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_of_plane_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_plane_angle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_monovalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_monovalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">add_monovalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_of_plane_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_plane_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_monovalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_monovalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a bond charge-type virtual site, in which the location of the charge is specified by the position of three atoms.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -2487,12 +2477,6 @@ True to model both lone pairs with the same parameters.</p>
 <dt><strong>a scalar</strong></dt><dd></dd>
 <dt><strong>in_plane_angle</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">openmm.unit.Quantity</span></code> of dimension [Angle] wrapping a</span></dt><dd></dd>
 <dt><strong>scalar</strong></dt><dd></dd>
-<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Epsilon term for VdW properties of virtual site. Default is None.</p>
-</dd>
-<dt><strong>sigma</strong><span class="classifier">float, default=None</span></dt><dd><p>Sigma term for VdW properties of virtual site. Default is None.</p>
-</dd>
-<dt><strong>rmin_half</strong><span class="classifier">float</span></dt><dd><p>Rmin_half term for VdW properties of virtual site. Default is None.</p>
-</dd>
 <dt><strong>name</strong><span class="classifier">string or None, default=’’</span></dt><dd><p>The name of this virtual site. Default is ‘’.</p>
 </dd>
 <dt><strong>symmetric</strong><span class="classifier">bool, default=False</span></dt><dd><p>Whether to make virtual site symmetric by creating two particles
@@ -2512,7 +2496,7 @@ on atom1, and the other on atom3.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.add_divalent_lone_pair_virtual_site">
-<span class="sig-name descname"><span class="pre">add_divalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_of_plane_angle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_divalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_divalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">add_divalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_of_plane_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_divalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_divalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a divalent lone pair-type virtual site, in which the location of the charge is specified by the position of three atoms.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -2522,12 +2506,6 @@ on atom1, and the other on atom3.</p>
 <dt><strong>distance</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">openmm.unit.Quantity</span></code> of dimension [Length] wrapping a scalar</span></dt><dd></dd>
 <dt><strong>out_of_plane_angle</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">openmm.unit.Quantity</span></code> of dimension [Angle] wrapping</span></dt><dd></dd>
 <dt><strong>a scalar</strong></dt><dd></dd>
-<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Epsilon term for VdW properties of virtual site. Default is None.</p>
-</dd>
-<dt><strong>sigma</strong><span class="classifier">float, default=None</span></dt><dd><p>Sigma term for VdW properties of virtual site. Default is None.</p>
-</dd>
-<dt><strong>rmin_half</strong><span class="classifier">float</span></dt><dd><p>Rmin_half term for VdW properties of virtual site. Default is None.</p>
-</dd>
 <dt><strong>name</strong><span class="classifier">string or None, default=’’</span></dt><dd><p>The name of this virtual site. Default is ‘’.</p>
 </dd>
 <dt><strong>symmetric</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether to make virtual site symmetric by creating two particles
@@ -2546,7 +2524,7 @@ to model both lone pairs with the same parameters.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.add_trivalent_lone_pair_virtual_site">
-<span class="sig-name descname"><span class="pre">add_trivalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_trivalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_trivalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">add_trivalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_trivalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_trivalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a trivalent lone pair-type virtual site, in which the location of the charge is specified by the position of four atoms.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -2554,12 +2532,6 @@ to model both lone pairs with the same parameters.</p>
 <dt><strong>atoms</strong><span class="classifier">list of four <code class="xref py py-class docutils literal notranslate"><span class="pre">openff.toolkit.topology.molecule.Atom</span></code> objects</span></dt><dd><p>The four atoms defining the virtual site’s position</p>
 </dd>
 <dt><strong>distance</strong><span class="classifier">openmm.unit.Quantity of dimension [Length] wrapping a scalar</span></dt><dd></dd>
-<dt><strong>epsilon</strong><span class="classifier">float</span></dt><dd><p>Epsilon term for VdW properties of virtual site. Default is None.</p>
-</dd>
-<dt><strong>sigma</strong><span class="classifier">float, default=None</span></dt><dd><p>Sigma term for VdW properties of virtual site. Default is None.</p>
-</dd>
-<dt><strong>rmin_half</strong><span class="classifier">float</span></dt><dd><p>Rmin_half term for VdW properties of virtual site. Default is None.</p>
-</dd>
 <dt><strong>name</strong><span class="classifier">string or None, default=’’</span></dt><dd><p>The name of this virtual site. Default is ‘’.</p>
 </dd>
 </dl>
@@ -2698,10 +2670,10 @@ the Molecule’s indexing system.</p>
               
           </div>
           Last updated on
-            Mar 09, 2022.
+            Apr 20, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>
