@@ -14,8 +14,8 @@ $api-header-font-size: 1.1rem;
 $api-header-padding: 1 * $api-header-font-size;
 $api-arguments-indent: 2 * $api-header-font-size;
 
-$api-widescreen-width: 57vw;
-$api-fullhd-width: 95ex;
+$api-widescreen-width: $code-widescreen-width;
+$api-fullhd-width: $code-fullhd-width;
 
 // Definition of an object. Hopefully.
 // Could also use dl.py, but this would fail
@@ -331,6 +331,14 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                 margin-left: 1.5em;
                 padding-bottom: 0.75em;
             }
+        }
+    }
+
+    // Undo margin hackery for code blocks in API defs
+    .highlight {
+        @media screen and (min-width: $widescreen) {
+            margin-left: 0;
+            width: 100%;
         }
     }
 }
