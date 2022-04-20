@@ -8516,9 +8516,10 @@ html {
 }
 
 .content figcaption {
-  max-width: 30rem;
   margin: 1em auto 2em;
-  font-style: italic;
+  text-align: justify;
+  font-size: 90%;
+  hyphens: auto;
 }
 
 .content iframe {
