@@ -451,9 +451,10 @@ figure {
 
 // Figure caption
 figcaption {
-  max-width: px2rem(480px);
   margin: 1em auto 2em;
-  font-style: italic;
+  text-align: justify;
+  font-size: 90%;
+  hyphens: auto;
 }
 
 // Limit width to container

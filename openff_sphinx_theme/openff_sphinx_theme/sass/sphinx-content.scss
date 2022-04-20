@@ -110,6 +110,8 @@ table.highlighttable {
   }
 }
 
+
+// Code blocks
 .highlight {
   background-color: $code-background;
   border-radius: 4px;
@@ -124,9 +126,14 @@ table.highlighttable {
     overflow-x: unset;
     margin: unset;
   }
-  // Neat but expandable code blocks;
-  @media screen and (min-width: $desktop) {
-    width: 100%;
+  // Give ourselves some more room on big screens
+  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+      margin-left: calc(-0.5 * (#{$code-widescreen-width} - #{$para-width}));
+      width: $code-widescreen-width;
+  }
+  @media screen and (min-width: $fullhd) {
+      margin-left: -0.5 * ($code-fullhd-width - $para-width);
+      width: $code-fullhd-width;
   }
   /// Code with line numbers in sphinx>=4
   span.linenos {
@@ -172,7 +179,7 @@ table.highlighttable {
 // The visual artifact is almost unnoticeable and the
 // improved ease of reading is enormous,
 // and theres no issues with having to condense API stuff
-p:not(.admonition-title) {
+p:not(.admonition-title), ul.simple, ol.simple {
   max-width: $para-width;
   margin-left: auto;
   margin-right: auto;
