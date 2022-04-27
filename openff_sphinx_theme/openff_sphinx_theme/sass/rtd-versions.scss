@@ -1,0 +1,27 @@
+.navbar-item.off-rtd-versions {
+    @extend a.navbar-item !optional;
+
+    @media screen and (min-width: $desktop) {
+        .off-rtd-other-versions {
+            display: block;
+            font-size: 90%;
+            padding: 12px;
+            color: $accent;
+            position: absolute;
+            right: 0;
+            top: $navbar-height;
+            width: 300px;
+            background: inherit;
+        }
+
+        a {
+            color: white;
+        }
+
+        &:not(:hover) {
+            .off-rtd-other-versions {
+                display: None;
+            }
+        }
+    }
+}
