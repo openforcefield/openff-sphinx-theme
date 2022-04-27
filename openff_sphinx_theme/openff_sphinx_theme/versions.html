@@ -1,13 +1,15 @@
 {% set READTHEDOCS = 1 %}
 {% set current_version = 0.1.0 %}
 {% if READTHEDOCS %}
-{# Add rst-badge after rst-versions for small badge style. #}
-  <span class="navbar-item rst-versions" aria-label="{{ _('Versions') }}">
-    <span class="rst-current-version">
+  <span class="navbar-item off-rtd-versions" aria-label="{{ _('Versions') }}">
+    <span class="off-rtd-current-version">
       <span class="fa fa-book"></span>
       {{ current_version }}
     </span>
-    <div class="rst-other-versions">
+    <div class="off-rtd-other-versions">
+      <div class="off-rtd-other-versions-heading">
+        <span class="fa fa-book"></span> ReadTheDocs
+      </div>
       <dl>
         <dt>{{ _('Versions') }}</dt>
         {% for slug, url in versions %}

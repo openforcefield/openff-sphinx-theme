@@ -1,8 +1,8 @@
-.navbar-item.rst-versions {
+.navbar-item.off-rtd-versions {
     @extend a.navbar-item !optional;
 
     @media screen and (min-width: $desktop) {
-        .rst-other-versions {
+        .off-rtd-other-versions {
             display: block;
             font-size: 90%;
             padding: 12px;
@@ -15,11 +15,11 @@
         }
 
         a {
-            color: white
+            color: white;
         }
 
         &:not(:hover) {
-            .rst-other-versions {
+            .off-rtd-other-versions {
                 display: None;
             }
         }
