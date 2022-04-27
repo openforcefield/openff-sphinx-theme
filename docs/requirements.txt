@@ -9,5 +9,3 @@ nbconvert
 ipykernel
 myst-parser
 autodoc_pydantic
-git+https://github.com/openforcefield/openff-sphinx-theme.git@main
-
