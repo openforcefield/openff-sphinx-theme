@@ -115,6 +115,7 @@ table.highlighttable {
 .highlight {
   background-color: $code-background;
   border-radius: 4px;
+  @include z-depth(2);
   // Unselectable prompts and line numbers
   .gp, .linenos {
     @include unselectable;
@@ -141,6 +142,56 @@ table.highlighttable {
     // Hide line numbers on mobile
     @media screen and (max-width: $tablet - 1px) {
       display: none;
+    }
+  }
+}
+
+.table-container.autosummary {
+  table {
+    table-layout:fixed;
+    width: 100%;
+    colgroup {
+      col:first-child {
+        width: 30% !important;
+      }
+      col:last-child {
+        width: 70% !important;
+      }
+    }
+    td:first-child {
+      overflow-wrap: break-word;
+      a, code {
+        overflow-wrap: break-word;
+        &::after {
+          content: "​"
+        }
+      }
+    }
+  }
+  overflow-x: hidden;
+}
+
+.table-container:not(.autosummary) {
+  @include z-depth(2);
+  // Give ourselves some more room on big screens
+  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+      margin-left: calc(-0.5 * (#{$table-widescreen-width} - #{$para-width}));
+      width: $table-widescreen-width;
+      max-width: $table-widescreen-width;
+  }
+  @media screen and (min-width: $fullhd) {
+      margin-left: -0.5 * ($table-fullhd-width - $para-width);
+      width: $table-fullhd-width;
+      max-width: $table-widescreen-width;
+  }
+}
+
+table {
+  // Undo margin hackery for code blocks in tables
+  .highlight {
+    @media screen and (min-width: $widescreen) {
+      margin-left: 0;
+      width: 100%;
     }
   }
 }
@@ -409,6 +460,7 @@ a.brackets {
 
   // Undo margin hackery for myst notebooks
   .highlight {
+      border: none;
       @media screen and (min-width: $widescreen) {
           margin-left: 0;
           width: 100%;
