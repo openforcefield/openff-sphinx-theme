@@ -9206,6 +9206,13 @@ html {
   padding: 5px;
 }
 
+@media screen and (min-width: 1216px) {
+  .content .cell.container .highlight {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
 .content .admonition {
   margin: 1.25rem 0;
   padding: 0 0.75rem;
