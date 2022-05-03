@@ -183,8 +183,7 @@ table.highlighttable {
       width: $table-fullhd-width;
       max-width: $table-widescreen-width;
   }
-  table {
-    @include z-depth(2);
+  table:not(.align-right):not(.align-left) {
     margin-right: auto;
     margin-left: auto;
   }
