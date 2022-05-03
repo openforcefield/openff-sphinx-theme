@@ -195,9 +195,21 @@ table.highlighttable {
       margin-left: 0.5 * ($table-fullhd-width - $para-width);
     }
   }
-  table:not(.align-right):not(.align-left) {
-    margin-right: auto;
-    margin-left: auto;
+  table {
+    font-size: 85%;
+    &:not(.align-right):not(.align-left) {
+      margin-right: auto;
+      margin-left: auto;
+    }
+    // Table row
+    tr {
+      transition: background-color 125ms;
+
+      // Table row on hover
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.035);
+      }
+    }
   }
 }
 
