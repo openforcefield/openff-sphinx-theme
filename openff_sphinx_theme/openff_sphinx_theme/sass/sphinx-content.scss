@@ -406,4 +406,12 @@ a.brackets {
       }
     }
   }
+
+  // Undo margin hackery for myst notebooks
+  .highlight {
+      @media screen and (min-width: $widescreen) {
+          margin-left: 0;
+          width: 100%;
+      }
+  }
 }
