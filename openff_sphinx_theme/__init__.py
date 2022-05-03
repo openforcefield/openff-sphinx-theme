@@ -154,8 +154,11 @@ def postproc_html(app, exception):
         with open(page, "r", encoding="utf-8") as content:
             soup = BeautifulSoup(content, "lxml")
             for table in soup.find_all("table"):
+                container_classes = ["table-container"]
+                if "autosummary" in table.get("class", ()):
+                    container_classes.append("autosummary")
                 if "table-container" not in table.parent.get("class", ()):
-                    table.wrap(soup.new_tag("div", **{"class": "table-container"}))
+                    table.wrap(soup.new_tag("div", **{"class": container_classes}))
 
             if minify:
                 html = html_minify(str(soup))
