@@ -8526,84 +8526,6 @@ html {
   max-width: 100%;
 }
 
-.content table.simple, .content table:not([class]) {
-  display: inline-block;
-  max-width: 100%;
-  overflow: auto;
-  font-size: 0.8rem;
-  background-color: #FFFFFF;
-  border-radius: 0.125rem;
-  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.05), 0 0 0.0625rem rgba(0, 0, 0, 0.1);
-  touch-action: auto;
-}
-
-@media print {
-  .content table.simple, .content table:not([class]) {
-    display: table;
-  }
-}
-
-.content table.simple + *, .content table:not([class]) + * {
-  margin-top: 1.5em;
-}
-
-.content table.simple th > *:first-child,
-.content table.simple td > *:first-child, .content table:not([class]) th > *:first-child,
-.content table:not([class]) td > *:first-child {
-  margin-top: 0;
-}
-
-.content table.simple th > *:last-child,
-.content table.simple td > *:last-child, .content table:not([class]) th > *:last-child,
-.content table:not([class]) td > *:last-child {
-  margin-bottom: 0;
-}
-
-.content table.simple th:not([align]),
-.content table.simple td:not([align]), .content table:not([class]) th:not([align]),
-.content table:not([class]) td:not([align]) {
-  text-align: left;
-}
-
-[dir="rtl"] .content table.simple th:not([align]), [dir="rtl"] .content table.simple td:not([align]), [dir="rtl"] .content table:not([class]) th:not([align]), [dir="rtl"] .content table:not([class]) td:not([align]) {
-  text-align: right;
-}
-
-.content table.simple th, .content table:not([class]) th {
-  min-width: 6.25rem;
-  padding: 0.9375em 1.25em;
-  color: #FFFFFF;
-  vertical-align: top;
-  background-color: #121212;
-}
-
-.content table.simple th a, .content table:not([class]) th a {
-  color: inherit;
-}
-
-.content table.simple td, .content table:not([class]) td {
-  padding: 0.9375em 1.25em;
-  vertical-align: top;
-  border-top: 0.0625rem solid #0a0a0a;
-}
-
-.content table.simple tr, .content table:not([class]) tr {
-  transition: background-color 125ms;
-}
-
-.content table.simple tr:hover, .content table:not([class]) tr:hover {
-  background-color: rgba(0, 0, 0, 0.035);
-  box-shadow: 0 0.0625rem 0 #FFFFFF inset;
-}
-
-.content table.simple tr:first-child td, .content table:not([class]) tr:first-child td {
-  border-top: 0;
-}
-
-.content table a, .content table code {
-  word-break: normal;
-}
-
 .content .align-left {
   text-align: left;
 }
@@ -8817,9 +8739,21 @@ html {
   }
 }
 
+.content .table-container:not(.autosummary) table {
+  font-size: 85%;
+}
+
 .content .table-container:not(.autosummary) table:not(.align-right):not(.align-left) {
   margin-right: auto;
   margin-left: auto;
+}
+
+.content .table-container:not(.autosummary) table tr {
+  transition: background-color 125ms;
+}
+
+.content .table-container:not(.autosummary) table tr:hover {
+  background-color: rgba(0, 0, 0, 0.035);
 }
 
 @media screen and (min-width: 1216px) {
