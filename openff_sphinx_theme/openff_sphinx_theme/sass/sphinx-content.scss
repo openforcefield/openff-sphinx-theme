@@ -178,10 +178,10 @@ table.highlighttable {
       width: $table-widescreen-width;
       max-width: $table-widescreen-width;
       table.align-right {
-        margin-right: 0.5 * ($table-widescreen-width - $para-width);
+        margin-right: calc(0.5 * (#{$table-widescreen-width} - #{$para-width}));
       }
       table.align-left {
-        margin-left: 0.5 * ($table-widescreen-width - $para-width);
+        margin-left: calc(0.5 * (#{$table-widescreen-width} - #{$para-width}));
       }
   }
   @media screen and (min-width: $fullhd) {
