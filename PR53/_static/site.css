@@ -8795,13 +8795,25 @@ html {
     width: 66vw;
     max-width: 66vw;
   }
+  .content .table-container:not(.autosummary) table.align-right {
+    margin-right: calc(0.5 * (66vw - 80ex));
+  }
+  .content .table-container:not(.autosummary) table.align-left {
+    margin-left: calc(0.5 * (66vw - 80ex));
+  }
 }
 
 @media screen and (min-width: 1408px) {
   .content .table-container:not(.autosummary) {
     margin-left: -15ex;
     width: 110ex;
-    max-width: 66vw;
+    max-width: 110ex;
+  }
+  .content .table-container:not(.autosummary) table.align-right {
+    margin-right: 15ex;
+  }
+  .content .table-container:not(.autosummary) table.align-left {
+    margin-left: 15ex;
   }
 }
 
