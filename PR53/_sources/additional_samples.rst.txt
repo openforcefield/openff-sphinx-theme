@@ -213,9 +213,9 @@ List Tables
 Alignment
 ~~~~~~~~~
 
-.. list-table:: Center Aligned
+.. list-table:: Left Aligned
    :header-rows: 1
-   :align: center
+   :align: left
 
    * - Column 1
      - Column 2
