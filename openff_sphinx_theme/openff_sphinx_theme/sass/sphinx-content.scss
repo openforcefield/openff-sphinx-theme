@@ -177,11 +177,23 @@ table.highlighttable {
       margin-left: calc(-0.5 * (#{$table-widescreen-width} - #{$para-width}));
       width: $table-widescreen-width;
       max-width: $table-widescreen-width;
+      table.align-right {
+        margin-right: 0.5 * ($table-widescreen-width - $para-width);
+      }
+      table.align-left {
+        margin-left: 0.5 * ($table-widescreen-width - $para-width);
+      }
   }
   @media screen and (min-width: $fullhd) {
-      margin-left: -0.5 * ($table-fullhd-width - $para-width);
-      width: $table-fullhd-width;
-      max-width: $table-widescreen-width;
+    margin-left: -0.5 * ($table-fullhd-width - $para-width);
+    width: $table-fullhd-width;
+    max-width: $table-fullhd-width;
+    table.align-right {
+      margin-right: 0.5 * ($table-fullhd-width - $para-width);
+    }
+    table.align-left {
+      margin-left: 0.5 * ($table-fullhd-width - $para-width);
+    }
   }
   table:not(.align-right):not(.align-left) {
     margin-right: auto;
