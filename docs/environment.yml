@@ -20,6 +20,4 @@ dependencies:
   - myst-nb
   - pandoc
   - wheel
-  - pip:
-    - git+https://github.com/openforcefield/openff-sphinx-theme.git@main
 
