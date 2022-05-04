@@ -42,7 +42,8 @@ table.align-left {
 figure.align-center,
 img.align-center,
 object.align-center,
-table.align-center {
+table.align-center,
+table.align-default {
   margin-right: auto;
   margin-left: auto;
 }
@@ -172,42 +173,37 @@ table.highlighttable {
 }
 
 .table-container:not(.autosummary) {
-  // Give ourselves some more room on big screens
-  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-      margin-left: calc(-0.5 * (#{$table-widescreen-width} - #{$para-width}));
-      width: $table-widescreen-width;
-      max-width: $table-widescreen-width;
-      table.align-right {
-        margin-right: calc(0.5 * (#{$table-widescreen-width} - #{$para-width}));
+  // Allow large, scrollable tables to be expanded
+  &.expanded {
+    @include z-depth(2);
+    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+      margin-left: calc(-0.5 * (#{$expanded-table-widescreen-width} - #{$para-width}));
+      width: $expanded-table-widescreen-width;
+      max-width: $expanded-table-widescreen-width;
+      table {
+        min-width: $expanded-table-widescreen-width;
       }
-      table.align-left {
-        margin-left: calc(0.5 * (#{$table-widescreen-width} - #{$para-width}));
-      }
-  }
-  @media screen and (min-width: $fullhd) {
-    margin-left: -0.5 * ($table-fullhd-width - $para-width);
-    width: $table-fullhd-width;
-    max-width: $table-fullhd-width;
-    table.align-right {
-      margin-right: 0.5 * ($table-fullhd-width - $para-width);
     }
-    table.align-left {
-      margin-left: 0.5 * ($table-fullhd-width - $para-width);
+    @media screen and (min-width: $fullhd) {
+      margin-left: -0.5 * ($expanded-table-fullhd-width - $para-width);
+      width: $expanded-table-fullhd-width;
+      max-width: $expanded-table-fullhd-width;
+      table {
+        min-width: $expanded-table-fullhd-width;
+      }
     }
   }
   table {
     font-size: 85%;
-    &:not(.align-right):not(.align-left) {
-      margin-right: auto;
-      margin-left: auto;
-    }
-    // Table row
-    tr {
-      transition: background-color 125ms;
+    // Table row in the body
+    tbody {
+      tr {
+        transition: background-color 125ms;
 
-      // Table row on hover
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.035);
+        // Table row on hover
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.035);
+        }
       }
     }
   }
