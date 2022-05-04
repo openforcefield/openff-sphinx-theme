@@ -210,6 +210,16 @@ List Tables
    * - Item 1
      - Item 2
 
+.. list-table:: 50% width list table
+   :header-rows: 1
+   :width: 50%
+   :widths: 1 4
+
+   * - One fifth width column
+     - Four fifths width column
+   * - Item 1
+     - Item 2
+
 Alignment
 ~~~~~~~~~
 
@@ -222,6 +232,14 @@ Alignment
    * - Item 1
      - Item 2
 
+.. list-table:: Center Aligned
+   :header-rows: 1
+   :align: center
+
+   * - Column 1
+     - Column 2
+   * - Item 1
+     - Item 2
 
 .. list-table:: Right Aligned
    :header-rows: 1
