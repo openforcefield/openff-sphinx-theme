@@ -230,6 +230,9 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         // Parameters, Returns, Other Parameters, Raises sections
         >.field-list {
+            max-width: $para-width;
+            margin-left: auto;
+            margin-right: auto;
             // Headings
             >dt {
                 @extend .rubric;
@@ -239,7 +242,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                 >ul.simple {
                     margin-left: 0;
                 }
-                >ul.simple>li:first-child {
+                >ul.simple:first-child>li {
                     list-style: none;
                     margin-left: 0;
                 }
