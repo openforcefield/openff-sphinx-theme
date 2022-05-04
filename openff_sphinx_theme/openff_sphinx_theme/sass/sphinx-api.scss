@@ -239,11 +239,11 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                 >ul.simple {
                     margin-left: 0;
                 }
-                >ul.simple>li {
+                >ul.simple>li:first-child {
                     list-style: none;
                     margin-left: 0;
                 }
-                >dl>dt, >ul.simple>li>p:first-child, >p:first-child {
+                >dl>dt, >ul.simple:first-child>li>p:first-child, >p:first-child {
                     // Name of the parameter or return value
                     >strong {
                         font-family: $family-monospace;
@@ -265,7 +265,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                     content: ": ";
                 }
                 // Description of the parameter, return value, or exception
-                >dl>dd, >ul.simple>li>p:not(:first-child) {
+                >dl>dd, >ul.simple:first-child>li>p:not(:first-child) {
                     margin-top: 0;
                     margin-bottom: 0.5em;
                 }
