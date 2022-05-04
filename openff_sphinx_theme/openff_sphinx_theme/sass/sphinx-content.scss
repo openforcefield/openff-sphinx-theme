@@ -201,13 +201,15 @@ table.highlighttable {
       margin-right: auto;
       margin-left: auto;
     }
-    // Table row
-    tr {
-      transition: background-color 125ms;
+    // Table row in the body
+    tbody {
+      tr {
+        transition: background-color 125ms;
 
-      // Table row on hover
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.035);
+        // Table row on hover
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.035);
+        }
       }
     }
   }
