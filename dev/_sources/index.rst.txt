@@ -105,6 +105,7 @@ or ``theme.conf`` for more details.
     markdown.md
     rst-cheatsheet/rst-cheatsheet
     primer
+    expanded-tables
 
 .. toctree::
     :caption: Changes and License

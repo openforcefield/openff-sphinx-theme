@@ -8563,7 +8563,8 @@ html {
 .content figure.align-center,
 .content img.align-center,
 .content object.align-center,
-.content table.align-center {
+.content table.align-center,
+.content table.align-default {
   margin-right: auto;
   margin-left: auto;
 }
@@ -8660,15 +8661,15 @@ html {
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
   .content .highlight {
-    margin-left: calc(-0.5 * (57vw - 80ex));
+    margin-left: calc(-0.5 * (57vw - 42.5rem));
     width: 57vw;
   }
 }
 
 @media screen and (min-width: 1408px) {
   .content .highlight {
-    margin-left: -7.5ex;
-    width: 95ex;
+    margin-left: -3.75rem;
+    width: 50rem;
   }
 }
 
@@ -8711,31 +8712,29 @@ html {
   content: "​";
 }
 
+.content .table-container:not(.autosummary).expanded {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .table-container:not(.autosummary) {
-    margin-left: calc(-0.5 * (66vw - 80ex));
+  .content .table-container:not(.autosummary).expanded {
+    margin-left: calc(-0.5 * (66vw - 42.5rem));
     width: 66vw;
     max-width: 66vw;
   }
-  .content .table-container:not(.autosummary) table.align-right {
-    margin-right: calc(0.5 * (66vw - 80ex));
-  }
-  .content .table-container:not(.autosummary) table.align-left {
-    margin-left: calc(0.5 * (66vw - 80ex));
+  .content .table-container:not(.autosummary).expanded table {
+    min-width: 66vw;
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .table-container:not(.autosummary) {
-    margin-left: -15ex;
-    width: 110ex;
-    max-width: 110ex;
+  .content .table-container:not(.autosummary).expanded {
+    margin-left: -7.75rem;
+    width: 58rem;
+    max-width: 58rem;
   }
-  .content .table-container:not(.autosummary) table.align-right {
-    margin-right: 15ex;
-  }
-  .content .table-container:not(.autosummary) table.align-left {
-    margin-left: 15ex;
+  .content .table-container:not(.autosummary).expanded table {
+    min-width: 58rem;
   }
 }
 
@@ -8743,16 +8742,11 @@ html {
   font-size: 85%;
 }
 
-.content .table-container:not(.autosummary) table:not(.align-right):not(.align-left) {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.content .table-container:not(.autosummary) table tr {
+.content .table-container:not(.autosummary) table tbody tr {
   transition: background-color 125ms;
 }
 
-.content .table-container:not(.autosummary) table tr:hover {
+.content .table-container:not(.autosummary) table tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.035);
 }
 
@@ -8786,7 +8780,7 @@ html {
 }
 
 .content p:not(.admonition-title), .content ul.simple, .content ol.simple {
-  max-width: 80ex;
+  max-width: 42.5rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -9705,15 +9699,15 @@ html .content .admonition-title:last-child {
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
   .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    margin-left: calc(-0.5 * (57vw - 80ex));
+    margin-left: calc(-0.5 * (57vw - 42.5rem));
     width: 57vw;
   }
 }
 
 @media screen and (min-width: 1408px) {
   .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    margin-left: -7.5ex;
-    width: 95ex;
+    margin-left: -3.75rem;
+    width: 50rem;
   }
 }
 
@@ -9985,7 +9979,7 @@ html .content .admonition-title:last-child {
 
 @media screen and (min-width: 1024px) {
   .content {
-    max-width: 80ex;
+    max-width: 42.5rem;
     margin: auto;
   }
 }
