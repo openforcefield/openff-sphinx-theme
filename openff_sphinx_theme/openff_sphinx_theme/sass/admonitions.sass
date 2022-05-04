@@ -41,7 +41,7 @@
     border-left-color: $color
     [dir="rtl"] &
         border-right-color: $color
-    .admonition-title
+    .admonition-title, &.deprecated .versionmodified.deprecated
       background-color: rgba($color, 0.1)
       border-left-color: $color
 
@@ -116,7 +116,7 @@
     // Rules: layout
     // ----------------------------------------------------------------------------
     // Admonition
-    .admonition
+    .admonition, div.deprecated
       margin: $admonition-margin 0
       padding: 0 0.75rem
       overflow: hidden
@@ -153,10 +153,10 @@
         margin-top: 0
 
       // Adjust spacing on last child
-      html & > :last-child
+      html &:not(div.deprecated) > :last-child
         margin-bottom: 0.75rem
 
-      >p:not(.admonition-title)
+      &:not(div.deprecated) >p:not(.admonition-title)
         max-width: calc(80ex - 2  * #{$admonition-margin})
 
       &.note, &.admonition-note
@@ -193,11 +193,23 @@
           @include material_admonitions($blue, "Font Awesome 5 Free", "\f0c5")
       &.admonition-quote, &.admonition-cite
           @include material_admonitions($grey, "Font Awesome 5 Free", "\f10e")
+      &.deprecated, &.admonition-deprecated
+          @include material_admonitions($yellow, "Font Awesome 5 Free", "\f017")
+
+    // Differences between deprecated and admonitions
+    div.deprecated > p
+      margin-top: 0
+      max-width: unset
+
+    .versionmodified.deprecated
+      display: block
+      margin: 0 -0.75rem 0.75rem -1rem
 
     // Admonition title
     .admonition-title
-      position: relative
       margin: 0 -0.75rem 0 -1rem
+    .admonition-title, .versionmodified.deprecated
+      position: relative
       padding: 0.5rem 0.75rem 0.5rem 2.5rem
       font-weight: 700
       background-color: rgba($accent, 0.1)
@@ -212,7 +224,10 @@
 
       // Adjust spacing for title-only admonitions
       html &:last-child
-        margin-bottom: 0
+        &.admonition-title
+          margin-bottom: 0
+        &.versionmodified.deprecated
+          margin-bottom: -1rem
 
       // Admonition icon
       &::before
