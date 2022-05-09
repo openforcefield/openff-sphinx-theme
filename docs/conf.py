@@ -102,6 +102,7 @@ html_theme_options = {
     "repo_name": "openff-sphinx-theme",
     "html_minify": False,
     "css_minify": False,
+    "html_collapsible_autodoc": True,
     "globaltoc_depth": 2,
     "globaltoc_include_local": True,
     "color_accent": "openff-toolkit-blue",

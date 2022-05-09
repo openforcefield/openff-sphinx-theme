@@ -4,10 +4,8 @@ import hashlib
 import inspect
 import os
 import sys
-from multiprocessing import Manager
 from pathlib import Path
-from typing import List, Optional
-from xml.etree import ElementTree
+from typing import List
 
 import bs4
 import sass
@@ -115,6 +113,40 @@ def register_outdated(app, env, added, changed, removed):
     return ()
 
 
+def wrap_tables(soup: BeautifulSoup):
+    for table in soup.find_all("table"):
+        container_attributes = {
+            "class": ["table-container"] + table.get("class", []),
+        }
+        if "table-container" not in table.parent.get("class", ()):
+            table.wrap(soup.new_tag("div", **container_attributes))
+
+
+def api_dl_to_details(soup: BeautifulSoup):
+    for dl in soup.select(
+        "dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class]"
+    ):
+        dl.name = "details"
+        if "section" in dl.parent.get("class", []):
+            dl["open"] = ""
+        try:
+            dl["class"].append("autodoc")
+        except KeyError:
+            dl["class"] = ["autodoc"]
+        for child in dl.children:
+            if child.name == "dd":
+                child.name = "div"
+            elif child.name == "dt":
+                child.name = "summary"
+            else:
+                continue
+
+            try:
+                child["class"].append("autodoc")
+            except KeyError:
+                child["class"] = ["autodoc"]
+
+
 def postproc_html(app, exception):
     """Prettify or minify the HTML, as well as wrap tables with .table-container"""
     if exception is not None:
@@ -129,6 +161,9 @@ def postproc_html(app, exception):
 
     minify = app.config["html_theme_options"].get("html_minify", False)
     prettify = app.config["html_theme_options"].get("html_prettify", False)
+    collapsible_api = app.config["html_theme_options"].get(
+        "html_collapsible_autodoc", False
+    )
     last = -1
     npages = len(target_files)
     print(f"Post-processing {npages} HTML files")
@@ -153,12 +188,10 @@ def postproc_html(app, exception):
 
         with open(page, "r", encoding="utf-8") as content:
             soup = BeautifulSoup(content, "lxml")
-            for table in soup.find_all("table"):
-                container_attributes = {
-                    "class": ["table-container"] + table.get("class", []),
-                }
-                if "table-container" not in table.parent.get("class", ()):
-                    table.wrap(soup.new_tag("div", **container_attributes))
+            wrap_tables(soup)
+
+            if collapsible_api:
+                api_dl_to_details(soup)
 
             if minify:
                 html = html_minify(str(soup))
