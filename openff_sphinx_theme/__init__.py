@@ -162,7 +162,7 @@ def postproc_html(app, exception):
     minify = app.config["html_theme_options"].get("html_minify", False)
     prettify = app.config["html_theme_options"].get("html_prettify", False)
     collapsible_api = app.config["html_theme_options"].get(
-        "html_collapsible_api", False
+        "html_collapsible_autodoc", False
     )
     last = -1
     npages = len(target_files)
