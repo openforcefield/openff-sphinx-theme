@@ -103,7 +103,7 @@ html_theme_options = {
     "html_minify": False,
     "css_minify": False,
     "globaltoc_depth": 2,
-    "globaltoc_include_localtoc": True,
+    "globaltoc_include_local": True,
     "color_accent": "openff-toolkit-blue",
     "nav_links": [
         {
