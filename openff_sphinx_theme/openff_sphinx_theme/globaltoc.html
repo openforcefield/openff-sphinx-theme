@@ -16,8 +16,26 @@
       <li>
         <a href="{{ item.href|e }}" class="{% if item.current %}is-active{% endif %}">{{ item.contents }}</a>
         {%- if item.children and 'localtoc.html' not in sidebars -%}
+          {%- set children = item.children -%}
+        {%-
+          elif display_toc
+          and item.current
+          and theme_globaltoc_include_local|tobool
+          and 'localtoc.html' not in sidebars
+        %}
+          {%- set derendered_localtoc = derender_toc(toc, False) -%}
+          {%-
+            if derendered_localtoc|length == 1
+            and derendered_localtoc[0].href == "#"
+          -%}
+            {%- set children = derendered_localtoc[0].children -%}
+          {%- else -%}
+            {%- set children = derendered_localtoc -%}
+          {%- endif -%}
+        {%- endif -%}
+        {%- if children -%}
           <ul>
-            {% for child in item.children recursive -%}
+            {% for child in children recursive -%}
               <li>
                 {% if child.caption %}
                   <p class="menu-label">{{ child.caption }}</p>
