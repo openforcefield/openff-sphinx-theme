@@ -306,7 +306,7 @@ a.brackets {
 // Add language identifiers to code blocks
 @mixin language-identifier($langname) {
   position: relative;
-  &::before {
+  .highlight::before {
     @include unselectable;
     content: $langname;
     color: #696969;

@@ -342,6 +342,9 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         @media screen and (min-width: $widescreen) {
             margin-left: 0;
             width: 100%;
+            &::before {
+                right: 0.25rem;
+            }
         }
     }
 }
@@ -360,6 +363,12 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             color: $api-type-color;
         }
     }
+}
+
+details.autodoc_pydantic_collapsable_json > summary {
+    max-width: 42.5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 // Break headings wherever, if necessary
