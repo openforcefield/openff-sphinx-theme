@@ -8808,7 +8808,19 @@ html {
   content: "]";
 }
 
-.content .highlight-python .highlight pre::before, .content .highlight-py .highlight pre::before, .content .highlight-python3 .highlight pre::before, .content .highlight-py3 .highlight pre::before {
+.content .highlight-pycon span.go {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.content .highlight-python, .content .highlight-py, .content .highlight-python3, .content .highlight-py3, .content .highlight-pycon {
+  position: relative;
+}
+
+.content .highlight-python::before, .content .highlight-py::before, .content .highlight-python3::before, .content .highlight-py3::before, .content .highlight-pycon::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8818,13 +8830,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-sh .highlight pre::before, .content .highlight-shell-session .highlight pre::before, .content .highlight-shell .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-python::before, .content .highlight-py::before, .content .highlight-python3::before, .content .highlight-py3::before, .content .highlight-pycon::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-python::before, .content .highlight-py::before, .content .highlight-python3::before, .content .highlight-py3::before, .content .highlight-pycon::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-python::before, .content .highlight-py::before, .content .highlight-python3::before, .content .highlight-py3::before, .content .highlight-pycon::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-sh, .content .highlight-shell-session, .content .highlight-shell {
+  position: relative;
+}
+
+.content .highlight-sh::before, .content .highlight-shell-session::before, .content .highlight-shell::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8834,13 +8867,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-bash .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-sh::before, .content .highlight-shell-session::before, .content .highlight-shell::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-sh::before, .content .highlight-shell-session::before, .content .highlight-shell::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-sh::before, .content .highlight-shell-session::before, .content .highlight-shell::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-bash {
+  position: relative;
+}
+
+.content .highlight-bash::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8850,13 +8904,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-yaml .highlight pre::before, .content .highlight-yml .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-bash::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-bash::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-bash::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-yaml, .content .highlight-yml {
+  position: relative;
+}
+
+.content .highlight-yaml::before, .content .highlight-yml::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8866,13 +8941,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-toml .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-yaml::before, .content .highlight-yml::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-yaml::before, .content .highlight-yml::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-yaml::before, .content .highlight-yml::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-toml {
+  position: relative;
+}
+
+.content .highlight-toml::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8882,13 +8978,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-json .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-toml::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-toml::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-toml::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-json {
+  position: relative;
+}
+
+.content .highlight-json::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8898,13 +9015,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-html .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-json::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-json::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-json::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-html {
+  position: relative;
+}
+
+.content .highlight-html::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8914,13 +9052,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-xml .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-html::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-html::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-html::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-xml {
+  position: relative;
+}
+
+.content .highlight-xml::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8930,13 +9089,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-javascript .highlight pre::before, .content .highlight-js .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-xml::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-xml::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-xml::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-javascript, .content .highlight-js {
+  position: relative;
+}
+
+.content .highlight-javascript::before, .content .highlight-js::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8946,13 +9126,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-jinja .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-javascript::before, .content .highlight-js::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-javascript::before, .content .highlight-js::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-javascript::before, .content .highlight-js::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-jinja {
+  position: relative;
+}
+
+.content .highlight-jinja::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8962,13 +9163,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-c .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-jinja::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-jinja::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-jinja::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-c {
+  position: relative;
+}
+
+.content .highlight-c::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8978,13 +9200,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-cxx .highlight pre::before, .content .highlight-cpp .highlight pre::before, .content .highlight-c\+\+ .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-c::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-c::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-c::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-cxx, .content .highlight-cpp, .content .highlight-c\+\+ {
+  position: relative;
+}
+
+.content .highlight-cxx::before, .content .highlight-cpp::before, .content .highlight-c\+\+::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8994,13 +9237,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-rs .highlight pre::before, .content .highlight-rust .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-cxx::before, .content .highlight-cpp::before, .content .highlight-c\+\+::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-cxx::before, .content .highlight-cpp::before, .content .highlight-c\+\+::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-cxx::before, .content .highlight-cpp::before, .content .highlight-c\+\+::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-rs, .content .highlight-rust {
+  position: relative;
+}
+
+.content .highlight-rs::before, .content .highlight-rust::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9010,13 +9274,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-julia .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-rs::before, .content .highlight-rust::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-rs::before, .content .highlight-rust::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-rs::before, .content .highlight-rust::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-julia {
+  position: relative;
+}
+
+.content .highlight-julia::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9026,13 +9311,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-r .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-julia::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-julia::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-julia::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-r {
+  position: relative;
+}
+
+.content .highlight-r::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9042,13 +9348,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-restructuredtext .highlight pre::before, .content .highlight-rst .highlight pre::before, .content .highlight-rest .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-r::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-r::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-r::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-restructuredtext, .content .highlight-rst, .content .highlight-rest {
+  position: relative;
+}
+
+.content .highlight-restructuredtext::before, .content .highlight-rst::before, .content .highlight-rest::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9058,13 +9385,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-md .highlight pre::before, .content .highlight-markdown .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-restructuredtext::before, .content .highlight-rst::before, .content .highlight-rest::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-restructuredtext::before, .content .highlight-rst::before, .content .highlight-rest::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-restructuredtext::before, .content .highlight-rst::before, .content .highlight-rest::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-md, .content .highlight-markdown {
+  position: relative;
+}
+
+.content .highlight-md::before, .content .highlight-markdown::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9074,13 +9422,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-tex .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-md::before, .content .highlight-markdown::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-md::before, .content .highlight-markdown::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-md::before, .content .highlight-markdown::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-tex {
+  position: relative;
+}
+
+.content .highlight-tex::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9090,13 +9459,34 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
 }
 
-.content .highlight-latex .highlight pre::before {
+@media screen and (max-width: 1215px) {
+  .content .highlight-tex::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-tex::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-tex::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
+}
+
+.content .highlight-latex {
+  position: relative;
+}
+
+.content .highlight-latex::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9106,10 +9496,27 @@ html {
   color: #696969;
   font-size: 80%;
   font-family: Cousine, monospace;
-  padding: 0;
-  margin: -1rem;
-  float: right;
   font-variant: small-caps;
+  position: absolute;
+  z-index: 10;
+}
+
+@media screen and (max-width: 1215px) {
+  .content .highlight-latex::before {
+    right: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content .highlight-latex::before {
+    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content .highlight-latex::before {
+    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+  }
 }
 
 .content .nbinput > .prompt, .content .nboutput > .prompt {
