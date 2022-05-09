@@ -298,6 +298,11 @@ a.brackets {
 }
 
 
+// Make output from python consoles unselectable
+.highlight-pycon span.go {
+  @include unselectable;
+}
+
 // Add language identifiers to code blocks
 @mixin language-identifier($langname) {
   .highlight pre::before {
@@ -313,7 +318,7 @@ a.brackets {
   }
 }
 
-.highlight-python, .highlight-py, .highlight-python3, .highlight-py3 {
+.highlight-python, .highlight-py, .highlight-python3, .highlight-py3, .highlight-pycon {
   @include language-identifier("Python");
 }
 
