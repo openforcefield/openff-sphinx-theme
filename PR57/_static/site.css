@@ -8820,7 +8820,7 @@ html {
   position: relative;
 }
 
-.content .highlight-python::before, .content .highlight-py::before, .content .highlight-python3::before, .content .highlight-py3::before, .content .highlight-pycon::before {
+.content .highlight-python .highlight::before, .content .highlight-py .highlight::before, .content .highlight-python3 .highlight::before, .content .highlight-py3 .highlight::before, .content .highlight-pycon .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8836,19 +8836,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-python::before, .content .highlight-py::before, .content .highlight-python3::before, .content .highlight-py3::before, .content .highlight-pycon::before {
+  .content .highlight-python .highlight::before, .content .highlight-py .highlight::before, .content .highlight-python3 .highlight::before, .content .highlight-py3 .highlight::before, .content .highlight-pycon .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-python::before, .content .highlight-py::before, .content .highlight-python3::before, .content .highlight-py3::before, .content .highlight-pycon::before {
+  .content .highlight-python .highlight::before, .content .highlight-py .highlight::before, .content .highlight-python3 .highlight::before, .content .highlight-py3 .highlight::before, .content .highlight-pycon .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-python::before, .content .highlight-py::before, .content .highlight-python3::before, .content .highlight-py3::before, .content .highlight-pycon::before {
+  .content .highlight-python .highlight::before, .content .highlight-py .highlight::before, .content .highlight-python3 .highlight::before, .content .highlight-py3 .highlight::before, .content .highlight-pycon .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -8857,7 +8857,7 @@ html {
   position: relative;
 }
 
-.content .highlight-sh::before, .content .highlight-shell-session::before, .content .highlight-shell::before {
+.content .highlight-sh .highlight::before, .content .highlight-shell-session .highlight::before, .content .highlight-shell .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8873,19 +8873,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-sh::before, .content .highlight-shell-session::before, .content .highlight-shell::before {
+  .content .highlight-sh .highlight::before, .content .highlight-shell-session .highlight::before, .content .highlight-shell .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-sh::before, .content .highlight-shell-session::before, .content .highlight-shell::before {
+  .content .highlight-sh .highlight::before, .content .highlight-shell-session .highlight::before, .content .highlight-shell .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-sh::before, .content .highlight-shell-session::before, .content .highlight-shell::before {
+  .content .highlight-sh .highlight::before, .content .highlight-shell-session .highlight::before, .content .highlight-shell .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -8894,7 +8894,7 @@ html {
   position: relative;
 }
 
-.content .highlight-bash::before {
+.content .highlight-bash .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8910,19 +8910,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-bash::before {
+  .content .highlight-bash .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-bash::before {
+  .content .highlight-bash .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-bash::before {
+  .content .highlight-bash .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -8931,7 +8931,7 @@ html {
   position: relative;
 }
 
-.content .highlight-yaml::before, .content .highlight-yml::before {
+.content .highlight-yaml .highlight::before, .content .highlight-yml .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8947,19 +8947,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-yaml::before, .content .highlight-yml::before {
+  .content .highlight-yaml .highlight::before, .content .highlight-yml .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-yaml::before, .content .highlight-yml::before {
+  .content .highlight-yaml .highlight::before, .content .highlight-yml .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-yaml::before, .content .highlight-yml::before {
+  .content .highlight-yaml .highlight::before, .content .highlight-yml .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -8968,7 +8968,7 @@ html {
   position: relative;
 }
 
-.content .highlight-toml::before {
+.content .highlight-toml .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8984,19 +8984,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-toml::before {
+  .content .highlight-toml .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-toml::before {
+  .content .highlight-toml .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-toml::before {
+  .content .highlight-toml .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9005,7 +9005,7 @@ html {
   position: relative;
 }
 
-.content .highlight-json::before {
+.content .highlight-json .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9021,19 +9021,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-json::before {
+  .content .highlight-json .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-json::before {
+  .content .highlight-json .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-json::before {
+  .content .highlight-json .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9042,7 +9042,7 @@ html {
   position: relative;
 }
 
-.content .highlight-html::before {
+.content .highlight-html .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9058,19 +9058,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-html::before {
+  .content .highlight-html .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-html::before {
+  .content .highlight-html .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-html::before {
+  .content .highlight-html .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9079,7 +9079,7 @@ html {
   position: relative;
 }
 
-.content .highlight-xml::before {
+.content .highlight-xml .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9095,19 +9095,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-xml::before {
+  .content .highlight-xml .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-xml::before {
+  .content .highlight-xml .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-xml::before {
+  .content .highlight-xml .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9116,7 +9116,7 @@ html {
   position: relative;
 }
 
-.content .highlight-javascript::before, .content .highlight-js::before {
+.content .highlight-javascript .highlight::before, .content .highlight-js .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9132,19 +9132,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-javascript::before, .content .highlight-js::before {
+  .content .highlight-javascript .highlight::before, .content .highlight-js .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-javascript::before, .content .highlight-js::before {
+  .content .highlight-javascript .highlight::before, .content .highlight-js .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-javascript::before, .content .highlight-js::before {
+  .content .highlight-javascript .highlight::before, .content .highlight-js .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9153,7 +9153,7 @@ html {
   position: relative;
 }
 
-.content .highlight-jinja::before {
+.content .highlight-jinja .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9169,19 +9169,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-jinja::before {
+  .content .highlight-jinja .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-jinja::before {
+  .content .highlight-jinja .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-jinja::before {
+  .content .highlight-jinja .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9190,7 +9190,7 @@ html {
   position: relative;
 }
 
-.content .highlight-c::before {
+.content .highlight-c .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9206,19 +9206,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-c::before {
+  .content .highlight-c .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-c::before {
+  .content .highlight-c .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-c::before {
+  .content .highlight-c .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9227,7 +9227,7 @@ html {
   position: relative;
 }
 
-.content .highlight-cxx::before, .content .highlight-cpp::before, .content .highlight-c\+\+::before {
+.content .highlight-cxx .highlight::before, .content .highlight-cpp .highlight::before, .content .highlight-c\+\+ .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9243,19 +9243,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-cxx::before, .content .highlight-cpp::before, .content .highlight-c\+\+::before {
+  .content .highlight-cxx .highlight::before, .content .highlight-cpp .highlight::before, .content .highlight-c\+\+ .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-cxx::before, .content .highlight-cpp::before, .content .highlight-c\+\+::before {
+  .content .highlight-cxx .highlight::before, .content .highlight-cpp .highlight::before, .content .highlight-c\+\+ .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-cxx::before, .content .highlight-cpp::before, .content .highlight-c\+\+::before {
+  .content .highlight-cxx .highlight::before, .content .highlight-cpp .highlight::before, .content .highlight-c\+\+ .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9264,7 +9264,7 @@ html {
   position: relative;
 }
 
-.content .highlight-rs::before, .content .highlight-rust::before {
+.content .highlight-rs .highlight::before, .content .highlight-rust .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9280,19 +9280,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-rs::before, .content .highlight-rust::before {
+  .content .highlight-rs .highlight::before, .content .highlight-rust .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-rs::before, .content .highlight-rust::before {
+  .content .highlight-rs .highlight::before, .content .highlight-rust .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-rs::before, .content .highlight-rust::before {
+  .content .highlight-rs .highlight::before, .content .highlight-rust .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9301,7 +9301,7 @@ html {
   position: relative;
 }
 
-.content .highlight-julia::before {
+.content .highlight-julia .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9317,19 +9317,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-julia::before {
+  .content .highlight-julia .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-julia::before {
+  .content .highlight-julia .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-julia::before {
+  .content .highlight-julia .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9338,7 +9338,7 @@ html {
   position: relative;
 }
 
-.content .highlight-r::before {
+.content .highlight-r .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9354,19 +9354,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-r::before {
+  .content .highlight-r .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-r::before {
+  .content .highlight-r .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-r::before {
+  .content .highlight-r .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9375,7 +9375,7 @@ html {
   position: relative;
 }
 
-.content .highlight-restructuredtext::before, .content .highlight-rst::before, .content .highlight-rest::before {
+.content .highlight-restructuredtext .highlight::before, .content .highlight-rst .highlight::before, .content .highlight-rest .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9391,19 +9391,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-restructuredtext::before, .content .highlight-rst::before, .content .highlight-rest::before {
+  .content .highlight-restructuredtext .highlight::before, .content .highlight-rst .highlight::before, .content .highlight-rest .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-restructuredtext::before, .content .highlight-rst::before, .content .highlight-rest::before {
+  .content .highlight-restructuredtext .highlight::before, .content .highlight-rst .highlight::before, .content .highlight-rest .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-restructuredtext::before, .content .highlight-rst::before, .content .highlight-rest::before {
+  .content .highlight-restructuredtext .highlight::before, .content .highlight-rst .highlight::before, .content .highlight-rest .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9412,7 +9412,7 @@ html {
   position: relative;
 }
 
-.content .highlight-md::before, .content .highlight-markdown::before {
+.content .highlight-md .highlight::before, .content .highlight-markdown .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9428,19 +9428,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-md::before, .content .highlight-markdown::before {
+  .content .highlight-md .highlight::before, .content .highlight-markdown .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-md::before, .content .highlight-markdown::before {
+  .content .highlight-md .highlight::before, .content .highlight-markdown .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-md::before, .content .highlight-markdown::before {
+  .content .highlight-md .highlight::before, .content .highlight-markdown .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9449,7 +9449,7 @@ html {
   position: relative;
 }
 
-.content .highlight-tex::before {
+.content .highlight-tex .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9465,19 +9465,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-tex::before {
+  .content .highlight-tex .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-tex::before {
+  .content .highlight-tex .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-tex::before {
+  .content .highlight-tex .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -9486,7 +9486,7 @@ html {
   position: relative;
 }
 
-.content .highlight-latex::before {
+.content .highlight-latex .highlight::before {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9502,19 +9502,19 @@ html {
 }
 
 @media screen and (max-width: 1215px) {
-  .content .highlight-latex::before {
+  .content .highlight-latex .highlight::before {
     right: 0.25rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-latex::before {
+  .content .highlight-latex .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .highlight-latex::before {
+  .content .highlight-latex .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
@@ -10402,6 +10402,9 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
     margin-left: 0;
     width: 100%;
   }
+  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote):not(.autodoc_pydantic_collapsable_json)[class] .highlight::before, .content details.autodoc .highlight::before {
+    right: 0.25rem;
+  }
 }
 
 .content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) a {
@@ -10410,6 +10413,12 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
 
 .content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) .pre {
   color: #4a4a4a;
+}
+
+.content details.autodoc_pydantic_collapsable_json > summary {
+  max-width: 42.5rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .content h1, .content h2, .content .toctree-wrapper .caption, .content #index h3, .content h3, .content h4, .content h5, .content h6 {
