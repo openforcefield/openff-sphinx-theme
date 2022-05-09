@@ -10,7 +10,7 @@ This site's options are:
 
 .. literalinclude:: conf.py
    :language: python
-   :lines: 90-160
+   :lines: 90-162
    :lineno-start: 90
    :linenos:
 

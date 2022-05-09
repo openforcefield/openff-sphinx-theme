@@ -23,7 +23,7 @@ $api-fullhd-width: $code-fullhd-width;
 // isn't Python
 // RTD does it like this, but with fewer exceptions, so
 // we should be OK
-dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
+dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote):not(.autodoc_pydantic_collapsable_json)[class], details.autodoc {
     // Give ourselves some more room on big screens
     @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
         margin-left: calc(-0.5 * (#{$api-widescreen-width} - #{$para-width}));
@@ -36,7 +36,11 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
     padding-bottom: 0.5em;
     @include z-depth(2);
     // Header and signature
-    > dt {
+    > dt, > summary {
+        &::marker {
+            display: none;
+            content: "";
+        }
         font-family: $family-monospace;
         font-size: $api-header-font-size;
         padding: $api-header-padding;
@@ -216,7 +220,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
     }
     // Content
-    >dd {
+    >dd, div.autodoc {
         margin: 1em;
         &:empty {
             padding-bottom: 0 !important;
@@ -316,12 +320,12 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
 
         }
         // Child object - recapitulates structure above
-        >dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+        dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote):not(.autodoc_pydantic_collapsable_json)[class], details.autodoc {
             @media screen and (min-width: $widescreen) {
                 margin-left: 0;
                 width: 100%;
             }
-            padding-bottom: 0;
+            padding-bottom: 0.5em;
             @include z-depth(4);
             border-radius: 4px;
             // Inner object header and signature
