@@ -305,16 +305,25 @@ a.brackets {
 
 // Add language identifiers to code blocks
 @mixin language-identifier($langname) {
-  .highlight pre::before {
+  position: relative;
+  &::before {
     @include unselectable;
     content: $langname;
     color: #696969;
     font-size: 80%;
     font-family: $family-monospace;
-    padding: 0;
-    margin: -1rem;
-    float: right;
     font-variant: small-caps;
+    position: absolute;
+    z-index: 10;
+    @media screen and (max-width: $widescreen - 1) {
+      right: 0.25rem;
+    }
+    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+      right: calc(0.25rem - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
+    }
+    @media screen and (min-width: $fullhd) {
+      right: calc(0.25rem - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
+    }
   }
 }
 
