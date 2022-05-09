@@ -320,7 +320,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
 
         }
         // Child object - recapitulates structure above
-        dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote):not(.autodoc_pydantic_collapsable_json)[class], details.autodoc {
+        dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class], details.autodoc {
             @media screen and (min-width: $widescreen) {
                 margin-left: 0;
                 width: 100%;
