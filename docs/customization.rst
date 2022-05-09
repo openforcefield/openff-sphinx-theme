@@ -34,6 +34,8 @@ Configuration Options
    If true, TOC entries that are not ancestors of the current page are collapsed.
 ``globaltoc_includehidden``
    If true, the global TOC tree will also contain hidden entries.
+``globaltoc_include_local``
+   If true, the global TOC tree will include the current page's localtoc entries if the localtoc is not rendered on the page
 ``color_accent``
     Accent color. Options are
     openff-blue, openff-toolkit-blue, openff-yellow, openff-orange

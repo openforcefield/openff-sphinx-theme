@@ -103,6 +103,7 @@ html_theme_options = {
     "html_minify": False,
     "css_minify": False,
     "globaltoc_depth": 2,
+    "globaltoc_include_localtoc": True,
     "color_accent": "openff-toolkit-blue",
     "nav_links": [
         {
@@ -130,7 +131,6 @@ html_theme_options = {
         "index": "A responsive Material Design theme for Sphinx sites.",
         "customization": "Configuration options to personalize your site.",
     },
-    "clear_openff_socials": True,
     "socials": [
         {
             "href": "https://zenodo.org/communities/openforcefield/",
