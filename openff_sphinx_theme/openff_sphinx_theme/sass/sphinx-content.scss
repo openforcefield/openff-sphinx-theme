@@ -128,15 +128,6 @@ table.highlighttable {
     overflow-x: unset;
     margin: unset;
   }
-  // Give ourselves some more room on big screens
-  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-      margin-left: calc(-0.5 * (#{$code-widescreen-width} - #{$para-width}));
-      width: $code-widescreen-width;
-  }
-  @media screen and (min-width: $fullhd) {
-      margin-left: -0.5 * ($code-fullhd-width - $para-width);
-      width: $code-fullhd-width;
-  }
   /// Code with line numbers in sphinx>=4
   span.linenos {
     margin-right: 1.5rem;
@@ -146,12 +137,24 @@ table.highlighttable {
     }
   }
 }
-// Undo margin hackery for blockquotes
-blockquote .highlight {
-  margin-left: 0;
-  width: unset;
+
+// Give ourselves some more room on top-level code blocks and big screens
+.section > .notranslate > .highlight {
+  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+      margin-left: calc(-0.5 * (#{$code-widescreen-width} - #{$para-width}));
+      width: $code-widescreen-width;
+  }
+  @media screen and (min-width: $fullhd) {
+      margin-left: -0.5 * ($code-fullhd-width - $para-width);
+      width: $code-fullhd-width;
+  }
   &::before {
-    right: 0.25rem !important;
+    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+      right: calc(0.25rem - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
+    }
+    @media screen and (min-width: $fullhd) {
+      right: calc(0.25rem - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
+    }
   }
 }
 
@@ -214,16 +217,6 @@ blockquote .highlight {
           background-color: rgba(0, 0, 0, 0.035);
         }
       }
-    }
-  }
-}
-
-table {
-  // Undo margin hackery for code blocks in tables
-  .highlight {
-    @media screen and (min-width: $widescreen) {
-      margin-left: 0;
-      width: 100%;
     }
   }
 }
@@ -324,15 +317,7 @@ a.brackets {
     font-variant: small-caps;
     position: absolute;
     z-index: 10;
-    @media screen and (max-width: $widescreen - 1) {
-      right: 0.25rem;
-    }
-    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-      right: calc(0.25rem - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
-    }
-    @media screen and (min-width: $fullhd) {
-      right: calc(0.25rem - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
-    }
+    right: 0.25rem;
   }
 }
 
@@ -504,12 +489,7 @@ a.brackets {
     }
   }
 
-  // Undo margin hackery for myst notebooks
   .highlight {
       border: none;
-      @media screen and (min-width: $widescreen) {
-          margin-left: 0;
-          width: 100%;
-      }
   }
 }

@@ -336,17 +336,6 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             }
         }
     }
-
-    // Undo margin hackery for code blocks in API defs
-    .highlight {
-        @media screen and (min-width: $widescreen) {
-            margin-left: 0;
-            width: 100%;
-            &::before {
-                right: 0.25rem;
-            }
-        }
-    }
 }
 
 // Pydantic fields have their own stuff going on
