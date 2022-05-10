@@ -146,6 +146,15 @@ table.highlighttable {
     }
   }
 }
+// Undo margin hackery for blockquotes
+blockquote .highlight {
+  margin-left: 0;
+  width: unset;
+  &::before {
+    right: 0.25rem !important;
+  }
+}
+
 
 .table-container.autosummary {
   table {
