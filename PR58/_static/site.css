@@ -8670,27 +8670,27 @@ html {
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .section > .notranslate > .highlight {
+  .content section > .notranslate > .highlight, .content .section > .notranslate > .highlight {
     margin-left: calc(-0.5 * (57vw - 42.5rem));
     width: 57vw;
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .section > .notranslate > .highlight {
+  .content section > .notranslate > .highlight, .content .section > .notranslate > .highlight {
     margin-left: -3.75rem;
     width: 50rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .section > .notranslate > .highlight::before {
+  .content section > .notranslate > .highlight::before, .content .section > .notranslate > .highlight::before {
     right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
-  .content .section > .notranslate > .highlight::before {
+  .content section > .notranslate > .highlight::before, .content .section > .notranslate > .highlight::before {
     right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
   }
 }
