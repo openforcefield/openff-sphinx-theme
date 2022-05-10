@@ -14,9 +14,6 @@ $api-header-font-size: 1.1rem;
 $api-header-padding: 1 * $api-header-font-size;
 $api-arguments-indent: 2 * $api-header-font-size;
 
-$api-widescreen-width: $code-widescreen-width;
-$api-fullhd-width: $code-fullhd-width;
-
 // Definition of an object. Hopefully.
 // Could also use dl.py, but this would fail
 // if we ever wanted to document something that
@@ -230,9 +227,6 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         // Parameters, Returns, Other Parameters, Raises sections
         >.field-list {
-            max-width: $para-width;
-            margin-left: auto;
-            margin-right: auto;
             // Headings
             >dt {
                 @extend .rubric;
@@ -316,7 +310,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
 
         }
         // Child object - recapitulates structure above
-        >dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+        >dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
             @media screen and (min-width: $widescreen) {
                 margin-left: 0;
                 width: 100%;
@@ -337,15 +331,11 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
     }
 
-    // Undo margin hackery for code blocks in API defs
-    .highlight {
-        @media screen and (min-width: $widescreen) {
-            margin-left: 0;
-            width: 100%;
-            &::before {
-                right: 0.25rem;
-            }
-        }
+    // Don't justify/hyphenate in API
+    // Undoes styling found by searching "@if hyphenate" in sphinx-api.scss
+    p {
+        hyphens: none;
+        text-align: unset;
     }
 }
 

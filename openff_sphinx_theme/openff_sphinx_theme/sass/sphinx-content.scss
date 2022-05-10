@@ -128,24 +128,40 @@ table.highlighttable {
     overflow-x: unset;
     margin: unset;
   }
-  // Give ourselves some more room on big screens
-  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-      margin-left: calc(-0.5 * (#{$code-widescreen-width} - #{$para-width}));
-      width: $code-widescreen-width;
-  }
-  @media screen and (min-width: $fullhd) {
-      margin-left: -0.5 * ($code-fullhd-width - $para-width);
-      width: $code-fullhd-width;
-  }
   /// Code with line numbers in sphinx>=4
   span.linenos {
-    margin-right: 1.5rem;
+    margin-right: 0.5rem;
+    margin-left: -0.5rem;
+    color: #666666;
     // Hide line numbers on mobile
     @media screen and (max-width: $tablet - 1px) {
       display: none;
     }
   }
 }
+
+// Give ourselves some more room on top-level code blocks and big screens
+section, .section {
+  > .notranslate > .highlight {
+    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+        margin-left: calc(-0.5 * (#{$code-widescreen-width} - #{$para-width}));
+        width: $code-widescreen-width;
+    }
+    @media screen and (min-width: $fullhd) {
+        margin-left: -0.5 * ($code-fullhd-width - $para-width);
+        width: $code-fullhd-width;
+    }
+    &::before {
+      @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+        right: calc($code-lang-ident-padding - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
+      }
+      @media screen and (min-width: $fullhd) {
+        right: calc($code-lang-ident-padding - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
+      }
+    }
+  }
+}
+
 
 .table-container.autosummary {
   table {
@@ -209,16 +225,6 @@ table.highlighttable {
   }
 }
 
-table {
-  // Undo margin hackery for code blocks in tables
-  .highlight {
-    @media screen and (min-width: $widescreen) {
-      margin-left: 0;
-      width: 100%;
-    }
-  }
-}
-
 // Header links
 .headerlink {
   font-size: 1em;
@@ -249,14 +255,15 @@ table {
   @extend h2;
 }
 
-// Prose paragraphs should wrap at around 80 characters
-// The visual artifact is almost unnoticeable and the
-// improved ease of reading is enormous,
-// and theres no issues with having to condense API stuff
-p:not(.admonition-title), ul.simple, ol.simple {
-  max-width: $para-width;
-  margin-left: auto;
-  margin-right: auto;
+@if hyphenate() {
+  p:not(.admonition-title), ul.simple, ol.simple {
+    text-align: justify;
+    hyphens: auto;
+    > *:not(p:not(.admonition-title), ul.simple, ol.simple) {
+      hyphens: none;
+      text-align: unset;
+    }
+  }
 }
 
 // Use Bulma's tables
@@ -315,15 +322,9 @@ a.brackets {
     font-variant: small-caps;
     position: absolute;
     z-index: 10;
-    @media screen and (max-width: $widescreen - 1) {
-      right: 0.25rem;
-    }
-    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-      right: calc(0.25rem - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
-    }
-    @media screen and (min-width: $fullhd) {
-      right: calc(0.25rem - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
-    }
+    right: $code-lang-ident-padding;
+    top: $code-lang-ident-padding;
+    line-height: 0.8;
   }
 }
 
@@ -495,12 +496,7 @@ a.brackets {
     }
   }
 
-  // Undo margin hackery for myst notebooks
   .highlight {
       border: none;
-      @media screen and (min-width: $widescreen) {
-          margin-left: 0;
-          width: 100%;
-      }
   }
 }

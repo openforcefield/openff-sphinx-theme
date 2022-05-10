@@ -6,6 +6,7 @@ dependencies:
   - pip
   - openff-qcsubmit
   - openff-toolkit
+  - openff-qcsubmit
   - numpy>=1.16
   - pandas
   - matplotlib

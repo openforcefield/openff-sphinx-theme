@@ -57,15 +57,17 @@ $pre-background: $code-background
 $pre: $code
 $code-link-background-hover: findColorInvert($link-hover)
 $code-padding: 0.25em
-$code-widescreen-width: 57vw
-$code-fullhd-width: 50rem
-$expanded-table-widescreen-width: 66vw
-$expanded-table-fullhd-width: 58rem
+$code-size: 1.0em
+$code-lang-ident-padding: 0.18rem
+$pre-padding: 0.75em
+$pre-font-size: 0.825em
+$pre-code-font-size: $code-size
 $menu-item-active-background-color: $link-active
 $menu-item-active-color: findColorInvert($link-active)
 $menu-item-hover-color: $link-hover
 $background: #FFFFFF
 $body-background-color: $background
+$menu-item-hover-background-color: transparent
 
 $footer-background-color: darken($primary, 12)
 
@@ -87,6 +89,13 @@ $admonition-margin: 1.25rem
 
 // 42.5rem is about 80 characters
 $para-width: 42.5rem
+
+$code-widescreen-width: $para-width
+$code-fullhd-width: $para-width
+$api-widescreen-width: 52.5vw
+$api-fullhd-width: 46.2rem
+$expanded-table-widescreen-width: 66vw
+$expanded-table-fullhd-width: 58rem
 
 // @import "bulma/bulma.sass"
 // Important that we exclude the .section class, as it clashes with Sphinx 4+
@@ -158,7 +167,7 @@ header, .navbar.is-primary.has-shadow
 $drawer-width: 20rem
 $drawer-transition-time: 0.5s
 
-@media screen and (max-width: $desktop - 1px)
+@media screen and (max-width: $tablet - 1px)
     .burger
         position: fixed
         top: 0
@@ -205,7 +214,6 @@ $drawer-transition-time: 0.5s
         position: fixed
         display: block
         z-index: 12
-        overflow-y: scroll
         .ff-globaltoc
             position: unset
 
@@ -227,12 +235,17 @@ $drawer-transition-time: 0.5s
         & + li::before
             color: $breadcrumb-item-separator-color-light
 
+// Style to have this element cover any siblings
+.clip-siblings
+    background: $background
+    position: relative
+
 .ff-localtoc, .ff-globaltoc
     position: sticky
     padding: $below-navbar-spacing
     overflow-y: auto
     // Don't know why this is necessary, probably because of drawer shenanigans?
-    @media screen and (max-width: $desktop)
+    @media screen and (max-width: $tablet)
         position: fixed
         top: $navbar-height
     // We can put visible scrollbars on the sidebars, at the
@@ -293,17 +306,24 @@ header
         $search-animation-cutoff: $widescreen
         @media screen and (max-width: $search-animation-cutoff - 1px)
             .control
+                position: relative
+                height: $input-height
                 input
                     background-color: unset
                     width: $input-height
+                    position: absolute
+                    right: 0
                     &:hover, &:focus, &:active
                         width: 15rem
+                        max-width: 15rem
                     &:hover
                         background-color: darken($primary, 10)
+                        color: $white
                         &::placeholder
                             color: $input-icon-color
                     &:focus, &:active
                         background-color: $white
+                        color: darken($primary, 10)
                         &::placeholder
                             color: $input-placeholder-color
                 &.has-icons-right
@@ -313,10 +333,12 @@ header
         @media screen and (min-width: $search-animation-cutoff)
             input
                 background-color: darken($primary, 10)
+                color: $white
                 &::placeholder
                     color: $input-icon-color
                 &:hover, &:focus, &:active
                     background-color: $white
+                    color: darken($primary, 10)
                     &::placeholder
                         color: $input-placeholder-color
 
