@@ -37,10 +37,13 @@ Configuration Options
 ``globaltoc_include_local``
    If true, the global TOC tree will include the current page's localtoc entries if the localtoc is not rendered on the page
 ``color_accent``
-    Accent color. Options are
-    openff-blue, openff-toolkit-blue, openff-yellow, openff-orange
-    aquamarine, lilac, amaranth, grape, violet, pink, pale-green,
-    green, crimson, eggplant, turquoise, or any valid CSS color.
+   Accent color. Options are ``openff-blue``, ``openff-toolkit-blue``,
+   ``openff-yellow``, ``openff-orange``, ``aquamarine``, ``lilac``,
+   ``amaranth``, ``grape``, ``violet``, ``pink``, ``pale-green``, ``green``,
+   ``crimson``, ``eggplant``, ``turquoise``, or any valid CSS color.
+``html_hyphenate_and_justify``
+   If true, hyphenate and justify prose content. Doesn't affect API docs.
+   Quality of hyphenation will vary from browser to browser.
 ``html_minify``
    Minify pages after creation using htmlmin.
 ``html_prettify``
