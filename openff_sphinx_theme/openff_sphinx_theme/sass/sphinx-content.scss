@@ -153,10 +153,10 @@ section, .section {
     }
     &::before {
       @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-        right: calc(0.25rem - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
+        right: calc($code-lang-ident-padding - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
       }
       @media screen and (min-width: $fullhd) {
-        right: calc(0.25rem - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
+        right: calc($code-lang-ident-padding - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
       }
     }
   }
@@ -322,7 +322,9 @@ a.brackets {
     font-variant: small-caps;
     position: absolute;
     z-index: 10;
-    right: 0.25rem;
+    right: $code-lang-ident-padding;
+    top: $code-lang-ident-padding;
+    line-height: 0.8;
   }
 }
 
