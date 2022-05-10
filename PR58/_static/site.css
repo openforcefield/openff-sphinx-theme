@@ -10003,12 +10003,6 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
   padding-bottom: 0 !important;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list {
-  max-width: 42.5rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > ul.simple {
   margin-left: 0;
 }
@@ -10044,27 +10038,33 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
   margin-bottom: 0.5em;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
   padding-bottom: 0;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   border-radius: 4px;
 }
 
 @media screen and (min-width: 1216px) {
-  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
     margin-left: 0;
     width: 100%;
   }
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt {
   border-radius: 0px;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd {
   margin-right: 1.5em;
   margin-left: 1.5em;
   padding-bottom: 0.75em;
+}
+
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.citation, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.field-list, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.simple, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.docutils, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.footnote, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.option-list {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 42.5rem;
 }
 
 .content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) a {
