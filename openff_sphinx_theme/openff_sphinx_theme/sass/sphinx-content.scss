@@ -139,21 +139,23 @@ table.highlighttable {
 }
 
 // Give ourselves some more room on top-level code blocks and big screens
-.section > .notranslate > .highlight {
-  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-      margin-left: calc(-0.5 * (#{$code-widescreen-width} - #{$para-width}));
-      width: $code-widescreen-width;
-  }
-  @media screen and (min-width: $fullhd) {
-      margin-left: -0.5 * ($code-fullhd-width - $para-width);
-      width: $code-fullhd-width;
-  }
-  &::before {
+section, .section {
+  > .notranslate > .highlight {
     @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-      right: calc(0.25rem - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
+        margin-left: calc(-0.5 * (#{$code-widescreen-width} - #{$para-width}));
+        width: $code-widescreen-width;
     }
     @media screen and (min-width: $fullhd) {
-      right: calc(0.25rem - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
+        margin-left: -0.5 * ($code-fullhd-width - $para-width);
+        width: $code-fullhd-width;
+    }
+    &::before {
+      @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
+        right: calc(0.25rem - 0.5 * (#{$code-widescreen-width} - #{$para-width}));
+      }
+      @media screen and (min-width: $fullhd) {
+        right: calc(0.25rem - 0.5 * (#{$code-fullhd-width} - #{$para-width}));
+      }
     }
   }
 }
