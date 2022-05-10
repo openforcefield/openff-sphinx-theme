@@ -10067,6 +10067,11 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
   padding-bottom: 0.75em;
 }
 
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] p {
+  hyphens: none;
+  text-align: unset;
+}
+
 .content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) a {
   font-weight: bold;
 }
