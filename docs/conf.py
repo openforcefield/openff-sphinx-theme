@@ -105,6 +105,7 @@ html_theme_options = {
     "globaltoc_depth": 2,
     "globaltoc_include_local": True,
     "color_accent": "openff-toolkit-blue",
+    "html_hyphenate_and_justify": True,
     "nav_links": [
         {
             "href": "https://squidfunk.github.io/mkdocs-material/",

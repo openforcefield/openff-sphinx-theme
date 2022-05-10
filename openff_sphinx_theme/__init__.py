@@ -98,7 +98,12 @@ def compile_css(app, exception):
     css = sass.compile(
         filename=str(src),
         output_style=output_style,
-        custom_functions={"accent_color": lambda: SassColor(*accent_color, 1)},
+        custom_functions={
+            "accent_color": lambda: SassColor(*accent_color, 1),
+            "hyphenate": lambda: app.config["html_theme_options"].get(
+                "html_hyphenate_and_justify", False
+            ),
+        },
     )
 
     print(f"Writing compiled SASS to {console.colorize('blue', str(dest))}")

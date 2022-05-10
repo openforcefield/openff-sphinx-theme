@@ -263,6 +263,17 @@ p:not(.admonition-title), ul.simple, ol.simple {
   margin-right: auto;
 }
 
+@if hyphenate() {
+  p:not(.admonition-title), ul.simple, ol.simple {
+    text-align: justify;
+    hyphens: auto;
+    > *:not(p:not(.admonition-title), ul.simple, ol.simple) {
+      hyphens: none;
+      text-align: unset;
+    }
+  }
+}
+
 // Use Bulma's tables
 table {
   @extend .table;
