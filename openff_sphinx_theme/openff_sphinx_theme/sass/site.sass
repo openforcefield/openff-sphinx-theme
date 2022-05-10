@@ -293,17 +293,24 @@ header
         $search-animation-cutoff: $widescreen
         @media screen and (max-width: $search-animation-cutoff - 1px)
             .control
+                position: relative
+                height: $input-height
                 input
                     background-color: unset
                     width: $input-height
+                    position: absolute
+                    right: 0
                     &:hover, &:focus, &:active
                         width: 15rem
+                        max-width: 15rem
                     &:hover
                         background-color: darken($primary, 10)
+                        color: $white
                         &::placeholder
                             color: $input-icon-color
                     &:focus, &:active
                         background-color: $white
+                        color: darken($primary, 10)
                         &::placeholder
                             color: $input-placeholder-color
                 &.has-icons-right
@@ -313,10 +320,12 @@ header
         @media screen and (min-width: $search-animation-cutoff)
             input
                 background-color: darken($primary, 10)
+                color: $white
                 &::placeholder
                     color: $input-icon-color
                 &:hover, &:focus, &:active
                     background-color: $white
+                    color: darken($primary, 10)
                     &::placeholder
                         color: $input-placeholder-color
 
