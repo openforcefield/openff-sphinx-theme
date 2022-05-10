@@ -230,9 +230,6 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         // Parameters, Returns, Other Parameters, Raises sections
         >.field-list {
-            max-width: $para-width;
-            margin-left: auto;
-            margin-right: auto;
             // Headings
             >dt {
                 @extend .rubric;
@@ -316,7 +313,7 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
 
         }
         // Child object - recapitulates structure above
-        >dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+        >dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
             @media screen and (min-width: $widescreen) {
                 margin-left: 0;
                 width: 100%;
@@ -334,6 +331,12 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                 margin-left: 1.5em;
                 padding-bottom: 0.75em;
             }
+        }
+
+        dl.citation, dl.field-list, dl.simple, dl.docutils, dl.footnote, dl.option-list {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: $para-width;
         }
     }
 }
