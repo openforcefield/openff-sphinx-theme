@@ -282,7 +282,7 @@ a:hover {
 code {
   background-color: #f8f8f8;
   color: rgba(0, 0, 0, 0.87);
-  font-size: 0.875em;
+  font-size: 1em;
   font-weight: normal;
   padding: 0.25em;
 }
@@ -327,9 +327,9 @@ pre {
   -webkit-overflow-scrolling: touch;
   background-color: #f8f8f8;
   color: rgba(0, 0, 0, 0.87);
-  font-size: 0.875em;
+  font-size: 0.825em;
   overflow-x: auto;
-  padding: 1.25rem 1.5rem;
+  padding: 0.75em;
   white-space: pre;
   word-wrap: normal;
 }
@@ -8660,7 +8660,9 @@ html {
 }
 
 .content .highlight span.linenos {
-  margin-right: 1.5rem;
+  margin-right: 0.5rem;
+  margin-left: -0.5rem;
+  color: #666666;
 }
 
 @media screen and (max-width: 768px) {
@@ -8671,27 +8673,27 @@ html {
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
   .content section > .notranslate > .highlight, .content .section > .notranslate > .highlight {
-    margin-left: calc(-0.5 * (57vw - 42.5rem));
-    width: 57vw;
+    margin-left: calc(-0.5 * (42.5rem - 42.5rem));
+    width: 42.5rem;
   }
 }
 
 @media screen and (min-width: 1408px) {
   .content section > .notranslate > .highlight, .content .section > .notranslate > .highlight {
-    margin-left: -3.75rem;
-    width: 50rem;
+    margin-left: 0rem;
+    width: 42.5rem;
   }
 }
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
   .content section > .notranslate > .highlight::before, .content .section > .notranslate > .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
+    right: calc(0.25rem - 0.5 * (42.5rem - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
   .content section > .notranslate > .highlight::before, .content .section > .notranslate > .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
+    right: calc(0.25rem - 0.5 * (42.5rem - 42.5rem));
   }
 }
 
@@ -8785,9 +8787,13 @@ html {
 }
 
 .content p:not(.admonition-title), .content ul.simple, .content ol.simple {
-  max-width: 42.5rem;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.content p:not(.admonition-title) > *:not(p:not(.admonition-title), ul.simple, ol.simple), .content ul.simple > *:not(p:not(.admonition-title), ul.simple, ol.simple), .content ol.simple > *:not(p:not(.admonition-title), ul.simple, ol.simple) {
+  hyphens: none;
+  text-align: unset;
 }
 
 .content dl.citation > dd {
@@ -9821,15 +9827,15 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
   .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    margin-left: calc(-0.5 * (57vw - 42.5rem));
-    width: 57vw;
+    margin-left: calc(-0.5 * (52.5vw - 42.5rem));
+    width: 52.5vw;
   }
 }
 
 @media screen and (min-width: 1408px) {
   .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    margin-left: -3.75rem;
-    width: 50rem;
+    margin-left: -1.85rem;
+    width: 46.2rem;
   }
 }
 
@@ -9982,7 +9988,7 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
   top: 1.1rem;
   right: 1.1rem;
   color: #f03a21;
-  font-size: 0.875em;
+  font-size: 0.825em;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .viewcode-link:hover {
@@ -10059,12 +10065,6 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
   margin-right: 1.5em;
   margin-left: 1.5em;
   padding-bottom: 0.75em;
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.citation, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.field-list, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.simple, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.docutils, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.footnote, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd dl.option-list {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 42.5rem;
 }
 
 .content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) a {
