@@ -8687,13 +8687,13 @@ html {
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
   .content section > .notranslate > .highlight::before, .content .section > .notranslate > .highlight::before {
-    right: calc(0.25rem - 0.5 * (42.5rem - 42.5rem));
+    right: calc($code-lang-ident-padding - 0.5 * (42.5rem - 42.5rem));
   }
 }
 
 @media screen and (min-width: 1408px) {
   .content section > .notranslate > .highlight::before, .content .section > .notranslate > .highlight::before {
-    right: calc(0.25rem - 0.5 * (42.5rem - 42.5rem));
+    right: calc($code-lang-ident-padding - 0.5 * (42.5rem - 42.5rem));
   }
 }
 
@@ -8844,7 +8844,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-sh, .content .highlight-shell-session, .content .highlight-shell {
@@ -8864,7 +8866,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-bash {
@@ -8884,7 +8888,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-yaml, .content .highlight-yml {
@@ -8904,7 +8910,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-toml {
@@ -8924,7 +8932,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-json {
@@ -8944,7 +8954,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-html {
@@ -8964,7 +8976,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-xml {
@@ -8984,7 +8998,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-javascript, .content .highlight-js {
@@ -9004,7 +9020,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-jinja {
@@ -9024,7 +9042,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-c {
@@ -9044,7 +9064,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-cxx, .content .highlight-cpp, .content .highlight-c\+\+ {
@@ -9064,7 +9086,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-rs, .content .highlight-rust {
@@ -9084,7 +9108,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-julia {
@@ -9104,7 +9130,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-r {
@@ -9124,7 +9152,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-restructuredtext, .content .highlight-rst, .content .highlight-rest {
@@ -9144,7 +9174,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-md, .content .highlight-markdown {
@@ -9164,7 +9196,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-tex {
@@ -9184,7 +9218,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-latex {
@@ -9204,7 +9240,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-  right: 0.25rem;
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .nbinput > .prompt, .content .nboutput > .prompt {
