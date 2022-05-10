@@ -130,7 +130,9 @@ table.highlighttable {
   }
   /// Code with line numbers in sphinx>=4
   span.linenos {
-    margin-right: 1.5rem;
+    margin-right: 0.5rem;
+    margin-left: -0.5rem;
+    color: #666666;
     // Hide line numbers on mobile
     @media screen and (max-width: $tablet - 1px) {
       display: none;
@@ -251,16 +253,6 @@ section, .section {
 // Don't let Sphinx try to be clever about what header level the index heading is
 #index h3 {
   @extend h2;
-}
-
-// Prose paragraphs should wrap at around 80 characters
-// The visual artifact is almost unnoticeable and the
-// improved ease of reading is enormous,
-// and theres no issues with having to condense API stuff
-p:not(.admonition-title), ul.simple, ol.simple {
-  max-width: $para-width;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 @if hyphenate() {
