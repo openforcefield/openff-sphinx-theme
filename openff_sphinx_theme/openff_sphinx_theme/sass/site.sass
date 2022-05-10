@@ -66,6 +66,7 @@ $menu-item-active-color: findColorInvert($link-active)
 $menu-item-hover-color: $link-hover
 $background: #FFFFFF
 $body-background-color: $background
+$menu-item-hover-background-color: transparent
 
 $footer-background-color: darken($primary, 12)
 
@@ -158,7 +159,7 @@ header, .navbar.is-primary.has-shadow
 $drawer-width: 20rem
 $drawer-transition-time: 0.5s
 
-@media screen and (max-width: $desktop - 1px)
+@media screen and (max-width: $tablet - 1px)
     .burger
         position: fixed
         top: 0
@@ -205,7 +206,6 @@ $drawer-transition-time: 0.5s
         position: fixed
         display: block
         z-index: 12
-        overflow-y: scroll
         .ff-globaltoc
             position: unset
 
@@ -227,12 +227,17 @@ $drawer-transition-time: 0.5s
         & + li::before
             color: $breadcrumb-item-separator-color-light
 
+// Style to have this element cover any siblings
+.clip-siblings
+    background: $background
+    position: relative
+
 .ff-localtoc, .ff-globaltoc
     position: sticky
     padding: $below-navbar-spacing
     overflow-y: auto
     // Don't know why this is necessary, probably because of drawer shenanigans?
-    @media screen and (max-width: $desktop)
+    @media screen and (max-width: $tablet)
         position: fixed
         top: $navbar-height
     // We can put visible scrollbars on the sidebars, at the
