@@ -282,7 +282,7 @@ a:hover {
 code {
   background-color: #f8f8f8;
   color: rgba(0, 0, 0, 0.87);
-  font-size: 0.875em;
+  font-size: 1em;
   font-weight: normal;
   padding: 0.25em;
 }
@@ -327,9 +327,9 @@ pre {
   -webkit-overflow-scrolling: touch;
   background-color: #f8f8f8;
   color: rgba(0, 0, 0, 0.87);
-  font-size: 0.875em;
+  font-size: 0.825em;
   overflow-x: auto;
-  padding: 1.25rem 1.5rem;
+  padding: 0.75em;
   white-space: pre;
   word-wrap: normal;
 }
@@ -3472,7 +3472,7 @@ body.has-spaced-navbar-fixed-bottom {
 }
 
 .menu-list a:hover {
-  background-color: #FFFFFF;
+  background-color: transparent;
   color: #2f9ed2;
 }
 
@@ -8659,27 +8659,41 @@ html {
   margin: unset;
 }
 
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight {
-    margin-left: calc(-0.5 * (57vw - 42.5rem));
-    width: 57vw;
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight {
-    margin-left: -3.75rem;
-    width: 50rem;
-  }
-}
-
 .content .highlight span.linenos {
-  margin-right: 1.5rem;
+  margin-right: 0.5rem;
+  margin-left: -0.5rem;
+  color: #666666;
 }
 
 @media screen and (max-width: 768px) {
   .content .highlight span.linenos {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content section > .notranslate > .highlight, .content .section > .notranslate > .highlight {
+    margin-left: calc(-0.5 * (42.5rem - 42.5rem));
+    width: 42.5rem;
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content section > .notranslate > .highlight, .content .section > .notranslate > .highlight {
+    margin-left: 0rem;
+    width: 42.5rem;
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .content section > .notranslate > .highlight::before, .content .section > .notranslate > .highlight::before {
+    right: calc($code-lang-ident-padding - 0.5 * (42.5rem - 42.5rem));
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .content section > .notranslate > .highlight::before, .content .section > .notranslate > .highlight::before {
+    right: calc($code-lang-ident-padding - 0.5 * (42.5rem - 42.5rem));
   }
 }
 
@@ -8750,13 +8764,6 @@ html {
   background-color: rgba(0, 0, 0, 0.035);
 }
 
-@media screen and (min-width: 1216px) {
-  .content table .highlight {
-    margin-left: 0;
-    width: 100%;
-  }
-}
-
 .content .headerlink {
   font-size: 1em;
   margin-left: 0.5em;
@@ -8780,9 +8787,13 @@ html {
 }
 
 .content p:not(.admonition-title), .content ul.simple, .content ol.simple {
-  max-width: 42.5rem;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.content p:not(.admonition-title) > *:not(p:not(.admonition-title), ul.simple, ol.simple), .content ul.simple > *:not(p:not(.admonition-title), ul.simple, ol.simple), .content ol.simple > *:not(p:not(.admonition-title), ul.simple, ol.simple) {
+  hyphens: none;
+  text-align: unset;
 }
 
 .content dl.citation > dd {
@@ -8833,24 +8844,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-python .highlight::before, .content .highlight-py .highlight::before, .content .highlight-python3 .highlight::before, .content .highlight-py3 .highlight::before, .content .highlight-pycon .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-python .highlight::before, .content .highlight-py .highlight::before, .content .highlight-python3 .highlight::before, .content .highlight-py3 .highlight::before, .content .highlight-pycon .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-python .highlight::before, .content .highlight-py .highlight::before, .content .highlight-python3 .highlight::before, .content .highlight-py3 .highlight::before, .content .highlight-pycon .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-sh, .content .highlight-shell-session, .content .highlight-shell {
@@ -8870,24 +8866,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-sh .highlight::before, .content .highlight-shell-session .highlight::before, .content .highlight-shell .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-sh .highlight::before, .content .highlight-shell-session .highlight::before, .content .highlight-shell .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-sh .highlight::before, .content .highlight-shell-session .highlight::before, .content .highlight-shell .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-bash {
@@ -8907,24 +8888,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-bash .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-bash .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-bash .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-yaml, .content .highlight-yml {
@@ -8944,24 +8910,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-yaml .highlight::before, .content .highlight-yml .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-yaml .highlight::before, .content .highlight-yml .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-yaml .highlight::before, .content .highlight-yml .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-toml {
@@ -8981,24 +8932,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-toml .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-toml .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-toml .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-json {
@@ -9018,24 +8954,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-json .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-json .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-json .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-html {
@@ -9055,24 +8976,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-html .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-html .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-html .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-xml {
@@ -9092,24 +8998,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-xml .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-xml .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-xml .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-javascript, .content .highlight-js {
@@ -9129,24 +9020,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-javascript .highlight::before, .content .highlight-js .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-javascript .highlight::before, .content .highlight-js .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-javascript .highlight::before, .content .highlight-js .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-jinja {
@@ -9166,24 +9042,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-jinja .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-jinja .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-jinja .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-c {
@@ -9203,24 +9064,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-c .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-c .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-c .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-cxx, .content .highlight-cpp, .content .highlight-c\+\+ {
@@ -9240,24 +9086,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-cxx .highlight::before, .content .highlight-cpp .highlight::before, .content .highlight-c\+\+ .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-cxx .highlight::before, .content .highlight-cpp .highlight::before, .content .highlight-c\+\+ .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-cxx .highlight::before, .content .highlight-cpp .highlight::before, .content .highlight-c\+\+ .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-rs, .content .highlight-rust {
@@ -9277,24 +9108,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-rs .highlight::before, .content .highlight-rust .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-rs .highlight::before, .content .highlight-rust .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-rs .highlight::before, .content .highlight-rust .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-julia {
@@ -9314,24 +9130,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-julia .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-julia .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-julia .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-r {
@@ -9351,24 +9152,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-r .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-r .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-r .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-restructuredtext, .content .highlight-rst, .content .highlight-rest {
@@ -9388,24 +9174,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-restructuredtext .highlight::before, .content .highlight-rst .highlight::before, .content .highlight-rest .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-restructuredtext .highlight::before, .content .highlight-rst .highlight::before, .content .highlight-rest .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-restructuredtext .highlight::before, .content .highlight-rst .highlight::before, .content .highlight-rest .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-md, .content .highlight-markdown {
@@ -9425,24 +9196,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-md .highlight::before, .content .highlight-markdown .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-md .highlight::before, .content .highlight-markdown .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-md .highlight::before, .content .highlight-markdown .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-tex {
@@ -9462,24 +9218,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-tex .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-tex .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-tex .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .highlight-latex {
@@ -9499,24 +9240,9 @@ html {
   font-variant: small-caps;
   position: absolute;
   z-index: 10;
-}
-
-@media screen and (max-width: 1215px) {
-  .content .highlight-latex .highlight::before {
-    right: 0.25rem;
-  }
-}
-
-@media screen and (min-width: 1216px) and (max-width: 1407px) {
-  .content .highlight-latex .highlight::before {
-    right: calc(0.25rem - 0.5 * (57vw - 42.5rem));
-  }
-}
-
-@media screen and (min-width: 1408px) {
-  .content .highlight-latex .highlight::before {
-    right: calc(0.25rem - 0.5 * (50rem - 42.5rem));
-  }
+  right: 0.18rem;
+  top: 0.18rem;
+  line-height: 0.8;
 }
 
 .content .nbinput > .prompt, .content .nboutput > .prompt {
@@ -9613,13 +9339,6 @@ html {
 
 .content .cell.container .highlight {
   border: none;
-}
-
-@media screen and (min-width: 1216px) {
-  .content .cell.container .highlight {
-    margin-left: 0;
-    width: 100%;
-  }
 }
 
 .content .admonition, .content div.deprecated {
@@ -10146,15 +9865,15 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
 
 @media screen and (min-width: 1216px) and (max-width: 1407px) {
   .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    margin-left: calc(-0.5 * (57vw - 42.5rem));
-    width: 57vw;
+    margin-left: calc(-0.5 * (52.5vw - 42.5rem));
+    width: 52.5vw;
   }
 }
 
 @media screen and (min-width: 1408px) {
   .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
-    margin-left: -3.75rem;
-    width: 50rem;
+    margin-left: -1.85rem;
+    width: 46.2rem;
   }
 }
 
@@ -10307,7 +10026,7 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
   top: 1.1rem;
   right: 1.1rem;
   color: #f03a21;
-  font-size: 0.875em;
+  font-size: 0.825em;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt .viewcode-link:hover {
@@ -10326,12 +10045,6 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd:empty {
   padding-bottom: 0 !important;
-}
-
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list {
-  max-width: 42.5rem;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > .field-list > dd > ul.simple {
@@ -10369,37 +10082,32 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
   margin-bottom: 0.5em;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
   padding-bottom: 0;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   border-radius: 4px;
 }
 
 @media screen and (min-width: 1216px) {
-  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] {
+  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] {
     margin-left: 0;
     width: 100%;
   }
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dt {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt {
   border-radius: 0px;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation)[class] > dd {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd > dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dd {
   margin-right: 1.5em;
   margin-left: 1.5em;
   padding-bottom: 0.75em;
 }
 
-@media screen and (min-width: 1216px) {
-  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] .highlight {
-    margin-left: 0;
-    width: 100%;
-  }
-  .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] .highlight::before {
-    right: 0.25rem;
-  }
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] p {
+  hyphens: none;
+  text-align: unset;
 }
 
 .content .pydantic_field .sig > .sig-name + .property:not(:last-of-type) a {
@@ -10462,7 +10170,7 @@ header, .navbar.is-primary.has-shadow {
   color: whitesmoke;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 768px) {
   .burger {
     position: fixed;
     top: 0;
@@ -10513,7 +10221,6 @@ header, .navbar.is-primary.has-shadow {
     position: fixed;
     display: block;
     z-index: 12;
-    overflow-y: scroll;
   }
   #drawer .ff-globaltoc {
     position: unset;
@@ -10544,6 +10251,11 @@ header, .navbar.is-primary.has-shadow {
   color: #fff;
 }
 
+.clip-siblings {
+  background: #FFFFFF;
+  position: relative;
+}
+
 .ff-localtoc, .ff-globaltoc {
   position: sticky;
   padding: 0.5rem;
@@ -10556,7 +10268,7 @@ header, .navbar.is-primary.has-shadow {
   scrollbar-width: none;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 769px) {
   .ff-localtoc, .ff-globaltoc {
     position: fixed;
     top: 4rem;
@@ -10623,21 +10335,30 @@ header .nav-search input {
 }
 
 @media screen and (max-width: 1215px) {
+  header .nav-search .control {
+    position: relative;
+    height: 2.5em;
+  }
   header .nav-search .control input {
     background-color: unset;
     width: 2.5em;
+    position: absolute;
+    right: 0;
   }
   header .nav-search .control input:hover, header .nav-search .control input:focus, header .nav-search .control input:active {
     width: 15rem;
+    max-width: 15rem;
   }
   header .nav-search .control input:hover {
     background-color: #01334d;
+    color: white;
   }
   header .nav-search .control input:hover::placeholder {
     color: #dbdbdb;
   }
   header .nav-search .control input:focus, header .nav-search .control input:active {
     background-color: white;
+    color: #01334d;
   }
   header .nav-search .control input:focus::placeholder, header .nav-search .control input:active::placeholder {
     color: rgba(54, 54, 54, 0.3);
@@ -10653,12 +10374,14 @@ header .nav-search input {
 @media screen and (min-width: 1216px) {
   header .nav-search input {
     background-color: #01334d;
+    color: white;
   }
   header .nav-search input::placeholder {
     color: #dbdbdb;
   }
   header .nav-search input:hover, header .nav-search input:focus, header .nav-search input:active {
     background-color: white;
+    color: #01334d;
   }
   header .nav-search input:hover::placeholder, header .nav-search input:focus::placeholder, header .nav-search input:active::placeholder {
     color: rgba(54, 54, 54, 0.3);

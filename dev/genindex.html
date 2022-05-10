@@ -107,7 +107,7 @@
         >
       </a>
     </div>
-    <span class="navbar-burger-spacer is-hidden-desktop"></span>
+    <span class="navbar-burger-spacer is-hidden-tablet"></span>
   </nav>
 
   
@@ -129,15 +129,15 @@
   <main class="mb-6">
       <div class="columns">
         <input type="checkbox" id="drawer-toggle" class="is-hidden">
-        <label for="drawer-toggle" role="button" class="navbar-burger burger is-light">
+        <label for="drawer-toggle" role="button" class="navbar-burger burger is-light is-hidden-tablet">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </label>
 
-        <aside class="column is-2" id="drawer">
-          <div class="is-hidden-tablet">
+        <aside class="column is-2-desktop is-3-tablet" id="drawer">
+          <div class="is-hidden-tablet clip-siblings">
             <a href="index.html" title="OpenFF Sphinx theme">
               <h1>
                 OpenFF Sphinx theme
@@ -763,7 +763,7 @@
           </article>
         </div>
 
-        <aside class="column is-hidden-mobile is-2-desktop is-3-tablet">
+        <aside class="column is-hidden-touch is-2">
           
         </aside>
       </div>
@@ -777,7 +777,7 @@
               
           </div>
           Last updated on
-            May 09, 2022.
+            May 10, 2022.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
