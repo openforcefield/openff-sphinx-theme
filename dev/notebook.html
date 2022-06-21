@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
 <link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
 <link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -27,6 +27,7 @@
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
 <script src="_static/jquery.js"></script>
 <script src="_static/underscore.js"></script>
+<script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
 <script src="_static/doctools.js"></script>
 <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -34,7 +35,7 @@
 <link href="genindex.html" rel="index" title="Index"/>
 <link href="search.html" rel="search" title="Search"/>
 <link href="markdown.html" rel="next" title="Markdown"/>
-<link href="pydantic.html" rel="prev" title="Pydantic API docs"/>
+<link href="generated/openff.qcsubmit.datasets.BasicDataset.html" rel="prev" title="openff.qcsubmit.datasets.BasicDataset"/>
 </head>
 <body class="has-navbar-fixed-top" data-md-color-accent="openff-toolkit-blue" dir="ltr">
 <header data-md-component="header">
@@ -391,6 +392,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -399,10 +401,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -414,28 +420,31 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
 <section id="Jupyter-Notebooks">
-<h1>Jupyter Notebooks<a class="headerlink" href="#Jupyter-Notebooks" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<h1>Jupyter Notebooks<a class="headerlink" href="#Jupyter-Notebooks" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
 <p>The <a class="reference external" href="https://github.com/spatialaudio/nbsphinx">nbsphinx extension</a> allow notebooks to be seemlessly integrated into a Sphinx website. This page demonstrates how notebooks are rendered.</p>
 <section id="Mathematics">
-<h2>Mathematics<a class="headerlink" href="#Mathematics" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Mathematics<a class="headerlink" href="#Mathematics" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p><a class="reference external" href="https://www.mathjax.org">MathJax</a> can use used to render mathematical equations. Equations can be rendered either in their own line using double dollar signs</p>
 <div class="math notranslate nohighlight">
 \[y_{it} = \alpha_i + \gamma_t + \beta x_{it} + \epsilon_{it}\]</div>
 <p>or inline using single dollar signs (<span class="math notranslate nohighlight">\(\LaTeX\)</span>).</p>
 </section>
 <section id="DataFrames">
-<h2>DataFrames<a class="headerlink" href="#DataFrames" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>DataFrames<a class="headerlink" href="#DataFrames" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>pandas DataFrames are rendered with useful markup.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -505,7 +514,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Plots-and-Figures">
-<h2>Plots and Figures<a class="headerlink" href="#Plots-and-Figures" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Plots and Figures<a class="headerlink" href="#Plots-and-Figures" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>matplotlib can be used to produce plots in notebooks</p>
 <p>This example comes from the <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/ticks_and_spines/colorbar_tick_labelling_demo.html#sphx-glr-gallery-ticks-and-spines-colorbar-tick-labelling-demo-py">matplotlib gallery</a>.</p>
 <div class="nbinput docutils container">
@@ -542,7 +551,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="STDERR-and-STDOUT">
-<h2>STDERR and STDOUT<a class="headerlink" href="#STDERR-and-STDOUT" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>STDERR and STDOUT<a class="headerlink" href="#STDERR-and-STDOUT" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -690,11 +699,11 @@ Input <span class="ansi-green-fg">In [6]</span>, in <span class="ansi-cyan-fg">&
 <nav class="level">
 <div class="level-left">
 <div class="level-item">
-<a class="icon-text" href="pydantic.html" rel="prev" title="Pydantic API docs">
+<a class="icon-text" href="generated/openff.qcsubmit.datasets.BasicDataset.html" rel="prev" title="openff.qcsubmit.datasets.BasicDataset">
 <span class="icon">
 <i class="fas fa-arrow-left"></i>
 </span>
-<span class="is-size-5">Pydantic API docs</span>
+<span class="is-size-5">openff.qcsubmit.datasets.BasicDataset</span>
 </a>
 </div>
 </div>
@@ -716,10 +725,10 @@ Input <span class="ansi-green-fg">In [6]</span>, in <span class="ansi-cyan-fg">&
               
           </div>
           Last updated on
-            May 10, 2022.
+            Jun 21, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
 <link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
 <link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -27,6 +27,7 @@
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
 <script src="_static/jquery.js"></script>
 <script src="_static/underscore.js"></script>
+<script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
 <script src="_static/doctools.js"></script>
 <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 <link href="genindex.html" rel="index" title="Index"/>
@@ -176,9 +177,9 @@
 <div class="column is-8-desktop is-9-tablet">
 <article class="content">
 <section id="autodoc-pydantic-api-docs">
-<span id="autodoc-pydantic-example"></span><h1>autodoc_pydantic API Docs<a class="headerlink" href="#autodoc-pydantic-api-docs" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<span id="autodoc-pydantic-example"></span><h1>autodoc_pydantic API Docs<a class="headerlink" href="#autodoc-pydantic-api-docs" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
 <section id="source">
-<h2>Source<a class="headerlink" href="#source" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">validator</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span>
@@ -223,7 +224,7 @@
 </div>
 </section>
 <section id="module-pydantic_example">
-<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-pydantic_example" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-pydantic_example" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <dl class="py class pydantic_settings">
 <dt class="sig sig-object py" id="pydantic_example.ExampleSettings">
 <em class="property"><span class="pre">pydantic</span> <span class="pre">settings</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pydantic_example.</span></span><span class="sig-name descname"><span class="pre">ExampleSettings</span></span><a class="reference internal" href="_modules/pydantic_example.html#ExampleSettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pydantic_example.ExampleSettings" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
@@ -269,13 +270,13 @@ to pydantic models.</p>
 </pre></div>
 </div>
 </details></p><dl class="field-list simple">
-<dt class="field-odd">Config</dt>
+<dt class="field-odd">Config<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>allow_mutation</strong>: <em>bool = True</em></p></li>
 <li><p><strong>env_prefix</strong>: <em>str = foo_</em></p></li>
 </ul>
 </dd>
-<dt class="field-even">Fields</dt>
+<dt class="field-even">Fields<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain" title="pydantic_example.ExampleSettings.field_plain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_plain</span> <span class="pre">()</span></code></a></p></li>
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="pydantic_example.ExampleSettings.field_plain_with_validator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_plain_with_validator</span> <span class="pre">(int)</span></code></a></p></li>
@@ -284,9 +285,10 @@ to pydantic models.</p>
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias_typeless" title="pydantic_example.ExampleSettings.field_with_validator_and_alias_typeless"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_with_validator_and_alias_typeless</span> <span class="pre">()</span></code></a></p></li>
 </ul>
 </dd>
-<dt class="field-odd">Validators</dt>
+<dt class="field-odd">Validators<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="pydantic_example.ExampleSettings.check_max_length_ten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_max_length_ten</span></code></a> » <a class="reference internal" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="pydantic_example.ExampleSettings.field_plain_with_validator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_plain_with_validator</span></code></a></p></li>
+<li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="pydantic_example.ExampleSettings.check_max_length_ten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_max_length_ten</span></code></a> » <a class="reference internal" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="pydantic_example.ExampleSettings.field_with_validator_and_alias"><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_with_validator_and_alias</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -295,7 +297,7 @@ to pydantic models.</p>
 <em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">field_plain_with_validator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_plain_with_validator" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Show standard field with type annotation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Validated by</dt>
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="pydantic_example.ExampleSettings.check_max_length_ten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_max_length_ten</span></code></a></p></li>
 </ul>
@@ -312,7 +314,7 @@ to pydantic models.</p>
 <em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">field_with_validator_and_alias</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'FooBar'</span></em><em class="property"> <span class="pre">(alias</span> <span class="pre">'BarFoo')</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_validator_and_alias" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Shows corresponding validator with link/anchor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Validated by</dt>
+<dt class="field-odd">Validated by<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="#pydantic_example.ExampleSettings.check_max_length_ten" title="pydantic_example.ExampleSettings.check_max_length_ten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_max_length_ten</span></code></a></p></li>
 </ul>
@@ -329,7 +331,7 @@ to pydantic models.</p>
 <em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">field_with_constraints_and_description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#pydantic_example.ExampleSettings.field_with_constraints_and_description" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Shows constraints within doc string.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Constraints</dt>
+<dt class="field-odd">Constraints<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>minimum</strong> = 0</p></li>
 <li><p><strong>maximum</strong> = 100</p></li>
@@ -354,7 +356,7 @@ Behaves as if <cite>Config.extra = ‘allow’</cite> was set since it adds all 
 <span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">AbstractSetIntStr</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">MappingIntStrAny</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DictStrAny</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Model</span></span></span><a class="headerlink" href="#pydantic_example.ExampleSettings.copy" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Duplicate a model, optionally choose which fields to include, exclude and change.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>include</strong> – fields to include in new model</p></li>
 <li><p><strong>exclude</strong> – fields to exclude from new model, as with values this takes precedence over include</p></li>
@@ -363,7 +365,7 @@ the new model: you should trust this data</p></li>
 <li><p><strong>deep</strong> – set to <cite>True</cite> to make a deep copy of the model</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>new model instance</p>
 </dd>
 </dl>
@@ -466,10 +468,10 @@ the new model: you should trust this data</p></li>
               
           </div>
           Last updated on
-            May 10, 2022.
+            Jun 21, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>

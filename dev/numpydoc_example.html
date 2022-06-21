@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
 <link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
 <link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -27,6 +27,7 @@
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
 <script src="_static/jquery.js"></script>
 <script src="_static/underscore.js"></script>
+<script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
 <script src="_static/doctools.js"></script>
 <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -178,9 +179,9 @@
 <div class="column is-8-desktop is-9-tablet">
 <article class="content">
 <section id="numpy-docstrings">
-<span id="numpydoc-example"></span><h1>NumPy Docstrings<a class="headerlink" href="#numpy-docstrings" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<span id="numpydoc-example"></span><h1>NumPy Docstrings<a class="headerlink" href="#numpy-docstrings" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
 <section id="source">
-<h2>Source<a class="headerlink" href="#source" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="sd">"""Docstring for the example.py module.</span>
 <span class="linenos">  2</span>
 <span class="linenos">  3</span><span class="sd">Modules names should have short, all-lowercase names.  The module name may</span>
@@ -315,7 +316,7 @@
 </div>
 </section>
 <section id="module-numpydoc_example">
-<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-numpydoc_example" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-numpydoc_example" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>Docstring for the example.py module.</p>
 <p>Modules names should have short, all-lowercase names.  The module name may
 have underscores if this improves readability.</p>
@@ -330,7 +331,7 @@ a line by itself, preferably preceded by a blank line.</p>
 <p>Several sentences providing an extended description. Refer to
 variables using back-ticks, e.g. <cite>var</cite>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>var1</strong><span class="classifier">array_like</span></dt><dd><p>Array_like means all those objects – lists, nested lists, etc. –
 that can be converted to an array.  We can also refer to
@@ -348,7 +349,7 @@ detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>type</dt><dd><p>Explanation of anonymous return value of type <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p>
 </dd>
@@ -359,7 +360,7 @@ detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</
 <dt>type_without_description</dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-odd">Other Parameters</dt>
+<dt class="field-odd">Other Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>only_seldom_used_keywords</strong><span class="classifier">type</span></dt><dd><p>Explanation.</p>
 </dd>
@@ -367,7 +368,7 @@ detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>BadException</dt><dd><p>Because you shouldn’t have done that.</p>
 </dd>
@@ -394,15 +395,16 @@ detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</
 <p class="rubric">References</p>
 <p>Cite the relevant literature, e.g. <a class="reference internal" href="#re98b5729aa6a-1" id="id1">[1]</a>.  You may also cite these
 references in the notes section above.</p>
-<dl class="citation">
-<dt class="label" id="re98b5729aa6a-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>O. McNoleg, “The integration of GIS, remote sensing,
+<div class="citation-list" role="list">
+<div class="citation" id="re98b5729aa6a-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a href="#id1" role="doc-backlink">1</a><span class="fn-bracket">]</span></span>
+<p>O. McNoleg, “The integration of GIS, remote sensing,
 expert systems and adaptive co-kriging for environmental habitat
 modelling of the Highland Haggis using object-oriented, fuzzy-logic
 and neural-network techniques,” Computers &amp; Geosciences, vol. 22,
 pp. 585-588, 1996.</p>
-</dd>
-</dl>
+</div>
+</div>
 <p class="rubric">Examples</p>
 <p>These are written in doctest format, and should illustrate how to
 use the function.</p>
@@ -464,10 +466,10 @@ use the function.</p>
               
           </div>
           Last updated on
-            May 10, 2022.
+            Jun 21, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>

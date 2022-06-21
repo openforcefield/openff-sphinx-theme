@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
 <link href="../_static/images/favicon.svg" rel="icon" type="image/svg"/>
 <link href="../_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -27,6 +27,7 @@
 <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
 <script src="../_static/jquery.js"></script>
 <script src="../_static/underscore.js"></script>
+<script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
 <script src="../_static/doctools.js"></script>
 <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -179,7 +180,7 @@
 <div class="column is-8-desktop is-9-tablet">
 <article class="content">
 <section id="openff-toolkit-topology-molecule">
-<h1>openff.toolkit.topology.Molecule<a class="headerlink" href="#openff-toolkit-topology-molecule" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<h1>openff.toolkit.topology.Molecule<a class="headerlink" href="#openff-toolkit-topology-molecule" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openff.toolkit.topology.</span></span><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
@@ -228,7 +229,7 @@
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.__init__" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a new Molecule object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>other</strong><span class="classifier">optional, default=None</span></dt><dd><p>If specified, attempt to construct a copy of the Molecule from the
 specified object. This can be any one of the following:</p>
@@ -300,10 +301,6 @@ than one molecule is found?</p></li>
 </dd></dl>
 <p class="rubric">Methods</p>
 <div class="table-container autosummary longtable docutils align-default"><table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%"/>
-<col style="width: 90%"/>
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.__init__" title="openff.toolkit.topology.Molecule.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Create a new Molecule object</p></td>
@@ -507,10 +504,6 @@ than one molecule is found?</p></li>
 </table></div>
 <p class="rubric">Attributes</p>
 <div class="table-container autosummary longtable docutils align-default"><table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%"/>
-<col style="width: 90%"/>
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.amber_impropers" title="openff.toolkit.topology.Molecule.amber_impropers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">amber_impropers</span></code></a></p></td>
 <td><p>Iterate over improper torsions in the molecule, but only those with trivalent centers, reporting the central atom first in each improper.</p></td>
@@ -597,7 +590,7 @@ than one molecule is found?</p></li>
 <span class="sig-name descname"><span class="pre">add_atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomic_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formal_charge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_aromatic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stereochemistry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_atom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_atom" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Add an atom</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>atomic_number</strong><span class="classifier">int</span></dt><dd><p>Atomic number of the atom</p>
 </dd>
@@ -611,7 +604,7 @@ than one molecule is found?</p></li>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the atom in the molecule</p>
 </dd>
@@ -645,7 +638,7 @@ atoms, e.g. to allow for a sigma hole for halogens or similar contexts.
 With positive values of the distance, the virtual site lies outside the
 first indexed atom.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>atoms</strong><span class="classifier">list of <code class="xref py py-class docutils literal notranslate"><span class="pre">openff.toolkit.topology.molecule.Atom</span></code> objects</span></dt><dd><p>The atoms defining the virtual site’s position</p>
 </dd>
@@ -658,7 +651,7 @@ True to model both lone pairs with the same parameters.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the newly-added virtual site in the molecule</p>
 </dd>
@@ -679,7 +672,7 @@ orderings will be used for the actual assignment of the improper term
 and measurement of the angle. This method does not encode the logic to
 determine which of the six orderings AMBER would use.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>impropers</strong><span class="classifier">set of tuple</span></dt><dd><p>An iterator of tuples, each containing the indices of atoms making
 up a possible improper torsion. The central atom is listed first in
@@ -708,7 +701,7 @@ to select a set of diverse conformers which have minimal
 electrostatically strongly interacting functional groups from a
 molecules conformers.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>toolkit_registry</strong></dt><dd><p>The underlying toolkit to use to select the ELF conformers.</p>
 </dd>
@@ -748,7 +741,7 @@ optional attributes for edges are: is_aromatic, bond_order and stereochemistry.<
 <p>This API is experimental and subject to change.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mol1</strong><span class="classifier">an openff.toolkit.topology.molecule.FrozenMolecule or TopologyMolecule or nx.Graph()</span></dt><dd></dd>
 <dt><strong>mol2</strong><span class="classifier">an openff.toolkit.topology.molecule.FrozenMolecule or TopologyMolecule or nx.Graph()</span></dt><dd><p>The molecule to test for isomorphism.</p>
@@ -776,7 +769,7 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecules_are_isomorphic</strong><span class="classifier">bool</span></dt><dd></dd>
 <dt><strong>atom_map</strong><span class="classifier">default=None, Optional,</span></dt><dd><p>[Dict[int,int]] ordered by mol1 indexing {mol1_index: mol2_index}
@@ -796,7 +789,7 @@ bond, in the <code class="docutils literal notranslate"><span class="pre">bond.f
 <p>This API is experimental and subject to change.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>toolkit_registry</strong><span class="classifier">openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span></dt><dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitRegistry</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitWrapper</span></code> to use for SMILES-to-molecule conversion</p>
 </dd>
@@ -807,7 +800,7 @@ of conformers will be generated by an available ToolkitWrapper.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>InvalidToolkitRegistryError</dt><dd><p>If an invalid object is passed as the toolkit_registry parameter</p>
 </dd>
@@ -826,7 +819,7 @@ of conformers will be generated by an available ToolkitWrapper.</p>
 <dd><p>Calculate partial atomic charges for this molecule using an underlying toolkit, and assign
 the new values to the partial_charges attribute.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>partial_charge_method</strong><span class="classifier">string</span></dt><dd><p>The partial charge calculation method to use for partial charge calculation.</p>
 </dd>
@@ -843,7 +836,7 @@ returns values at limited precision.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>InvalidToolkitRegistryError</dt><dd><p>If an invalid object is passed as the toolkit_registry parameter</p>
 </dd>
@@ -875,13 +868,13 @@ returns values at limited precision.</p>
 <p>This API is experimental and subject to change.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>toolkit_registry</strong><span class="classifier">openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional</span></dt><dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitRegistry</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitWrapper</span></code> to use for SMILES-to-molecule conversion</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">openff.toolkit.topology.Molecule</span></dt><dd><p>An new OpenFF style molecule with atoms in the canonical order.</p>
 </dd>
@@ -894,7 +887,7 @@ returns values at limited precision.</p>
 <span class="sig-name descname"><span class="pre">chemical_environment_matches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.chemical_environment_matches" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Retrieve all matches for a given chemical environment query.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>query</strong><span class="classifier">str or ChemicalEnvironment</span></dt><dd><p>SMARTS string (with one or more tagged atoms) or <code class="docutils literal notranslate"><span class="pre">ChemicalEnvironment</span></code> query.
 Query will internally be resolved to SMIRKS using <code class="docutils literal notranslate"><span class="pre">query.asSMIRKS()</span></code> if it has an <code class="docutils literal notranslate"><span class="pre">.asSMIRKS</span></code> method.</p>
@@ -903,7 +896,7 @@ Query will internally be resolved to SMIRKS using <code class="docutils literal 
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>matches</strong><span class="classifier">list of atom index tuples</span></dt><dd><p>A list of tuples, containing the indices of the matching atoms.</p>
 </dd>
@@ -930,7 +923,7 @@ We could call it <code class="docutils literal notranslate"><span class="pre">to
 <dd><p>Calculate partial atomic charges for this molecule using AM1-BCC run by an underlying toolkit
 and assign them to this molecule’s <code class="docutils literal notranslate"><span class="pre">partial_charges</span></code> attribute.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>strict_n_conformers</strong><span class="classifier">bool, default=False</span></dt><dd><p>Whether to raise an exception if an invalid number of conformers is provided for the given charge method.
 If this is False and an invalid number of conformers is found, a warning will be raised.</p>
@@ -942,7 +935,7 @@ If None, an appropriate number of conformers for the given charge method will be
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>InvalidToolkitRegistryError</dt><dd><p>If an invalid object is passed as the toolkit_registry parameter</p>
 </dd>
@@ -963,7 +956,7 @@ If None, an appropriate number of conformers for the given charge method will be
 external coordinates. The coordinates do not need come from an internal
 conformer, but are assumed to have the same shape and be in the same order.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>atom_positions</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">openmm.unit.Quantity</span></code> of dimension [Length] wrapping a</span></dt><dd></dd>
 <dt><strong>numpy.ndarray</strong></dt><dd><p>The positions of all atoms in the molecule. The array is the size (N, 3)
@@ -971,7 +964,7 @@ where N is the number of atoms in the molecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><code class="xref py py-class docutils literal notranslate"><span class="pre">openmm.unit.Quantity</span></code> of dimension [Length] in unit Angstroms wrapping a</dt><dd></dd>
 <dt>numpy.ndarray</dt><dd><p>The positions of the virtual particles belonging to this virtual site.
@@ -988,13 +981,13 @@ belonging to this virtual site.</p>
 <dd><p>Compute the position of all virtual sites given an existing
 conformer specified by its index.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>conformer_idx</strong><span class="classifier">int</span></dt><dd><p>The index of the conformer.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><code class="xref py py-class docutils literal notranslate"><span class="pre">openmm.unit.Quantity</span></code> of dimension [Length] in unit Angstroms wrapping a</dt><dd></dd>
 <dt>numpy.ndarray</dt><dd><p>The positions of the virtual particles belonging to this virtual site.
@@ -1017,13 +1010,13 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 <span class="sig-name descname"><span class="pre">enumerate_protomers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_states</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.enumerate_protomers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Enumerate the formal charges of a molecule to generate different protomoers.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>max_states: int optional, default=10,</strong></dt><dd><p>The maximum number of protomer states to be returned.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>molecules: List[openff.toolkit.topology.Molecule],</dt><dd><p>A list of the protomers of the input molecules not including the input.</p>
 </dd>
@@ -1036,7 +1029,7 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 <span class="sig-name descname"><span class="pre">enumerate_stereoisomers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">undefined_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_isomers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rationalise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.enumerate_stereoisomers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Enumerate the stereocenters and bonds of the current molecule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>undefined_only: bool optional, default=False</strong></dt><dd><p>If we should enumerate all stereocenters and bonds or only those with undefined stereochemistry</p>
 </dd>
@@ -1048,7 +1041,7 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>molecules: List[openff.toolkit.topology.Molecule]</dt><dd><p>A list of <a class="reference internal" href="#openff.toolkit.topology.Molecule" title="openff.toolkit.topology.Molecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></a> instances not including the input molecule.</p>
 </dd>
@@ -1061,7 +1054,7 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 <span class="sig-name descname"><span class="pre">enumerate_tautomers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_states</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.enumerate_tautomers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Enumerate the possible tautomers of the current molecule</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>max_states: int optional, default=20</strong></dt><dd><p>The maximum amount of molecules that should be returned</p>
 </dd>
@@ -1069,7 +1062,7 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>molecules: List[openff.toolkit.topology.Molecule]</dt><dd><p>A list of openff.toolkit.topology.Molecule instances not including the input molecule.</p>
 </dd>
@@ -1082,7 +1075,7 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 <span class="sig-name descname"><span class="pre">find_rotatable_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignore_functional_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.find_rotatable_bonds" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Find all bonds classed as rotatable ignoring any matched to the <code class="docutils literal notranslate"><span class="pre">ignore_functional_groups</span></code> list.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>ignore_functional_groups: optional, List[str], default=None,</strong></dt><dd><p>A list of bond SMARTS patterns to be ignored when finding rotatable bonds.</p>
 </dd>
@@ -1090,7 +1083,7 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>bonds: List[openff.toolkit.topology.molecule.Bond]</dt><dd><p>The list of openff.toolkit.topology.molecule.Bond instances which are rotatable.</p>
 </dd>
@@ -1104,13 +1097,13 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 <dd><p>Instantiate an object from a BSON serialized representation.</p>
 <p>Specification: <a class="reference external" href="http://bsonspec.org/">http://bsonspec.org/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">bytes</span></dt><dd><p>A BSON serialized representation of the object</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>instance</strong><span class="classifier">cls</span></dt><dd><p>An instantiated object</p>
 </dd>
@@ -1123,13 +1116,13 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_dict" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a new Molecule from a dictionary representation</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>molecule_dict</strong><span class="classifier">OrderedDict</span></dt><dd><p>A dictionary representation of the molecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">Molecule</span></dt><dd><p>A Molecule created from the dictionary representation</p>
 </dd>
@@ -1139,7 +1132,7 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_file">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_format=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry=ToolkitRegistry</span> <span class="pre">containing</span> <span class="pre">The</span> <span class="pre">RDKit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AmberTools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Built-in</span> <span class="pre">Toolkit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_file" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_file" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create one or more molecules from a file</p>
 <div class="admonition-todo admonition" id="id5">
 <p class="admonition-title">Todo</p>
@@ -1149,7 +1142,7 @@ conformers, and changes to the contents affect the original FrozenMolecule.</p>
 </ul>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>file_path</strong><span class="classifier">str or file-like object</span></dt><dd><p>The path to the file or file-like object to stream one or more molecules from.</p>
 </dd>
@@ -1165,7 +1158,7 @@ the highest-precedence toolkit is used</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecules</strong><span class="classifier">Molecule or list of Molecules</span></dt><dd><p>If there is a single molecule in the file, a Molecule is returned;
 otherwise, a list of Molecule objects is returned.</p>
@@ -1182,10 +1175,10 @@ otherwise, a list of Molecule objects is returned.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_inchi">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_inchi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inchi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry=ToolkitRegistry</span> <span class="pre">containing</span> <span class="pre">The</span> <span class="pre">RDKit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AmberTools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Built-in</span> <span class="pre">Toolkit</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_inchi" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_inchi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inchi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_inchi" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Construct a Molecule from a InChI representation</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>inchi</strong><span class="classifier">str</span></dt><dd><p>The InChI representation of the molecule.</p>
 </dd>
@@ -1197,7 +1190,7 @@ is passed into this function.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">openff.toolkit.topology.Molecule</span></dt><dd></dd>
 </dl>
@@ -1211,10 +1204,10 @@ is passed into this function.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_iupac">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_iupac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iupac_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry=ToolkitRegistry</span> <span class="pre">containing</span> <span class="pre">The</span> <span class="pre">RDKit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AmberTools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Built-in</span> <span class="pre">Toolkit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_iupac" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_iupac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iupac_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_iupac" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate a molecule from IUPAC or common name</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>iupac_name</strong><span class="classifier">str</span></dt><dd><p>IUPAC name of molecule to be generated</p>
 </dd>
@@ -1224,7 +1217,7 @@ is passed into this function.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">Molecule</span></dt><dd><p>The resulting molecule with position</p>
 </dd>
@@ -1248,13 +1241,13 @@ is passed into this function.</p>
 <dd><p>Instantiate an object from a JSON serialized representation.</p>
 <p>Specification: <a class="reference external" href="https://www.json.org/">https://www.json.org/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">str</span></dt><dd><p>A JSON serialized representation of the object</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>instance</strong><span class="classifier">cls</span></dt><dd><p>An instantiated object</p>
 </dd>
@@ -1264,7 +1257,7 @@ is passed into this function.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_mapped_smiles">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mapped_smiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapped_smiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry=ToolkitRegistry</span> <span class="pre">containing</span> <span class="pre">The</span> <span class="pre">RDKit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AmberTools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Built-in</span> <span class="pre">Toolkit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_mapped_smiles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mapped_smiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapped_smiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_mapped_smiles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create an <a class="reference internal" href="#openff.toolkit.topology.Molecule" title="openff.toolkit.topology.Molecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></a> from a mapped SMILES made with cmiles.
 The molecule will be in the order of the indexing in the mapped smiles string.</p>
 <div class="admonition warning">
@@ -1272,7 +1265,7 @@ The molecule will be in the order of the indexing in the mapped smiles string.</
 <p>This API is experimental and subject to change.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mapped_smiles: str,</strong></dt><dd><p>A CMILES-style mapped smiles string with explicit hydrogens.</p>
 </dd>
@@ -1282,13 +1275,13 @@ The molecule will be in the order of the indexing in the mapped smiles string.</
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>offmol</strong><span class="classifier">openff.toolkit.topology.molecule.Molecule</span></dt><dd><p>An OpenFF molecule instance.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>SmilesParsingError</dt><dd><p>If the given SMILES had no indexing picked up by the toolkits.</p>
 </dd>
@@ -1302,13 +1295,13 @@ The molecule will be in the order of the indexing in the mapped smiles string.</
 <dd><p>Instantiate an object from a MessagePack serialized representation.</p>
 <p>Specification: <a class="reference external" href="https://msgpack.org/index.html">https://msgpack.org/index.html</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">bytes</span></dt><dd><p>A MessagePack-encoded bytes serialized representation</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>instance</strong><span class="classifier">cls</span></dt><dd><p>Instantiated object.</p>
 </dd>
@@ -1322,7 +1315,7 @@ The molecule will be in the order of the indexing in the mapped smiles string.</
 <dd><p>Create a <code class="docutils literal notranslate"><span class="pre">Molecule</span></code> from an OpenEye molecule.</p>
 <p>Requires the OpenEye toolkit to be installed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>oemol</strong><span class="classifier">openeye.oechem.OEMol</span></dt><dd><p>An OpenEye molecule</p>
 </dd>
@@ -1330,7 +1323,7 @@ The molecule will be in the order of the indexing in the mapped smiles string.</
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">openff.toolkit.topology.Molecule</span></dt><dd><p>An OpenFF molecule</p>
 </dd>
@@ -1363,7 +1356,7 @@ molecule returned.</p>
 <p>Note that any stereochemistry in the molecule is set by the SMILES, and not the coordinates
 of the PDB.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>file_path: str</strong></dt><dd><p>PDB file path</p>
 </dd>
@@ -1373,13 +1366,13 @@ of the PDB.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">openff.toolkit.Molecule</span></dt><dd><p>An OFFMol instance with ordering the same as used in the PDB file.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>InvalidConformerError</dt><dd><p>If the SMILES and PDB molecules are not isomorphic.</p>
 </dd>
@@ -1397,13 +1390,13 @@ of the PDB.</p>
 may change between Python versions.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">str</span></dt><dd><p>A pickled representation of the object</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>instance</strong><span class="classifier">cls</span></dt><dd><p>An instantiated object</p>
 </dd>
@@ -1413,7 +1406,7 @@ may change between Python versions.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_qcschema">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_qcschema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qca_record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry=ToolkitRegistry</span> <span class="pre">containing</span> <span class="pre">The</span> <span class="pre">RDKit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AmberTools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Built-in</span> <span class="pre">Toolkit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_qcschema" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_qcschema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qca_record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_qcschema" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a Molecule from a QCArchive molecule record or dataset entry
 based on attached cmiles information.</p>
 <p>For a molecule record, a conformer will be set from its geometry.</p>
@@ -1422,7 +1415,7 @@ the starting geometry for that entry will be used as a conformer.</p>
 <p>A QCElemental Molecule produced from <code class="docutils literal notranslate"><span class="pre">Molecule.to_qcschema</span></code> can be round-tripped
 through this method to produce a new, valid Molecule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>qca_record</strong><span class="classifier">dict</span></dt><dd><p>A QCArchive molecule record or dataset entry.</p>
 </dd>
@@ -1435,13 +1428,13 @@ Only used if <code class="docutils literal notranslate"><span class="pre">qca_re
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">openff.toolkit.topology.Molecule</span></dt><dd><p>An OpenFF molecule instance.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>AttributeError</dt><dd><ul class="simple">
 <li><p>If the record dict can not be made from <code class="docutils literal notranslate"><span class="pre">qca_record</span></code>.</p></li>
@@ -1481,7 +1474,7 @@ Only used if <code class="docutils literal notranslate"><span class="pre">qca_re
 <dd><p>Create a Molecule from an RDKit molecule.</p>
 <p>Requires the RDKit to be installed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>rdmol</strong><span class="classifier">rkit.RDMol</span></dt><dd><p>An RDKit molecule</p>
 </dd>
@@ -1491,7 +1484,7 @@ Only used if <code class="docutils literal notranslate"><span class="pre">qca_re
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">openff.toolkit.topology.Molecule</span></dt><dd><p>An OpenFF molecule</p>
 </dd>
@@ -1509,10 +1502,10 @@ Only used if <code class="docutils literal notranslate"><span class="pre">qca_re
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_smiles">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_smiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hydrogens_are_explicit=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry=ToolkitRegistry</span> <span class="pre">containing</span> <span class="pre">The</span> <span class="pre">RDKit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AmberTools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Built-in</span> <span class="pre">Toolkit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo=False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_smiles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_smiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hydrogens_are_explicit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_undefined_stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_smiles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Construct a Molecule from a SMILES representation</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>smiles</strong><span class="classifier">str</span></dt><dd><p>The SMILES representation of the molecule.</p>
 </dd>
@@ -1526,7 +1519,7 @@ is passed into this function.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">openff.toolkit.topology.Molecule</span></dt><dd></dd>
 </dl>
@@ -1543,13 +1536,13 @@ is passed into this function.</p>
 <dd><p>Instantiate an object from a TOML serialized representation.</p>
 <p>Specification: <a class="reference external" href="https://github.com/toml-lang/toml">https://github.com/toml-lang/toml</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serlialized</strong><span class="classifier">str</span></dt><dd><p>A TOML serialized representation of the object</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>instance</strong><span class="classifier">cls</span></dt><dd><p>An instantiated object</p>
 </dd>
@@ -1562,20 +1555,20 @@ is passed into this function.</p>
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_topology</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topology</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_topology" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Return a Molecule representation of an OpenFF Topology containing a single Molecule object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>topology</strong><span class="classifier">openff.toolkit.topology.Topology</span></dt><dd><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">Topology</span></code> object containing a single <a class="reference internal" href="#openff.toolkit.topology.Molecule" title="openff.toolkit.topology.Molecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></a> object.
 Note that OpenMM and MDTraj <code class="docutils literal notranslate"><span class="pre">Topology</span></code> objects are not supported.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>molecule</strong><span class="classifier">openff.toolkit.topology.Molecule</span></dt><dd><p>The Molecule object in the topology</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>ValueError</dt><dd><p>If the topology does not contain exactly one molecule.</p>
 </dd>
@@ -1594,13 +1587,13 @@ Note that OpenMM and MDTraj <code class="docutils literal notranslate"><span cla
 <dd><p>Instantiate an object from an XML serialized representation.</p>
 <p>Specification: <a class="reference external" href="https://www.w3.org/XML/">https://www.w3.org/XML/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">bytes</span></dt><dd><p>An XML serialized representation</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>instance</strong><span class="classifier">cls</span></dt><dd><p>Instantiated object.</p>
 </dd>
@@ -1614,13 +1607,13 @@ Note that OpenMM and MDTraj <code class="docutils literal notranslate"><span cla
 <dd><p>Instantiate from a YAML serialized representation.</p>
 <p>Specification: <a class="reference external" href="http://yaml.org/">http://yaml.org/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">str</span></dt><dd><p>A YAML serialized representation of the object</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>instance</strong><span class="classifier">cls</span></dt><dd><p>Instantiated object</p>
 </dd>
@@ -1635,7 +1628,7 @@ Note that OpenMM and MDTraj <code class="docutils literal notranslate"><span cla
 <p>If <code class="docutils literal notranslate"><span class="pre">n_conformers=0</span></code>, no toolkit wrapper will be called. If <code class="docutils literal notranslate"><span class="pre">n_conformers=0</span></code>
 and <code class="docutils literal notranslate"><span class="pre">clear_existing=True</span></code>, <code class="docutils literal notranslate"><span class="pre">molecule.conformers</span></code> will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>toolkit_registry</strong><span class="classifier">openff.toolkit.utils.toolkits.ToolkitRegistry or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span></dt><dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitRegistry</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitWrapper</span></code> to use for SMILES-to-molecule conversion</p>
 </dd>
@@ -1654,7 +1647,7 @@ where trans COOH is much more common than it should be.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>InvalidToolkitRegistryError</dt><dd><p>If an invalid object is passed as the toolkit_registry parameter</p>
 </dd>
@@ -1680,13 +1673,13 @@ type imported from another source.</p>
 <span class="sig-name descname"><span class="pre">get_bond_between</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.get_bond_between" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Returns the bond between two atoms</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>i, j</strong><span class="classifier">int or Atom</span></dt><dd><p>Atoms or atom indices to check</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>bond</strong><span class="classifier">Bond</span></dt><dd><p>The bond between i and j.</p>
 </dd>
@@ -1715,7 +1708,7 @@ type imported from another source.</p>
 </ul>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>impropers</strong><span class="classifier">set of tuple</span></dt><dd><p>An iterator of tuples, each containing the indices of atoms making
 up a possible improper torsion.</p>
@@ -1740,7 +1733,7 @@ or TopologyMolecule or nx.Graph(). Full matching is done using the options descr
 <p>This API is experimental and subject to change.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>other: openff.toolkit.topology.Molecule or TopologyMolecule or nx.Graph()</strong></dt><dd></dd>
 <dt><strong>return_atom_map: bool, default=False, optional</strong></dt><dd><p>will return an optional dict containing the atomic mapping.</p>
@@ -1766,7 +1759,7 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>isomorphic</strong><span class="classifier">bool</span></dt><dd></dd>
 </dl>
@@ -1778,7 +1771,7 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_angles</span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_angles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>number of angles in the Molecule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a></p>
 </dd>
 </dl>
@@ -1803,7 +1796,7 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_impropers</span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_impropers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>number of possible improper torsions in the Molecule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a></p>
 </dd>
 </dl>
@@ -1818,7 +1811,7 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_propers</span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_propers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>number of proper torsions in the Molecule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a></p>
 </dd>
 </dl>
@@ -1844,13 +1837,13 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 <dd><p>Return canonicalized pairs of atoms whose shortest separation is <cite>exactly</cite> n bonds.
 Only pairs with increasing atom indices are returned.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>n: int</strong></dt><dd><p>The number of bonds separating atoms in each pair</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>neighbors: iterator of tuple of Atom</dt><dd><p>Tuples (len 2) of atom that are separated by <code class="docutils literal notranslate"><span class="pre">n</span></code> bonds.</p>
 </dd>
@@ -1870,7 +1863,7 @@ passed.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">partial_charges</span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.partial_charges" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Returns the partial charges (if present) on the molecule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>partial_charges</strong><span class="classifier">a openmm.unit.Quantity - wrapped numpy array [1 x n_atoms] or None</span></dt><dd><p>The partial charges on this Molecule’s atoms. Returns None if no charges have been specified.</p>
 </dd>
@@ -1908,7 +1901,7 @@ passed.</p>
 <p>This API is experimental and subject to change.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>mapping_dict</strong><span class="classifier">dict,</span></dt><dd><p>A dictionary of the mapping between indexes, this should start from 0.</p>
 </dd>
@@ -1917,7 +1910,7 @@ otherwise, it is of the form <code class="docutils literal notranslate"><span cl
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>new_molecule</strong><span class="classifier">openff.toolkit.topology.molecule.Molecule</span></dt><dd><p>An openff.toolkit.Molecule instance with all attributes transferred, in the PDB order.</p>
 </dd>
@@ -1944,7 +1937,7 @@ those indices may change when this molecule is added to a Topology.</p>
 <p>For more details on the use of three-fold (‘trefoil’) impropers, see
 <a class="reference external" href="https://openforcefield.github.io/standards/standards/smirnoff/#impropertorsions">https://openforcefield.github.io/standards/standards/smirnoff/#impropertorsions</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>impropers</strong><span class="classifier">set of tuple</span></dt><dd><p>An iterator of tuples, each containing the indices of atoms making
 up a possible improper torsion. The central atom is listed second
@@ -1967,7 +1960,7 @@ in each tuple.</p>
 This method can be used to “normalize” molecules imported from different cheminformatics
 toolkits, which differ in which atom centers are considered stereogenic.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>smarts: str or ChemicalEnvironment</strong></dt><dd><p>Tagged SMARTS with a single atom with index 1. Any matches for this atom will have any assigned
 stereocheistry information removed.</p>
@@ -1984,7 +1977,7 @@ stereocheistry information removed.</p>
 <dd><p>Return a BSON serialized representation.</p>
 <p>Specification: <a class="reference external" href="http://bsonspec.org/">http://bsonspec.org/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">bytes</span></dt><dd><p>A BSON serialized representation of the objecft</p>
 </dd>
@@ -2004,7 +1997,7 @@ stereocheistry information removed.</p>
 </ul>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>molecule_dict</strong><span class="classifier">OrderedDict</span></dt><dd><p>A dictionary representation of the molecule.</p>
 </dd>
@@ -2017,7 +2010,7 @@ stereocheistry information removed.</p>
 <span class="sig-name descname"><span class="pre">to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_file" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Write the current molecule to a file or file-like object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>file_path</strong><span class="classifier">str or file-like object</span></dt><dd><p>A file-like object or the path to the file to be written.</p>
 </dd>
@@ -2030,7 +2023,7 @@ the highest-precedence toolkit is used</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>ValueError</dt><dd><p>If the requested file_format is not supported by one of the installed cheminformatics toolkits</p>
 </dd>
@@ -2050,12 +2043,12 @@ the highest-precedence toolkit is used</p>
 <span class="sig-name descname"><span class="pre">to_hill_formula</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate the Hill formula of this molecule.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>formula</strong><span class="classifier">the Hill formula of the molecule</span></dt><dd></dd>
 </dl>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>NotImplementedError</strong><span class="classifier">if the molecule is not of one of the specified types.</span></dt><dd></dd>
 </dl>
@@ -2070,7 +2063,7 @@ InChI is a standardised representation that does not capture tautomers unless sp
 layer.</p>
 <p>For information on InChi see here <a class="reference external" href="https://iupac.org/who-we-are/divisions/division-details/inchi/">https://iupac.org/who-we-are/divisions/division-details/inchi/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fixed_hydrogens: bool, default=False</strong></dt><dd><p>If a fixed hydrogen layer should be added to the InChI, if <cite>True</cite> this will produce a non standard specific
 InChI string of the molecule.</p>
@@ -2079,13 +2072,13 @@ InChI string of the molecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>inchi: str</dt><dd><p>The InChI string of the molecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>InvalidToolkitRegistryError</dt><dd><p>If an invalid object is passed as the toolkit_registry parameter</p>
 </dd>
@@ -2101,7 +2094,7 @@ InChIKey is a standardised representation that does not capture tautomers unless
 layer.</p>
 <p>For information on InChi see here <a class="reference external" href="https://iupac.org/who-we-are/divisions/division-details/inchi/">https://iupac.org/who-we-are/divisions/division-details/inchi/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>fixed_hydrogens: bool, default=False</strong></dt><dd><p>If a fixed hydrogen layer should be added to the InChI, if <cite>True</cite> this will produce a non standard specific
 InChI string of the molecule.</p>
@@ -2110,13 +2103,13 @@ InChI string of the molecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>inchi_key: str</dt><dd><p>The InChIKey representation of the molecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>InvalidToolkitRegistryError</dt><dd><p>If an invalid object is passed as the toolkit_registry parameter</p>
 </dd>
@@ -2129,7 +2122,7 @@ InChI string of the molecule.</p>
 <span class="sig-name descname"><span class="pre">to_iupac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_iupac" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate IUPAC name from Molecule</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>iupac_name</strong><span class="classifier">str</span></dt><dd><p>IUPAC name of the molecule</p>
 </dd>
@@ -2151,13 +2144,13 @@ InChI string of the molecule.</p>
 <dd><p>Return a JSON serialized representation.</p>
 <p>Specification: <a class="reference external" href="https://www.json.org/">https://www.json.org/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>indent</strong><span class="classifier">int, optional, default=None</span></dt><dd><p>If not None, will pretty-print with specified number of spaces for indentation</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">str</span></dt><dd><p>A JSON serialized representation of the object</p>
 </dd>
@@ -2171,7 +2164,7 @@ InChI string of the molecule.</p>
 <dd><p>Return a MessagePack representation.</p>
 <p>Specification: <a class="reference external" href="https://msgpack.org/index.html">https://msgpack.org/index.html</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">bytes</span></dt><dd><p>A MessagePack-encoded bytes serialized representation of the object</p>
 </dd>
@@ -2197,7 +2190,7 @@ Virtual sites are not included, since they lack a concept of chemical connectivi
 </ul>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>graph</strong><span class="classifier">networkx.Graph</span></dt><dd><p>The resulting graph, with nodes (atoms) labeled with atom indices, elements, stereochemistry and aromaticity
 flags and bonds with two atom indices, bond order, stereochemistry, and aromaticity flags</p>
@@ -2225,13 +2218,13 @@ flags and bonds with two atom indices, bond order, stereochemistry, and aromatic
 </ul>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>aromaticity_model</strong><span class="classifier">str, optional, default=DEFAULT_AROMATICITY_MODEL</span></dt><dd><p>The aromaticity model to use</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>oemol</strong><span class="classifier">openeye.oechem.OEMol</span></dt><dd><p>An OpenEye molecule</p>
 </dd>
@@ -2255,7 +2248,7 @@ flags and bonds with two atom indices, bond order, stereochemistry, and aromatic
 may change between Python versions.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">str</span></dt><dd><p>A pickled representation of the object</p>
 </dd>
@@ -2272,7 +2265,7 @@ may change between Python versions.</p>
 <p>This API is experimental and subject to change.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>multiplicity</strong><span class="classifier">int, default=1,</span></dt><dd><p>The multiplicity of the molecule;
 sets <code class="docutils literal notranslate"><span class="pre">molecular_multiplicity</span></code> field for QCElemental Molecule.</p>
@@ -2284,13 +2277,13 @@ This can be used to include extra information, such as a smiles representation.<
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>qcelemental.models.Molecule</dt><dd><p>A validated QCElemental Molecule.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>MissingDependencyError</dt><dd><p>If qcelemental is not installed, the qcschema can not be validated.</p>
 </dd>
@@ -2314,13 +2307,13 @@ This can be used to include extra information, such as a smiles representation.<
 <dd><p>Create an RDKit molecule</p>
 <p>Requires the RDKit to be installed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>aromaticity_model</strong><span class="classifier">str, optional, default=DEFAULT_AROMATICITY_MODEL</span></dt><dd><p>The aromaticity model to use</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>rdmol</strong><span class="classifier">rdkit.RDMol</span></dt><dd><p>An RDKit molecule</p>
 </dd>
@@ -2347,7 +2340,7 @@ properties dictionary.</p>
 <p>RDKit and OpenEye versions will not necessarily return the same representation.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>isomeric: bool optional, default= True</strong></dt><dd><p>return an isomeric smiles</p>
 </dd>
@@ -2362,7 +2355,7 @@ The map ids (values) should start from 0 or 1.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>smiles</strong><span class="classifier">str</span></dt><dd><p>Canonical isomeric explicit-hydrogen SMILES</p>
 </dd>
@@ -2383,7 +2376,7 @@ The map ids (values) should start from 0 or 1.</p>
 <dd><p>Return a TOML serialized representation.</p>
 <p>Specification: <a class="reference external" href="https://github.com/toml-lang/toml">https://github.com/toml-lang/toml</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">str</span></dt><dd><p>A TOML serialized representation of the object</p>
 </dd>
@@ -2396,7 +2389,7 @@ The map ids (values) should start from 0 or 1.</p>
 <span class="sig-name descname"><span class="pre">to_topology</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_topology" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Return an OpenFF Topology representation containing one copy of this molecule</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>topology</strong><span class="classifier">openff.toolkit.topology.Topology</span></dt><dd><p>A Topology representation of this molecule</p>
 </dd>
@@ -2415,13 +2408,13 @@ The map ids (values) should start from 0 or 1.</p>
 <dd><p>Return an XML representation.</p>
 <p>Specification: <a class="reference external" href="https://www.w3.org/XML/">https://www.w3.org/XML/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>indent</strong><span class="classifier">int, optional, default=2</span></dt><dd><p>If not None, will pretty-print with specified number of spaces for indentation</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">bytes</span></dt><dd><p>A MessagePack-encoded bytes serialized representation.</p>
 </dd>
@@ -2435,7 +2428,7 @@ The map ids (values) should start from 0 or 1.</p>
 <dd><p>Return a YAML serialized representation.</p>
 <p>Specification: <a class="reference external" href="http://yaml.org/">http://yaml.org/</a></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>serialized</strong><span class="classifier">str</span></dt><dd><p>A YAML serialized representation of the object</p>
 </dd>
@@ -2449,7 +2442,7 @@ The map ids (values) should start from 0 or 1.</p>
 <dd><p>Get an iterator over all i-j-k-l torsions.
 Note that i-j-k-i torsions (cycles) are excluded.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>torsions</strong><span class="classifier">iterable of 4-Atom tuples</span></dt><dd></dd>
 </dl>
@@ -2471,7 +2464,7 @@ Note that i-j-k-i torsions (cycles) are excluded.</p>
 <span class="sig-name descname"><span class="pre">add_monovalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_of_plane_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_plane_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_monovalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_monovalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a bond charge-type virtual site, in which the location of the charge is specified by the position of three atoms.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>atoms</strong><span class="classifier">list of three <code class="xref py py-class docutils literal notranslate"><span class="pre">openff.toolkit.topology.molecule.Atom</span></code> objects</span></dt><dd><p>The three atoms defining the virtual site’s position</p>
 </dd>
@@ -2489,7 +2482,7 @@ on atom1, and the other on atom3.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the newly-added virtual site in the molecule</p>
 </dd>
@@ -2502,7 +2495,7 @@ on atom1, and the other on atom3.</p>
 <span class="sig-name descname"><span class="pre">add_divalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_of_plane_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_divalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_divalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a divalent lone pair-type virtual site, in which the location of the charge is specified by the position of three atoms.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>atoms</strong><span class="classifier">list of three <code class="xref py py-class docutils literal notranslate"><span class="pre">openff.toolkit.topology.molecule.Atom</span></code> objects</span></dt><dd><p>The three atoms defining the virtual site’s position</p>
 </dd>
@@ -2517,7 +2510,7 @@ to model both lone pairs with the same parameters.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the newly-added virtual site in the molecule</p>
 </dd>
@@ -2530,7 +2523,7 @@ to model both lone pairs with the same parameters.</p>
 <span class="sig-name descname"><span class="pre">add_trivalent_lone_pair_virtual_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_trivalent_lone_pair_virtual_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_trivalent_lone_pair_virtual_site" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a trivalent lone pair-type virtual site, in which the location of the charge is specified by the position of four atoms.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
 <dt><strong>atoms</strong><span class="classifier">list of four <code class="xref py py-class docutils literal notranslate"><span class="pre">openff.toolkit.topology.molecule.Atom</span></code> objects</span></dt><dd><p>The four atoms defining the virtual site’s position</p>
 </dd>
@@ -2539,7 +2532,7 @@ to model both lone pairs with the same parameters.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>index</strong><span class="classifier">int</span></dt><dd><p>The index of the newly-added virtual site in the molecule</p>
 </dd>
@@ -2552,7 +2545,7 @@ to model both lone pairs with the same parameters.</p>
 <span class="sig-name descname"><span class="pre">add_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_aromatic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stereochemistry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fractional_bond_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_bond" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Add a bond between two specified atom indices</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>atom1</strong><span class="classifier">int or openff.toolkit.topology.molecule.Atom</span></dt><dd><p>Index of first atom</p>
 </dd>
@@ -2568,7 +2561,7 @@ to model both lone pairs with the same parameters.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>index: int</dt><dd><p>Index of the bond in this molecule</p>
 </dd>
@@ -2581,14 +2574,14 @@ to model both lone pairs with the same parameters.</p>
 <span class="sig-name descname"><span class="pre">add_conformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.add_conformer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.add_conformer" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Add a conformation of the molecule</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>coordinates: openmm.unit.Quantity(np.array) with shape (n_atoms, 3) and dimension of distance</strong></dt><dd><p>Coordinates of the new conformer, with the first dimension of the array corresponding to the atom index in
 the Molecule’s indexing system.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>index: int</dt><dd><p>The index of this conformer</p>
 </dd>
@@ -2601,7 +2594,7 @@ the Molecule’s indexing system.</p>
 <span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rdkit'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_all_hydrogens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/openff/toolkit/topology/molecule.html#Molecule.visualize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#openff.toolkit.topology.Molecule.visualize" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Render a visualization of the molecule in Jupyter</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>backend</strong><span class="classifier">str, optional, default=’rdkit’</span></dt><dd><p>Which visualization engine to use. Choose from:</p>
 <ul class="simple">
@@ -2621,7 +2614,7 @@ the Molecule’s indexing system.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt>object</dt><dd><p>Depending on the backend chosen:</p>
 <ul class="simple">
@@ -2673,10 +2666,10 @@ the Molecule’s indexing system.</p>
               
           </div>
           Last updated on
-            May 10, 2022.
+            Jun 21, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>

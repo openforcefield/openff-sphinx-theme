@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
 <link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
 <link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -27,6 +27,7 @@
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
 <script src="_static/jquery.js"></script>
 <script src="_static/underscore.js"></script>
+<script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
 <script src="_static/doctools.js"></script>
 <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 <link href="genindex.html" rel="index" title="Index"/>
@@ -194,7 +195,7 @@
 <div class="column is-8-desktop is-9-tablet">
 <article class="content">
 <section id="customization">
-<span id="id1"></span><h1>Customization<a class="headerlink" href="#customization" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<span id="id1"></span><h1>Customization<a class="headerlink" href="#customization" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
 <p>There are two methods to alter the theme.
 The first, and simplest, uses the options exposed through <code class="docutils literal notranslate"><span class="pre">html_theme_options</span></code> in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>.
 This site’s options are:</p>
@@ -273,7 +274,7 @@ This site’s options are:</p>
 </div>
 <p>Many of these settings are provided in this site as examples; for a minimalistic example, see <a class="reference internal" href="index.html#quickstart"><span class="std std-ref">OpenFF Sphinx theme Quickstart</span></a>.</p>
 <section id="configuration-options">
-<h2>Configuration Options<a class="headerlink" href="#configuration-options" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Configuration Options<a class="headerlink" href="#configuration-options" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">google_analytics_account</span></code></dt><dd><p>Set to enable google analytics.</p>
 </dd>
@@ -325,7 +326,7 @@ If not specified, defaults to a set of links appropriate for an OpenFF Initiativ
 </dl>
 </section>
 <section id="sidebars">
-<h2>Sidebars<a class="headerlink" href="#sidebars" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Sidebars<a class="headerlink" href="#sidebars" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>You must set <code class="docutils literal notranslate"><span class="pre">html_sidebars</span></code> in order for the side bar to appear.
 There are four in the complete set.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
@@ -343,7 +344,7 @@ For example, if this is changed to</p>
 <p>then only the global ToC would appear on all pages (<code class="docutils literal notranslate"><span class="pre">**</span></code> is a glob pattern).</p>
 </section>
 <section id="customizing-the-layout">
-<h2>Customizing the layout<a class="headerlink" href="#customizing-the-layout" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Customizing the layout<a class="headerlink" href="#customizing-the-layout" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>You can customize the theme by overriding Jinja template blocks.
 For example, ‘layout.html’ contains several blocks that can be overridden or extended.</p>
 <p>Place a ‘layout.html’ file in your project’s ‘/_templates’ directory.</p>
@@ -368,7 +369,7 @@ touch source/_templates/layout.html
 </div>
 </section>
 <section id="new-blocks">
-<h2>New Blocks<a class="headerlink" href="#new-blocks" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>New Blocks<a class="headerlink" href="#new-blocks" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>The theme has a small number of new blocks to simplify some types of
 customization:</p>
 <dl class="simple">
@@ -416,10 +417,10 @@ customization:</p>
               
           </div>
           Last updated on
-            May 10, 2022.
+            Jun 21, 2022.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>
