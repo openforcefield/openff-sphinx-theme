@@ -1,65 +1,39 @@
-{% set toctree = toctree(maxdepth=theme_globaltoc_depth|toint, collapse=theme_globaltoc_collapse|tobool, includehidden=theme_globaltoc_includehidden|tobool) %}
+{% set toctree = toctree(maxdepth=theme_globaltoc_depth|toint, collapse=True, includehidden=theme_globaltoc_includehidden|tobool, titles_only=True) %}
 {% if toctree and (sidebars is not defined or 'globaltoc.html' in sidebars) %}
-<nav class="menu ff-globaltoc">
-  {% set toctree_nodes = derender_toc(toctree, False) %}
-  {%- for item in toctree_nodes %}
-    {% if "caption" in item %}
-      {% if not loop.first %}
-        </ul>
+  {%- set toctree_nodes = derender_toc(toctree, False) -%}
+  {%- if toc -%}
+    {%- set localtoc_nodes = derender_toc(toc, False) -%}
+  {%- endif -%}
+  <nav class="menu ff-globaltoc">
+    {%- for item in toctree_nodes recursive %}
+      {%- if loop.depth0<theme_globaltoc_depth|toint -%}
+        {% if "caption" in item %}
+          {% if not loop.first %}
+            </ul>
+          {% endif %}
+          <p class="menu-label">{{ item.caption }}</p>
+          <ul class="menu-list">
+        {% else %}
+          {% if loop.first %}
+            <ul class="menu-list">
+          {% endif %}
+          <li>
+            <a href="{{ item.href|e }}" class="{% if item.current %}is-active{% endif %}">{{ item.contents }}</a>
+            {{ loop(item.children) }}
+            {# Inject localtoc if configured #}
+            {%- if theme_globaltoc_include_local and 'localtoc.html' not in sidebars -%}
+                {%- set outerloop = loop %}
+                {%- for node in localtoc_nodes if node.href == item.href and node.contents == item.contents -%}
+                  {{ outerloop(node.children) }}
+                {%- endfor -%}
+            {%- endif -%}
+          </li>
+          {% if loop.last %}
+            </ul>
+          {% endif %}
+        {% endif %}
       {% endif %}
-      <p class="menu-label">{{ item.caption }}</p>
-      <ul class="menu-list">
-    {% else %}
-      {% if loop.first %}
-        <ul class="menu-list">
-      {% endif %}
-      <li>
-        <a href="{{ item.href|e }}" class="{% if item.current %}is-active{% endif %}">{{ item.contents }}</a>
-        {%- if item.children and 'localtoc.html' not in sidebars -%}
-          {%- set children = item.children -%}
-        {%-
-          elif display_toc
-          and item.current
-          and theme_globaltoc_include_local|tobool
-          and 'localtoc.html' not in sidebars
-        %}
-          {%- set derendered_localtoc = derender_toc(toc, False) -%}
-          {%-
-            if derendered_localtoc|length == 1
-            and derendered_localtoc[0].href == "#"
-          -%}
-            {%- set children = derendered_localtoc[0].children -%}
-          {%- else -%}
-            {%- set children = derendered_localtoc -%}
-          {%- endif -%}
-        {%- endif -%}
-        {%- if children -%}
-          <ul>
-            {% for child in children recursive -%}
-              <li>
-                {% if child.caption %}
-                  <p class="menu-label">{{ child.caption }}</p>
-                {% endif %}
-                {% if child.href and child.contents %}
-                  <a href="{{ child.href|e }}">{{ child.contents }}</a>
-                {% elif child.contents %}
-                  <p>{{ child.contents }}</p>
-                {% endif %}
-                {%- if child.children -%}
-                <ul>
-                  {{ loop(child.children) }}
-                </ul>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-        {%- endif %}
-      </li>
-      {% if loop.last %}
-        </ul>
-      {% endif %}
-    {% endif %}
-  {%- endfor %}
-  </ul>
-</nav>
+    {%- endfor %}
+    </ul>
+  </nav>
 {% endif %}
