@@ -7,16 +7,6 @@ Various examples of styling applied to Sphinx constructs. You can
 view the `source <./_sources/examples.txt>`_ of this page to see the specific
 reStructuredText used to create these examples.
 
-Subpages
-========
-
-Suppages get bread crumbs when they are not at the top level.
-
-.. toctree::
-
-    subpage/index
-
-
 
 Headings
 ========

@@ -21,4 +21,6 @@ dependencies:
   - myst-nb
   - pandoc
   - wheel
+  - sphinx-autobuild
+  - sphinx >=4.5,<5
 
