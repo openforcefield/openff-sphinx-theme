@@ -97,6 +97,7 @@ html_show_sourcelink = True
 html_sidebars = {
     "**": ["globaltoc.html", "localtoc.html", "searchbox.html"],
     "customization": ["globaltoc.html", "searchbox.html"],
+    "subpage/second-subsubpage": ["globaltoc.html", "searchbox.html"],
 }
 
 # material theme options (see theme.conf for more information)
@@ -106,7 +107,7 @@ html_theme_options = {
     "repo_name": "openff-sphinx-theme",
     "html_minify": False,
     "css_minify": False,
-    "globaltoc_depth": 2,
+    "globaltoc_depth": 3,
     "globaltoc_include_local": True,
     "color_accent": "openff-toolkit-blue",
     "html_hyphenate_and_justify": True,
