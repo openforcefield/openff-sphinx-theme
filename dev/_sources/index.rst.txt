@@ -90,6 +90,7 @@ or ``theme.conf`` for more details.
     customization
     specimen
     additional_samples
+    subpage/index
 
 
 .. toctree::
