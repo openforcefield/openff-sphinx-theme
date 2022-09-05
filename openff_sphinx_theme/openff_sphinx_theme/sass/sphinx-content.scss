@@ -447,7 +447,7 @@ a.brackets {
   // Stderr cell
   >.stderr.output_area {
     border-left: medium gray solid !important;
-    background: #fdd !important;
+    background: #fee !important;
   }
   // Stdout cell
   >:not(.stderr).output_area {
@@ -459,11 +459,11 @@ a.brackets {
 // MyST-nb notebooks
 
 .cell.container {
-  border: none;
   @include z-depth(2);
+  border-radius: 4px 2px 2px 4px;
   >.cell_input {
     border: none;
-    border-left: medium green solid;
+    border-left: 4px green solid;
     &:last-child {
       border-radius: 4px 0 0 4px;
     }
@@ -471,27 +471,40 @@ a.brackets {
       border-radius: 4px 0 0 0;
     }
   }
+  .highlight {
+    border: None;
+    border-radius: 0;
+    box-shadow: None;
+  }
   >.cell_output {
-    border-radius: 0 0 0 4px;
-    border-left: medium gray solid;
+    @include z-depth(2);
+    border-left: 4px gray solid;
+    &:last-child {
+      border-radius: 0 0 0 4px;
+    }
     margin-top: -1em; // Not sure why this is needed
     padding-left: 0;
     >.output, >img {
       margin-top: 0;
       &.stderr {
-        background: #fdd;
+        background: #fee;
         .highlight, pre {
           background: None;
         }
       }
       &:not(.stderr) {
         background: $body-background-color;
+        .highlight, pre {
+          background: None;
+        }
       }
       &.traceback {
         border: None;
       }
       pre {
         padding: 5px;
+        white-space: pre-wrap;
+        word-break: break-all;
       }
     }
   }
