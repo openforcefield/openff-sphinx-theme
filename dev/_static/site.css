@@ -9280,7 +9280,7 @@ html {
 
 .content .nboutput > .stderr.output_area {
   border-left: medium gray solid !important;
-  background: #fdd !important;
+  background: #fee !important;
 }
 
 .content .nboutput > :not(.stderr).output_area {
@@ -9289,13 +9289,13 @@ html {
 }
 
 .content .cell.container {
-  border: none;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 4px 2px 2px 4px;
 }
 
 .content .cell.container > .cell_input {
   border: none;
-  border-left: medium green solid;
+  border-left: 4px green solid;
 }
 
 .content .cell.container > .cell_input:last-child {
@@ -9306,11 +9306,21 @@ html {
   border-radius: 4px 0 0 0;
 }
 
+.content .cell.container .highlight {
+  border: None;
+  border-radius: 0;
+  box-shadow: None;
+}
+
 .content .cell.container > .cell_output {
-  border-radius: 0 0 0 4px;
-  border-left: medium gray solid;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  border-left: 4px gray solid;
   margin-top: -1em;
   padding-left: 0;
+}
+
+.content .cell.container > .cell_output:last-child {
+  border-radius: 0 0 0 4px;
 }
 
 .content .cell.container > .cell_output > .output, .content .cell.container > .cell_output > img {
@@ -9318,7 +9328,7 @@ html {
 }
 
 .content .cell.container > .cell_output > .output.stderr, .content .cell.container > .cell_output > img.stderr {
-  background: #fdd;
+  background: #fee;
 }
 
 .content .cell.container > .cell_output > .output.stderr .highlight, .content .cell.container > .cell_output > .output.stderr pre, .content .cell.container > .cell_output > img.stderr .highlight, .content .cell.container > .cell_output > img.stderr pre {
@@ -9329,12 +9339,18 @@ html {
   background: #FFFFFF;
 }
 
+.content .cell.container > .cell_output > .output:not(.stderr) .highlight, .content .cell.container > .cell_output > .output:not(.stderr) pre, .content .cell.container > .cell_output > img:not(.stderr) .highlight, .content .cell.container > .cell_output > img:not(.stderr) pre {
+  background: None;
+}
+
 .content .cell.container > .cell_output > .output.traceback, .content .cell.container > .cell_output > img.traceback {
   border: None;
 }
 
 .content .cell.container > .cell_output > .output pre, .content .cell.container > .cell_output > img pre {
   padding: 5px;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .content .cell.container .highlight {

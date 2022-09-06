@@ -16,20 +16,20 @@
       ~Molecule.__init__
       ~Molecule.add_atom
       ~Molecule.add_bond
-      ~Molecule.add_bond_charge_virtual_site
       ~Molecule.add_conformer
-      ~Molecule.add_divalent_lone_pair_virtual_site
-      ~Molecule.add_monovalent_lone_pair_virtual_site
-      ~Molecule.add_trivalent_lone_pair_virtual_site
+      ~Molecule.add_default_hierarchy_schemes
+      ~Molecule.add_hierarchy_scheme
       ~Molecule.apply_elf_conformer_selection
       ~Molecule.are_isomorphic
       ~Molecule.assign_fractional_bond_orders
       ~Molecule.assign_partial_charges
+      ~Molecule.atom
+      ~Molecule.atom_index
+      ~Molecule.bond
       ~Molecule.canonical_order_atoms
       ~Molecule.chemical_environment_matches
       ~Molecule.compute_partial_charges_am1bcc
-      ~Molecule.compute_virtual_site_positions_from_atom_positions
-      ~Molecule.compute_virtual_site_positions_from_conformer
+      ~Molecule.delete_hierarchy_scheme
       ~Molecule.enumerate_protomers
       ~Molecule.enumerate_stereoisomers
       ~Molecule.enumerate_tautomers
@@ -45,6 +45,7 @@
       ~Molecule.from_openeye
       ~Molecule.from_pdb_and_smiles
       ~Molecule.from_pickle
+      ~Molecule.from_polymer_pdb
       ~Molecule.from_qcschema
       ~Molecule.from_rdkit
       ~Molecule.from_smiles
@@ -57,6 +58,10 @@
       ~Molecule.get_bond_between
       ~Molecule.is_isomorphic_with
       ~Molecule.nth_degree_neighbors
+      ~Molecule.ordered_connection_table_hash
+      ~Molecule.particle
+      ~Molecule.particle_index
+      ~Molecule.perceive_residues
       ~Molecule.remap
       ~Molecule.strip_atom_stereochemistry
       ~Molecule.to_bson
@@ -78,6 +83,7 @@
       ~Molecule.to_topology
       ~Molecule.to_xml
       ~Molecule.to_yaml
+      ~Molecule.update_hierarchy_schemes
       ~Molecule.visualize
    
    
@@ -94,6 +100,7 @@
       ~Molecule.bonds
       ~Molecule.conformers
       ~Molecule.has_unique_atom_names
+      ~Molecule.hierarchy_schemes
       ~Molecule.hill_formula
       ~Molecule.impropers
       ~Molecule.n_angles
@@ -103,8 +110,6 @@
       ~Molecule.n_impropers
       ~Molecule.n_particles
       ~Molecule.n_propers
-      ~Molecule.n_virtual_particles
-      ~Molecule.n_virtual_sites
       ~Molecule.name
       ~Molecule.partial_charges
       ~Molecule.particles
@@ -113,6 +118,5 @@
       ~Molecule.smirnoff_impropers
       ~Molecule.torsions
       ~Molecule.total_charge
-      ~Molecule.virtual_sites
    
    
