@@ -28,7 +28,6 @@
       ~Molecule.bond
       ~Molecule.canonical_order_atoms
       ~Molecule.chemical_environment_matches
-      ~Molecule.compute_partial_charges_am1bcc
       ~Molecule.delete_hierarchy_scheme
       ~Molecule.enumerate_protomers
       ~Molecule.enumerate_stereoisomers

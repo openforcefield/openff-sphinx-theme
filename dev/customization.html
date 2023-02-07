@@ -351,8 +351,8 @@ For example, if this is changed to</p>
 <p>You can customize the theme by overriding Jinja template blocks.
 For example, ‘layout.html’ contains several blocks that can be overridden or extended.</p>
 <p>Place a ‘layout.html’ file in your project’s ‘/_templates’ directory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir source/_templates
-touch source/_templates/layout.html
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>source/_templates
+touch<span class="w"> </span>source/_templates/layout.html
 </pre></div>
 </div>
 <p>Then, configure your ‘conf.py’:</p>
@@ -360,14 +360,14 @@ touch source/_templates/layout.html
 </pre></div>
 </div>
 <p>Finally, edit your override file <code class="docutils literal notranslate"><span class="pre">source/_templates/layout.html</span></code>:</p>
-<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="c">{# Import the theme's layout. #}</span><span class="x"></span>
-<span class="cp">{%</span> <span class="k">extends</span> <span class="s1">'!layout.html'</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-jinja notranslate"><div class="highlight"><pre><span></span><span class="c">{# Import the theme's layout. #}</span>
+<span class="cp">{%</span> <span class="k">extends</span> <span class="s1">'!layout.html'</span> <span class="cp">%}</span>
 
-<span class="cp">{%</span>- <span class="k">block</span> <span class="nv">extrahead</span> <span class="cp">%}</span><span class="x"></span>
-<span class="c">{# Add custom things to the head HTML tag #}</span><span class="x"></span>
-<span class="c">{# Call the parent block #}</span><span class="x"></span>
-<span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span><span class="x"></span>
-<span class="cp">{%</span>- <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span>- <span class="k">block</span> <span class="nv">extrahead</span> <span class="cp">%}</span>
+<span class="c">{# Add custom things to the head HTML tag #}</span>
+<span class="c">{# Call the parent block #}</span>
+<span class="cp">{{</span> <span class="nb">super</span><span class="o">()</span> <span class="cp">}}</span>
+<span class="cp">{%</span>- <span class="k">endblock</span> <span class="cp">%}</span>
 </pre></div>
 </div>
 </section>
@@ -420,7 +420,7 @@ customization:</p>
               
           </div>
           Last updated on
-            Sep 06, 2022.
+            Feb 07, 2023.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.

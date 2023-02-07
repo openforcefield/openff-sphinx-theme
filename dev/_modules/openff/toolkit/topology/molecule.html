@@ -348,7 +348,7 @@
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span><span class="p">,</span> <span class="n">UserDict</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">UserDict</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">TYPE_CHECKING</span><span class="p">,</span>
@@ -371,12 +371,12 @@
 <span class="kn">from</span> <span class="nn">openff.utilities.exceptions</span> <span class="kn">import</span> <span class="n">MissingOptionalDependencyError</span>
 <span class="kn">from</span> <span class="nn">packaging</span> <span class="kn">import</span> <span class="n">version</span>
 
-<span class="kn">import</span> <span class="nn">openff.toolkit</span>
 <span class="kn">from</span> <span class="nn">openff.toolkit.utils.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">HierarchySchemeNotFoundException</span><span class="p">,</span>
     <span class="n">HierarchySchemeWithIteratorNameAlreadyRegisteredException</span><span class="p">,</span>
     <span class="n">IncompatibleUnitError</span><span class="p">,</span>
     <span class="n">InvalidAtomMetadataError</span><span class="p">,</span>
+    <span class="n">InvalidBondOrderError</span><span class="p">,</span>
     <span class="n">InvalidConformerError</span><span class="p">,</span>
     <span class="n">MultipleMoleculesInPDBError</span><span class="p">,</span>
     <span class="n">SmilesParsingError</span><span class="p">,</span>
@@ -416,11 +416,11 @@
 
 
 <span class="k">class</span> <span class="nc">MoleculeDeprecationWarning</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Warning for deprecated portions of the Molecule API.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Warning for deprecated portions of the Molecule API.&quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">Particle</span><span class="p">(</span><span class="n">Serializable</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for all particles in a molecule.</span>
 
 <span class="sd">    A particle object could be an ``Atom`` or similar.</span>
@@ -430,7 +430,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The ``Molecule`` this particle is part of.</span>
 
 <span class="sd">        .. todo::</span>
@@ -444,7 +444,7 @@
 
     <span class="nd">@molecule</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the particle&#39;s molecule pointer. Note that this will only work if the particle currently</span>
 <span class="sd">        doesn&#39;t have a molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -454,26 +454,26 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">molecule_particle_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the index of this particle in its molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The name of the particle</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Convert to dictionary representation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert to dictionary representation.&quot;&quot;&quot;</span>
         <span class="c1"># Implement abstract method Serializable.to_dict()</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>  <span class="c1"># TODO</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Static constructor from dictionary representation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Static constructor from dictionary representation.&quot;&quot;&quot;</span>
         <span class="c1"># Implement abstract method Serializable.to_dict()</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>  <span class="c1"># TODO</span>
 
@@ -497,18 +497,15 @@
 
 
 <span class="k">class</span> <span class="nc">Atom</span><span class="p">(</span><span class="n">Particle</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A chemical atom.</span>
 
 <span class="sd">    .. todo::</span>
 
-<span class="sd">       * Should ``Atom`` objects be immutable or mutable?</span>
 <span class="sd">       * Do we want to support the addition of arbitrary additional properties,</span>
 <span class="sd">         such as floating point quantities (e.g. ``charge``), integral</span>
 <span class="sd">         quantities (such as ``id`` or ``serial`` index in a PDB file),</span>
 <span class="sd">         or string labels (such as Lennard-Jones types)?</span>
-
-<span class="sd">    .. todo :: Allow atoms to have associated properties.</span>
 
 <span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -523,19 +520,15 @@
         <span class="n">stereochemistry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an immutable Atom object.</span>
 
 <span class="sd">        Object is serializable and immutable.</span>
 
-<span class="sd">        .. todo :: Use attrs to validate?</span>
-
-<span class="sd">        .. todo :: We can add setters if we need to.</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        atomic_number : int</span>
-<span class="sd">            Atomic number of the atom</span>
+<span class="sd">            Atomic number of the atom. Must be non-negative and non-zero.</span>
 <span class="sd">        formal_charge : int or openff.units.unit.Quantity-wrapped int with dimension &quot;charge&quot;</span>
 <span class="sd">            Formal charge of the atom</span>
 <span class="sd">        is_aromatic : bool</span>
@@ -561,7 +554,13 @@
 <span class="sd">        &gt;&gt;&gt; atom = Atom(6, 0, False, stereochemistry=&#39;R&#39;, name=&#39;CT&#39;)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">atomic_number</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;atomic number must be int, found </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">atomic_number</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">atomic_number</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;atomic number must be positive, given </span><span class="si">{</span><span class="n">atomic_number</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_atomic_number</span> <span class="o">=</span> <span class="n">atomic_number</span>
+
         <span class="c1"># Use the setter here, since it will handle either ints or Quantities</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">formal_charge</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">):</span>
             <span class="c1"># Faster check than ` == unit.dimensionless`</span>
@@ -587,7 +586,8 @@
     <span class="c1">#   from self._molecule (maybe caching the result) to get rid of some bookkeeping.</span>
     <span class="c1"># TODO: Should stereochemistry be reset/cleared/recomputed upon addition of a bond?</span>
     <span class="k">def</span> <span class="nf">add_bond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bond</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Adds a bond that this atom is involved in</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a bond that this atom is involved in</span>
+
 <span class="sd">        .. todo :: Is this how we want to keep records?</span>
 
 <span class="sd">        Parameters</span>
@@ -599,14 +599,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_bonds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bond</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return a dict representation of the atom.&quot;&quot;&quot;</span>
-        <span class="c1"># TODO</span>
-        <span class="n">atom_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a dict representation of the atom.&quot;&quot;&quot;</span>
+        <span class="n">atom_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;atomic_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atomic_number</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;formal_charge&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formal_charge</span><span class="o">.</span><span class="n">m_as</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="p">)</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;is_aromatic&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_aromatic</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;stereochemistry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stereochemistry</span>
-        <span class="c1"># TODO: Should we let atoms have names?</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
         <span class="n">atom_dict</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="c1"># TODO: Should this be implicit in the atom ordering when saved?</span>
@@ -615,26 +613,26 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">atom_dict</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create an Atom from a dict representation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an Atom from a dict representation.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">atom_dict</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The atom&#39;s metadata dictionary</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">formal_charge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The atom&#39;s formal charge</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formal_charge</span>
 
     <span class="nd">@formal_charge</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">formal_charge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the atom&#39;s formal charge. Accepts either ints or unit-wrapped ints with units of charge.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
@@ -672,7 +670,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">partial_charge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The partial charge of the atom, if any.</span>
 
 <span class="sd">        Returns</span>
@@ -687,21 +685,21 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">is_aromatic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The atom&#39;s is_aromatic flag</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_aromatic</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">stereochemistry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The atom&#39;s stereochemistry (if defined, otherwise None)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stereochemistry</span>
 
     <span class="nd">@stereochemistry</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">stereochemistry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Set the atoms stereochemistry</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the atoms stereochemistry</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        value : str</span>
@@ -717,7 +715,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">atomic_number</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The integer atomic number of the atom.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -725,7 +723,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">symbol</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the symbol implied by the atomic number of this atom</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -733,7 +731,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Quantity&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The standard atomic weight (abundance-weighted isotopic mass) of the atomic site.</span>
 
 <span class="sd">        The mass is reported in units of Dalton.</span>
@@ -746,14 +744,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The name of this atom, if any</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
     <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -766,22 +764,17 @@
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">other</span>
 
-    <span class="c1"># TODO: How are we keeping track of bonds, angles, etc?</span>
-
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The list of ``Bond`` objects this atom is involved in.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonds</span>
-        <span class="c1"># for bond in self._bonds:</span>
-        <span class="c1">#    yield bond</span>
 
     <span class="nd">@property</span>
-    <span class="c1"># def bonded_to(self):</span>
     <span class="k">def</span> <span class="nf">bonded_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The list of ``Atom`` objects this atom is involved in bonds with</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -792,7 +785,7 @@
                     <span class="k">yield</span> <span class="n">atom</span>
 
     <span class="k">def</span> <span class="nf">is_bonded_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determine whether this atom is bound to another atom</span>
 
 <span class="sd">        Parameters</span>
@@ -814,7 +807,7 @@
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">is_in_ring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return whether or not this atom is in a ring(s) (of any size)</span>
 
 <span class="sd">        This Atom is expected to be attached to a molecule (`Atom.molecule`).</span>
@@ -831,7 +824,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">molecule_atom_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The index of this Atom within the the list of atoms in the parent ``Molecule``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -912,7 +905,7 @@
 
 
 <span class="k">class</span> <span class="nc">Bond</span><span class="p">(</span><span class="n">Serializable</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Chemical bond representation.</span>
 
 <span class="sd">    .. warning :: This API is experimental and subject to change.</span>
@@ -944,7 +937,7 @@
         <span class="n">fractional_bond_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">stereochemistry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new chemical bond.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -966,12 +959,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_aromatic</span> <span class="o">=</span> <span class="n">is_aromatic</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stereochemistry</span> <span class="o">=</span> <span class="n">stereochemistry</span>
 
-    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a dict representation of the bond.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">bond_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="n">bond_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="n">bond_dict</span><span class="p">[</span><span class="s2">&quot;atom1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom1</span><span class="o">.</span><span class="n">molecule_atom_index</span>
         <span class="n">bond_dict</span><span class="p">[</span><span class="s2">&quot;atom2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom2</span><span class="o">.</span><span class="n">molecule_atom_index</span>
         <span class="n">bond_dict</span><span class="p">[</span><span class="s2">&quot;bond_order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bond_order</span>
@@ -982,7 +975,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">molecule</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Create a Bond from a dict representation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a Bond from a dict representation.&quot;&quot;&quot;</span>
         <span class="c1"># TODO</span>
         <span class="n">d</span><span class="p">[</span><span class="s2">&quot;molecule&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule</span>
         <span class="n">d</span><span class="p">[</span><span class="s2">&quot;atom1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;atom1&quot;</span><span class="p">]]</span>
@@ -1015,7 +1008,16 @@
 
     <span class="nd">@bond_order</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">bond_order</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_bond_order</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bond_order</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">InvalidBondOrderError</span><span class="p">(</span>
+                <span class="s2">&quot;Only integer bond orders may be passed to `Bond.bond_order` setter. &quot;</span>
+                <span class="s2">&quot;For aromatic bonds, instead kekulize the input structure and use &quot;</span>
+                <span class="s2">&quot;the resulting integer bond orders. If performing partial bond &quot;</span>
+                <span class="s2">&quot;order-based parameter interpolation, consider using &quot;</span>
+                <span class="s2">&quot;`Bond.fractional_bond_order`.&quot;</span>
+            <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fractional_bond_order</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1039,7 +1041,7 @@
 
     <span class="nd">@molecule</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets the Bond&#39;s parent molecule. Can not be changed after assignment</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span>
@@ -1047,7 +1049,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">molecule_bond_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The index of this Bond within the the list of bonds in ``Molecules``.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1056,7 +1058,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">is_in_ring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return whether or not this bond is in a ring(s) (of any size)</span>
 
 <span class="sd">        This Bond is expected to be attached to a molecule (`Bond.molecule`).</span>
@@ -1093,7 +1095,7 @@
 
 
 <span class="k">class</span> <span class="nc">FrozenMolecule</span><span class="p">(</span><span class="n">Serializable</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Immutable chemical representation of a molecule, such as a small molecule or biopolymer.</span>
 
 <span class="sd">    .. todo :: What other API calls would be useful for supporting biopolymers</span>
@@ -1144,7 +1146,7 @@
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new FrozenMolecule object</span>
 
 <span class="sd">        .. todo ::</span>
@@ -1224,7 +1226,7 @@
 <span class="sd">        Convert the molecule into a dictionary and back again:</span>
 
 <span class="sd">        &gt;&gt;&gt; serialized_molecule = molecule.to_dict()</span>
-<span class="sd">        &gt;&gt;&gt; molecule_copy = Molecule(serialized_molecule)</span>
+<span class="sd">        &gt;&gt;&gt; molecule_copy = FrozenMolecule(serialized_molecule)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -1250,10 +1252,10 @@
             <span class="c1"># if there turned out to be no way to load this input</span>
             <span class="n">value_errors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
 
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">openff</span><span class="o">.</span><span class="n">toolkit</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">FrozenMolecule</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">loaded</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">FrozenMolecule</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">loaded</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_copy_initializer</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
                 <span class="n">loaded</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">openff</span><span class="o">.</span><span class="n">toolkit</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">Molecule</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">loaded</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Molecule</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">loaded</span><span class="p">:</span>
                 <span class="c1"># TODO: This will need to be updated once FrozenMolecules and Molecules are significantly different</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_copy_initializer</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
                 <span class="n">loaded</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1320,11 +1322,11 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">has_unique_atom_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;``True`` if the molecule has unique atom names, ``False`` otherwise.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;``True`` if the molecule has unique atom names, ``False`` otherwise.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">_has_unique_atom_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">generate_unique_atom_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate unique atom names from the element symbol and count.</span>
 
 <span class="sd">        Names are generated from the elemental symbol and the number of times</span>
@@ -1336,7 +1338,7 @@
         <span class="k">return</span> <span class="n">_generate_unique_atom_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Validate the molecule, ensuring it has unique atom names</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1344,15 +1346,17 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">generate_unique_atom_names</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">strip_atom_stereochemistry</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">smarts</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">smarts</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Delete stereochemistry information for certain atoms, if it is present.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete stereochemistry information for certain atoms, if it is present.</span>
 <span class="sd">        This method can be used to &quot;normalize&quot; molecules imported from different cheminformatics</span>
 <span class="sd">        toolkits, which differ in which atom centers are considered stereogenic.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        smarts: str or ChemicalEnvironment</span>
+<span class="sd">        smarts: str</span>
 <span class="sd">            Tagged SMARTS with a single atom with index 1. Any matches for this atom will have any assigned</span>
 <span class="sd">            stereocheistry information removed.</span>
 <span class="sd">        toolkit_registry : a :class:`ToolkitRegistry` or :class:`ToolkitWrapper` object, optional,</span>
@@ -1360,11 +1364,9 @@
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for I/O operations</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">openff.toolkit.typing.chemistry.environment</span> <span class="kn">import</span> <span class="n">AtomChemicalEnvironment</span>
-
-        <span class="n">chem_env</span> <span class="o">=</span> <span class="n">AtomChemicalEnvironment</span><span class="p">(</span><span class="n">smarts</span><span class="p">)</span>
         <span class="n">matches</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_environment_matches</span><span class="p">(</span>
-            <span class="n">chem_env</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">toolkit_registry</span>
+            <span class="n">smarts</span><span class="p">,</span>
+            <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">toolkit_registry</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">matches</span><span class="p">):</span>
@@ -1375,8 +1377,8 @@
     <span class="c1"># Safe serialization</span>
     <span class="c1">####################################################################################################</span>
 
-    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a dictionary representation of the molecule.</span>
 
 <span class="sd">        .. todo ::</span>
@@ -1386,13 +1388,13 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        molecule_dict : OrderedDict</span>
+<span class="sd">        molecule_dict : dict</span>
 <span class="sd">            A dictionary representation of the molecule.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">openff.toolkit.utils.utils</span> <span class="kn">import</span> <span class="n">serialize_numpy</span>
 
-        <span class="n">molecule_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="n">molecule_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
         <span class="c1"># From Jeff: If we go the properties-as-dict route, then _properties should, at</span>
         <span class="c1"># the top level, be a dict. Should we go through recursively and ensure all values are dicts too?</span>
@@ -1406,9 +1408,9 @@
         <span class="c1"># Or not allow user-defined properties at all (just use our internal _cached_properties)</span>
         <span class="c1"># molecule_dict[&#39;properties&#39;] = dict([(key, value._to_dict()) for key.value in self._properties])</span>
         <span class="c1"># TODO: Assuming &quot;simple stuff&quot; properties right now, figure out a better standard</span>
-        <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span>
+        <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_cached_properties&quot;</span><span class="p">):</span>
-            <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;cached_properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cached_properties</span>
+            <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;cached_properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cached_properties</span><span class="p">)</span>
         <span class="c1"># TODO: Conformers</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;conformers&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1438,7 +1440,7 @@
         <span class="k">return</span> <span class="n">molecule_dict</span>
 
     <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a hash of this molecule. Used when checking molecule uniqueness in Topology creation.</span>
 
 <span class="sd">        Returns</span>
@@ -1449,7 +1451,7 @@
 
     <span class="c1"># @cached_property</span>
     <span class="k">def</span> <span class="nf">ordered_connection_table_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Compute an ordered hash of the atoms and bonds in the molecule&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute an ordered hash of the atoms and bonds in the molecule&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_connection_table_hash</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_connection_table_hash</span>
 
@@ -1463,13 +1465,13 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_connection_table_hash</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">molecule_dict</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">molecule_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new Molecule from a dictionary representation</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        molecule_dict : OrderedDict</span>
+<span class="sd">        molecule_dict : dict</span>
 <span class="sd">            A dictionary representation of the molecule.</span>
 
 <span class="sd">        Returns</span>
@@ -1484,12 +1486,12 @@
         <span class="k">return</span> <span class="n">mol</span>
 
     <span class="k">def</span> <span class="nf">_initialize_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule_dict</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the molecule from a dictionary representation</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        molecule_dict : OrderedDict</span>
+<span class="sd">        molecule_dict : dict</span>
 <span class="sd">            A dictionary representation of the molecule.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Provide useful exception messages if there are any failures</span>
@@ -1528,7 +1530,7 @@
                 <span class="n">conformer</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">conformer_unitless</span><span class="p">,</span> <span class="n">c_unit</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conformer</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">iter_name</span><span class="p">,</span> <span class="n">hierarchy_scheme_dict</span> <span class="ow">in</span> <span class="n">molecule_dict</span><span class="p">[</span>
             <span class="s2">&quot;hierarchy_schemes&quot;</span>
@@ -1538,18 +1540,18 @@
             <span class="c1"># even if that conflicts with the current values in atom metadata.</span>
             <span class="n">new_hier_scheme</span> <span class="o">=</span> <span class="n">HierarchyScheme</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span>
-                <span class="n">hierarchy_scheme_dict</span><span class="p">[</span><span class="s2">&quot;uniqueness_criteria&quot;</span><span class="p">],</span>
+                <span class="nb">tuple</span><span class="p">(</span><span class="n">hierarchy_scheme_dict</span><span class="p">[</span><span class="s2">&quot;uniqueness_criteria&quot;</span><span class="p">]),</span>
                 <span class="n">iter_name</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_hierarchy_schemes</span><span class="p">[</span><span class="n">iter_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_hier_scheme</span>
 
             <span class="k">for</span> <span class="n">element_dict</span> <span class="ow">in</span> <span class="n">hierarchy_scheme_dict</span><span class="p">[</span><span class="s2">&quot;hierarchy_elements&quot;</span><span class="p">]:</span>
                 <span class="n">new_hier_scheme</span><span class="o">.</span><span class="n">add_hierarchy_element</span><span class="p">(</span>
-                    <span class="n">element_dict</span><span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">],</span> <span class="n">element_dict</span><span class="p">[</span><span class="s2">&quot;atom_indices&quot;</span><span class="p">]</span>
+                    <span class="nb">tuple</span><span class="p">(</span><span class="n">element_dict</span><span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">]),</span> <span class="n">element_dict</span><span class="p">[</span><span class="s2">&quot;atom_indices&quot;</span><span class="p">]</span>
                 <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return a summary of this molecule; SMILES if valid, Hill formula if not.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a summary of this molecule; SMILES if valid, Hill formula if not.&quot;&quot;&quot;</span>
         <span class="n">description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Molecule with name &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">smiles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">()</span>
@@ -1559,7 +1561,7 @@
         <span class="k">return</span> <span class="n">description</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot; and SMILES &#39;</span><span class="si">{</span><span class="n">smiles</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
 
     <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clear the contents of the current molecule.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -1574,7 +1576,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_invalidate_cached_properties</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_copy_initializer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Copy contents of the specified molecule</span>
 
 <span class="sd">        .. todo :: Should this be a ``@staticmethod`` where we have an explicit copy constructor?</span>
@@ -1594,7 +1596,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_from_dict</span><span class="p">(</span><span class="n">other_dict</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Test two molecules for equality to see if they are the chemical species, but do not check other</span>
 <span class="sd">        annotated properties.</span>
 
@@ -1614,7 +1616,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">add_default_hierarchy_schemes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">overwrite_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds ``chain`` and ``residue`` hierarchy schemes.</span>
 
 <span class="sd">        The Open Force Field Toolkit has no native understanding of hierarchical</span>
@@ -1652,7 +1654,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_residue_hierarchy_scheme</span><span class="p">(</span><span class="n">overwrite_existing</span><span class="o">=</span><span class="n">overwrite_existing</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_chain_hierarchy_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">overwrite_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add ``chain`` hierarchy scheme.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add ``chain`` hierarchy scheme.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">overwrite_existing</span><span class="p">:</span>
             <span class="k">if</span> <span class="s2">&quot;chains&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hierarchy_schemes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">delete_hierarchy_scheme</span><span class="p">(</span><span class="s2">&quot;chains&quot;</span><span class="p">)</span>
@@ -1660,7 +1662,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_hierarchy_scheme</span><span class="p">((</span><span class="s2">&quot;chain_id&quot;</span><span class="p">,),</span> <span class="s2">&quot;chains&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_add_residue_hierarchy_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">overwrite_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add ``residue`` hierarchy scheme.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add ``residue`` hierarchy scheme.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">overwrite_existing</span><span class="p">:</span>
             <span class="k">if</span> <span class="s2">&quot;residues&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hierarchy_schemes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">delete_hierarchy_scheme</span><span class="p">(</span><span class="s2">&quot;residues&quot;</span><span class="p">)</span>
@@ -1674,7 +1676,7 @@
         <span class="n">uniqueness_criteria</span><span class="p">,</span>
         <span class="n">iterator_name</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Use the molecule&#39;s metadata to facilitate iteration over its atoms.</span>
 
 <span class="sd">        This method will add an attribute with the name given by the</span>
@@ -1733,7 +1735,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">hierarchy_schemes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;HierarchyScheme&quot;</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The hierarchy schemes available on the molecule.</span>
 
 <span class="sd">        Hierarchy schemes allow iteration over groups of atoms according to</span>
@@ -1754,7 +1756,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hierarchy_schemes</span>
 
     <span class="k">def</span> <span class="nf">delete_hierarchy_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iter_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove an existing ``HierarchyScheme`` specified by its iterator name.</span>
 
 <span class="sd">        Hierarchy schemes allow iteration over groups of atoms according to</span>
@@ -1778,7 +1780,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_hierarchy_schemes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">iter_name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">update_hierarchy_schemes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iter_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Infer a hierarchy from atom metadata according to the existing hierarchy</span>
 <span class="sd">        schemes.</span>
 
@@ -1806,7 +1808,7 @@
             <span class="n">hierarchy_scheme</span><span class="o">.</span><span class="n">perceive_hierarchy</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;If a requested attribute is not found, check the hierarchy schemes&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;If a requested attribute is not found, check the hierarchy schemes&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_hierarchy_schemes&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">hierarchy_elements</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
@@ -1815,7 +1817,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add the hierarchy scheme iterator names to dir&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the hierarchy scheme iterator names to dir&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hierarchy_schemes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__dir__</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">to_smiles</span><span class="p">(</span>
@@ -1825,7 +1827,7 @@
         <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a canonical isomeric SMILES representation of the current molecule.</span>
 <span class="sd">        A partially mapped smiles can also be generated for atoms of interest by supplying an `atom_map` to the</span>
 <span class="sd">        properties dictionary.</span>
@@ -1901,7 +1903,7 @@
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a Molecule from a InChI representation</span>
 
 <span class="sd">        Parameters</span>
@@ -1951,7 +1953,7 @@
         <span class="k">return</span> <span class="n">molecule</span>
 
     <span class="k">def</span> <span class="nf">to_inchi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an InChI string for the molecule using the requested toolkit backend.</span>
 <span class="sd">        InChI is a standardised representation that does not capture tautomers unless specified using the fixed</span>
 <span class="sd">        hydrogen layer.</span>
@@ -1997,7 +1999,7 @@
     <span class="k">def</span> <span class="nf">to_inchikey</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an InChIKey for the molecule using the requested toolkit backend.</span>
 <span class="sd">        InChIKey is a standardised representation that does not capture tautomers unless specified</span>
 <span class="sd">        using the fixed hydrogen layer.</span>
@@ -2048,7 +2050,7 @@
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a Molecule from a SMILES representation</span>
 
 <span class="sd">        Parameters</span>
@@ -2120,18 +2122,18 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">are_isomorphic</span><span class="p">(</span>
-        <span class="n">mol1</span><span class="p">,</span>
-        <span class="n">mol2</span><span class="p">,</span>
-        <span class="n">return_atom_map</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">aromatic_matching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">formal_charge_matching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">bond_order_matching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">atom_stereochemistry_matching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">bond_stereochemistry_matching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">strip_pyrimidal_n_atom_stereo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">mol1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span>
+        <span class="n">mol2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span>
+        <span class="n">return_atom_map</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">aromatic_matching</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">formal_charge_matching</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">bond_order_matching</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">atom_stereochemistry_matching</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">bond_stereochemistry_matching</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">strip_pyrimidal_n_atom_stereo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determine if ``mol1`` is isomorphic to ``mol2``.</span>
 
 <span class="sd">        ``are_isomorphic()`` compares two molecule&#39;s graph representations and</span>
@@ -2276,11 +2278,11 @@
                 <span class="k">return</span> <span class="n">is_equal</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">edge_match_func</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">edge_match_func</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: ignore</span>
 
         <span class="c1"># Here we should work out what data type we have, also deal with lists?</span>
         <span class="k">def</span> <span class="nf">to_networkx</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;For the given data type, return the networkx graph&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;For the given data type, return the networkx graph&quot;&quot;&quot;</span>
             <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 
             <span class="k">if</span> <span class="n">strip_pyrimidal_n_atom_stereo</span><span class="p">:</span>
@@ -2290,7 +2292,7 @@
                 <span class="c1"># Molecule class instance</span>
                 <span class="k">if</span> <span class="n">strip_pyrimidal_n_atom_stereo</span><span class="p">:</span>
                     <span class="c1"># Make a copy of the molecule so we don&#39;t modify the original</span>
-                    <span class="n">data</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                    <span class="n">data</span><span class="p">:</span> <span class="n">FrozenMolecule</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
                     <span class="n">data</span><span class="o">.</span><span class="n">strip_atom_stereochemistry</span><span class="p">(</span>
                         <span class="n">SMARTS</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">toolkit_registry</span>
                     <span class="p">)</span>
@@ -2328,8 +2330,8 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">isomorphic</span><span class="p">,</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">is_isomorphic_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">is_isomorphic_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if the molecule is isomorphic with the other molecule which can be an openff.toolkit.topology.Molecule</span>
 <span class="sd">        or nx.Graph(). Full matching is done using the options described bellow.</span>
 
@@ -2398,7 +2400,7 @@
         <span class="n">clear_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">make_carboxylic_acids_cis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate conformers for this molecule using an underlying toolkit.</span>
 
 <span class="sd">        If ``n_conformers=0``, no toolkit wrapper will be called. If ``n_conformers=0``</span>
@@ -2467,7 +2469,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_make_carboxylic_acids_cis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rotate dihedral angle of any conformers with trans COOH groups so they are cis</span>
 
 <span class="sd">        Carboxylic acid groups almost always exist in nature in the cis conformation,</span>
@@ -2527,15 +2529,15 @@
         <span class="k">assert</span> <span class="n">cooh_xyz</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">n_conformers</span><span class="p">,</span> <span class="n">n_cooh_groups</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Compute dot product along last axis of arrays&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute dot product along last axis of arrays&quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
         <span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Compute norm along last axis of array&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute norm along last axis of array&quot;&quot;&quot;</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
         <span class="k">def</span> <span class="nf">dihedral</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-            <span class="sd">&quot;&quot;&quot;Compute dihedrals of array with shape (..., 4, 3)&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Compute dihedrals of array with shape (..., 4, 3)&quot;&quot;&quot;</span>
             <span class="c1"># Praxeolitic formula</span>
             <span class="c1"># 1 sqrt, 1 cross product</span>
             <span class="c1"># from https://stackoverflow.com/q/20305272</span>
@@ -2619,7 +2621,7 @@
         <span class="p">]</span> <span class="o">=</span> <span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Select a set of diverse conformers from the molecule&#39;s conformers with ELF.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Select a set of diverse conformers from the molecule&#39;s conformers with ELF.</span>
 
 <span class="sd">        Applies the `Electrostatically Least-interacting Functional groups method</span>
 <span class="sd">        &lt;https://docs.eyesopen.com/toolkits/python/quacpactk/molchargetheory.html#elf-conformer-selection&gt;`_</span>
@@ -2669,60 +2671,6 @@
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">compute_partial_charges_am1bcc</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">use_conformers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">strict_n_conformers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 0.11.0</span>
-
-<span class="sd">            This method was deprecated in v0.11.0 and will soon be removed.</span>
-<span class="sd">            Use :py:meth:`assign_partial_charges(partial_charge_method=&#39;am1bcc&#39;)</span>
-<span class="sd">            &lt;Molecule.assign_partial_charges&gt;` instead.</span>
-
-<span class="sd">        Calculate partial atomic charges for this molecule using AM1-BCC run by an underlying toolkit</span>
-<span class="sd">        and assign them to this molecule&#39;s ``partial_charges`` attribute.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        strict_n_conformers : bool, default=False</span>
-<span class="sd">            Whether to raise an exception if an invalid number of conformers is provided for the given charge method.</span>
-<span class="sd">            If this is False and an invalid number of conformers is found, a warning will be raised.</span>
-<span class="sd">        use_conformers : iterable of openmm.unit.Quantity-wrapped numpy arrays, each with shape (n_atoms, 3)</span>
-<span class="sd">            and dimension of distance. Optional, default=None Coordinates to use for partial charge calculation.</span>
-<span class="sd">            If None, an appropriate number of conformers for the given charge method will be generated.</span>
-<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry</span>
-<span class="sd">        or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
-<span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for the calculation</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-
-<span class="sd">        &gt;&gt;&gt; molecule = Molecule.from_smiles(&#39;CCCCCC&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; molecule.generate_conformers()</span>
-<span class="sd">        &gt;&gt;&gt; molecule.compute_partial_charges_am1bcc()</span>
-
-<span class="sd">        Raises</span>
-<span class="sd">        ------</span>
-<span class="sd">        InvalidToolkitRegistryError</span>
-<span class="sd">            If an invalid object is passed as the toolkit_registry parameter</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Remove in version 0.12.0</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s2">&quot;compute_partial_charges_am1bcc is deprecated and will be removed in version 0.12.0. &quot;</span>
-            <span class="s2">&quot;Use assign_partial_charges(partial_charge_method=&#39;am1bcc&#39;) instead.&quot;</span><span class="p">,</span>
-            <span class="ne">UserWarning</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assign_partial_charges</span><span class="p">(</span>
-            <span class="n">partial_charge_method</span><span class="o">=</span><span class="s2">&quot;am1bcc&quot;</span><span class="p">,</span>
-            <span class="n">use_conformers</span><span class="o">=</span><span class="n">use_conformers</span><span class="p">,</span>
-            <span class="n">strict_n_conformers</span><span class="o">=</span><span class="n">strict_n_conformers</span><span class="p">,</span>
-            <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">toolkit_registry</span><span class="p">,</span>
-        <span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">assign_partial_charges</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">partial_charge_method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2731,7 +2679,7 @@
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">normalize_partial_charges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate partial atomic charges and store them in the molecule.</span>
 
 <span class="sd">        ``assign_partial_charges`` computes charges using the specified toolkit</span>
@@ -2851,7 +2799,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_normalize_partial_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add offsets to each partial charge to ensure that they sum to the formal charge of the molecule,</span>
 <span class="sd">        to the limit of a python float&#39;s precision. Modifies the partial charges in-place.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2871,7 +2819,7 @@
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">use_conformers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update and store list of bond orders this molecule.</span>
 
 <span class="sd">        Bond orders are stored on each bond, in the</span>
@@ -2894,6 +2842,7 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 
+<span class="sd">        &gt;&gt;&gt; from openff.toolkit import Molecule</span>
 <span class="sd">        &gt;&gt;&gt; molecule = Molecule.from_smiles(&#39;CCCCCC&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; molecule.assign_fractional_bond_orders()</span>
 
@@ -2923,7 +2872,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_invalidate_cached_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Indicate that the chemical entity has been altered.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># if hasattr(self, &#39;_cached_properties&#39;):</span>
@@ -2942,7 +2891,7 @@
                 <span class="k">del</span> <span class="n">atom</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_molecule_atom_index&quot;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">to_networkx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Generate a NetworkX undirected graph from the molecule.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a NetworkX undirected graph from the molecule.</span>
 
 <span class="sd">        Nodes are Atoms labeled with atom indices and atomic elements (via the ``element`` node atrribute).</span>
 <span class="sd">        Edges denote chemical bonds between Atoms.</span>
@@ -2997,7 +2946,7 @@
     <span class="k">def</span> <span class="nf">find_rotatable_bonds</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">ignore_functional_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Find all bonds classed as rotatable ignoring any matched to the ``ignore_functional_groups`` list.</span>
 
 <span class="sd">        Parameters</span>
@@ -3078,7 +3027,7 @@
         <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">invalidate_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add an atom</span>
 
 <span class="sd">        Parameters</span>
@@ -3151,7 +3100,7 @@
         <span class="n">fractional_bond_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">invalidate_cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a bond between two specified atom indices</span>
 
 <span class="sd">        Parameters</span>
@@ -3210,7 +3159,7 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_bonds</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">_add_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a conformation of the molecule</span>
 
 <span class="sd">        Parameters</span>
@@ -3227,7 +3176,7 @@
         <span class="k">if</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">InvalidConformerError</span><span class="p">(</span>
                 <span class="s2">&quot;molecule.add_conformer given input of the wrong shape: &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;Given </span><span class="si">{</span><span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Given </span><span class="si">{</span><span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
@@ -3278,7 +3227,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">partial_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the partial charges (if present) on the molecule.</span>
 
 <span class="sd">        Returns</span>
@@ -3290,7 +3239,7 @@
 
     <span class="nd">@partial_charges</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">partial_charges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">charges</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the atomic partial charges for this molecule.</span>
 
 <span class="sd">        Parameters</span>
@@ -3324,7 +3273,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_particles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. deprecated:: 0.11.0</span>
 <span class="sd">            This property has been deprecated and will soon be removed. Use</span>
 <span class="sd">            :meth:`Molecule.n_atoms` instead.</span>
@@ -3335,27 +3284,27 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of Atom objects.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of Bond objects in the molecule.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="p">])</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Number of angles in the molecule.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of angles in the molecule.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_construct_angles</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_angles</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_propers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Number of proper torsions in the molecule.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of proper torsions in the molecule.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_construct_torsions</span><span class="p">()</span>
         <span class="k">assert</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -3364,7 +3313,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_impropers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Number of possible improper torsions in the molecule.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of possible improper torsions in the molecule.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_construct_torsions</span><span class="p">()</span>
         <span class="k">assert</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -3373,7 +3322,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">particles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Atom</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. deprecated:: 0.11.0</span>
 <span class="sd">            This property has been deprecated and will soon be removed. Use</span>
 <span class="sd">            :meth:`Molecule.atoms` instead.</span>
@@ -3383,7 +3332,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span>
 
     <span class="k">def</span> <span class="nf">particle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Atom</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. deprecated:: 0.11.0</span>
 <span class="sd">            This method has been deprecated and will soon be removed. Use</span>
 <span class="sd">            :meth:`Molecule.atom` instead.</span>
@@ -3392,7 +3341,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">particle_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particle</span><span class="p">:</span> <span class="n">Atom</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        .. deprecated:: 0.11.0</span>
 <span class="sd">            This method has been deprecated and will soon be removed. Use</span>
 <span class="sd">            :meth:`Molecule.atom_index` instead.</span>
@@ -3402,13 +3351,13 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterate over all Atom objects in the molecule.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span>
 
     <span class="k">def</span> <span class="nf">atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Atom</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the atom with the specified index.</span>
 
 <span class="sd">        Parameters</span>
@@ -3422,7 +3371,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">atom_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom</span><span class="p">:</span> <span class="n">Atom</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the index of the given atom in this molecule</span>
 
 <span class="sd">        .. TODO: document behaviour when atom is not present in self</span>
@@ -3440,7 +3389,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">conformers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the list of conformers for this molecule.</span>
 
 <span class="sd">        Conformers are presented as a list of ``Quantity``-wrapped NumPy</span>
@@ -3452,7 +3401,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_conformers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of conformers for this molecule.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -3461,13 +3410,13 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Bond</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterate over all Bond objects in the molecule.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonds</span>
 
     <span class="k">def</span> <span class="nf">bond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bond</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the bond with the specified index.</span>
 
 <span class="sd">        Parameters</span>
@@ -3482,7 +3431,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">angles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get an iterator over all i-j-k angles.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_construct_angles</span><span class="p">()</span>
@@ -3490,7 +3439,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">torsions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get an iterator over all i-j-k-l torsions.</span>
 <span class="sd">        Note that i-j-k-i torsions (cycles) are excluded.</span>
 
@@ -3506,7 +3455,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">propers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterate over all proper torsions in the molecule</span>
 
 <span class="sd">        .. todo::</span>
@@ -3521,7 +3470,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">impropers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterate over all improper torsions in the molecule.</span>
 
 <span class="sd">        .. todo ::</span>
@@ -3545,7 +3494,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">smirnoff_impropers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterate over all impropers with trivalent centers, reporting the central atom second.</span>
 
 <span class="sd">        The central atom is reported second in each torsion. This method reports</span>
@@ -3591,7 +3540,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">amber_impropers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterate over all impropers with trivalent centers, reporting the central atom first.</span>
 
 <span class="sd">        The central atom is reported first in each torsion. This method reports</span>
@@ -3627,7 +3576,7 @@
         <span class="k">return</span> <span class="n">amber_impropers</span>
 
     <span class="k">def</span> <span class="nf">nth_degree_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_degrees</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return canonicalized pairs of atoms whose shortest separation is `exactly` n bonds.</span>
 <span class="sd">        Only pairs with increasing atom indices are returned.</span>
 
@@ -3664,7 +3613,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">total_charge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the total charge on the molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">charge_sum</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span>
@@ -3674,14 +3623,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The name (or title) of the molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
     <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the name of this molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">other</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -3693,20 +3642,20 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The properties dictionary of the molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">hill_formula</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the Hill formula of the molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_hill_formula</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">to_hill_formula</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the Hill formula of this molecule.</span>
 
 <span class="sd">        Returns</span>
@@ -3725,7 +3674,7 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_object_to_hill_formula</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Molecule&quot;</span><span class="p">,</span> <span class="s2">&quot;nx.Graph&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Take a Molecule or NetworkX graph and generate its Hill formula.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Take a Molecule or NetworkX graph and generate its Hill formula.</span>
 <span class="sd">        This provides a backdoor to the old functionality of Molecule.to_hill_formula, which</span>
 <span class="sd">        was a static method that duck-typed inputs of Molecule or graph objects.&quot;&quot;&quot;</span>
         <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
@@ -3742,17 +3691,17 @@
 
     <span class="k">def</span> <span class="nf">chemical_environment_matches</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">query</span><span class="p">,</span>
-        <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">unique</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Find matches in the molecule for a SMARTS string or ``ChemicalEnvironment`` query</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find matches in the molecule for a SMARTS string</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        query : str or ChemicalEnvironment</span>
-<span class="sd">            SMARTS string (with one or more tagged atoms) or ``ChemicalEnvironment`` query.</span>
-<span class="sd">            Query will internally be resolved to SMIRKS using ``query.asSMIRKS()`` if it has an ``.asSMIRKS`` method.</span>
+<span class="sd">        query : str</span>
+<span class="sd">            SMARTS string (with one or more tagged atoms).</span>
+<span class="sd">        unique : bool, default=False</span>
 <span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry</span>
 <span class="sd">            or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=GLOBAL_TOOLKIT_REGISTRY</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for chemical environment matches</span>
@@ -3777,14 +3726,10 @@
 <span class="sd">             ``chemical_environment_matches``</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Resolve to SMIRKS if needed</span>
-        <span class="c1"># TODO: Update this to use updated ChemicalEnvironment API</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="s2">&quot;smirks&quot;</span><span class="p">):</span>
-            <span class="n">smirks</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">smirks</span>
-        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">smirks</span> <span class="o">=</span> <span class="n">query</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;query&#39; must be either a string or a ChemicalEnvironment&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;query&#39; must be a SMARTS/SMIRKS string&quot;</span><span class="p">)</span>
 
         <span class="c1"># Use specified cheminformatics toolkit to determine matches with specified aromaticity model</span>
         <span class="c1"># TODO: Simplify this by requiring a toolkit registry for the molecule?</span>
@@ -3797,7 +3742,7 @@
                 <span class="n">unique</span><span class="o">=</span><span class="n">unique</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
-            <span class="n">matches</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">find_smarts_matches</span><span class="p">(</span>
+            <span class="n">matches</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">find_smarts_matches</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
                 <span class="bp">self</span><span class="p">,</span>
                 <span class="n">smirks</span><span class="p">,</span>
                 <span class="n">unique</span><span class="o">=</span><span class="n">unique</span><span class="p">,</span>
@@ -3817,7 +3762,7 @@
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Generate a molecule from IUPAC or common name</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate a molecule from IUPAC or common name</span>
 
 <span class="sd">        .. note :: This method requires the OpenEye toolkit to be installed.</span>
 
@@ -3873,7 +3818,7 @@
         <span class="k">return</span> <span class="n">molecule</span>
 
     <span class="k">def</span> <span class="nf">to_iupac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Generate IUPAC name from Molecule</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate IUPAC name from Molecule</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -3907,7 +3852,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_topology</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">topology</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return a Molecule representation of an OpenFF Topology containing a single Molecule object.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a Molecule representation of an OpenFF Topology containing a single Molecule object.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -3930,7 +3875,9 @@
 
 <span class="sd">        Create a molecule from a Topology object that contains exactly one molecule</span>
 
-<span class="sd">        &gt;&gt;&gt; molecule = Molecule.from_topology(topology)  # doctest: +SKIP</span>
+<span class="sd">        &gt;&gt;&gt; from openff.toolkit import Molecule, Topology</span>
+<span class="sd">        &gt;&gt;&gt; topology = Topology.from_molecules(Molecule.from_smiles(&#39;[CH4]&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; molecule = Molecule.from_topology(topology)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Ensure we are dealing with an OpenFF Topology object</span>
@@ -3940,7 +3887,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_topology</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an OpenFF Topology representation containing one copy of this molecule</span>
 
 <span class="sd">        Returns</span>
@@ -3951,6 +3898,7 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 
+<span class="sd">        &gt;&gt;&gt; from openff.toolkit import Molecule</span>
 <span class="sd">        &gt;&gt;&gt; molecule = Molecule.from_iupac(&#39;imatinib&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; topology = molecule.to_topology()</span>
 
@@ -3967,7 +3915,7 @@
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create one or more molecules from a file</span>
 
 <span class="sd">        .. todo::</span>
@@ -4114,7 +4062,7 @@
         <span class="n">file_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TextIO</span><span class="p">],</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Loads a polymer from a PDB file.</span>
 
 <span class="sd">        Currently only supports proteins with canonical amino acids that are</span>
@@ -4215,7 +4163,7 @@
         <span class="k">return</span> <span class="n">num_disconnected_subgraphs</span> <span class="o">&gt;</span> <span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">_to_xyz_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Write the current molecule and its conformers to a multiframe xyz file, if the molecule</span>
 <span class="sd">        has no current coordinates all atoms will be set to 0,0,0 in keeping with the behaviour of the</span>
 <span class="sd">        backend toolkits.</span>
@@ -4240,12 +4188,12 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">conformers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">end</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
             <span class="n">title</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">hill_formula</span><span class="si">}{</span><span class="n">frame</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">hill_formula</span><span class="si">}{</span><span class="n">frame</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">end</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="n">title</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">hill_formula</span><span class="si">}</span><span class="s1"> Frame </span><span class="si">{</span><span class="n">frame</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="k">lambda</span> <span class="n">frame</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">hill_formula</span><span class="si">}</span><span class="s1"> Frame </span><span class="si">{</span><span class="n">frame</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
             <span class="p">)</span>
 
         <span class="c1"># check if we have a file path or an open file object</span>
@@ -4270,7 +4218,7 @@
         <span class="n">xyz_data</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">file_format</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Write the current molecule to a file or file-like object</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the current molecule to a file or file-like object</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -4344,7 +4292,7 @@
     <span class="k">def</span> <span class="nf">enumerate_tautomers</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">max_states</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Enumerate the possible tautomers of the current molecule</span>
 
 <span class="sd">        Parameters</span>
@@ -4386,7 +4334,7 @@
         <span class="n">rationalise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Enumerate the stereocenters and bonds of the current molecule.</span>
 
 <span class="sd">        Parameters</span>
@@ -4437,7 +4385,7 @@
 
     <span class="nd">@OpenEyeToolkitWrapper</span><span class="o">.</span><span class="n">requires_toolkit</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">enumerate_protomers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_states</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Enumerate the formal charges of a molecule to generate different protomoers.</span>
 
 <span class="sd">        Parameters</span>
@@ -4461,7 +4409,7 @@
     <span class="k">def</span> <span class="nf">from_rdkit</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">rdmol</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hydrogens_are_explicit</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a Molecule from an RDKit molecule.</span>
 
 <span class="sd">        Requires the RDKit to be installed.</span>
@@ -4505,7 +4453,7 @@
         <span class="n">aromaticity_model</span><span class="o">=</span><span class="n">DEFAULT_AROMATICITY_MODEL</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an RDKit molecule</span>
 
 <span class="sd">        Requires the RDKit to be installed.</span>
@@ -4542,7 +4490,7 @@
     <span class="nd">@classmethod</span>
     <span class="nd">@OpenEyeToolkitWrapper</span><span class="o">.</span><span class="n">requires_toolkit</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">from_openeye</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">oemol</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a ``Molecule`` from an OpenEye molecule.</span>
 
 <span class="sd">        Requires the OpenEye toolkit to be installed.</span>
@@ -4579,7 +4527,7 @@
 
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;qcelemental&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">to_qcschema</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">multiplicity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">conformer</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">extras</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a QCElemental Molecule.</span>
 
 <span class="sd">        .. warning :: This API is experimental and subject to change.</span>
@@ -4667,7 +4615,7 @@
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an :class:`Molecule` from a mapped SMILES made with cmiles.</span>
 <span class="sd">        The molecule will be in the order of the indexing in the mapped smiles string.</span>
 
@@ -4735,7 +4683,7 @@
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a Molecule from a QCArchive molecule record or dataset entry</span>
 <span class="sd">        based on attached cmiles information.</span>
 
@@ -4774,29 +4722,36 @@
 
 <span class="sd">        &gt;&gt;&gt; from qcportal import FractalClient</span>
 <span class="sd">        &gt;&gt;&gt; client = FractalClient()</span>
-<span class="sd">        &gt;&gt;&gt; offmol = Molecule.from_qcschema(client.query_molecules(molecular_formula=&quot;C16H20N3O5&quot;)[0])</span>
+<span class="sd">        &gt;&gt;&gt; offmol = Molecule.from_qcschema(</span>
+<span class="sd">        ...     client.query_molecules(molecular_formula=&quot;C16H20N3O5&quot;)[0]</span>
+<span class="sd">        ... )</span>
 
 <span class="sd">        Get Molecule from a QCArchive optimization entry:</span>
 
 <span class="sd">        &gt;&gt;&gt; from qcportal import FractalClient</span>
 <span class="sd">        &gt;&gt;&gt; client = FractalClient()</span>
-<span class="sd">        &gt;&gt;&gt; optds = client.get_collection(&quot;OptimizationDataset&quot;,</span>
-<span class="sd">                                          &quot;SMIRNOFF Coverage Set 1&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; optds = client.get_collection(</span>
+<span class="sd">        ...     &quot;OptimizationDataset&quot;,</span>
+<span class="sd">        ...     &quot;SMIRNOFF Coverage Set 1&quot;</span>
+<span class="sd">        ... )</span>
 <span class="sd">        &gt;&gt;&gt; offmol = Molecule.from_qcschema(optds.get_entry(&#39;coc(o)oc-0&#39;))</span>
 
-<span class="sd">        Same as above, but with conformer(s) from initial molecule(s) by providing client to database:</span>
+<span class="sd">        Same as above, but with conformer(s) from initial molecule(s) by</span>
+<span class="sd">        providing client to database:</span>
 
-<span class="sd">        &gt;&gt;&gt; offmol = Molecule.from_qcschema(optds.get_entry(&#39;coc(o)oc-0&#39;), client=client)</span>
+<span class="sd">        &gt;&gt;&gt; offmol = Molecule.from_qcschema(</span>
+<span class="sd">        ...     optds.get_entry(&#39;coc(o)oc-0&#39;),</span>
+<span class="sd">        ...     client=client</span>
+<span class="sd">        ... )</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        -------</span>
 <span class="sd">        AttributeError</span>
-<span class="sd">            - If the record dict can not be made from ``qca_record``.</span>
-<span class="sd">            - If a ``client`` is passed and it could not retrieve the initial molecule.</span>
-
+<span class="sd">            If the record dict can not be made from ``qca_record``, or if the</span>
+<span class="sd">            provided ``client`` could not retrieve the initial molecule.</span>
 <span class="sd">        KeyError</span>
-<span class="sd">            If the dict does not contain the ``canonical_isomeric_explicit_hydrogen_mapped_smiles``.</span>
-
+<span class="sd">            If the record does not contain the</span>
+<span class="sd">            ``canonical_isomeric_explicit_hydrogen_mapped_smiles``.</span>
 <span class="sd">        InvalidConformerError</span>
 <span class="sd">            Silent error, if the conformer could not be attached.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -4886,7 +4841,7 @@
     <span class="nd">@classmethod</span>
     <span class="nd">@RDKitToolkitWrapper</span><span class="o">.</span><span class="n">requires_toolkit</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">from_pdb_and_smiles</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">smiles</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a Molecule from a pdb file and a SMILES string using RDKit.</span>
 
 <span class="sd">        Requires RDKit to be installed.</span>
@@ -4927,7 +4882,7 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">canonical_order_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Produce a copy of the molecule with the atoms reordered canonically.</span>
 
 <span class="sd">        Each toolkit defines its own canonical ordering of atoms. The canonical</span>
@@ -4961,7 +4916,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">remap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapping_dict</span><span class="p">,</span> <span class="n">current_to_new</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remap all of the indexes in the molecule to match the given mapping dict</span>
 
 <span class="sd">        .. warning :: This API is experimental and subject to change.</span>
@@ -5044,7 +4999,7 @@
                 <span class="n">new_molecule</span><span class="o">.</span><span class="n">_add_conformer</span><span class="p">(</span><span class="n">new_conformer</span> <span class="o">*</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
 
         <span class="c1"># move any properties across</span>
-        <span class="n">new_molecule</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_properties</span>
+        <span class="n">new_molecule</span><span class="o">.</span><span class="n">_properties</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_properties</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">new_molecule</span>
 
@@ -5053,7 +5008,7 @@
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">aromaticity_model</span><span class="o">=</span><span class="n">DEFAULT_AROMATICITY_MODEL</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create an OpenEye molecule</span>
 
 <span class="sd">        Requires the OpenEye toolkit to be installed.</span>
@@ -5093,7 +5048,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_construct_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get an iterator over all i-j-k angles.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Build Angle objects instead of tuple of atoms.</span>
@@ -5112,7 +5067,7 @@
                             <span class="bp">self</span><span class="o">.</span><span class="n">_angles</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">atom3</span><span class="p">,</span> <span class="n">atom2</span><span class="p">,</span> <span class="n">atom1</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_construct_torsions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct sets containing the atoms improper and proper torsions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Build Proper/ImproperTorsion objects instead of tuple of atoms.</span>
@@ -5152,7 +5107,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_torsions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span> <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span>
 
     <span class="k">def</span> <span class="nf">_construct_bonded_atoms_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct list of all atoms each atom is bonded to.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5169,7 +5124,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">atom1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_is_bonded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_index_1</span><span class="p">,</span> <span class="n">atom_index_2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return True if atoms are bonded, False if not.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True if atoms are bonded, False if not.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -5190,7 +5145,7 @@
         <span class="k">return</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">get_bond_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the bond between two atoms</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the bond between two atoms</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -5231,7 +5186,7 @@
 
 
 <div class="viewcode-block" id="Molecule"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule">[docs]</a><span class="k">class</span> <span class="nc">Molecule</span><span class="p">(</span><span class="n">FrozenMolecule</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Mutable chemical representation of a molecule, such as a small molecule or biopolymer.</span>
 
 <span class="sd">    .. todo :: What other API calls would be useful for supporting biopolymers as small molecules? Perhaps iterating</span>
@@ -5275,7 +5230,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Molecule.__init__"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new Molecule object</span>
 
 <span class="sd">        Parameters</span>
@@ -5357,7 +5312,7 @@
         <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add an atom to the molecule.</span>
 
 <span class="sd">        Parameters</span>
@@ -5394,10 +5349,12 @@
 <span class="sd">        &gt;&gt;&gt; H2 = molecule.add_atom(1, 0, False)</span>
 <span class="sd">        &gt;&gt;&gt; H3 = molecule.add_atom(1, 0, False)</span>
 <span class="sd">        &gt;&gt;&gt; H4 = molecule.add_atom(1, 0, False)</span>
-<span class="sd">        &gt;&gt;&gt; bond_idx = molecule.add_bond(C, H1, False, 1)</span>
-<span class="sd">        &gt;&gt;&gt; bond_idx = molecule.add_bond(C, H2, False, 1)</span>
-<span class="sd">        &gt;&gt;&gt; bond_idx = molecule.add_bond(C, H3, False, 1)</span>
-<span class="sd">        &gt;&gt;&gt; bond_idx = molecule.add_bond(C, H4, False, 1)</span>
+<span class="sd">        &gt;&gt;&gt; bond_idx = molecule.add_bond(C, H1, 1, False)</span>
+<span class="sd">        &gt;&gt;&gt; bond_idx = molecule.add_bond(C, H2, 1, False)</span>
+<span class="sd">        &gt;&gt;&gt; bond_idx = molecule.add_bond(C, H3, 1, False)</span>
+<span class="sd">        &gt;&gt;&gt; bond_idx = molecule.add_bond(C, H4, 1, False)</span>
+<span class="sd">        &gt;&gt;&gt; molecule.to_smiles(explicit_hydrogens=False)</span>
+<span class="sd">        &#39;C&#39;</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">atom_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_atom</span><span class="p">(</span>
@@ -5419,7 +5376,7 @@
         <span class="n">stereochemistry</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">fractional_bond_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a bond between two specified atom indices</span>
 
 
@@ -5443,6 +5400,9 @@
 <span class="sd">        index: int</span>
 <span class="sd">            Index of the bond in this molecule</span>
 
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        For an example of use, see :py:meth:`add_atom`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">bond_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_bond</span><span class="p">(</span>
             <span class="n">atom1</span><span class="p">,</span>
@@ -5455,7 +5415,7 @@
         <span class="k">return</span> <span class="n">bond_index</span></div>
 
 <div class="viewcode-block" id="Molecule.add_conformer"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.add_conformer">[docs]</a>    <span class="k">def</span> <span class="nf">add_conformer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a conformation of the molecule</span>
 
 <span class="sd">        Parameters</span>
@@ -5482,7 +5442,7 @@
         <span class="n">height</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">show_all_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Render a visualization of the molecule in Jupyter</span>
 
 <span class="sd">        Parameters</span>
@@ -5610,7 +5570,7 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not find an appropriate backend&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Molecule.perceive_residues"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.perceive_residues">[docs]</a>    <span class="k">def</span> <span class="nf">perceive_residues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">substructure_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strict_chirality</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Perceive a polymer&#39;s residues and permit iterating over them.</span>
 
 <span class="sd">        Perceives residues by matching substructures in the current molecule</span>
@@ -5701,7 +5661,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">atom_idx</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;residue_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_dict</span><span class="p">[</span>
                     <span class="s2">&quot;residue_name&quot;</span>
                 <span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">atom_idx</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;residue_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">residue_num</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">atom_idx</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;residue_number&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">residue_num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">atom_idx</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;insertion_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">atom_idx</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;atom_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_dict</span><span class="p">[</span><span class="s2">&quot;atom_names&quot;</span><span class="p">][</span>
                     <span class="n">smarts_idx</span>
@@ -5730,7 +5690,7 @@
 
 
 <span class="k">def</span> <span class="nf">_networkx_graph_to_hill_formula</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;nx.Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert a NetworkX graph to a Hill formula.</span>
 
 <span class="sd">    Parameters</span>
@@ -5754,7 +5714,7 @@
 
 
 <span class="k">def</span> <span class="nf">_atom_nums_to_hill_formula</span><span class="p">(</span><span class="n">atom_nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a `Counter` object of atom counts by atomic number, generate the corresponding</span>
 <span class="sd">    Hill formula. See https://en.wikipedia.org/wiki/Chemical_formula#Hill_system&quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
@@ -5788,7 +5748,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span>
     <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;_SimpleAtom&quot;</span><span class="p">,</span> <span class="s2">&quot;_SimpleAtom&quot;</span><span class="p">]],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
 <span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Given a graph-like object, return a tuple of the nth degree neighbors of each atom.</span>
 
 <span class="sd">    The input `graphlike` object must provide a .to_networkx() method and an</span>
@@ -5824,7 +5784,7 @@
 
 
 <span class="k">class</span> <span class="nc">HierarchyScheme</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Perceives hierarchy elements from the metadata of atoms in a ``Molecule``.</span>
 
 <span class="sd">    The Open Force Field Toolkit has no native understanding of hierarchical</span>
@@ -5858,7 +5818,7 @@
         <span class="n">uniqueness_criteria</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
         <span class="n">iterator_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new hierarchy scheme for iterating over groups of atoms.</span>
 
 <span class="sd">        Parameters</span>
@@ -5904,7 +5864,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">hierarchy_elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">HierarchyElement</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Serialize this object to a basic dict of strings, ints, and floats</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">return_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -5916,7 +5876,7 @@
         <span class="k">return</span> <span class="n">return_dict</span>
 
     <span class="k">def</span> <span class="nf">perceive_hierarchy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Prepare the parent ``Molecule`` for iteration according to this scheme.</span>
 
 <span class="sd">        Groups the atoms of the parent of this ``HierarchyScheme`` according to</span>
@@ -5954,7 +5914,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sort_hierarchy_elements</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">add_hierarchy_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">atom_indices</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate a new HierarchyElement belonging to this HierarchyScheme.</span>
 
 <span class="sd">        This is the main way to instantiate new HierarchyElements.</span>
@@ -5973,7 +5933,7 @@
         <span class="k">return</span> <span class="n">new_hier_ele</span>
 
     <span class="k">def</span> <span class="nf">sort_hierarchy_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Semantically sort the HierarchyElements belonging to this object, according to</span>
 <span class="sd">        their identifiers.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -5994,10 +5954,10 @@
 
 
 <span class="k">class</span> <span class="nc">HierarchyElement</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;An element in a metadata hierarchy scheme, such as a residue or chain.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An element in a metadata hierarchy scheme, such as a residue or chain.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">atom_indices</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new hierarchy element.</span>
 
 <span class="sd">        Parameters</span>
@@ -6021,7 +5981,7 @@
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uniqueness_component</span><span class="p">,</span> <span class="n">id_component</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Serialize this object to a basic dict of strings, ints, and floats.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">return_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -6031,28 +5991,28 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of atoms in this hierarchy element.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atom_indices</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Iterator over the atoms in this hierarchy element.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom_indices</span><span class="p">:</span>
             <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Atom</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the atom with the specified index.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">atom_indices</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FrozenMolecule</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The parent molecule for this hierarchy element</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">parent</span>
@@ -6068,11 +6028,11 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">has_unique_atom_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;``True`` if the element has unique atom names, ``False`` otherwise.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;``True`` if the element has unique atom names, ``False`` otherwise.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">_has_unique_atom_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">generate_unique_atom_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate unique atom names from the element symbol and count.</span>
 
 <span class="sd">        Names are generated from the elemental symbol and the number of times</span>
@@ -6085,7 +6045,7 @@
 
 
 <span class="k">def</span> <span class="nf">_has_unique_atom_names</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">FrozenMolecule</span><span class="p">,</span> <span class="n">HierarchyElement</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;``True`` if the object has unique atom names, ``False`` otherwise.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;``True`` if the object has unique atom names, ``False`` otherwise.&quot;&quot;&quot;</span>
     <span class="n">unique_atom_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">atom</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">atoms</span><span class="p">])</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_atom_names</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">obj</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -6093,7 +6053,7 @@
 
 
 <span class="k">def</span> <span class="nf">_generate_unique_atom_names</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">FrozenMolecule</span><span class="p">,</span> <span class="n">HierarchyElement</span><span class="p">]):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate unique atom names from the element symbol and count.</span>
 
 <span class="sd">    Names are generated from the elemental symbol and the number of times that</span>
@@ -6133,7 +6093,7 @@
               
           </div>
           Last updated on
-            Sep 06, 2022.
+            Feb 07, 2023.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.

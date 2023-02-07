@@ -189,18 +189,18 @@ It is inspired by <a class="reference external" href="https://bashtage.github.io
 <section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <p>Install from git</p>
-<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install git+https://github.com/openforcefield/openff-sphinx-theme.git@main
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/openforcefield/openff-sphinx-theme.git@main
 </pre></div>
 </div>
 <p>Or, add to your ReadTheDocs environment.yml</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;conda dependency&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;conda dependency&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;conda dependency&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="c1"># --- snip --- #</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span><span class="w"></span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git+https://github.com/openforcefield/openff-sphinx-theme.git@main</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;conda dependency&gt;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;conda dependency&gt;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;conda dependency&gt;</span>
+<span class="w">    </span><span class="c1"># --- snip --- #</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pip</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">git+https://github.com/openforcefield/openff-sphinx-theme.git@main</span>
 </pre></div>
 </div>
 <p>Update your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> with the required changes:</p>
@@ -331,7 +331,7 @@ or <code class="docutils literal notranslate"><span class="pre">theme.conf</span
               
           </div>
           Last updated on
-            Sep 06, 2022.
+            Feb 07, 2023.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.

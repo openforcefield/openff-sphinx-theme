@@ -338,7 +338,7 @@
 
 
 <span class="k">class</span> <span class="nc">Serializable</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Mix-in to add serialization and deserialization support via JSON, YAML, BSON, TOML, MessagePack, and XML.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mix-in to add serialization and deserialization support via JSON, YAML, BSON, TOML, MessagePack, and XML.</span>
 
 <span class="sd">    For more information on these formats, see: `JSON &lt;https://www.json.org/&gt;`_,</span>
 <span class="sd">    `BSON &lt;http://bsonspec.org/&gt;`_, `YAML &lt;http://yaml.org/&gt;`_, `TOML &lt;https://github.com/toml-lang/toml&gt;`_,</span>
@@ -421,7 +421,7 @@
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a JSON serialized representation.</span>
 
 <span class="sd">        Specification: https://www.json.org/</span>
@@ -448,7 +448,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_json</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">serialized</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate an object from a JSON serialized representation.</span>
 
 <span class="sd">        Specification: https://www.json.org/</span>
@@ -471,7 +471,7 @@
 
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;bson&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">to_bson</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a BSON serialized representation.</span>
 
 <span class="sd">        Specification: http://bsonspec.org/</span>
@@ -490,7 +490,7 @@
     <span class="nd">@classmethod</span>
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;bson&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">from_bson</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">serialized</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate an object from a BSON serialized representation.</span>
 
 <span class="sd">        Specification: http://bsonspec.org/</span>
@@ -513,7 +513,7 @@
 
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;toml&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">to_toml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a TOML serialized representation.</span>
 
 <span class="sd">        Specification: https://github.com/toml-lang/toml</span>
@@ -534,7 +534,7 @@
     <span class="nd">@classmethod</span>
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;toml&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">from_toml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">serialized</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate an object from a TOML serialized representation.</span>
 
 <span class="sd">        Specification: https://github.com/toml-lang/toml</span>
@@ -555,36 +555,9 @@
         <span class="n">d</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">serialized</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_represent_odict</span><span class="p">(</span><span class="n">dump</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">flow_style</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Like BaseRepresenter.represent_mapping, but does not issue the sort().&quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">yaml</span>
-
-        <span class="n">value</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">MappingNode</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">flow_style</span><span class="o">=</span><span class="n">flow_style</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">dump</span><span class="o">.</span><span class="n">alias_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">dump</span><span class="o">.</span><span class="n">represented_objects</span><span class="p">[</span><span class="n">dump</span><span class="o">.</span><span class="n">alias_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
-        <span class="n">best_style</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mapping</span><span class="p">,</span> <span class="s2">&quot;items&quot;</span><span class="p">):</span>
-            <span class="n">mapping</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">item_key</span><span class="p">,</span> <span class="n">item_value</span> <span class="ow">in</span> <span class="n">mapping</span><span class="p">:</span>
-            <span class="n">node_key</span> <span class="o">=</span> <span class="n">dump</span><span class="o">.</span><span class="n">represent_data</span><span class="p">(</span><span class="n">item_key</span><span class="p">)</span>
-            <span class="n">node_value</span> <span class="o">=</span> <span class="n">dump</span><span class="o">.</span><span class="n">represent_data</span><span class="p">(</span><span class="n">item_value</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">node_key</span><span class="p">,</span> <span class="n">yaml</span><span class="o">.</span><span class="n">ScalarNode</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node_key</span><span class="o">.</span><span class="n">style</span><span class="p">):</span>
-                <span class="n">best_style</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">node_value</span><span class="p">,</span> <span class="n">yaml</span><span class="o">.</span><span class="n">ScalarNode</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node_value</span><span class="o">.</span><span class="n">style</span><span class="p">):</span>
-                <span class="n">best_style</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">value</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node_key</span><span class="p">,</span> <span class="n">node_value</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">flow_style</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">dump</span><span class="o">.</span><span class="n">default_flow_style</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">flow_style</span> <span class="o">=</span> <span class="n">dump</span><span class="o">.</span><span class="n">default_flow_style</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">flow_style</span> <span class="o">=</span> <span class="n">best_style</span>
-        <span class="k">return</span> <span class="n">node</span>
-
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;yaml&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">to_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a YAML serialized representation.</span>
 
 <span class="sd">        Specification: http://yaml.org/</span>
@@ -595,23 +568,15 @@
 <span class="sd">            A YAML serialized representation of the object</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-
         <span class="kn">import</span> <span class="nn">yaml</span>
 
-        <span class="n">yaml</span><span class="o">.</span><span class="n">SafeDumper</span><span class="o">.</span><span class="n">add_representer</span><span class="p">(</span>
-            <span class="n">OrderedDict</span><span class="p">,</span>
-            <span class="k">lambda</span> <span class="n">dumper</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_represent_odict</span><span class="p">(</span>
-                <span class="n">dumper</span><span class="p">,</span> <span class="s2">&quot;tag:yaml.org,2002:map&quot;</span><span class="p">,</span> <span class="n">value</span>
-            <span class="p">),</span>
-        <span class="p">)</span>
         <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;yaml&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">from_yaml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">serialized</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate from a YAML serialized representation.</span>
 
 <span class="sd">        Specification: http://yaml.org/</span>
@@ -627,22 +592,14 @@
 <span class="sd">            Instantiated object</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-
         <span class="kn">import</span> <span class="nn">yaml</span>
 
-        <span class="n">yaml</span><span class="o">.</span><span class="n">SafeDumper</span><span class="o">.</span><span class="n">add_representer</span><span class="p">(</span>
-            <span class="n">OrderedDict</span><span class="p">,</span>
-            <span class="k">lambda</span> <span class="n">dumper</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_represent_odict</span><span class="p">(</span>  <span class="c1"># noqa</span>
-                <span class="n">dumper</span><span class="p">,</span> <span class="s2">&quot;tag:yaml.org,2002:map&quot;</span><span class="p">,</span> <span class="n">value</span>
-            <span class="p">),</span>
-        <span class="p">)</span>
         <span class="n">d</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">serialized</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;msgpack&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">to_messagepack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a MessagePack representation.</span>
 
 <span class="sd">        Specification: https://msgpack.org/index.html</span>
@@ -661,7 +618,7 @@
     <span class="nd">@classmethod</span>
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;msgpack&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">from_messagepack</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">serialized</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate an object from a MessagePack serialized representation.</span>
 
 <span class="sd">        Specification: https://msgpack.org/index.html</span>
@@ -683,7 +640,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">to_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return an XML representation.</span>
 
 <span class="sd">        Specification: https://www.w3.org/XML/</span>
@@ -715,7 +672,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_xml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">serialized</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate an object from an XML serialized representation.</span>
 
 <span class="sd">        Specification: https://www.w3.org/XML/</span>
@@ -740,7 +697,7 @@
         <span class="c1"># return cls.from_dict(d[root_name])</span>
 
     <span class="k">def</span> <span class="nf">to_pickle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a pickle serialized representation.</span>
 
 <span class="sd">        .. warning ::</span>
@@ -761,7 +718,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_pickle</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">serialized</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instantiate an object from a pickle serialized representation.</span>
 
 <span class="sd">        .. warning ::</span>
@@ -787,14 +744,14 @@
 
 
 <span class="k">def</span> <span class="nf">_contains_bytes</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Report if any values in list are bytes.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Report if any values in list are bytes.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)):</span>
         <span class="k">return</span> <span class="kc">False</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
         <span class="k">return</span> <span class="nb">any</span><span class="p">([</span><span class="n">_contains_bytes</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">val</span><span class="p">])</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">any</span><span class="p">([</span><span class="n">_contains_bytes</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">val</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
@@ -803,7 +760,7 @@
 
 
 <span class="k">def</span> <span class="nf">_prep_numpy_data_for_json</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Recursively search through a dict and convert the bytes fields to lists&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recursively search through a dict and convert the bytes fields to lists&quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
     <span class="n">big_endian_float</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">newbyteorder</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">)</span>
@@ -815,14 +772,14 @@
             <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">_prep_numpy_data_for_json</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
             <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">big_endian_float</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
                     <span class="c1"># Handles case of List[np.array], like Molecule.conformers</span>
                     <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span>
                         <span class="n">element</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">big_endian_float</span>
                     <span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-                <span class="k">else</span><span class="p">:</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
                     <span class="c1"># Handles case of List[Molecule], like Topology.molecules</span>
                     <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_prep_numpy_data_for_json</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">data</span>
@@ -845,7 +802,7 @@
               
           </div>
           Last updated on
-            Sep 06, 2022.
+            Feb 07, 2023.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.

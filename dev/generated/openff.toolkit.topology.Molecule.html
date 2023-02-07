@@ -355,186 +355,180 @@ than one molecule is found?</p></li>
 <td><p>Produce a copy of the molecule with the atoms reordered canonically.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.chemical_environment_matches" title="openff.toolkit.topology.Molecule.chemical_environment_matches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">chemical_environment_matches</span></code></a>(query[, ...])</p></td>
-<td><p>Find matches in the molecule for a SMARTS string or <code class="docutils literal notranslate"><span class="pre">ChemicalEnvironment</span></code> query</p></td>
+<td><p>Find matches in the molecule for a SMARTS string</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.compute_partial_charges_am1bcc" title="openff.toolkit.topology.Molecule.compute_partial_charges_am1bcc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_partial_charges_am1bcc</span></code></a>([...])</p></td>
-<td><p></p><div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 0.11.0.</span></p>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.delete_hierarchy_scheme" title="openff.toolkit.topology.Molecule.delete_hierarchy_scheme"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_hierarchy_scheme</span></code></a>(iter_name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.delete_hierarchy_scheme" title="openff.toolkit.topology.Molecule.delete_hierarchy_scheme"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_hierarchy_scheme</span></code></a>(iter_name)</p></td>
 <td><p>Remove an existing <code class="docutils literal notranslate"><span class="pre">HierarchyScheme</span></code> specified by its iterator name.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.enumerate_protomers" title="openff.toolkit.topology.Molecule.enumerate_protomers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enumerate_protomers</span></code></a>([max_states])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.enumerate_protomers" title="openff.toolkit.topology.Molecule.enumerate_protomers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enumerate_protomers</span></code></a>([max_states])</p></td>
 <td><p>Enumerate the formal charges of a molecule to generate different protomoers.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.enumerate_stereoisomers" title="openff.toolkit.topology.Molecule.enumerate_stereoisomers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enumerate_stereoisomers</span></code></a>([undefined_only, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.enumerate_stereoisomers" title="openff.toolkit.topology.Molecule.enumerate_stereoisomers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enumerate_stereoisomers</span></code></a>([undefined_only, ...])</p></td>
 <td><p>Enumerate the stereocenters and bonds of the current molecule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.enumerate_tautomers" title="openff.toolkit.topology.Molecule.enumerate_tautomers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enumerate_tautomers</span></code></a>([max_states, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.enumerate_tautomers" title="openff.toolkit.topology.Molecule.enumerate_tautomers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enumerate_tautomers</span></code></a>([max_states, ...])</p></td>
 <td><p>Enumerate the possible tautomers of the current molecule</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.find_rotatable_bonds" title="openff.toolkit.topology.Molecule.find_rotatable_bonds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_rotatable_bonds</span></code></a>([...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.find_rotatable_bonds" title="openff.toolkit.topology.Molecule.find_rotatable_bonds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_rotatable_bonds</span></code></a>([...])</p></td>
 <td><p>Find all bonds classed as rotatable ignoring any matched to the <code class="docutils literal notranslate"><span class="pre">ignore_functional_groups</span></code> list.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_bson" title="openff.toolkit.topology.Molecule.from_bson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_bson</span></code></a>(serialized)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_bson" title="openff.toolkit.topology.Molecule.from_bson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_bson</span></code></a>(serialized)</p></td>
 <td><p>Instantiate an object from a BSON serialized representation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_dict" title="openff.toolkit.topology.Molecule.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dict</span></code></a>(molecule_dict)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_dict" title="openff.toolkit.topology.Molecule.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dict</span></code></a>(molecule_dict)</p></td>
 <td><p>Create a new Molecule from a dictionary representation</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_file" title="openff.toolkit.topology.Molecule.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(file_path[, file_format, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_file" title="openff.toolkit.topology.Molecule.from_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_file</span></code></a>(file_path[, file_format, ...])</p></td>
 <td><p>Create one or more molecules from a file</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_inchi" title="openff.toolkit.topology.Molecule.from_inchi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_inchi</span></code></a>(inchi[, allow_undefined_stereo, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_inchi" title="openff.toolkit.topology.Molecule.from_inchi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_inchi</span></code></a>(inchi[, allow_undefined_stereo, ...])</p></td>
 <td><p>Construct a Molecule from a InChI representation</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_iupac" title="openff.toolkit.topology.Molecule.from_iupac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_iupac</span></code></a>(iupac_name[, toolkit_registry, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_iupac" title="openff.toolkit.topology.Molecule.from_iupac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_iupac</span></code></a>(iupac_name[, toolkit_registry, ...])</p></td>
 <td><p>Generate a molecule from IUPAC or common name</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_json" title="openff.toolkit.topology.Molecule.from_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_json</span></code></a>(serialized)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_json" title="openff.toolkit.topology.Molecule.from_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_json</span></code></a>(serialized)</p></td>
 <td><p>Instantiate an object from a JSON serialized representation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_mapped_smiles" title="openff.toolkit.topology.Molecule.from_mapped_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_mapped_smiles</span></code></a>(mapped_smiles[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_mapped_smiles" title="openff.toolkit.topology.Molecule.from_mapped_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_mapped_smiles</span></code></a>(mapped_smiles[, ...])</p></td>
 <td><p>Create an <a class="reference internal" href="#openff.toolkit.topology.Molecule" title="openff.toolkit.topology.Molecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></a> from a mapped SMILES made with cmiles.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_messagepack" title="openff.toolkit.topology.Molecule.from_messagepack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_messagepack</span></code></a>(serialized)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_messagepack" title="openff.toolkit.topology.Molecule.from_messagepack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_messagepack</span></code></a>(serialized)</p></td>
 <td><p>Instantiate an object from a MessagePack serialized representation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_openeye" title="openff.toolkit.topology.Molecule.from_openeye"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_openeye</span></code></a>(oemol[, allow_undefined_stereo])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_openeye" title="openff.toolkit.topology.Molecule.from_openeye"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_openeye</span></code></a>(oemol[, allow_undefined_stereo])</p></td>
 <td><p>Create a <code class="docutils literal notranslate"><span class="pre">Molecule</span></code> from an OpenEye molecule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_pdb_and_smiles" title="openff.toolkit.topology.Molecule.from_pdb_and_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pdb_and_smiles</span></code></a>(file_path, smiles[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_pdb_and_smiles" title="openff.toolkit.topology.Molecule.from_pdb_and_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pdb_and_smiles</span></code></a>(file_path, smiles[, ...])</p></td>
 <td><p>Create a Molecule from a pdb file and a SMILES string using RDKit.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_pickle" title="openff.toolkit.topology.Molecule.from_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pickle</span></code></a>(serialized)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_pickle" title="openff.toolkit.topology.Molecule.from_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_pickle</span></code></a>(serialized)</p></td>
 <td><p>Instantiate an object from a pickle serialized representation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_polymer_pdb" title="openff.toolkit.topology.Molecule.from_polymer_pdb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_polymer_pdb</span></code></a>(file_path[, toolkit_registry])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_polymer_pdb" title="openff.toolkit.topology.Molecule.from_polymer_pdb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_polymer_pdb</span></code></a>(file_path[, toolkit_registry])</p></td>
 <td><p>Loads a polymer from a PDB file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_qcschema" title="openff.toolkit.topology.Molecule.from_qcschema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_qcschema</span></code></a>(qca_record[, client, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_qcschema" title="openff.toolkit.topology.Molecule.from_qcschema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_qcschema</span></code></a>(qca_record[, client, ...])</p></td>
 <td><p>Create a Molecule from a QCArchive molecule record or dataset entry based on attached cmiles information.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_rdkit" title="openff.toolkit.topology.Molecule.from_rdkit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_rdkit</span></code></a>(rdmol[, allow_undefined_stereo, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_rdkit" title="openff.toolkit.topology.Molecule.from_rdkit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_rdkit</span></code></a>(rdmol[, allow_undefined_stereo, ...])</p></td>
 <td><p>Create a Molecule from an RDKit molecule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_smiles" title="openff.toolkit.topology.Molecule.from_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_smiles</span></code></a>(smiles[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_smiles" title="openff.toolkit.topology.Molecule.from_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_smiles</span></code></a>(smiles[, ...])</p></td>
 <td><p>Construct a Molecule from a SMILES representation</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_toml" title="openff.toolkit.topology.Molecule.from_toml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_toml</span></code></a>(serialized)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_toml" title="openff.toolkit.topology.Molecule.from_toml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_toml</span></code></a>(serialized)</p></td>
 <td><p>Instantiate an object from a TOML serialized representation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_topology" title="openff.toolkit.topology.Molecule.from_topology"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_topology</span></code></a>(topology)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_topology" title="openff.toolkit.topology.Molecule.from_topology"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_topology</span></code></a>(topology)</p></td>
 <td><p>Return a Molecule representation of an OpenFF Topology containing a single Molecule object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_xml" title="openff.toolkit.topology.Molecule.from_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_xml</span></code></a>(serialized)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_xml" title="openff.toolkit.topology.Molecule.from_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_xml</span></code></a>(serialized)</p></td>
 <td><p>Instantiate an object from an XML serialized representation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_yaml" title="openff.toolkit.topology.Molecule.from_yaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_yaml</span></code></a>(serialized)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.from_yaml" title="openff.toolkit.topology.Molecule.from_yaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_yaml</span></code></a>(serialized)</p></td>
 <td><p>Instantiate from a YAML serialized representation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.generate_conformers" title="openff.toolkit.topology.Molecule.generate_conformers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_conformers</span></code></a>([toolkit_registry, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.generate_conformers" title="openff.toolkit.topology.Molecule.generate_conformers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_conformers</span></code></a>([toolkit_registry, ...])</p></td>
 <td><p>Generate conformers for this molecule using an underlying toolkit.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.generate_unique_atom_names" title="openff.toolkit.topology.Molecule.generate_unique_atom_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_unique_atom_names</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.generate_unique_atom_names" title="openff.toolkit.topology.Molecule.generate_unique_atom_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_unique_atom_names</span></code></a>()</p></td>
 <td><p>Generate unique atom names from the element symbol and count.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.get_bond_between" title="openff.toolkit.topology.Molecule.get_bond_between"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_bond_between</span></code></a>(i, j)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.get_bond_between" title="openff.toolkit.topology.Molecule.get_bond_between"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_bond_between</span></code></a>(i, j)</p></td>
 <td><p>Returns the bond between two atoms</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.is_isomorphic_with" title="openff.toolkit.topology.Molecule.is_isomorphic_with"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_isomorphic_with</span></code></a>(other, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.is_isomorphic_with" title="openff.toolkit.topology.Molecule.is_isomorphic_with"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_isomorphic_with</span></code></a>(other, **kwargs)</p></td>
 <td><p>Check if the molecule is isomorphic with the other molecule which can be an openff.toolkit.topology.Molecule or nx.Graph().</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.nth_degree_neighbors" title="openff.toolkit.topology.Molecule.nth_degree_neighbors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nth_degree_neighbors</span></code></a>(n_degrees)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.nth_degree_neighbors" title="openff.toolkit.topology.Molecule.nth_degree_neighbors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nth_degree_neighbors</span></code></a>(n_degrees)</p></td>
 <td><p>Return canonicalized pairs of atoms whose shortest separation is <cite>exactly</cite> n bonds.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.ordered_connection_table_hash" title="openff.toolkit.topology.Molecule.ordered_connection_table_hash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ordered_connection_table_hash</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.ordered_connection_table_hash" title="openff.toolkit.topology.Molecule.ordered_connection_table_hash"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ordered_connection_table_hash</span></code></a>()</p></td>
 <td><p>Compute an ordered hash of the atoms and bonds in the molecule</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.particle" title="openff.toolkit.topology.Molecule.particle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">particle</span></code></a>(index)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.particle" title="openff.toolkit.topology.Molecule.particle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">particle</span></code></a>(index)</p></td>
 <td><p></p><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.11.0.</span></p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.particle_index" title="openff.toolkit.topology.Molecule.particle_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">particle_index</span></code></a>(particle)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.particle_index" title="openff.toolkit.topology.Molecule.particle_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">particle_index</span></code></a>(particle)</p></td>
 <td><p></p><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.11.0.</span></p>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.perceive_residues" title="openff.toolkit.topology.Molecule.perceive_residues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">perceive_residues</span></code></a>([substructure_file_path, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.perceive_residues" title="openff.toolkit.topology.Molecule.perceive_residues"><code class="xref py py-obj docutils literal notranslate"><span class="pre">perceive_residues</span></code></a>([substructure_file_path, ...])</p></td>
 <td><p>Perceive a polymer's residues and permit iterating over them.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.remap" title="openff.toolkit.topology.Molecule.remap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remap</span></code></a>(mapping_dict[, current_to_new])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.remap" title="openff.toolkit.topology.Molecule.remap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remap</span></code></a>(mapping_dict[, current_to_new])</p></td>
 <td><p>Remap all of the indexes in the molecule to match the given mapping dict</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.strip_atom_stereochemistry" title="openff.toolkit.topology.Molecule.strip_atom_stereochemistry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strip_atom_stereochemistry</span></code></a>(smarts[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.strip_atom_stereochemistry" title="openff.toolkit.topology.Molecule.strip_atom_stereochemistry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">strip_atom_stereochemistry</span></code></a>(smarts[, ...])</p></td>
 <td><p>Delete stereochemistry information for certain atoms, if it is present.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_bson" title="openff.toolkit.topology.Molecule.to_bson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_bson</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_bson" title="openff.toolkit.topology.Molecule.to_bson"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_bson</span></code></a>()</p></td>
 <td><p>Return a BSON serialized representation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_dict" title="openff.toolkit.topology.Molecule.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_dict" title="openff.toolkit.topology.Molecule.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_dict</span></code></a>()</p></td>
 <td><p>Return a dictionary representation of the molecule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_file" title="openff.toolkit.topology.Molecule.to_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_file</span></code></a>(file_path, file_format[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_file" title="openff.toolkit.topology.Molecule.to_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_file</span></code></a>(file_path, file_format[, ...])</p></td>
 <td><p>Write the current molecule to a file or file-like object</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="openff.toolkit.topology.Molecule.to_hill_formula"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_hill_formula</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="openff.toolkit.topology.Molecule.to_hill_formula"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_hill_formula</span></code></a>()</p></td>
 <td><p>Generate the Hill formula of this molecule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_inchi" title="openff.toolkit.topology.Molecule.to_inchi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_inchi</span></code></a>([fixed_hydrogens, toolkit_registry])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_inchi" title="openff.toolkit.topology.Molecule.to_inchi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_inchi</span></code></a>([fixed_hydrogens, toolkit_registry])</p></td>
 <td><p>Create an InChI string for the molecule using the requested toolkit backend.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_inchikey" title="openff.toolkit.topology.Molecule.to_inchikey"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_inchikey</span></code></a>([fixed_hydrogens, toolkit_registry])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_inchikey" title="openff.toolkit.topology.Molecule.to_inchikey"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_inchikey</span></code></a>([fixed_hydrogens, toolkit_registry])</p></td>
 <td><p>Create an InChIKey for the molecule using the requested toolkit backend.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_iupac" title="openff.toolkit.topology.Molecule.to_iupac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_iupac</span></code></a>([toolkit_registry])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_iupac" title="openff.toolkit.topology.Molecule.to_iupac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_iupac</span></code></a>([toolkit_registry])</p></td>
 <td><p>Generate IUPAC name from Molecule</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_json" title="openff.toolkit.topology.Molecule.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>([indent])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_json" title="openff.toolkit.topology.Molecule.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>([indent])</p></td>
 <td><p>Return a JSON serialized representation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_messagepack" title="openff.toolkit.topology.Molecule.to_messagepack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_messagepack</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_messagepack" title="openff.toolkit.topology.Molecule.to_messagepack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_messagepack</span></code></a>()</p></td>
 <td><p>Return a MessagePack representation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_networkx" title="openff.toolkit.topology.Molecule.to_networkx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_networkx</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_networkx" title="openff.toolkit.topology.Molecule.to_networkx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_networkx</span></code></a>()</p></td>
 <td><p>Generate a NetworkX undirected graph from the molecule.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_openeye" title="openff.toolkit.topology.Molecule.to_openeye"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_openeye</span></code></a>([toolkit_registry, aromaticity_model])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_openeye" title="openff.toolkit.topology.Molecule.to_openeye"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_openeye</span></code></a>([toolkit_registry, aromaticity_model])</p></td>
 <td><p>Create an OpenEye molecule</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_pickle" title="openff.toolkit.topology.Molecule.to_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_pickle</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_pickle" title="openff.toolkit.topology.Molecule.to_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_pickle</span></code></a>()</p></td>
 <td><p>Return a pickle serialized representation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_qcschema" title="openff.toolkit.topology.Molecule.to_qcschema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_qcschema</span></code></a>([multiplicity, conformer, extras])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_qcschema" title="openff.toolkit.topology.Molecule.to_qcschema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_qcschema</span></code></a>([multiplicity, conformer, extras])</p></td>
 <td><p>Create a QCElemental Molecule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_rdkit" title="openff.toolkit.topology.Molecule.to_rdkit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_rdkit</span></code></a>([aromaticity_model, toolkit_registry])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_rdkit" title="openff.toolkit.topology.Molecule.to_rdkit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_rdkit</span></code></a>([aromaticity_model, toolkit_registry])</p></td>
 <td><p>Create an RDKit molecule</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_smiles" title="openff.toolkit.topology.Molecule.to_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_smiles</span></code></a>([isomeric, explicit_hydrogens, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_smiles" title="openff.toolkit.topology.Molecule.to_smiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_smiles</span></code></a>([isomeric, explicit_hydrogens, ...])</p></td>
 <td><p>Return a canonical isomeric SMILES representation of the current molecule.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_toml" title="openff.toolkit.topology.Molecule.to_toml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_toml</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_toml" title="openff.toolkit.topology.Molecule.to_toml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_toml</span></code></a>()</p></td>
 <td><p>Return a TOML serialized representation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_topology" title="openff.toolkit.topology.Molecule.to_topology"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_topology</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_topology" title="openff.toolkit.topology.Molecule.to_topology"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_topology</span></code></a>()</p></td>
 <td><p>Return an OpenFF Topology representation containing one copy of this molecule</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_xml" title="openff.toolkit.topology.Molecule.to_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xml</span></code></a>([indent])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_xml" title="openff.toolkit.topology.Molecule.to_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_xml</span></code></a>([indent])</p></td>
 <td><p>Return an XML representation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_yaml" title="openff.toolkit.topology.Molecule.to_yaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_yaml</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.to_yaml" title="openff.toolkit.topology.Molecule.to_yaml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_yaml</span></code></a>()</p></td>
 <td><p>Return a YAML serialized representation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.update_hierarchy_schemes" title="openff.toolkit.topology.Molecule.update_hierarchy_schemes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_hierarchy_schemes</span></code></a>([iter_names])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.update_hierarchy_schemes" title="openff.toolkit.topology.Molecule.update_hierarchy_schemes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_hierarchy_schemes</span></code></a>([iter_names])</p></td>
 <td><p>Infer a hierarchy from atom metadata according to the existing hierarchy schemes.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.visualize" title="openff.toolkit.topology.Molecule.visualize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize</span></code></a>([backend, width, height, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#openff.toolkit.topology.Molecule.visualize" title="openff.toolkit.topology.Molecule.visualize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize</span></code></a>([backend, width, height, ...])</p></td>
 <td><p>Render a visualization of the molecule in Jupyter</p></td>
 </tr>
 </tbody>
@@ -665,10 +659,12 @@ grouping atom by residue and chain.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">H2</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">H3</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">H4</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_atom</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H2</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H3</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H4</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bond_idx</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">add_bond</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">H4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span><span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">'C'</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -700,6 +696,8 @@ grouping atom by residue and chain.</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>For an example of use, see <a class="reference internal" href="#openff.toolkit.topology.Molecule.add_atom" title="openff.toolkit.topology.Molecule.add_atom"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_atom()</span></code></a>.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.add_conformer">
@@ -902,7 +900,7 @@ each tuple.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.apply_elf_conformer_selection">
-<span class="sig-name descname"><span class="pre">apply_elf_conformer_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ToolkitRegistry</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ToolkitWrapper</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.apply_elf_conformer_selection" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">apply_elf_conformer_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">ToolkitRegistry</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ToolkitWrapper</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.apply_elf_conformer_selection" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Select a set of diverse conformers from the molecule’s conformers with ELF.</p>
 <p>Applies the <a class="reference external" href="https://docs.eyesopen.com/toolkits/python/quacpactk/molchargetheory.html#elf-conformer-selection">Electrostatically Least-interacting Functional groups method</a>
 to select a set of diverse conformers which have minimal
@@ -938,7 +936,7 @@ while unselected conformers will be discarded.</p></li>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.are_isomorphic">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">are_isomorphic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_atom_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aromatic_matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formal_charge_matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_order_matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_stereochemistry_matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_stereochemistry_matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip_pyrimidal_n_atom_stereo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.are_isomorphic" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">are_isomorphic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">FrozenMolecule</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Graph</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">FrozenMolecule</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Graph</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_atom_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aromatic_matching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formal_charge_matching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_order_matching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_stereochemistry_matching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_stereochemistry_matching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip_pyrimidal_n_atom_stereo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.are_isomorphic" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Determine if <code class="docutils literal notranslate"><span class="pre">mol1</span></code> is isomorphic to <code class="docutils literal notranslate"><span class="pre">mol2</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">are_isomorphic()</span></code> compares two molecule’s graph representations and
 the chosen node/edge attributes. Connections and atomic numbers are
@@ -1045,14 +1043,15 @@ of conformers will be generated by an available <code class="docutils literal no
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_smiles</span><span class="p">(</span><span class="s1">'CCCCCC'</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">openff.toolkit</span> <span class="kn">import</span> <span class="n">Molecule</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_smiles</span><span class="p">(</span><span class="s1">'CCCCCC'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span><span class="o">.</span><span class="n">assign_fractional_bond_orders</span><span class="p">()</span>
 </pre></div>
 </div>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.assign_partial_charges">
-<span class="sig-name descname"><span class="pre">assign_partial_charges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partial_charge_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict_n_conformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_conformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_partial_charges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.assign_partial_charges" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">assign_partial_charges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partial_charge_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict_n_conformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_conformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_partial_charges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.assign_partial_charges" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Calculate partial atomic charges and store them in the molecule.</p>
 <p><code class="docutils literal notranslate"><span class="pre">assign_partial_charges</span></code> computes charges using the specified toolkit
 and assigns the new values to the <code class="docutils literal notranslate"><span class="pre">partial_charges</span></code> attribute.
@@ -1123,7 +1122,7 @@ values at limited precision.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.atom">
-<span class="sig-name descname"><span class="pre">atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Atom</span></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.atom" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Atom</span></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.atom" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Get the atom with the specified index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1140,7 +1139,7 @@ values at limited precision.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.atom_index">
-<span class="sig-name descname"><span class="pre">atom_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Atom</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.atom_index" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">atom_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Atom</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.atom_index" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Returns the index of the given atom in this molecule</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1163,7 +1162,7 @@ values at limited precision.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.bond">
-<span class="sig-name descname"><span class="pre">bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Bond</span></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.bond" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Bond</span></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.bond" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Get the bond with the specified index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1213,14 +1212,14 @@ SMILES-to-molecule conversion</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.chemical_environment_matches">
-<span class="sig-name descname"><span class="pre">chemical_environment_matches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.chemical_environment_matches" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
-<dd><p>Find matches in the molecule for a SMARTS string or <code class="docutils literal notranslate"><span class="pre">ChemicalEnvironment</span></code> query</p>
+<span class="sig-name descname"><span class="pre">chemical_environment_matches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.chemical_environment_matches" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd><p>Find matches in the molecule for a SMARTS string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>query</strong><span class="classifier">str or ChemicalEnvironment</span></dt><dd><p>SMARTS string (with one or more tagged atoms) or <code class="docutils literal notranslate"><span class="pre">ChemicalEnvironment</span></code> query.
-Query will internally be resolved to SMIRKS using <code class="docutils literal notranslate"><span class="pre">query.asSMIRKS()</span></code> if it has an <code class="docutils literal notranslate"><span class="pre">.asSMIRKS</span></code> method.</p>
+<dt><strong>query</strong><span class="classifier">str</span></dt><dd><p>SMARTS string (with one or more tagged atoms).</p>
 </dd>
+<dt><strong>unique</strong><span class="classifier">bool, default=False</span></dt><dd></dd>
 <dt><strong>toolkit_registry</strong><span class="classifier">openff.toolkit.utils.toolkits.ToolkitRegistry</span></dt><dd><p>or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=GLOBAL_TOOLKIT_REGISTRY
 <code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitRegistry</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitWrapper</span></code> to use for chemical environment matches</p>
 </dd>
@@ -1247,43 +1246,6 @@ such as mdtraj DSL, pymol selections, atom index slices, etc? We
 could call it <code class="docutils literal notranslate"><span class="pre">topology.matches(query)</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">chemical_environment_matches</span></code></p></li>
 </ul>
-</div>
-</dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.compute_partial_charges_am1bcc">
-<span class="sig-name descname"><span class="pre">compute_partial_charges_am1bcc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_conformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict_n_conformers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.compute_partial_charges_am1bcc" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
-<dd><div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 0.11.0: </span>This method was deprecated in v0.11.0 and will soon be removed.
-Use <a class="reference internal" href="#openff.toolkit.topology.Molecule.assign_partial_charges" title="openff.toolkit.topology.Molecule.assign_partial_charges"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assign_partial_charges(partial_charge_method='am1bcc')</span></code></a> instead.</p>
-</div>
-<p>Calculate partial atomic charges for this molecule using AM1-BCC run by an underlying toolkit
-and assign them to this molecule’s <code class="docutils literal notranslate"><span class="pre">partial_charges</span></code> attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>strict_n_conformers</strong><span class="classifier">bool, default=False</span></dt><dd><p>Whether to raise an exception if an invalid number of conformers is provided for the given charge method.
-If this is False and an invalid number of conformers is found, a warning will be raised.</p>
-</dd>
-<dt><strong>use_conformers</strong><span class="classifier">iterable of openmm.unit.Quantity-wrapped numpy arrays, each with shape (n_atoms, 3)</span></dt><dd><p>and dimension of distance. Optional, default=None Coordinates to use for partial charge calculation.
-If None, an appropriate number of conformers for the given charge method will be generated.</p>
-</dd>
-<dt><strong>toolkit_registry</strong><span class="classifier">openff.toolkit.utils.toolkits.ToolkitRegistry</span></dt><dd></dd>
-<dt><strong>or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</strong></dt><dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitRegistry</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitWrapper</span></code> to use for the calculation</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><dl class="simple">
-<dt>InvalidToolkitRegistryError</dt><dd><p>If an invalid object is passed as the toolkit_registry parameter</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_smiles</span><span class="p">(</span><span class="s1">'CCCCCC'</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span><span class="o">.</span><span class="n">generate_conformers</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span><span class="o">.</span><span class="n">compute_partial_charges_am1bcc</span><span class="p">()</span>
-</pre></div>
 </div>
 </dd></dl>
 <dl class="py property">
@@ -1428,12 +1390,12 @@ their metadata. For more information, see
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_dict">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_dict" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_dict" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Create a new Molecule from a dictionary representation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>molecule_dict</strong><span class="classifier">OrderedDict</span></dt><dd><p>A dictionary representation of the molecule.</p>
+<dt><strong>molecule_dict</strong><span class="classifier">dict</span></dt><dd><p>A dictionary representation of the molecule.</p>
 </dd>
 </dl>
 </dd>
@@ -1557,7 +1519,7 @@ is passed into this function.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.from_json">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serialized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_json" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serialized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.from_json" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Instantiate an object from a JSON serialized representation.</p>
 <p>Specification: <a class="reference external" href="https://www.json.org/">https://www.json.org/</a></p>
 <dl class="field-list simple">
@@ -1804,12 +1766,11 @@ Only used if <code class="docutils literal notranslate"><span class="pre">qca_re
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>AttributeError</dt><dd><ul class="simple">
-<li><p>If the record dict can not be made from <code class="docutils literal notranslate"><span class="pre">qca_record</span></code>.</p></li>
-<li><p>If a <code class="docutils literal notranslate"><span class="pre">client</span></code> is passed and it could not retrieve the initial molecule.</p></li>
-</ul>
+<dt>AttributeError</dt><dd><p>If the record dict can not be made from <code class="docutils literal notranslate"><span class="pre">qca_record</span></code>, or if the
+provided <code class="docutils literal notranslate"><span class="pre">client</span></code> could not retrieve the initial molecule.</p>
 </dd>
-<dt>KeyError</dt><dd><p>If the dict does not contain the <code class="docutils literal notranslate"><span class="pre">canonical_isomeric_explicit_hydrogen_mapped_smiles</span></code>.</p>
+<dt>KeyError</dt><dd><p>If the record does not contain the
+<code class="docutils literal notranslate"><span class="pre">canonical_isomeric_explicit_hydrogen_mapped_smiles</span></code>.</p>
 </dd>
 <dt>InvalidConformerError</dt><dd><p>Silent error, if the conformer could not be attached.</p>
 </dd>
@@ -1820,19 +1781,27 @@ Only used if <code class="docutils literal notranslate"><span class="pre">qca_re
 <p>Get Molecule from a QCArchive molecule record:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qcportal</span> <span class="kn">import</span> <span class="n">FractalClient</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">FractalClient</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">offmol</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_qcschema</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">query_molecules</span><span class="p">(</span><span class="n">molecular_formula</span><span class="o">=</span><span class="s2">"C16H20N3O5"</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">offmol</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_qcschema</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">client</span><span class="o">.</span><span class="n">query_molecules</span><span class="p">(</span><span class="n">molecular_formula</span><span class="o">=</span><span class="s2">"C16H20N3O5"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Get Molecule from a QCArchive optimization entry:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qcportal</span> <span class="kn">import</span> <span class="n">FractalClient</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">FractalClient</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">optds</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="s2">"OptimizationDataset"</span><span class="p">,</span>
-<span class="go">                                  "SMIRNOFF Coverage Set 1")</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">optds</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">"OptimizationDataset"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">"SMIRNOFF Coverage Set 1"</span>
+<span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">offmol</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_qcschema</span><span class="p">(</span><span class="n">optds</span><span class="o">.</span><span class="n">get_entry</span><span class="p">(</span><span class="s1">'coc(o)oc-0'</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Same as above, but with conformer(s) from initial molecule(s) by providing client to database:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">offmol</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_qcschema</span><span class="p">(</span><span class="n">optds</span><span class="o">.</span><span class="n">get_entry</span><span class="p">(</span><span class="s1">'coc(o)oc-0'</span><span class="p">),</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+<p>Same as above, but with conformer(s) from initial molecule(s) by
+providing client to database:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">offmol</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_qcschema</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">optds</span><span class="o">.</span><span class="n">get_entry</span><span class="p">(</span><span class="s1">'coc(o)oc-0'</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">client</span><span class="o">=</span><span class="n">client</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1946,7 +1915,9 @@ Note that OpenMM and MDTraj <code class="docutils literal notranslate"><span cla
 </dl>
 <p class="rubric">Examples</p>
 <p>Create a molecule from a Topology object that contains exactly one molecule</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_topology</span><span class="p">(</span><span class="n">topology</span><span class="p">)</span>  
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">openff.toolkit</span> <span class="kn">import</span> <span class="n">Molecule</span><span class="p">,</span> <span class="n">Topology</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">topology</span> <span class="o">=</span> <span class="n">Topology</span><span class="o">.</span><span class="n">from_molecules</span><span class="p">(</span><span class="n">Molecule</span><span class="o">.</span><span class="n">from_smiles</span><span class="p">(</span><span class="s1">'[CH4]'</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_topology</span><span class="p">(</span><span class="n">topology</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -2061,12 +2032,12 @@ names might begin ‘C1x’, ‘H1x’, ‘O1x’, ‘C2x’, etc.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.has_unique_atom_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_unique_atom_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.has_unique_atom_names" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_unique_atom_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.has_unique_atom_names" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the molecule has unique atom names, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.hierarchy_schemes">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hierarchy_schemes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">openff.toolkit.topology.molecule.HierarchyScheme</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.hierarchy_schemes" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hierarchy_schemes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">openff.toolkit.topology.molecule.HierarchyScheme</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.hierarchy_schemes" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The hierarchy schemes available on the molecule.</p>
 <p>Hierarchy schemes allow iteration over groups of atoms according to
 their metadata. For more information, see
@@ -2090,7 +2061,7 @@ their metadata. For more information, see
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.hill_formula">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hill_formula</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.hill_formula" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hill_formula</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.hill_formula" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Get the Hill formula of the molecule</p>
 </dd></dl>
 <dl class="py property">
@@ -2121,7 +2092,7 @@ up a possible improper torsion.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.is_isomorphic_with">
-<span class="sig-name descname"><span class="pre">is_isomorphic_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.is_isomorphic_with" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">is_isomorphic_with</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">FrozenMolecule</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Graph</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.is_isomorphic_with" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Check if the molecule is isomorphic with the other molecule which can be an openff.toolkit.topology.Molecule
 or nx.Graph(). Full matching is done using the options described bellow.</p>
 <div class="admonition warning">
@@ -2163,12 +2134,12 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.n_angles">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_angles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_angles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_angles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_angles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Number of angles in the molecule.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.n_atoms">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_atoms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_atoms" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_atoms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_atoms" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The number of Atom objects.</p>
 </dd></dl>
 <dl class="py property">
@@ -2178,17 +2149,17 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.n_conformers">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_conformers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_conformers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_conformers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_conformers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The number of conformers for this molecule.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.n_impropers">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_impropers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_impropers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_impropers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_impropers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Number of possible improper torsions in the molecule.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.n_particles">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_particles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_particles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_particles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_particles" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.11.0: </span>This property has been deprecated and will soon be removed. Use
 <a class="reference internal" href="#openff.toolkit.topology.Molecule.n_atoms" title="openff.toolkit.topology.Molecule.n_atoms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Molecule.n_atoms()</span></code></a> instead.</p>
@@ -2196,12 +2167,12 @@ removing stereochemistry from pyrimidal nitrogens.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.n_propers">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_propers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_propers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_propers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.n_propers" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Number of proper torsions in the molecule.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.name" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.name" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The name (or title) of the molecule</p>
 </dd></dl>
 <dl class="py method">
@@ -2251,7 +2222,7 @@ passed.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.particle">
-<span class="sig-name descname"><span class="pre">particle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Atom</span></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.particle" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">particle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Atom</span></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.particle" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.11.0: </span>This method has been deprecated and will soon be removed. Use
 <a class="reference internal" href="#openff.toolkit.topology.Molecule.atom" title="openff.toolkit.topology.Molecule.atom"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Molecule.atom()</span></code></a> instead.</p>
@@ -2259,7 +2230,7 @@ passed.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.particle_index">
-<span class="sig-name descname"><span class="pre">particle_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Atom</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.particle_index" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">particle_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Atom</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.particle_index" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.11.0: </span>This method has been deprecated and will soon be removed. Use
 <a class="reference internal" href="#openff.toolkit.topology.Molecule.atom_index" title="openff.toolkit.topology.Molecule.atom_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Molecule.atom_index()</span></code></a> instead.</p>
@@ -2286,7 +2257,7 @@ passed.</p>
 </dd></dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.properties">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.properties" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#openff.toolkit.topology.Molecule.properties" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The properties dictionary of the molecule</p>
 </dd></dl>
 <dl class="py method">
@@ -2352,14 +2323,14 @@ in each tuple.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.strip_atom_stereochemistry">
-<span class="sig-name descname"><span class="pre">strip_atom_stereochemistry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smarts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.strip_atom_stereochemistry" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">strip_atom_stereochemistry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smarts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.strip_atom_stereochemistry" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Delete stereochemistry information for certain atoms, if it is present.
 This method can be used to “normalize” molecules imported from different cheminformatics
 toolkits, which differ in which atom centers are considered stereogenic.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>smarts: str or ChemicalEnvironment</strong></dt><dd><p>Tagged SMARTS with a single atom with index 1. Any matches for this atom will have any assigned
+<dt><strong>smarts: str</strong></dt><dd><p>Tagged SMARTS with a single atom with index 1. Any matches for this atom will have any assigned
 stereocheistry information removed.</p>
 </dd>
 <dt><strong>toolkit_registry</strong><span class="classifier">a <code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitRegistry</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">ToolkitWrapper</span></code> object, optional,</span></dt><dd><p>default=GLOBAL_TOOLKIT_REGISTRY
@@ -2385,7 +2356,7 @@ stereocheistry information removed.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.to_dict">
-<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_dict" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_dict" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Return a dictionary representation of the molecule.</p>
 <div class="admonition-todo admonition" id="id7">
 <p class="admonition-title">Todo</p>
@@ -2397,7 +2368,7 @@ stereocheistry information removed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>molecule_dict</strong><span class="classifier">OrderedDict</span></dt><dd><p>A dictionary representation of the molecule.</p>
+<dt><strong>molecule_dict</strong><span class="classifier">dict</span></dt><dd><p>A dictionary representation of the molecule.</p>
 </dd>
 </dl>
 </dd>
@@ -2438,7 +2409,7 @@ only the highest-precedence toolkit is used</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.to_hill_formula">
-<span class="sig-name descname"><span class="pre">to_hill_formula</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">to_hill_formula</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_hill_formula" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate the Hill formula of this molecule.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -2521,13 +2492,17 @@ InChI string of the molecule.</p>
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.to_iupac">
 <span class="sig-name descname"><span class="pre">to_iupac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">toolkit_registry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GLOBAL_TOOLKIT_REGISTRY</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_iupac" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Generate IUPAC name from Molecule</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>iupac_name</strong><span class="classifier">str</span></dt><dd><p>IUPAC name of the molecule</p>
 </dd>
-<dt><strong>.. note</strong><span class="classifier">: This method requires the OpenEye toolkit to be installed.</span></dt><dd></dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method requires the OpenEye toolkit to be installed.
+..</p>
+</div>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2540,7 +2515,7 @@ InChI string of the molecule.</p>
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.toolkit.topology.Molecule.to_json">
-<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_json" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#openff.toolkit.topology.Molecule.to_json" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Return a JSON serialized representation.</p>
 <p>Specification: <a class="reference external" href="https://www.json.org/">https://www.json.org/</a></p>
 <dl class="field-list simple">
@@ -2797,7 +2772,8 @@ The map ids (values) should start from 0 or 1.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_iupac</span><span class="p">(</span><span class="s1">'imatinib'</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">openff.toolkit</span> <span class="kn">import</span> <span class="n">Molecule</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_iupac</span><span class="p">(</span><span class="s1">'imatinib'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">topology</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">to_topology</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2919,7 +2895,7 @@ perceived, overwriting previous results if applicable.</p>
               
           </div>
           Last updated on
-            Sep 06, 2022.
+            Feb 07, 2023.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
