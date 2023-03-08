@@ -446,6 +446,7 @@ figure {
   // Figure images
   img {
     display: block;
+    margin: 0 auto;
   }
 }
 
@@ -455,6 +456,7 @@ figcaption {
   text-align: justify;
   font-size: 90%;
   hyphens: auto;
+  width: 80%;
 }
 
 // Limit width to container
