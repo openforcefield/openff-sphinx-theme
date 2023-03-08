@@ -1,0 +1,1339 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+  <link rel="icon" type="image/svg" href="../../../_static/images/favicon.svg" />
+  <link rel="apple-touch-icon" type="image/svg" href="../../../_static/images/favicon.svg" />
+  
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../../../_static/site.css"/>
+  
+  <meta name="theme-color" content="#015480;">
+  
+  
+    <title>openff.qcsubmit.common_structures &#8212; OpenFF Sphinx theme</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/openff.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-accent=openff-toolkit-blue
+        class="has-navbar-fixed-top">
+  <header data-md-component="header">
+  <nav class="navbar is-primary is-fixed-top is-flex-touch has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a href="../../../index.html" title="OpenFF Sphinx theme" class="navbar-item is-hidden-mobile">
+        
+          <img src="../../../_static/images/logos/openforcefield_v1_white.png" alt="OpenFF Sphinx theme logo">
+        
+      </a>
+    </div>
+
+    <div class="has-text-light is-hidden-mobile nav-title">
+      <div class="breadcrumb">
+  <ul>
+        <li><a href="../../../index.html">OpenFF Sphinx theme</a></li>
+      <li><a href="../../index.html">Module code</a></li>
+      <li class="is-active"><a href="#">openff.qcsubmit.common_structures</a></li>
+  </ul>
+</div>
+    </div>
+    <div class="has-text-light is-hidden-tablet nav-title">
+      <span> openff.qcsubmit.common_structures </span>
+    </div>
+
+    <div class="navbar-end">
+      <span class="navbar-item nav-search is-hidden-mobile">
+        
+<form action="../../../search.html" method="GET" name="search">
+  <div class="control has-icons-right">
+    <span class="icon is-small is-right">
+      <i class="fas fa-search"></i>
+    </span>
+    <input class="input is-primary" type="text"  name="q" placeholder="Search"
+         autocapitalize="off" autocomplete="off" spellcheck="false">
+  </div>
+</form>
+
+      </span>
+      
+        <a href="https://github.com/openforcefield/openff-sphinx-theme/" class="is-family-monospace navbar-item is-hidden-touch has-text-light">
+          
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>
+          
+            openff-sphinx-theme
+          
+            </span>
+          </span>
+          
+        </a>
+      
+      <a href="https://docs.openforcefield.org/" class="navbar-item is-hidden-touch">
+        <img
+          src="../../../_static/images/logos/openforcefield_v2_white.png"
+          alt="Open Force Field Initiative logo"
+        >
+      </a>
+    </div>
+    <span class="navbar-burger-spacer is-hidden-tablet"></span>
+  </nav>
+
+  
+
+  <div class="level is-hidden-mobile nav-tabs">
+      
+      <div class="level-item has-text-centered"><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div>
+      
+      <div class="level-item has-text-centered"><a href="https://bashtage.github.io/sphinx-material/">Material for Sphinx</a></div>
+      
+      <div class="level-item has-text-centered"><a href="https://openforcefield.org">The OpenFF Initiative</a></div>
+      
+      <div class="level-item has-text-centered"><a href="https://github.com/openforcefield/openff-sphinx-theme/">openff-sphinx-theme on GitHub</a></div>
+  </div>
+
+</header>
+
+  
+  <main class="mb-6">
+      <div class="columns">
+        <input type="checkbox" id="drawer-toggle" class="is-hidden">
+        <label for="drawer-toggle" role="button" class="navbar-burger burger is-light is-hidden-tablet">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </label>
+
+        <aside class="column is-2-desktop is-3-tablet" id="drawer">
+          <div class="is-hidden-tablet clip-siblings">
+            <a href="../../../index.html" title="OpenFF Sphinx theme">
+              <h1>
+                OpenFF Sphinx theme
+              </h1>
+            </a>
+            <div class="py-3">
+              
+<form action="../../../search.html" method="GET" name="search">
+  <div class="control has-icons-right">
+    <span class="icon is-small is-right">
+      <i class="fas fa-search"></i>
+    </span>
+    <input class="input is-primary" type="text"  name="q" placeholder="Search"
+         autocapitalize="off" autocomplete="off" spellcheck="false">
+  </div>
+</form>
+
+            </div>
+          </div>
+          
+<nav class="menu ff-globaltoc">
+          
+          <p class="menu-label"><span class="caption-text">Basic Use</span></p>
+          <ul class="menu-list">
+        
+      
+          
+          <li>
+            <a href="../../../customization.html" class="">Customization</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../specimen.html" class="">Specimen</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../additional_samples.html" class=""><code class="docutils literal notranslate"><span class="pre">additional_samples_with_very_long_name</span></code></a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../subpage/index.html" class=""><code class="docutils literal notranslate"><span class="pre">Level</span> <span class="pre">1</span></code> page</a>
+            
+            </li>
+          
+        
+      
+          
+            </ul>
+          
+          <p class="menu-label"><span class="caption-text">Other Examples and Uses</span></p>
+          <ul class="menu-list">
+        
+      
+          
+          <li>
+            <a href="../../../pymethod.html" class="">Python Methods</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../numpydoc_example.html" class="">NumPy Docstrings</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../autodoc_pydantic_example.html" class="">autodoc_pydantic API Docs</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../numpydoc.html" class="">Openff-toolkit example</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../pydantic.html" class="">Pydantic API docs</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../notebook.html" class="">Jupyter Notebooks</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../markdown.html" class="">Markdown</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../rst-cheatsheet/rst-cheatsheet.html" class="">rst Cheatsheet</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../primer.html" class="">reStructuredText Primer</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../expanded-tables.html" class="">Expanded tables</a>
+            
+            </li>
+          
+        
+      
+          
+            </ul>
+          
+          <p class="menu-label"><span class="caption-text">Changes and License</span></p>
+          <ul class="menu-list">
+        
+      
+          
+          <li>
+            <a href="../../../change-log.html" class="">Change Log</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../../../license.html" class="">License</a>
+            
+            </li>
+          
+            </ul>
+          
+        
+      
+    </ul>
+  </nav>
+
+        </aside>
+
+        <div class="column is-8-desktop is-9-tablet">
+          <article class="content">
+            
+  <h1>Source code for openff.qcsubmit.common_structures</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file contains common starting structures which can be mixed into datasets, results and factories.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">qcportal</span> <span class="k">as</span> <span class="nn">ptl</span>
+<span class="kn">from</span> <span class="nn">openff.toolkit.topology</span> <span class="kn">import</span> <span class="n">Molecule</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BaseModel</span><span class="p">,</span>
+    <span class="n">Field</span><span class="p">,</span>
+    <span class="n">HttpUrl</span><span class="p">,</span>
+    <span class="n">PositiveInt</span><span class="p">,</span>
+    <span class="n">StrictBool</span><span class="p">,</span>
+    <span class="n">StrictFloat</span><span class="p">,</span>
+    <span class="n">StrictInt</span><span class="p">,</span>
+    <span class="n">StrictStr</span><span class="p">,</span>
+    <span class="n">constr</span><span class="p">,</span>
+    <span class="n">validator</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcelemental</span> <span class="kn">import</span> <span class="n">constants</span>
+<span class="kn">from</span> <span class="nn">qcelemental.models.common_models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">qcelemental.models.results</span> <span class="kn">import</span> <span class="n">WavefunctionProtocolEnum</span>
+<span class="kn">from</span> <span class="nn">qcportal.models.common_models</span> <span class="kn">import</span> <span class="n">DriverEnum</span>
+
+<span class="kn">from</span> <span class="nn">openff.qcsubmit.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DatasetInputError</span><span class="p">,</span>
+    <span class="n">PCMSettingError</span><span class="p">,</span>
+    <span class="n">QCSpecificationError</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">openff.qcsubmit.utils.smirnoff</span> <span class="kn">import</span> <span class="n">split_openff_molecule</span>
+
+
+<span class="k">class</span> <span class="nc">DatasetConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The basic configurations for all datasets.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="n">arbitrary_types_allowed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">allow_mutation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">validate_assignment</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">json_encoders</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="n">Enum</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="kc">True</span>
+
+
+<span class="k">class</span> <span class="nc">ResultsConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A basic config class for results structures.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="n">arbitrary_types_allowed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">allow_mutation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">json_encoders</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="n">Enum</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="k">class</span> <span class="nc">SCFProperties</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The type of SCF property that should be extracted from a single point calculation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Dipole</span> <span class="o">=</span> <span class="s2">&quot;dipole&quot;</span>
+    <span class="n">Quadrupole</span> <span class="o">=</span> <span class="s2">&quot;quadrupole&quot;</span>
+    <span class="n">MullikenCharges</span> <span class="o">=</span> <span class="s2">&quot;mulliken_charges&quot;</span>
+    <span class="n">LowdinCharges</span> <span class="o">=</span> <span class="s2">&quot;lowdin_charges&quot;</span>
+    <span class="n">WibergLowdinIndices</span> <span class="o">=</span> <span class="s2">&quot;wiberg_lowdin_indices&quot;</span>
+    <span class="n">MayerIndices</span> <span class="o">=</span> <span class="s2">&quot;mayer_indices&quot;</span>
+    <span class="n">MBISCharges</span> <span class="o">=</span> <span class="s2">&quot;mbis_charges&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_missing_</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        overwrite the missing method to handle properties with incorrect capitalization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">member</span><span class="o">.</span><span class="n">_value_</span> <span class="o">==</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">member</span>
+        <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> is not a valid </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> please chose from </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+
+<span class="n">DefaultProperties</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Dipole</span><span class="p">,</span>
+    <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Quadrupole</span><span class="p">,</span>
+    <span class="n">SCFProperties</span><span class="o">.</span><span class="n">WibergLowdinIndices</span><span class="p">,</span>
+    <span class="n">SCFProperties</span><span class="o">.</span><span class="n">MayerIndices</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ComponentProperties</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The workflow properties class which controls if the component can be used in multiprocessing or if the component</span>
+<span class="sd">    produces duplicates.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">process_parallel</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If the component can safely be ran in parallel `True` or not `False`.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">produces_duplicates</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If the component is expected to produce duplicate molecules `True` or not `False`.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="n">allow_mutation</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="s2">&quot;forbid&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">TDSettings</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A replacement of the TDKeywords class in the QCFractal which drops the dihedrals field as this is moved up the model.</span>
+<span class="sd">    The settings here overwrite the global dataset and allow the user to have control over the individual scans.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">grid_spacing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of grid spacings for the dihedral scan in degrees.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">dihedral_ranges</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A list of the dihedral scan limits of the form (lower, upper)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">energy_decrease_thresh</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The threshold of the smallest energy decrease amount to trigger activating optimizations from &quot;</span>
+        <span class="s2">&quot;grid point.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">energy_upper_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The threshold if the energy of a grid point that is higher than the current global minimum, to &quot;</span>
+        <span class="s2">&quot;start new optimizations, in unit of a.u. I.e. if energy_upper_limit = 0.05, current global &quot;</span>
+        <span class="s2">&quot;minimum energy is -9.9 , then a new task starting with energy -9.8 will be skipped.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">additional_keywords</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">{},</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Additional keywords to add to the torsiondrive&#39;s optimization runs&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PCMSettings</span><span class="p">(</span><span class="n">ResultsConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to handle PCM settings which can be used with PSi4.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">units</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The units used in the input options atomic units are used by default.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">codata</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">2010</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The set of fundamental physical constants to be used in the module.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">cavity_Type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;GePol&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Completely specifies type of molecular surface and its discretization.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">cavity_Area</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Average area (weight) of the surface partition for the GePol cavity in the specified units. By default this is in AU.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">cavity_Scaling</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">True</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If true, the radii for the spheres will be scaled by 1.2. For finer control on the scaling factor for each sphere, select explicit creation mode.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">cavity_RadiiSet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;Bondi&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Select set of atomic radii to be used. Currently Bondi-Mantina Bondi, UFF  and Allinger’s MM3 sets available. Radii in Allinger’s MM3 set are obtained by dividing the value in the original paper by 1.2, as done in the ADF COSMO implementation We advise to turn off scaling of the radii by 1.2 when using this set.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">cavity_MinRadius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">100</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimal radius for additional spheres not centered on atoms. An arbitrarily big value is equivalent to switching off the use of added spheres, which is the default in AU.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">cavity_Mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;Implicit&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;How to create the list of spheres for the generation of the molecular surface.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">medium_SolverType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;IEFPCM&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Type of solver to be used. All solvers are based on the Integral Equation Formulation of the Polarizable Continuum Model.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">medium_Nonequilibrium</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">False</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Initializes an additional solver using the dynamic permittivity. To be used in response calculations.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">medium_Solvent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Specification of the dielectric medium outside the cavity. Note this will always be converted to the molecular formula to aid parsing via PCM.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">medium_MatrixSymm</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">True</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If True, the PCM matrix obtained by the IEFPCM collocation solver is symmetrized.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">medium_Correction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Correction, k for the apparent surface charge scaling factor in the CPCM solver.&quot;</span><span class="p">,</span>
+        <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">medium_DiagonalScaling</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mf">1.07</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scaling factor for diagonal of collocation matrices, values commonly used in the literature are 1.07 and 1.0694.&quot;</span><span class="p">,</span>
+        <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">medium_ProbeRadius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Radius of the spherical probe approximating a solvent molecule. Used for generating the solvent-excluded surface (SES) or an approximation of it. Overridden by the built-in value for the chosen solvent. Default in AU.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">_solvents</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;water&quot;</span><span class="p">:</span> <span class="s2">&quot;H2O&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dimethylsulfoxide&quot;</span><span class="p">:</span> <span class="s2">&quot;DMSO&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;nitromethane&quot;</span><span class="p">:</span> <span class="s2">&quot;CH3NO2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;acetonitrile&quot;</span><span class="p">:</span> <span class="s2">&quot;CH3CN&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;methanol&quot;</span><span class="p">:</span> <span class="s2">&quot;CH3OH&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ethanol&quot;</span><span class="p">:</span> <span class="s2">&quot;CH3CH2OH&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1,2-dichloroethane&quot;</span><span class="p">:</span> <span class="s2">&quot;C2H4CL2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;methylenechloride&quot;</span><span class="p">:</span> <span class="s2">&quot;CH2CL2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tetrahydrofurane&quot;</span><span class="p">:</span> <span class="s2">&quot;THF&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;aniline&quot;</span><span class="p">:</span> <span class="s2">&quot;C6H5NH2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;chlorobenzene&quot;</span><span class="p">:</span> <span class="s2">&quot;C6H5CL&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;chloroform&quot;</span><span class="p">:</span> <span class="s2">&quot;CHCL3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;toluene&quot;</span><span class="p">:</span> <span class="s2">&quot;C6H5CH3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;1,4-dioxane&quot;</span><span class="p">:</span> <span class="s2">&quot;C4H8O2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;carbon tetrachloride&quot;</span><span class="p">:</span> <span class="s2">&quot;CCL4&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cyclohexane&quot;</span><span class="p">:</span> <span class="s2">&quot;C6H12&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;n-heptane&quot;</span><span class="p">:</span> <span class="s2">&quot;C7H16&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;units&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_check_units</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure the units are a valid option.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;au&quot;</span><span class="p">,</span> <span class="s2">&quot;angstrom&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">unit</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">units</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PCMSettingError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s2"> is not valid only </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s2"> are supported.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">unit</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;codata&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_check_codata</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">codata</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure the codata is a valid option in PCM.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2006</span><span class="p">,</span> <span class="mi">2002</span><span class="p">,</span> <span class="mi">1998</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">codata</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PCMSettingError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codata</span><span class="si">}</span><span class="s2"> is not valid only </span><span class="si">{</span><span class="n">datasets</span><span class="si">}</span><span class="s2"> are supported.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">codata</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;cavity_Type&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_check_cavity_type</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cavity</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure the cavity type is GePol as this is the only kind supported.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">cavity</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;gepol&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PCMSettingError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cavity</span><span class="si">}</span><span class="s2"> is not a supported type only GePol is available.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;GePol&quot;</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;cavity_RadiiSet&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_check_radii_set</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">radiiset</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure a valid radii set is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">radiisets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bondi&quot;</span><span class="p">,</span> <span class="s2">&quot;uff&quot;</span><span class="p">,</span> <span class="s2">&quot;allinger&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">radiiset</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">radiisets</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PCMSettingError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">radiiset</span><span class="si">}</span><span class="s2"> is not a supported set please chose from </span><span class="si">{</span><span class="n">radiisets</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">radiiset</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;cavity_Mode&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_check_cavity_mode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cavity</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure that a valid cavity mode is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">cavity</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;implicit&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PCMSettingError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cavity</span><span class="si">}</span><span class="s2"> is not supported via QCSubmit only implicit can be used for collection based calculations.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="s2">&quot;Implicit&quot;</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;medium_SolverType&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_check_solver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">solver</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure valid solver is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">solvers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;IEFPCM&quot;</span><span class="p">,</span> <span class="s2">&quot;CPCM&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">solvers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PCMSettingError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">solver</span><span class="si">}</span><span class="s2"> not supported please chose from </span><span class="si">{</span><span class="n">solvers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">solver</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;medium_Solvent&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_check_solvent</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">solvent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure that a valid solvent from the list of supported values is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">solvent_formula</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_solvents</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">solvent</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">solvent</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">solvent_formula</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_solvents</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">PCMSettingError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The solvent </span><span class="si">{</span><span class="n">solvent</span><span class="si">}</span><span class="s2"> is not supported please chose from the following solvents or formulas </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="n">_solvents</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">solvent_formula</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fully validate the model making sure options are compatible and convert any defaults to the give unit system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># convert all inputs to the correct units</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">units</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">units</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;angstrom&quot;</span><span class="p">:</span>
+            <span class="c1"># we need to convert the default values only which have length scales</span>
+            <span class="k">if</span> <span class="s2">&quot;medium_ProbeRadius&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">medium_ProbeRadius</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="s2">&quot;medium_ProbeRadius&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span>
+                    <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">bohr2angstroms</span>
+                <span class="p">)</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;medium_ProbeRadius&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">medium_ProbeRadius</span>
+            <span class="k">if</span> <span class="s2">&quot;cavity_MinRadius&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">cavity_MinRadius</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="s2">&quot;cavity_MinRadius&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span>
+                    <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">bohr2angstroms</span>
+                <span class="p">)</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;cavity_MinRadius&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cavity_MinRadius</span>
+            <span class="k">if</span> <span class="s2">&quot;cavity_Area&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">cavity_Area</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="s2">&quot;cavity_Area&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span>
+                    <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">bohr2angstroms</span><span class="o">**</span><span class="mi">2</span>
+                <span class="p">)</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;cavity_Area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cavity_Area</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PCMSettings</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate the formated PCM settings string which can be ingested by psi4 via the qcschema interface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># format the medium keywords</span>
+        <span class="n">medium_str</span><span class="p">,</span> <span class="n">cavity_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">&quot;medium&quot;</span> <span class="ow">in</span> <span class="n">prop</span><span class="p">:</span>
+                <span class="n">medium_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">     </span><span class="si">{</span><span class="n">prop</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">elif</span> <span class="s2">&quot;cavity&quot;</span> <span class="ow">in</span> <span class="n">prop</span><span class="p">:</span>
+                <span class="n">cavity_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">     </span><span class="si">{</span><span class="n">prop</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="c1"># format the cavity keywords</span>
+        <span class="n">pcm_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        Units = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="si">}</span>
+<span class="s2">        CODATA = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">codata</span><span class="si">}</span>
+<span class="s2">        Medium </span><span class="se">{{</span><span class="si">{</span><span class="n">medium_str</span>
+<span class="w">        </span><span class="si">}</span><span class="se">}}</span>
+<span class="s2">        Cavity </span><span class="se">{{</span><span class="si">{</span><span class="n">cavity_str</span><span class="si">}</span><span class="se">}}</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pcm_string</span>
+
+
+<span class="k">class</span> <span class="nc">QCSpec</span><span class="p">(</span><span class="n">ResultsConfig</span><span class="p">):</span>
+
+    <span class="n">method</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">strip_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;B3LYP-D3BJ&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name of the computational model used to execute the calculation. This could be the QC method or the forcefield name.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">basis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">constr</span><span class="p">(</span><span class="n">strip_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;DZVP&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name of the basis that should be used with the given method, outside of QC this can be the parameterization ie antechamber or None.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">program</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">strip_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;psi4&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name of the program that will be used to perform the calculation.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">spec_name</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">strip_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name the specification will be stored under in QCArchive.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">spec_description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;Standard OpenFF optimization quantum chemistry specification.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The description of the specification which will be stored in QCArchive.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">store_wavefunction</span><span class="p">:</span> <span class="n">WavefunctionProtocolEnum</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">WavefunctionProtocolEnum</span><span class="o">.</span><span class="n">none</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The level of wavefunction detail that should be saved in QCArchive. Note that this is done for every calculation and should not be used with optimizations.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">implicit_solvent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PCMSettings</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If PCM is to be used with psi4 this is the full description of the settings that should be used.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The maximum number of SCF iterations in QM calculations this will be ignored by programs where this does not make sense.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">scf_properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Dipole</span><span class="p">,</span>
+            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">Quadrupole</span><span class="p">,</span>
+            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">WibergLowdinIndices</span><span class="p">,</span>
+            <span class="n">SCFProperties</span><span class="o">.</span><span class="n">MayerIndices</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The SCF properties which should be extracted after every single point calculation.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+        <span class="n">Dict</span><span class="p">[</span>
+            <span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">StrictFloat</span><span class="p">]]</span>
+        <span class="p">]</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;An optional set of program specific computational keywords that &quot;</span>
+        <span class="s2">&quot;should be passed to the program. These may include, for example, DFT grid &quot;</span>
+        <span class="s2">&quot;settings.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">strip_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">=</span> <span class="s2">&quot;B3LYP-D3BJ&quot;</span><span class="p">,</span>
+        <span class="n">basis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">constr</span><span class="p">(</span><span class="n">strip_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;DZVP&quot;</span><span class="p">,</span>
+        <span class="n">program</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">strip_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">=</span> <span class="s2">&quot;psi4&quot;</span><span class="p">,</span>
+        <span class="n">spec_name</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">strip_whitespace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="n">spec_description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Standard OpenFF optimization quantum chemistry specification.&quot;</span><span class="p">,</span>
+        <span class="n">store_wavefunction</span><span class="p">:</span> <span class="n">WavefunctionProtocolEnum</span> <span class="o">=</span> <span class="n">WavefunctionProtocolEnum</span><span class="o">.</span><span class="n">none</span><span class="p">,</span>
+        <span class="n">implicit_solvent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PCMSettings</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="n">scf_properties</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultProperties</span><span class="p">,</span>
+        <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+            <span class="n">Dict</span><span class="p">[</span>
+                <span class="nb">str</span><span class="p">,</span>
+                <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">StrictFloat</span><span class="p">]],</span>
+            <span class="p">]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate the combination of method, basis and program.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">openff.toolkit.typing.engines.smirnoff</span> <span class="kn">import</span> <span class="n">get_available_force_fields</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">openmmforcefields.generators.template_generators</span> <span class="kn">import</span> <span class="p">(</span>
+                <span class="n">GAFFTemplateGenerator</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">gaff_forcefields</span> <span class="o">=</span> <span class="n">GAFFTemplateGenerator</span><span class="o">.</span><span class="n">INSTALLED_FORCEFIELDS</span>
+
+        <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+
+            <span class="n">gaff_forcefields</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s2">&quot;gaff-1.4&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;gaff-1.8&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;gaff-1.81&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;gaff-2.1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;gaff-2.11&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
+
+        <span class="c1"># set up the valid method basis and program combinations</span>
+        <span class="n">ani_methods</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;ani1x&quot;</span><span class="p">,</span> <span class="s2">&quot;ani1ccx&quot;</span><span class="p">,</span> <span class="s2">&quot;ani2x&quot;</span><span class="p">}</span>
+        <span class="n">openff_forcefields</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="n">ff</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.offxml&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">ff</span> <span class="ow">in</span> <span class="n">get_available_force_fields</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="n">openmm_forcefields</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;smirnoff&quot;</span><span class="p">:</span> <span class="n">openff_forcefields</span><span class="p">,</span>
+            <span class="s2">&quot;antechamber&quot;</span><span class="p">:</span> <span class="n">gaff_forcefields</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">xtb_methods</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;gfn0-xtb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gfn0xtb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gfn1-xtb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gfn1xtb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gfn2-xtb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gfn2xtb&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gfn-ff&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gfnff&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">rdkit_methods</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;uff&quot;</span><span class="p">,</span> <span class="s2">&quot;mmff94&quot;</span><span class="p">,</span> <span class="s2">&quot;mmff94s&quot;</span><span class="p">}</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;openmm&quot;</span><span class="p">:</span> <span class="n">openmm_forcefields</span><span class="p">,</span>
+            <span class="s2">&quot;torchani&quot;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">ani_methods</span><span class="p">},</span>
+            <span class="s2">&quot;xtb&quot;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">xtb_methods</span><span class="p">},</span>
+            <span class="s2">&quot;rdkit&quot;</span><span class="p">:</span> <span class="p">{</span><span class="kc">None</span><span class="p">:</span> <span class="n">rdkit_methods</span><span class="p">},</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">settings</span><span class="p">:</span>
+            <span class="c1"># make sure PCM is not set</span>
+            <span class="k">if</span> <span class="n">implicit_solvent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+                    <span class="s2">&quot;PCM can only be used with PSI4 please set implicit solvent to None.&quot;</span>
+                <span class="p">)</span>
+            <span class="c1"># we need to make sure it is valid in the above list</span>
+            <span class="n">program_settings</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">program_settings</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;The program </span><span class="si">{</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2"> is not supported please use one of the following </span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="n">allowed_methods</span> <span class="o">=</span> <span class="n">program_settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">basis</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">allowed_methods</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;The Basis </span><span class="si">{</span><span class="n">basis</span><span class="si">}</span><span class="s2"> is not supported for the program </span><span class="si">{</span><span class="n">program</span><span class="si">}</span><span class="s2">, chose from </span><span class="si">{</span><span class="n">program_settings</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+            <span class="c1"># now we need to check the methods</span>
+            <span class="c1"># strip the offxml if present</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.offxml&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_methods</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;The method </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> is not supported for the program </span><span class="si">{</span><span class="n">program</span><span class="si">}</span><span class="s2"> with basis </span><span class="si">{</span><span class="n">basis</span><span class="si">}</span><span class="s2">, please chose from </span><span class="si">{</span><span class="n">allowed_methods</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+            <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">,</span>
+            <span class="n">program</span><span class="o">=</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+            <span class="n">spec_name</span><span class="o">=</span><span class="n">spec_name</span><span class="p">,</span>
+            <span class="n">spec_description</span><span class="o">=</span><span class="n">spec_description</span><span class="p">,</span>
+            <span class="n">store_wavefunction</span><span class="o">=</span><span class="n">store_wavefunction</span><span class="p">,</span>
+            <span class="n">implicit_solvent</span><span class="o">=</span><span class="n">implicit_solvent</span><span class="p">,</span>
+            <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span>
+            <span class="n">scf_properties</span><span class="o">=</span><span class="n">scf_properties</span><span class="p">,</span>
+            <span class="n">keywords</span><span class="o">=</span><span class="n">keywords</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">dict</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">include</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;AbstractSetIntStr&quot;</span><span class="p">,</span> <span class="s2">&quot;MappingIntStrAny&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;AbstractSetIntStr&quot;</span><span class="p">,</span> <span class="s2">&quot;MappingIntStrAny&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">by_alias</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">skip_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude_unset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">exclude_defaults</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">exclude_none</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DictStrAny&quot;</span><span class="p">:</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span>
+            <span class="n">include</span><span class="o">=</span><span class="n">include</span><span class="p">,</span>
+            <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span>
+            <span class="n">by_alias</span><span class="o">=</span><span class="n">by_alias</span><span class="p">,</span>
+            <span class="n">skip_defaults</span><span class="o">=</span><span class="n">skip_defaults</span><span class="p">,</span>
+            <span class="n">exclude_defaults</span><span class="o">=</span><span class="n">exclude_defaults</span><span class="p">,</span>
+            <span class="n">exclude_unset</span><span class="o">=</span><span class="n">exclude_unset</span><span class="p">,</span>
+            <span class="n">exclude_none</span><span class="o">=</span><span class="n">exclude_none</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;store_wavefunction&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;store_wavefunction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">if</span> <span class="s2">&quot;scf_properties&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;scf_properties&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">prop</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scf_properties</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">qc_model</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the qcelmental schema for this method and basis.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Model</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">qc_keywords</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the formatted keywords for this calculation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">,</span> <span class="s2">&quot;scf_properties&quot;</span><span class="p">})</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">keywords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keywords</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">implicit_solvent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;psi4&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+                    <span class="s2">&quot;PCM can only be used with PSI4 please set implicit solvent to None.&quot;</span>
+                <span class="p">)</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pcm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pcm__input&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">implicit_solvent</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">class</span> <span class="nc">QCSpecificationHandler</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A mixin class for handling the QCSpecification</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">qc_specifications</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QCSpec</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">QCSpec</span><span class="p">()},</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The QCSpecifications which will be computed for this dataset.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clear_qcspecs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clear out any current QCSpecs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">remove_qcspec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove a QCSpec from the dataset.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            spec_name: The name of the spec that should be removed.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            The QCSpec settings are not mutable and so they must be removed and a new one added to ensure they are fully validated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">spec_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="p">[</span><span class="n">spec_name</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_qc_specs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the number of QCSpecs on this dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_check_qc_specs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_qc_specs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+                <span class="s2">&quot;There are no QCSpecifications for this dataset please add some using `add_qc_spec`&quot;</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_qc_spec</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">basis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">program</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">spec_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">spec_description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">store_wavefunction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+        <span class="n">overwrite</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">implicit_solvent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PCMSettings</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">maxiter</span><span class="p">:</span> <span class="n">PositiveInt</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="n">scf_properties</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SCFProperties</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+            <span class="n">Dict</span><span class="p">[</span>
+                <span class="nb">str</span><span class="p">,</span>
+                <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">StrictFloat</span><span class="p">]],</span>
+            <span class="p">]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a new qcspecification to the factory which will be applied to the dataset.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            method: The name of the method to use eg B3LYP-D3BJ</span>
+<span class="sd">            basis: The name of the basis to use can also be `None`</span>
+<span class="sd">            program: The name of the program to execute the computation</span>
+<span class="sd">            spec_name: The name the spec should be stored under</span>
+<span class="sd">            spec_description: The description of the spec</span>
+<span class="sd">            store_wavefunction: what parts of the wavefunction that should be saved</span>
+<span class="sd">            overwrite: If there is a spec under this name already overwrite it</span>
+<span class="sd">            implicit_solvent: The implicit solvent settings if it is to be used.</span>
+<span class="sd">            maxiter: The maximum number of SCF iterations that should be done.</span>
+<span class="sd">            scf_properties: The list of SCF properties that should be extracted from the calculation.</span>
+<span class="sd">            keywords: Program specific computational keywords that should be passed to</span>
+<span class="sd">                the program</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="n">QCSpec</span><span class="p">(</span>
+            <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+            <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">,</span>
+            <span class="n">program</span><span class="o">=</span><span class="n">program</span><span class="p">,</span>
+            <span class="n">spec_name</span><span class="o">=</span><span class="n">spec_name</span><span class="p">,</span>
+            <span class="n">spec_description</span><span class="o">=</span><span class="n">spec_description</span><span class="p">,</span>
+            <span class="n">store_wavefunction</span><span class="o">=</span><span class="n">store_wavefunction</span><span class="p">,</span>
+            <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span>
+            <span class="n">scf_properties</span><span class="o">=</span><span class="n">scf_properties</span> <span class="ow">or</span> <span class="n">DefaultProperties</span><span class="p">,</span>
+            <span class="n">implicit_solvent</span><span class="o">=</span><span class="n">implicit_solvent</span><span class="p">,</span>
+            <span class="n">keywords</span><span class="o">=</span><span class="n">keywords</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">spec_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="p">[</span><span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">spec</span>
+        <span class="k">elif</span> <span class="n">overwrite</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="p">[</span><span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">spec</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;A specification is already stored under </span><span class="si">{</span><span class="n">spec_name</span><span class="si">}</span><span class="s2"> to replace it set `overwrite=True`.&quot;</span>
+            <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">IndexCleaner</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class offers the ability to clean a molecule index that already has a numeric tag useful for datasets and</span>
+<span class="sd">    results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_clean_index</span><span class="p">(</span><span class="n">index</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Take an index and clean it by checking if it already has an enumerator in it.</span>
+<span class="sd">        Return the core index and any numeric tags.</span>
+<span class="sd">        If no tag is found the tag is set to 0.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            index: The index for the entry which should be checked, if no numeric tag can be found return 0.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A tuple of the core index and the numeric tag it starts from.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            This function allows the dataset to add more conformers to a molecule set so long as the index the molecule</span>
+<span class="sd">            is stored under is a new index not in the database for example if 3 conformers for ethane exist then the</span>
+<span class="sd">            new index should start from &#39;CC-3&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># tags take the form &#39;-no&#39;</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;-[0-9]+$&quot;</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">core</span> <span class="o">=</span> <span class="n">index</span><span class="p">[:</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="c1"># drop the -</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">()[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">core</span> <span class="o">=</span> <span class="n">index</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="n">core</span><span class="p">,</span> <span class="n">tag</span>
+
+
+<span class="k">class</span> <span class="nc">ClientHandler</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This mixin class offers the ability to handle activating qcportal Fractal client instances.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_activate_client</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">FractalClient</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make the fractal client and connect to the requested instance.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            client: The name of the file containing the client information or the client instance.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A qcportal.FractalClient instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">qcfractal.interface</span> <span class="kn">import</span> <span class="n">FractalClient</span> <span class="k">as</span> <span class="n">QCFractalClient</span>
+        <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+            <span class="n">QCFractalClient</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">ptl</span><span class="o">.</span><span class="n">FractalClient</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">client</span>
+        <span class="k">elif</span> <span class="n">QCFractalClient</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">QCFractalClient</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">client</span>
+        <span class="k">elif</span> <span class="n">client</span> <span class="o">==</span> <span class="s2">&quot;public&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ptl</span><span class="o">.</span><span class="n">FractalClient</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ptl</span><span class="o">.</span><span class="n">FractalClient</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Metadata</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A general metadata class which is required to be filled in before submitting a dataset to the qcarchive.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">submitter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">(),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name of the submitter/creator of the dataset, this is automatically generated but can be changed.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">creation_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The date the dataset was created on, this is automatically generated.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">collection_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The type of collection that will be created in QCArchive this is automatically updated when attached to a dataset.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">dataset_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name that will be given to the collection once it is put into QCArchive, this is updated when attached to a dataset.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">short_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">constr</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;[a-zA-Z]&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A short informative description of the dataset.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">long_description_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HttpUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The url which links to more information about the submission normally a github repo with scripts showing how the dataset was created.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">long_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">constr</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;[a-zA-Z]&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A long description of the purpose of the dataset and the molecules within.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">elements</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="nb">set</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The unique set of elements present in the dataset&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">validate_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Before submitting this function should be called to highlight any incomplete fields.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">empty_fields</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">field</span> <span class="o">==</span> <span class="s2">&quot;long_description_url&quot;</span><span class="p">:</span>
+                <span class="c1"># The &#39;long_description_url&#39; is made optional to more easily facilitate</span>
+                <span class="c1"># local or private dataset submissions.</span>
+                <span class="k">continue</span>
+
+            <span class="n">attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">empty_fields</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">empty_fields</span> <span class="ow">and</span> <span class="n">raise_errors</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DatasetInputError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;The metadata has the following incomplete fields </span><span class="si">{</span><span class="n">empty_fields</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">empty_fields</span>
+
+
+<span class="k">class</span> <span class="nc">MoleculeAttributes</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to hold and validate the molecule attributes associated with a QCArchive entry, All attributes are required</span>
+<span class="sd">    to be entered into a dataset.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        The attributes here are not exhaustive but are based on those given by cmiles and can all be obtain through the openforcefield toolkit Molecule class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="s2">&quot;allow&quot;</span>
+
+    <span class="n">canonical_smiles</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">canonical_isomeric_smiles</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">canonical_explicit_hydrogen_smiles</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">canonical_isomeric_explicit_hydrogen_smiles</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">canonical_isomeric_explicit_hydrogen_mapped_smiles</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The fully mapped smiles where every atom should have a numerical tag so that the molecule can be rebuilt to match the order of the coordinates.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">molecular_formula</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The hill formula of the molecule as given by the openfftoolkit.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">standard_inchi</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The standard inchi given by the inchi program ie not fixed hydrogen layer.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">inchi_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The standard inchi key given by the inchi program.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fixed_hydrogen_inchi</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The non-standard inchi with a fixed hydrogen layer to distinguish tautomers.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fixed_hydrogen_inchi_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The non-standard inchikey with a fixed hydrogen layer.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">unique_fixed_hydrogen_inchi_keys</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The list of unique non-standard inchikey with a fixed hydrogen layer.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_openff_molecule</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Molecule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;MoleculeAttributes&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create the Cmiles metadata for an OpenFF molecule object.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            molecule: The molecule for which the cmiles data will be generated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The Cmiles identifiers generated for the input molecule.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            The Cmiles identifiers currently include:</span>
+
+<span class="sd">            - `canonical_smiles`</span>
+<span class="sd">            - `canonical_isomeric_smiles`</span>
+<span class="sd">            - `canonical_explicit_hydrogen_smiles`</span>
+<span class="sd">            - `canonical_isomeric_explicit_hydrogen_smiles`</span>
+<span class="sd">            - `canonical_isomeric_explicit_hydrogen_mapped_smiles`</span>
+<span class="sd">            - `molecular_formula`</span>
+<span class="sd">            - `standard_inchi`</span>
+<span class="sd">            - `inchi_key`</span>
+<span class="sd">            - `fixed_hydrogen_inchi`</span>
+<span class="sd">            - `fixed_hydrogen_inchi_key`</span>
+<span class="sd">            - `unique_fixed_hydrogen_inchi_keys`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">molecules</span> <span class="o">=</span> <span class="n">split_openff_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="n">unique_fixed_hydrogen_inchi_keys</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">mol</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">molecules</span>
+        <span class="p">}</span>
+        <span class="n">off_mol</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;atom_map&quot;</span> <span class="ow">in</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span>
+            <span class="k">del</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s2">&quot;atom_map&quot;</span><span class="p">]</span>
+        <span class="n">cmiles</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;canonical_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+                <span class="n">isomeric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;canonical_isomeric_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+                <span class="n">isomeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;canonical_explicit_hydrogen_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+                <span class="n">isomeric</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;canonical_isomeric_explicit_hydrogen_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+                <span class="n">isomeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;canonical_isomeric_explicit_hydrogen_mapped_smiles&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_smiles</span><span class="p">(</span>
+                <span class="n">isomeric</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">explicit_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mapped</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;molecular_formula&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">hill_formula</span><span class="p">,</span>
+            <span class="s2">&quot;standard_inchi&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_inchi</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="s2">&quot;inchi_key&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="s2">&quot;fixed_hydrogen_inchi&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_inchi</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="s2">&quot;fixed_hydrogen_inchi_key&quot;</span><span class="p">:</span> <span class="n">off_mol</span><span class="o">.</span><span class="n">to_inchikey</span><span class="p">(</span><span class="n">fixed_hydrogens</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="s2">&quot;unique_fixed_hydrogen_inchi_keys&quot;</span><span class="p">:</span> <span class="n">unique_fixed_hydrogen_inchi_keys</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">MoleculeAttributes</span><span class="p">(</span><span class="o">**</span><span class="n">cmiles</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_openff_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Molecule</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an openff molecule from the CMILES information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_mapped_smiles</span><span class="p">(</span>
+            <span class="n">mapped_smiles</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">canonical_isomeric_explicit_hydrogen_mapped_smiles</span><span class="p">,</span>
+            <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CommonBase</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">,</span> <span class="n">IndexCleaner</span><span class="p">,</span> <span class="n">ClientHandler</span><span class="p">,</span> <span class="n">QCSpecificationHandler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A common base structure which the dataset and factory classes derive from.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">driver</span><span class="p">:</span> <span class="n">DriverEnum</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">DriverEnum</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The type of single point calculations which will be computed. Note some services require certain calculations for example optimizations require graident calculations.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">priority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The priority the dataset should be computed at compared to other datasets currently running.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">dataset_tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;openff&quot;</span><span class="p">],</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The dataset tags which help identify the dataset.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">compute_tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">&quot;openff&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The tag the computes tasks will be assigned to, managers wishing to execute these tasks should use this compute tag.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Overwrite the dict method to handle any enums when saving to yaml/json via a dict call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">CommonBase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># now add the enum values</span>
+        <span class="k">if</span> <span class="s2">&quot;driver&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;driver&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+
+          </article>
+        </div>
+
+        <aside class="column is-hidden-touch is-2">
+          
+        </aside>
+      </div>
+  </main>
+  <footer class="footer">
+  <div class="footer-content">
+    <div class="columns">
+      <div class="fineprint column">
+          <div class="copyright">
+              &#169; Copyright 2021, Open Force Field Initiative.
+              
+          </div>
+          Last updated on
+            Mar 08, 2023.
+          <br/>
+          Created using
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+           and
+          <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
+      </div>
+      <div class="socials column">
+        <p class="pb-3">An <a href="https://openforcefield.org/" class="has-text-white">Open Force Field Initiative</a> project.</p>
+        <div>
+          
+            
+              
+                <a href="https://zenodo.org/communities/openforcefield/" class="icon has-text-light is-medium" title="OpenFF on Zenodo">
+                  <i class="fa-lg ai-lg ai ai-zenodo"></i>
+                </a>
+              
+            
+              
+                <a href="https://www.youtube.com/channel/UCh0aJSUm_sYr7nuTzhW806g" class="icon has-text-light is-medium" title="OpenFF on YouTube">
+                  <i class="fa-lg ai-lg fab fa-youtube"></i>
+                </a>
+              
+            
+              
+                <a href="https://github.com/openforcefield" class="icon has-text-light is-medium" title="OpenFF on GitHub">
+                  <i class="fa-lg ai-lg fab fa-github"></i>
+                </a>
+              
+            
+              
+                <a href="https://twitter.com/openforcefield" class="icon has-text-light is-medium" title="OpenFF on Twitter">
+                  <i class="fa-lg ai-lg fab fa-twitter"></i>
+                </a>
+              
+            
+              
+                <a href="https://www.linkedin.com/company/openforcefield/" class="icon has-text-light is-medium" title="OpenFF on LinkedIn">
+                  <i class="fa-lg ai-lg fab fa-linkedin"></i>
+                </a>
+              
+            
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
