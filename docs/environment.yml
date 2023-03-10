@@ -18,9 +18,8 @@ dependencies:
   - ipykernel
   - autodoc-pydantic
   - myst-parser>=0.13.6
-  - myst-nb
   - pandoc
   - wheel
   - sphinx-autobuild
-  - sphinx >=4.5,<5
+  - sphinx>=5.2,<7
 
