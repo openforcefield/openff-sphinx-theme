@@ -8513,6 +8513,7 @@ html {
 
 .content figure img {
   display: block;
+  margin: 0 auto;
 }
 
 .content figcaption {
@@ -8520,6 +8521,7 @@ html {
   text-align: justify;
   font-size: 90%;
   hyphens: auto;
+  width: 80%;
 }
 
 .content iframe {
