@@ -408,3 +408,12 @@ a:hover:not(.is-active)
 
 main > .columns
     max-width: 100vw
+
+.menu-list a
+    overflow-x: hidden
+    text-overflow: ellipsis
+    overflow-wrap: normal
+    transition: width 0.3s
+    &:hover
+        width: fit-content
+        min-width: 100%
