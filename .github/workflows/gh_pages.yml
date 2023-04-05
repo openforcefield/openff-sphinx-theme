@@ -111,7 +111,7 @@ jobs:
 
       - name: Create or update comment
         if: success() && github.event_name == 'pull_request'
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v3
         env:
           PR: ${{ github.event.number }}
         with:
