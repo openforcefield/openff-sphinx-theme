@@ -31,14 +31,14 @@ author = "Open Force Field Initiative"
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    "numpydoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.napoleon",
     "sphinx.ext.doctest",
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
-    "sphinx.ext.napoleon",
     "nbsphinx",
     "myst_parser",
     # "myst_nb",
@@ -60,16 +60,19 @@ autodoc_typehints_format = "short"
 # see https://github.com/sphinx-doc/sphinx/issues/10290#issuecomment-1079740009
 python_use_unqualified_type_names = True
 
-# Disable NumPy style attributes/methods expecting every method to have its own docs page
-numpydoc_class_members_toctree = False
-# Disable numpydoc rendering methods twice
-# https://stackoverflow.com/questions/34216659/sphinx-autosummary-produces-two-summaries-for-each-class
-numpydoc_show_class_members = False
-
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
 }
+
+napoleon_numpy_docstring = True
+napoleon_google_docstring = False
+napoleon_attr_annotations = True
+napoleon_custom_sections = [("attributes", "params_style")]
+napoleon_use_rtype = False
+napoleon_use_param = True
+napoleon_use_ivar = True
+napoleon_preprocess_types = True
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ["_templates"]
@@ -182,10 +185,13 @@ nbsphinx_kernel_name = "python3"
 extlinks = {
     "duref": (
         "http://docutils.sourceforge.net/docs/ref/rst/" "restructuredtext.html#%s",
-        "",
+        "%s",
     ),
-    "durole": ("http://docutils.sourceforge.net/docs/ref/rst/" "roles.html#%s", ""),
-    "dudir": ("http://docutils.sourceforge.net/docs/ref/rst/" "directives.html#%s", ""),
+    "durole": ("http://docutils.sourceforge.net/docs/ref/rst/" "roles.html#%s", "%s"),
+    "dudir": (
+        "http://docutils.sourceforge.net/docs/ref/rst/" "directives.html#%s",
+        "%s",
+    ),
 }
 
 # Extensions for the myst parser
