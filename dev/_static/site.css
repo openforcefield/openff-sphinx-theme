@@ -10485,7 +10485,8 @@ footer .socials .icon {
 
 @media screen and (min-width: 1407px) {
   main {
-    width: 1408px;
+    max-width: 1508px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
