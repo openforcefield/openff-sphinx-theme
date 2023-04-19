@@ -391,7 +391,9 @@ footer
 
 @media screen and (min-width: $fullhd - 1px)
     main
-        width: $fullhd
+        min-width: $fullhd
+        max-width: $fullhd + 100px
+        width: 100%
         margin-left: auto
         margin-right: auto
 @media screen and (max-width: $fullhd)
