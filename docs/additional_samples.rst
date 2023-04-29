@@ -100,7 +100,8 @@ Tip
 
 Deprecated
 ----------
-.. deprecated:: This API point was **deprecated**.
+.. deprecated:: 999.999.999
+    This API point was **deprecated**.
 
 Todo
 ----
