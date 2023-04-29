@@ -98,6 +98,15 @@ Tip
 ---
 .. tip:: Please **tip** your waiter.
 
+Deprecated
+----------
+.. deprecated:: 999.999.999
+    This API point was **deprecated**.
+
+Todo
+----
+.. todo:: This is something we are yet **to do**.
+
 
 Custom Admonitions
 ------------------
@@ -120,6 +129,10 @@ Custom Admonitions
 .. admonition:: Success
 
     Woohoo!
+
+.. admonition:: Experimental
+
+    Experiments are the heart of science
 
 Footnotes
 =========
