@@ -9820,6 +9820,29 @@ html .content .admonition:not(div.deprecated) > :last-child, html .content div.d
   content: "";
 }
 
+.content .admonition.experimental, .content .admonition.admonition-experimental, .content .admonition.admonition-experiment, .content .admonition.admonition-experiments, .content div.deprecated.experimental, .content div.deprecated.admonition-experimental, .content div.deprecated.admonition-experiment, .content div.deprecated.admonition-experiments {
+  border-left-color: #f08521;
+}
+
+[dir="rtl"] .content .admonition.experimental, [dir="rtl"] .content .admonition.admonition-experimental, [dir="rtl"] .content .admonition.admonition-experiment, [dir="rtl"] .content .admonition.admonition-experiments, [dir="rtl"] .content div.deprecated.experimental, [dir="rtl"] .content div.deprecated.admonition-experimental, [dir="rtl"] .content div.deprecated.admonition-experiment, [dir="rtl"] .content div.deprecated.admonition-experiments {
+  border-right-color: #f08521;
+}
+
+.content .admonition.experimental .admonition-title, .content .admonition.experimental.deprecated .versionmodified.deprecated, .content .admonition.admonition-experimental .admonition-title, .content .admonition.admonition-experimental.deprecated .versionmodified.deprecated, .content .admonition.admonition-experiment .admonition-title, .content .admonition.admonition-experiment.deprecated .versionmodified.deprecated, .content .admonition.admonition-experiments .admonition-title, .content .admonition.admonition-experiments.deprecated .versionmodified.deprecated, .content div.deprecated.experimental .admonition-title, .content div.deprecated.experimental.deprecated .versionmodified.deprecated, .content div.deprecated.admonition-experimental .admonition-title, .content div.deprecated.admonition-experimental.deprecated .versionmodified.deprecated, .content div.deprecated.admonition-experiment .admonition-title, .content div.deprecated.admonition-experiment.deprecated .versionmodified.deprecated, .content div.deprecated.admonition-experiments .admonition-title, .content div.deprecated.admonition-experiments.deprecated .versionmodified.deprecated {
+  background-color: rgba(240, 133, 33, 0.1);
+  border-left-color: #f08521;
+}
+
+[dir="rtl"] .content .admonition.experimental .admonition-title, [dir="rtl"] .content .admonition.experimental.deprecated .versionmodified.deprecated, [dir="rtl"] .content .admonition.admonition-experimental .admonition-title, [dir="rtl"] .content .admonition.admonition-experimental.deprecated .versionmodified.deprecated, [dir="rtl"] .content .admonition.admonition-experiment .admonition-title, [dir="rtl"] .content .admonition.admonition-experiment.deprecated .versionmodified.deprecated, [dir="rtl"] .content .admonition.admonition-experiments .admonition-title, [dir="rtl"] .content .admonition.admonition-experiments.deprecated .versionmodified.deprecated, [dir="rtl"] .content div.deprecated.experimental .admonition-title, [dir="rtl"] .content div.deprecated.experimental.deprecated .versionmodified.deprecated, [dir="rtl"] .content div.deprecated.admonition-experimental .admonition-title, [dir="rtl"] .content div.deprecated.admonition-experimental.deprecated .versionmodified.deprecated, [dir="rtl"] .content div.deprecated.admonition-experiment .admonition-title, [dir="rtl"] .content div.deprecated.admonition-experiment.deprecated .versionmodified.deprecated, [dir="rtl"] .content div.deprecated.admonition-experiments .admonition-title, [dir="rtl"] .content div.deprecated.admonition-experiments.deprecated .versionmodified.deprecated {
+  border-right-color: #f08521;
+}
+
+.content .admonition.experimental .admonition-title::before, .content .admonition.experimental.deprecated .versionmodified.deprecated::before, .content .admonition.admonition-experimental .admonition-title::before, .content .admonition.admonition-experimental.deprecated .versionmodified.deprecated::before, .content .admonition.admonition-experiment .admonition-title::before, .content .admonition.admonition-experiment.deprecated .versionmodified.deprecated::before, .content .admonition.admonition-experiments .admonition-title::before, .content .admonition.admonition-experiments.deprecated .versionmodified.deprecated::before, .content div.deprecated.experimental .admonition-title::before, .content div.deprecated.experimental.deprecated .versionmodified.deprecated::before, .content div.deprecated.admonition-experimental .admonition-title::before, .content div.deprecated.admonition-experimental.deprecated .versionmodified.deprecated::before, .content div.deprecated.admonition-experiment .admonition-title::before, .content div.deprecated.admonition-experiment.deprecated .versionmodified.deprecated::before, .content div.deprecated.admonition-experiments .admonition-title::before, .content div.deprecated.admonition-experiments.deprecated .versionmodified.deprecated::before {
+  color: #f08521;
+  font-family: "Font Awesome 5 Free";
+  content: "";
+}
+
 .content div.deprecated > p {
   margin-top: 0;
   max-width: unset;
