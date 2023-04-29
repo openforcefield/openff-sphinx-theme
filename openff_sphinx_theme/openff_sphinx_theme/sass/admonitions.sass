@@ -195,6 +195,8 @@
           @include material_admonitions($grey, "Font Awesome 5 Free", "\f10e")
       &.deprecated, &.admonition-deprecated
           @include material_admonitions($yellow, "Font Awesome 5 Free", "\f017")
+      &.experimental, &.admonition-experimental, &.admonition-experiment, &.admonition-experiments
+          @include material_admonitions($yellow, "Font Awesome 5 Free", "\f492")
 
     // Differences between deprecated and admonitions
     div.deprecated > p
