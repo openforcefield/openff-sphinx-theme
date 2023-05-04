@@ -68,9 +68,11 @@
                 {{ shorttitle|striptags|e }}
               </h1>
             </a>
-            <div class="py-3">
-              {% include "searchbox.html" %}
-            </div>
+            {% if sidebars is not defined or 'searchbox.html' in sidebars %}
+              <div class="py-3" role="search">
+                {% include "searchbox.html" %}
+              </div>
+            {% endif %}
           </div>
           {% include "globaltoc.html" %}
         </aside>
