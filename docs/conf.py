@@ -44,6 +44,7 @@ extensions = [
     # "myst_nb",
     "openff_sphinx_theme",
     "sphinxcontrib.autodoc_pydantic",
+    "sphinx_search.extension",
 ]
 
 # Autodoc settings

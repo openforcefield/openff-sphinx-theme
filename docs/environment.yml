@@ -22,4 +22,6 @@ dependencies:
   - wheel
   - sphinx-autobuild
   - sphinx>=5.2,<7
+  - pip:
+    - readthedocs-sphinx-search
 
