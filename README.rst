@@ -8,7 +8,7 @@ OpenFF Sphinx theme
 A Material Design theme for Sphinx documentation.
 Based on `Material for Sphinx <https://bashtage.github.io/sphinx-material/>`_.
 
-See the theme's `demonstration site <https://openforcefield.github.io/openff-sphinx-theme/>`_ for examples of rendered rst and more detailed instructions.
+See the theme's `demonstration site <https://openff-sphinx-theme.readthedocs.io/en/latest/>`_ for examples of rendered rst and more detailed instructions.
 
 Getting Started
 ---------------
