@@ -1,0 +1,48 @@
+$search-header-bg-color: rgba($openff-toolkit-blue, 0.1);
+
+ul.search {
+    list-style: none;
+    margin-left: 0;
+    @include center-in-container(50rem);
+
+    > li { // Group of results on same page
+        border-radius: 4px;
+        @include z-depth(2);
+        background-color: $search-header-bg-color;
+
+        > a { // Page title
+            font-size: larger;
+            &::before {
+                // Unless we want the whole title box to be clickable,
+                // we need to use this psuedoelement to space it out
+                content: "   ";
+                white-space: pre;
+                line-height: 2.5;
+            }
+        }
+        > .context { // Single result on page
+            padding: 1em;
+            background-color: $background;
+            > div {
+
+                &:first-child { // Result link
+                    font-size: 1.1em;
+                    font-weight: 300;
+                }
+
+                &:last-child { // Result text
+                    color: #555;
+                    margin-left: 1em;
+                    min-height: 0.5em;
+                    .highlighted { // Highlighted result term
+                        font-weight: bold;
+                    }
+
+                }
+            }
+        }
+        > .rtd_search_hits_spacing { // Spacing between hits
+            height: 0;
+        }
+    }
+}
