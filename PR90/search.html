@@ -325,17 +325,43 @@
           <article class="content">
             
   <h1 id="search-documentation">Search</h1>
-  <div id="fallback" class="admonition warning">
-  <script type="text/javascript">$('#fallback').hide();</script>
+  
+  <noscript>
+  <div class="admonition warning">
   <p>
     Please activate JavaScript to enable the search
     functionality.
   </p>
   </div>
+  </noscript>
+  
+  
+  <p>
+    Searching for multiple words only shows matches that contain
+    all words.
+  </p>
+  
+  
+  <div role="search">
+    
+<form action="#" method="GET" name="search">
+  <div class="control has-icons-right">
+    <span class="icon is-small is-right">
+      <i class="fas fa-search"></i>
+    </span>
+    <input class="input is-primary" type="text"  name="q" placeholder="Search"
+         autocapitalize="off" autocomplete="off" spellcheck="false">
+  </div>
+</form>
+
+  </div>
+
+  
   
   <div id="search-results">
   
   </div>
+  
 
           </article>
         </div>
