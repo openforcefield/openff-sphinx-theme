@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.19: https://docutils.sourceforge.io/" name="generator"/>
 <link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
 <link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -24,10 +24,12 @@
 <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="_static/openff.css" rel="stylesheet" type="text/css"/>
 <link href="_static/autodoc_pydantic.css" rel="stylesheet" type="text/css"/>
+<link href="_static/css/rtd_sphinx_search.min.css" rel="stylesheet" type="text/css"/>
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-<script src="_static/jquery.js"></script>
-<script src="_static/underscore.js"></script>
 <script src="_static/doctools.js"></script>
+<script src="_static/sphinx_highlight.js"></script>
+<script src="_static/js/rtd_search_config.js"></script>
+<script src="_static/js/rtd_sphinx_search.min.js"></script>
 <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -56,7 +58,7 @@
 <span> NumPy Docstrings </span>
 </div>
 <div class="navbar-end">
-<span class="navbar-item nav-search is-hidden-mobile">
+<span class="navbar-item nav-search is-hidden-mobile" role="search">
 <form action="search.html" method="GET" name="search">
 <div class="control has-icons-right">
 <span class="icon is-small is-right">
@@ -107,7 +109,7 @@
                 OpenFF Sphinx theme
               </h1>
 </a>
-<div class="py-3">
+<div class="py-3" role="search">
 <form action="search.html" method="GET" name="search">
 <div class="control has-icons-right">
 <span class="icon is-small is-right">
@@ -121,6 +123,9 @@
 <nav class="menu ff-globaltoc">
 <p class="menu-label"><span class="caption-text">Basic Use</span></p>
 <ul class="menu-list">
+<li>
+<a class="" href="index.html">Overview</a>
+</li>
 <li>
 <a class="" href="customization.html">Customization</a>
 </li>
@@ -181,9 +186,9 @@
 <div class="column is-8-desktop is-9-tablet">
 <article class="content">
 <section id="numpy-docstrings">
-<span id="numpydoc-example"></span><h1>NumPy Docstrings<a class="headerlink" href="#numpy-docstrings" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<span id="numpydoc-example"></span><h1>NumPy Docstrings<a class="headerlink" href="#numpy-docstrings" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
 <section id="source">
-<h2>Source<a class="headerlink" href="#source" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="sd">"""Docstring for the example.py module.</span>
 <span class="linenos">  2</span>
 <span class="linenos">  3</span><span class="sd">Modules names should have short, all-lowercase names.  The module name may</span>
@@ -318,7 +323,7 @@
 </div>
 </section>
 <section id="module-numpydoc_example">
-<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-numpydoc_example" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-numpydoc_example" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>Docstring for the example.py module.</p>
 <p>Modules names should have short, all-lowercase names.  The module name may
 have underscores if this improves readability.</p>
@@ -333,48 +338,31 @@ a line by itself, preferably preceded by a blank line.</p>
 <p>Several sentences providing an extended description. Refer to
 variables using back-ticks, e.g. <cite>var</cite>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>var1</strong><span class="classifier">array_like</span></dt><dd><p>Array_like means all those objects – lists, nested lists, etc. –
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array_like</span></code>) – Array_like means all those objects – lists, nested lists, etc. –
 that can be converted to an array.  We can also refer to
-variables like <cite>var1</cite>.</p>
-</dd>
-<dt><strong>var2</strong><span class="classifier">int</span></dt><dd><p>The type above can either refer to an actual Python type
+variables like <cite>var1</cite>.</p></li>
+<li><p><strong>var2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The type above can either refer to an actual Python type
 (e.g. <code class="docutils literal notranslate"><span class="pre">int</span></code>), or describe the type of the variable in more
-detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</span> <span class="pre">ndarray</span></code> or <code class="docutils literal notranslate"><span class="pre">array_like</span></code>.</p>
+detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</span> <span class="pre">ndarray</span></code> or <code class="docutils literal notranslate"><span class="pre">array_like</span></code>.</p></li>
+<li><p><strong>*args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code>) – Other arguments.</p></li>
+<li><p><strong>long_var_name</strong> (<code class="docutils literal notranslate"><span class="pre">{'hi',</span> <span class="pre">'ho'}</span></code>, <em>optional</em>) – Choices in brackets, default first when optional.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Keyword arguments.</p></li>
+<li><p><strong>only_seldom_used_keywords</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
+<li><p><strong>common_parameters_listed_above</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
+</ul>
 </dd>
-<dt><strong>*args</strong><span class="classifier">iterable</span></dt><dd><p>Other arguments.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> – Explanation of anonymous return value of type <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p></li>
+<li><p><strong>describe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of return value named <cite>describe</cite>.</p></li>
+<li><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of <cite>out</cite>.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">type_without_description</span></code></p></li>
+</ul>
 </dd>
-<dt><strong>long_var_name</strong><span class="classifier">{‘hi’, ‘ho’}, optional</span></dt><dd><p>Choices in brackets, default first when optional.</p>
-</dd>
-<dt><strong>**kwargs</strong><span class="classifier">dict</span></dt><dd><p>Keyword arguments.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>type</dt><dd><p>Explanation of anonymous return value of type <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p>
-</dd>
-<dt><strong>describe</strong><span class="classifier">type</span></dt><dd><p>Explanation of return value named <cite>describe</cite>.</p>
-</dd>
-<dt><strong>out</strong><span class="classifier">type</span></dt><dd><p>Explanation of <cite>out</cite>.</p>
-</dd>
-<dt>type_without_description</dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>only_seldom_used_keywords</strong><span class="classifier">type</span></dt><dd><p>Explanation.</p>
-</dd>
-<dt><strong>common_parameters_listed_above</strong><span class="classifier">type</span></dt><dd><p>Explanation.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><dl class="simple">
-<dt>BadException</dt><dd><p>Because you shouldn’t have done that.</p>
-</dd>
-</dl>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>BadException</strong> – Because you shouldn’t have done that.</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -384,8 +372,8 @@ detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</
 </dd>
 <dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></dt><dd><p>Relationship (optional), which could be fairly long, in which case the line wraps here.</p>
 </dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.dot</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.linalg.norm</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.eye</span></code></dt><dd></dd>
 </dl>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.dot</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.linalg.norm</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.eye</span></code></p>
 </div>
 <p class="rubric">Notes</p>
 <p>Notes about the implementation algorithm (if needed).</p>
@@ -395,17 +383,18 @@ detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</
 \[X(e^{j\omega } ) = x(n)e^{ - j\omega n}\]</div>
 <p>And even use a Greek symbol like <span class="math notranslate nohighlight">\(\omega\)</span> inline.</p>
 <p class="rubric">References</p>
-<p>Cite the relevant literature, e.g. <a class="reference internal" href="#re98b5729aa6a-1" id="id1">[1]</a>.  You may also cite these
+<p>Cite the relevant literature, e.g. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.  You may also cite these
 references in the notes section above.</p>
-<dl class="citation">
-<dt class="label" id="re98b5729aa6a-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>O. McNoleg, “The integration of GIS, remote sensing,
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a href="#id1" role="doc-backlink">1</a><span class="fn-bracket">]</span></span>
+<p>O. McNoleg, “The integration of GIS, remote sensing,
 expert systems and adaptive co-kriging for environmental habitat
 modelling of the Highland Haggis using object-oriented, fuzzy-logic
 and neural-network techniques,” Computers &amp; Geosciences, vol. 22,
 pp. 585-588, 1996.</p>
-</dd>
-</dl>
+</aside>
+</aside>
 <p class="rubric">Examples</p>
 <p>These are written in doctest format, and should illustrate how to
 use the function.</p>
@@ -428,7 +417,10 @@ use the function.</p>
 <ul>
 <li><a class="reference internal" href="#">NumPy Docstrings</a><ul>
 <li><a class="reference internal" href="#source">Source</a></li>
-<li><a class="reference internal" href="#module-numpydoc_example">Rendered</a></li>
+<li><a class="reference internal" href="#module-numpydoc_example">Rendered</a><ul>
+<li><a class="reference internal" href="#numpydoc_example.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -467,10 +459,10 @@ use the function.</p>
               
           </div>
           Last updated on
-            Mar 23, 2023.
+            May 04, 2023.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>

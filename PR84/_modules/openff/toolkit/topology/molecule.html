@@ -35,10 +35,12 @@
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/openff.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/rtd_sphinx_search.min.css" />
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-    <script src="../../../../_static/jquery.js"></script>
-    <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/rtd_search_config.js"></script>
+    <script src="../../../../_static/js/rtd_sphinx_search.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -72,9 +74,8 @@
     </div>
 
     <div class="navbar-end">
-      <span class="navbar-item nav-search is-hidden-mobile">
-        
-<form action="../../../../search.html" method="GET" name="search">
+      <span class="navbar-item nav-search is-hidden-mobile" role="search">
+        <form action="../../../../search.html" method="GET" name="search">
   <div class="control has-icons-right">
     <span class="icon is-small is-right">
       <i class="fas fa-search"></i>
@@ -83,7 +84,6 @@
          autocapitalize="off" autocomplete="off" spellcheck="false">
   </div>
 </form>
-
       </span>
       
         <a href="https://github.com/openforcefield/openff-sphinx-theme/" class="is-family-monospace navbar-item is-hidden-touch has-text-light">
@@ -144,9 +144,9 @@
                 OpenFF Sphinx theme
               </h1>
             </a>
-            <div class="py-3">
-              
-<form action="../../../../search.html" method="GET" name="search">
+            
+              <div class="py-3" role="search">
+                <form action="../../../../search.html" method="GET" name="search">
   <div class="control has-icons-right">
     <span class="icon is-small is-right">
       <i class="fas fa-search"></i>
@@ -155,14 +155,22 @@
          autocapitalize="off" autocomplete="off" spellcheck="false">
   </div>
 </form>
-
-            </div>
+              </div>
+            
           </div>
           
 <nav class="menu ff-globaltoc">
           
           <p class="menu-label"><span class="caption-text">Basic Use</span></p>
           <ul class="menu-list">
+        
+      
+          
+          <li>
+            <a href="../../../../index.html" class="">Overview</a>
+            
+            </li>
+          
         
       
           
@@ -357,6 +365,7 @@
     <span class="n">DefaultDict</span><span class="p">,</span>
     <span class="n">Dict</span><span class="p">,</span>
     <span class="n">Generator</span><span class="p">,</span>
+    <span class="n">Iterable</span><span class="p">,</span>
     <span class="n">List</span><span class="p">,</span>
     <span class="n">Optional</span><span class="p">,</span>
     <span class="n">Sequence</span><span class="p">,</span>
@@ -383,6 +392,7 @@
     <span class="n">InvalidBondOrderError</span><span class="p">,</span>
     <span class="n">InvalidConformerError</span><span class="p">,</span>
     <span class="n">MissingPartialChargesError</span><span class="p">,</span>
+    <span class="n">MoleculeParseError</span><span class="p">,</span>
     <span class="n">MultipleMoleculesInPDBError</span><span class="p">,</span>
     <span class="n">RemapIndexError</span><span class="p">,</span>
     <span class="n">SmilesParsingError</span><span class="p">,</span>
@@ -417,6 +427,7 @@
     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;Molecule.</span><span class="si">{</span><span class="n">old_method</span><span class="si">}</span><span class="s2"> is deprecated. Use Molecule.</span><span class="si">{</span><span class="n">new_method</span><span class="si">}</span><span class="s2"> instead.&quot;</span><span class="p">,</span>
         <span class="n">MoleculeDeprecationWarning</span><span class="p">,</span>
+        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="p">)</span>
 
 
@@ -655,7 +666,7 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">openmm_unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">IncompatibleUnitError</span><span class="p">(</span>
                     <span class="s2">&quot;Unsupported type passed to formal_charge setter. &quot;</span>
-                    <span class="s2">&quot;Found object of type {type(other)}.&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Found object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
                 <span class="p">)</span>
 
             <span class="kn">from</span> <span class="nn">openff.units.openmm</span> <span class="kn">import</span> <span class="n">from_openmm</span>
@@ -790,7 +801,7 @@
 <span class="sd">            The new name for this atom</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;In setting atom name. Expected str, received </span><span class="si">{</span><span class="n">other</span><span class="si">}</span><span class="s2"> (type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s2">).&quot;</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">other</span>
@@ -1007,11 +1018,21 @@
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">molecule</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a Bond from a dict representation.&quot;&quot;&quot;</span>
-        <span class="c1"># TODO</span>
-        <span class="n">d</span><span class="p">[</span><span class="s2">&quot;molecule&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule</span>
+        <span class="c1"># TODO: This is not used anywhere (`Molecule._initialize_bonds_from_dict()` just calls grabs</span>
+        <span class="c1">#       the two atoms and calls `Molecule._add_bond`). Remove or change that?</span>
+        <span class="c1"># TODO: There is no point in feeding in a `molecule` argument since `Bond.__init__` already</span>
+        <span class="c1">#       requires (and checks) that the two atoms are part of the same molecule</span>
         <span class="n">d</span><span class="p">[</span><span class="s2">&quot;atom1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;atom1&quot;</span><span class="p">]]</span>
         <span class="n">d</span><span class="p">[</span><span class="s2">&quot;atom2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;atom2&quot;</span><span class="p">]]</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">atom1</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;atom1&quot;</span><span class="p">],</span>
+            <span class="n">atom2</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;atom2&quot;</span><span class="p">],</span>
+            <span class="n">bond_order</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;bond_order&quot;</span><span class="p">],</span>
+            <span class="n">is_aromatic</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;is_aromatic&quot;</span><span class="p">],</span>
+            <span class="n">stereochemistry</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;stereochemistry&quot;</span><span class="p">],</span>
+            <span class="n">fractional_bond_order</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;fractional_bond_order&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">atom1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1075,7 +1096,12 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sets the Bond&#39;s parent molecule. Can not be changed after assignment</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="c1"># TODO: This is an impossible state (the constructor requires that atom1 and atom2</span>
+        <span class="c1">#       are in a molecule, the same molecule, and sets that as self._molecule).</span>
+        <span class="c1">#       Should we remove this?</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="p">),</span> <span class="s2">&quot;Bond.molecule is already set and can only be set once&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="o">=</span> <span class="n">value</span>
 
     <span class="nd">@property</span>
@@ -1085,6 +1111,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># TODO: This is unreachable; see `Bond.molecule` setter</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;This Atom does not belong to a Molecule object&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -1425,7 +1452,20 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">from</span> <span class="nn">openff.toolkit.utils.utils</span> <span class="kn">import</span> <span class="n">serialize_numpy</span>
 
-        <span class="n">molecule_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="c1"># typing.TypedDict might make this cleaner</span>
+        <span class="c1"># https://mypy.readthedocs.io/en/latest/typed_dict.html#typeddict</span>
+        <span class="n">molecule_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>
+            <span class="nb">str</span><span class="p">,</span>
+            <span class="n">Union</span><span class="p">[</span>
+                <span class="kc">None</span><span class="p">,</span>
+                <span class="nb">str</span><span class="p">,</span>
+                <span class="nb">bytes</span><span class="p">,</span>
+                <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+                <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+                <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span>
+                <span class="n">List</span><span class="p">[</span><span class="n">HierarchyElement</span><span class="p">],</span>
+            <span class="p">],</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
         <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;atoms&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">]</span>
@@ -1457,7 +1497,7 @@
 
         <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;hierarchy_schemes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">iter_name</span><span class="p">,</span> <span class="n">hier_scheme</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hierarchy_schemes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;hierarchy_schemes&quot;</span><span class="p">][</span><span class="n">iter_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">hier_scheme</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+            <span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;hierarchy_schemes&quot;</span><span class="p">][</span><span class="n">iter_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">hier_scheme</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>  <span class="c1"># type: ignore[index]</span>
 
         <span class="k">return</span> <span class="n">molecule_dict</span>
 
@@ -1914,6 +1954,7 @@
         <span class="n">inchi</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">allow_undefined_stereo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="p">:</span> <span class="n">TKR</span> <span class="o">=</span> <span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a Molecule from a InChI representation</span>
@@ -1932,6 +1973,8 @@
 <span class="sd">            or openff.toolkit.utils.toolkits.ToolkitWrapper, optional, default=None</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for InChI-to-molecule conversion</span>
 
+<span class="sd">        name : str, default=&quot;&quot;</span>
+<span class="sd">            An optional name for the output molecule</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1950,11 +1993,15 @@
                 <span class="n">inchi</span><span class="p">,</span>
                 <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
                 <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="n">allow_undefined_stereo</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">toolkit</span> <span class="o">=</span> <span class="n">toolkit_registry</span>
             <span class="n">molecule</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">from_inchi</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
-                <span class="n">inchi</span><span class="p">,</span> <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="n">allow_undefined_stereo</span>
+                <span class="n">inchi</span><span class="p">,</span>
+                <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+                <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="n">allow_undefined_stereo</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InvalidToolkitRegistryError</span><span class="p">(</span>
@@ -2067,6 +2114,7 @@
         <span class="n">hydrogens_are_explicit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="p">:</span> <span class="n">TKR</span> <span class="o">=</span> <span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">allow_undefined_stereo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Molecule&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct a ``Molecule`` from a SMILES representation</span>
@@ -2095,6 +2143,9 @@
 <span class="sd">            Whether to accept SMILES with undefined stereochemistry. If</span>
 <span class="sd">            ``False``, an exception will be raised if a SMILES with undefined</span>
 <span class="sd">            stereochemistry is passed into this function.</span>
+<span class="sd">        name : str, default=&quot;&quot;</span>
+<span class="sd">            An optional name for the output molecule</span>
+
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2130,6 +2181,7 @@
                 <span class="n">hydrogens_are_explicit</span><span class="o">=</span><span class="n">hydrogens_are_explicit</span><span class="p">,</span>
                 <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="n">allow_undefined_stereo</span><span class="p">,</span>
                 <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">toolkit</span> <span class="o">=</span> <span class="n">toolkit_registry</span>
@@ -2138,6 +2190,7 @@
                 <span class="n">hydrogens_are_explicit</span><span class="o">=</span><span class="n">hydrogens_are_explicit</span><span class="p">,</span>
                 <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="n">allow_undefined_stereo</span><span class="p">,</span>
                 <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InvalidToolkitRegistryError</span><span class="p">(</span>
@@ -2168,8 +2221,8 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">are_isomorphic</span><span class="p">(</span>
-        <span class="n">mol1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span>
-        <span class="n">mol2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span>
+        <span class="n">mol1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="s2">&quot;_SimpleMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span>
+        <span class="n">mol2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="s2">&quot;_SimpleMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span>
         <span class="n">return_atom_map</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">aromatic_matching</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">formal_charge_matching</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -2178,7 +2231,7 @@
         <span class="n">bond_stereochemistry_matching</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">strip_pyrimidal_n_atom_stereo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="p">:</span> <span class="n">TKR</span> <span class="o">=</span> <span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determine if ``mol1`` is isomorphic to ``mol2``.</span>
 
@@ -2257,10 +2310,26 @@
 <span class="sd">            [Dict[int,int]] ordered by mol1 indexing {mol1_index: mol2_index}</span>
 <span class="sd">            If molecules are not isomorphic given input arguments, will return None instead of dict.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+        <span class="n">_cls</span> <span class="o">=</span> <span class="n">FrozenMolecule</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol2</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
+            <span class="k">pass</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol2</span><span class="p">,</span> <span class="n">_cls</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol2</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">_cls</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># static methods (by definition) know nothing about their class,</span>
+            <span class="c1"># so the class to compare to must be hard-coded here</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">_cls</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol2</span><span class="p">,</span> <span class="n">_cls</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
 
         <span class="k">def</span> <span class="nf">_object_to_n_atoms</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-            <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">FrozenMolecule</span><span class="p">):</span>
                 <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">n_atoms</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
@@ -2327,10 +2396,8 @@
             <span class="n">edge_match_func</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: ignore</span>
 
         <span class="c1"># Here we should work out what data type we have, also deal with lists?</span>
-        <span class="k">def</span> <span class="nf">to_networkx</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">to_networkx</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">FrozenMolecule</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;For the given data type, return the networkx graph&quot;&quot;&quot;</span>
-            <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-
             <span class="k">if</span> <span class="n">strip_pyrimidal_n_atom_stereo</span><span class="p">:</span>
                 <span class="n">SMARTS</span> <span class="o">=</span> <span class="s2">&quot;[N+0X3:1](-[*])(-[*])(-[*])&quot;</span>
 
@@ -2356,6 +2423,7 @@
 
         <span class="n">mol1_netx</span> <span class="o">=</span> <span class="n">to_networkx</span><span class="p">(</span><span class="n">mol1</span><span class="p">)</span>
         <span class="n">mol2_netx</span> <span class="o">=</span> <span class="n">to_networkx</span><span class="p">(</span><span class="n">mol2</span><span class="p">)</span>
+
         <span class="kn">from</span> <span class="nn">networkx.algorithms.isomorphism</span> <span class="kn">import</span> <span class="n">GraphMatcher</span>  <span class="c1"># type: ignore</span>
 
         <span class="n">GM</span> <span class="o">=</span> <span class="n">GraphMatcher</span><span class="p">(</span>
@@ -2376,7 +2444,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">isomorphic</span><span class="p">,</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">is_isomorphic_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">is_isomorphic_with</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="s2">&quot;_SimpleMolecule&quot;</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if the molecule is isomorphic with the other molecule which can be an openff.toolkit.topology.Molecule</span>
 <span class="sd">        or nx.Graph(). Full matching is done using the options described bellow.</span>
@@ -2723,7 +2793,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">partial_charge_method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">strict_n_conformers</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">use_conformers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Quantity</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">use_conformers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="n">Quantity</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="p">:</span> <span class="n">TKR</span> <span class="o">=</span> <span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">normalize_partial_charges</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
@@ -2741,8 +2811,23 @@
 <span class="sd">        - ``&quot;mmff94&quot;``</span>
 <span class="sd">        - ``&quot;gasteiger&quot;``</span>
 
-<span class="sd">        For more supported charge methods and details, see the corresponding</span>
-<span class="sd">        methods in each toolkit wrapper:</span>
+<span class="sd">        By default, the conformers on the input molecule are not used</span>
+<span class="sd">        in the charge calculation. Instead, any conformers needed for</span>
+<span class="sd">        the charge calculation are generated by this method. If this</span>
+<span class="sd">        behavior is undesired, specific conformers can be provided via the</span>
+<span class="sd">        ``use_conformers`` argument.</span>
+
+<span class="sd">        ELF10 methods will neither fail nor warn when fewer than the</span>
+<span class="sd">        expected number of conformers could be generated, as many small</span>
+<span class="sd">        molecules are too rigid to provide a large number of conformers. Note</span>
+<span class="sd">        that only the ``&quot;am1bccelf10&quot;`` partial charge method uses ELF</span>
+<span class="sd">        conformer selection; the ``&quot;am1bcc&quot;`` method only uses a single</span>
+<span class="sd">        conformer. This may confuse users as the `ToolkitAM1BCC`_ SMIRNOFF</span>
+<span class="sd">        tag in a force field file defines that AM1BCC-ELF10 should be used</span>
+<span class="sd">        if the OpenEye Toolkits are available.</span>
+
+<span class="sd">        For more supported charge methods and their details, see the</span>
+<span class="sd">        corresponding methods in each toolkit wrapper:</span>
 
 <span class="sd">        - :meth:`OpenEyeToolkitWrapper.assign_partial_charges \</span>
 <span class="sd">          &lt;openff.toolkit.utils.toolkits.OpenEyeToolkitWrapper.assign_partial_charges&gt;`</span>
@@ -2753,6 +2838,9 @@
 <span class="sd">        - :meth:`BuiltInToolkitWrapper.assign_partial_charges \</span>
 <span class="sd">          &lt;openff.toolkit.utils.toolkits.BuiltInToolkitWrapper.assign_partial_charges&gt;`</span>
 
+<span class="sd">        .. _ToolkitAM1BCC: https://openforcefield.github.io/standards/standards/smirnoff/\</span>
+<span class="sd">            #toolkitam1bcc-temporary-support-for-toolkit-based-am1-bcc-partial-charges</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        partial_charge_method : string</span>
@@ -2762,13 +2850,10 @@
 <span class="sd">            Whether to raise an exception if an invalid number of conformers is</span>
 <span class="sd">            provided for the given charge method. If this is False and an</span>
 <span class="sd">            invalid number of conformers is found, a warning will be raised.</span>
-<span class="sd">        use_conformers : iterable of openff.unit.Quantity-wrapped numpy arrays, each with shape (n_atoms, 3) and</span>
-<span class="sd">            dimension of distance. Optional, default=None</span>
-<span class="sd">            Coordinates to use for partial charge calculation. If None, an</span>
+<span class="sd">        use_conformers : Arrays with shape (n_atoms, 3) and dimensions of distance</span>
+<span class="sd">            Coordinates to use for partial charge calculation. If ``None``, an</span>
 <span class="sd">            appropriate number of conformers will be generated.</span>
-<span class="sd">        toolkit_registry : openff.toolkit.utils.toolkits.ToolkitRegistry or</span>
-<span class="sd">            openff.toolkit.utils.toolkits.ToolkitWrapper,</span>
-<span class="sd">            optional, default=None</span>
+<span class="sd">        toolkit_registry</span>
 <span class="sd">            :class:`ToolkitRegistry` or :class:`ToolkitWrapper` to use for the</span>
 <span class="sd">            calculation.</span>
 <span class="sd">        normalize_partial_charges : bool, default=True</span>
@@ -2780,8 +2865,20 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 
+<span class="sd">        Generate AM1 Mulliken partial charges. Conformers for the AM1</span>
+<span class="sd">        calculation are generated automatically:</span>
+
 <span class="sd">        &gt;&gt;&gt; molecule = Molecule.from_smiles(&#39;CCCCCC&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; molecule.assign_partial_charges(&#39;am1-mulliken&#39;)</span>
+
+<span class="sd">        To use pre-generated conformations, use the ``use_conformers`` argument:</span>
+
+<span class="sd">        &gt;&gt;&gt; molecule = Molecule.from_smiles(&#39;CCCCCC&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; molecule.generate_conformers(n_conformers=1)</span>
+<span class="sd">        &gt;&gt;&gt; molecule.assign_partial_charges(</span>
+<span class="sd">        ...     &#39;am1-mulliken&#39;,</span>
+<span class="sd">        ...     use_conformers=molecule.conformers</span>
+<span class="sd">        ... )</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2813,6 +2910,7 @@
                     <span class="sa">f</span><span class="s2">&quot;run on this molecule (found </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="si">}</span><span class="s2"> atoms). For more, see &quot;</span>
                     <span class="s2">&quot;https://docs.openforcefield.org/projects/toolkit/en/stable/faq.html&quot;</span>
                     <span class="s2">&quot;#parameterizing-my-system-which-contains-a-large-molecule-is-taking-forever-whats-wrong&quot;</span><span class="p">,</span>
+                    <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                 <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitRegistry</span><span class="p">):</span>
@@ -3182,7 +3280,7 @@
             <span class="n">atom1_atom</span> <span class="o">=</span> <span class="n">atom1</span>
             <span class="n">atom2_atom</span> <span class="o">=</span> <span class="n">atom2</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Invalid inputs to molecule._add_bond. Expected ints or Atoms. &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;Received </span><span class="si">{</span><span class="n">atom1</span><span class="si">}</span><span class="s2"> (type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">atom1</span><span class="p">)</span><span class="si">}</span><span class="s2">) and </span><span class="si">{</span><span class="n">atom2</span><span class="si">}</span><span class="s2"> (type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">atom2</span><span class="p">)</span><span class="si">}</span><span class="s2">) &quot;</span>
             <span class="p">)</span>
@@ -3686,7 +3784,7 @@
         <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">other</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Molecule name must be a string&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Molecule name must be a string&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -3721,7 +3819,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hill_formula</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_object_to_hill_formula</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Molecule&quot;</span><span class="p">,</span> <span class="s2">&quot;nx.Graph&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_object_to_hill_formula</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="s2">&quot;nx.Graph&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Take a Molecule or NetworkX graph and generate its Hill formula.</span>
 <span class="sd">        This provides a backdoor to the old functionality of Molecule.to_hill_formula, which</span>
 <span class="sd">        was a static method that duck-typed inputs of Molecule or graph objects.&quot;&quot;&quot;</span>
@@ -3788,6 +3886,7 @@
                 <span class="bp">self</span><span class="p">,</span>
                 <span class="n">smirks</span><span class="p">,</span>
                 <span class="n">unique</span><span class="o">=</span><span class="n">unique</span><span class="p">,</span>
+                <span class="n">raise_exception_types</span><span class="o">=</span><span class="p">[],</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">matches</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">find_smarts_matches</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
@@ -3858,7 +3957,7 @@
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="k">raise</span> <span class="n">InvalidToolkitRegistryError</span><span class="p">(</span>
                 <span class="s2">&quot;Invalid toolkit_registry passed to from_iupac. Expected ToolkitRegistry or ToolkitWrapper. &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
             <span class="p">)</span>
@@ -3889,7 +3988,7 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">to_iupac_method</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">to_iupac</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+            <span class="k">raise</span> <span class="n">InvalidToolkitRegistryError</span><span class="p">(</span>
                 <span class="s2">&quot;Invalid toolkit_registry passed to to_iupac. Expected ToolkitRegistry or ToolkitWrapper. &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
@@ -4006,7 +4105,7 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">):</span>
                 <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="s2">&quot;If providing a file-like object for reading molecules, the format must be specified&quot;</span>
                 <span class="p">)</span>
             <span class="c1"># Assume that files ending in &quot;.gz&quot; should use their second-to-last suffix for compatibility check</span>
@@ -4059,6 +4158,7 @@
                         <span class="s2">&quot;is likely to be lost. PDBs can be used along with a valid smiles string with RDKit using &quot;</span>
                         <span class="s2">&quot;the constructor Molecule.from_pdb_and_smiles(file_path, smiles)&quot;</span>
                     <span class="p">)</span>
+
                 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
@@ -4099,7 +4199,7 @@
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mols</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to read molecule from file: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">MoleculeParseError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to read molecule from file: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">mols</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">mols</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -4111,9 +4211,13 @@
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">file_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TextIO</span><span class="p">],</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Loads a polymer from a PDB file.</span>
+
+<span class="sd">        Also see :py:meth:`Topology.from_multicomponent_pdb`, which can do</span>
+<span class="sd">        everything this method can and more.</span>
 
 <span class="sd">        Currently only supports proteins with canonical amino acids that are</span>
 <span class="sd">        either uncapped or capped by ACE/NME groups, but may later be extended</span>
@@ -4140,6 +4244,8 @@
 <span class="sd">            PDB information to be passed to OpenMM PDBFile object for loading</span>
 <span class="sd">        toolkit_registry = ToolkitWrapper or ToolkitRegistry. Default = None</span>
 <span class="sd">            Either a ToolkitRegistry, ToolkitWrapper</span>
+<span class="sd">        name : str, default=&quot;&quot;</span>
+<span class="sd">            An optional name for the output molecule</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -4173,7 +4279,10 @@
             <span class="n">substructure_dictionary</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">subfile</span><span class="p">)</span>
 
         <span class="n">offmol</span> <span class="o">=</span> <span class="n">toolkit_registry</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
-            <span class="s2">&quot;_polymer_openmm_topology_to_offmol&quot;</span><span class="p">,</span> <span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="n">substructure_dictionary</span>
+            <span class="s2">&quot;_polymer_openmm_topology_to_offmol&quot;</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="p">,</span>
+            <span class="n">pdb</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span>
+            <span class="n">substructure_dictionary</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">coords</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
@@ -4202,6 +4311,8 @@
                 <span class="o">+</span> <span class="s2">&quot;each molecule into its own PDB with another tool, and &quot;</span>
                 <span class="o">+</span> <span class="s2">&quot;load any small molecules with Molecule.from_pdb_and_smiles.&quot;</span>
             <span class="p">)</span>
+
+        <span class="n">offmol</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
         <span class="k">return</span> <span class="n">offmol</span>
 
@@ -4457,7 +4568,10 @@
     <span class="nd">@classmethod</span>
     <span class="nd">@RDKitToolkitWrapper</span><span class="o">.</span><span class="n">requires_toolkit</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">from_rdkit</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">rdmol</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">hydrogens_are_explicit</span><span class="o">=</span><span class="kc">False</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">rdmol</span><span class="p">,</span>
+        <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">hydrogens_are_explicit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a Molecule from an RDKit molecule.</span>
@@ -4924,7 +5038,9 @@
 
     <span class="nd">@classmethod</span>
     <span class="nd">@RDKitToolkitWrapper</span><span class="o">.</span><span class="n">requires_toolkit</span><span class="p">()</span>
-    <span class="k">def</span> <span class="nf">from_pdb_and_smiles</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">smiles</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_pdb_and_smiles</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">smiles</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a Molecule from a pdb file and a SMILES string using RDKit.</span>
 
@@ -4948,6 +5064,8 @@
 <span class="sd">            a valid smiles string for the pdb, used for stereochemistry, formal charges, and bond order</span>
 <span class="sd">        allow_undefined_stereo : bool, default=False</span>
 <span class="sd">            If false, raises an exception if SMILES contains undefined stereochemistry.</span>
+<span class="sd">        name : str, default=&quot;&quot;</span>
+<span class="sd">            An optional name for the output molecule</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        --------</span>
@@ -4962,7 +5080,7 @@
 
         <span class="n">toolkit</span> <span class="o">=</span> <span class="n">RDKitToolkitWrapper</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">from_pdb_and_smiles</span><span class="p">(</span>
-            <span class="n">file_path</span><span class="p">,</span> <span class="n">smiles</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="p">,</span> <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span>
+            <span class="n">file_path</span><span class="p">,</span> <span class="n">smiles</span><span class="p">,</span> <span class="n">allow_undefined_stereo</span><span class="p">,</span> <span class="n">_cls</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">canonical_order_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">):</span>
@@ -5398,63 +5516,7 @@
 
 <div class="viewcode-block" id="Molecule.__init__"><a class="viewcode-back" href="../../../../generated/openff.toolkit.topology.Molecule.html#openff.toolkit.topology.Molecule.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a new Molecule object</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        other : optional, default=None</span>
-<span class="sd">            If specified, attempt to construct a copy of the molecule from the</span>
-<span class="sd">            specified object. This can be any one of the following:</span>
-
-<span class="sd">            * a :class:`Molecule` object</span>
-<span class="sd">            * a file that can be used to construct a :class:`Molecule` object</span>
-<span class="sd">            * an ``openeye.oechem.OEMol``</span>
-<span class="sd">            * an ``rdkit.Chem.rdchem.Mol``</span>
-<span class="sd">            * a serialized :class:`Molecule` object</span>
-
-<span class="sd">        Examples</span>
-<span class="sd">        --------</span>
-
-<span class="sd">        Create an empty molecule:</span>
-
-<span class="sd">        &gt;&gt;&gt; empty_molecule = Molecule()</span>
-
-<span class="sd">        Create a molecule from a file that can be used to construct a molecule,</span>
-<span class="sd">        using either a filename or file-like object:</span>
-
-<span class="sd">        &gt;&gt;&gt; from openff.toolkit.utils import get_data_file_path</span>
-<span class="sd">        &gt;&gt;&gt; sdf_filepath = get_data_file_path(&#39;molecules/ethanol.sdf&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; molecule = Molecule(sdf_filepath)</span>
-<span class="sd">        &gt;&gt;&gt; molecule = Molecule(open(sdf_filepath, &#39;r&#39;), file_format=&#39;sdf&#39;)</span>
-
-<span class="sd">        &gt;&gt;&gt; import gzip</span>
-<span class="sd">        &gt;&gt;&gt; mol2_gz_filepath = get_data_file_path(&#39;molecules/toluene.mol2.gz&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; molecule = Molecule(gzip.GzipFile(mol2_gz_filepath, &#39;r&#39;), file_format=&#39;mol2&#39;)</span>
-
-<span class="sd">        Create a molecule from another molecule:</span>
-
-<span class="sd">        &gt;&gt;&gt; molecule_copy = Molecule(molecule)</span>
-
-<span class="sd">        Convert to OpenEye OEMol object</span>
-
-<span class="sd">        &gt;&gt;&gt; oemol = molecule.to_openeye()</span>
-
-<span class="sd">        Create a molecule from an OpenEye molecule:</span>
-
-<span class="sd">        &gt;&gt;&gt; molecule = Molecule(oemol)</span>
-
-<span class="sd">        Convert to RDKit Mol object</span>
-
-<span class="sd">        &gt;&gt;&gt; rdmol = molecule.to_rdkit()</span>
-
-<span class="sd">        Create a molecule from an RDKit molecule:</span>
-
-<span class="sd">        &gt;&gt;&gt; molecule = Molecule(rdmol)</span>
-
-<span class="sd">        Convert the molecule into a dictionary and back again:</span>
-
-<span class="sd">        &gt;&gt;&gt; serialized_molecule = molecule.to_dict()</span>
-<span class="sd">        &gt;&gt;&gt; molecule_copy = Molecule(serialized_molecule)</span>
+<span class="sd">        See FrozenMolecule.__init__</span>
 
 <span class="sd">        .. todo ::</span>
 
@@ -5711,7 +5773,8 @@
                 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
                     <span class="s2">&quot;RDKit was requested as a visualization backend but &quot;</span>
                     <span class="s2">&quot;it was not found to be installed. Falling back to &quot;</span>
-                    <span class="s2">&quot;trying to use OpenEye for visualization.&quot;</span>
+                    <span class="s2">&quot;trying to use OpenEye for visualization.&quot;</span><span class="p">,</span>
+                    <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="n">backend</span> <span class="o">=</span> <span class="s2">&quot;openeye&quot;</span>
         <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;openeye&quot;</span><span class="p">:</span>
@@ -5876,7 +5939,7 @@
     <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The graph must be a NetworkX graph.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The graph must be a NetworkX graph.&quot;</span><span class="p">)</span>
 
     <span class="n">atom_nums</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;atomic_number&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
     <span class="k">return</span> <span class="n">_atom_nums_to_hill_formula</span><span class="p">(</span><span class="n">atom_nums</span><span class="p">)</span>
@@ -6310,10 +6373,10 @@
               
           </div>
           Last updated on
-            Mar 23, 2023.
+            May 04, 2023.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.17.1: http://docutils.sourceforge.net/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.19: https://docutils.sourceforge.io/" name="generator"/>
 <link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
 <link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -24,10 +24,12 @@
 <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="_static/openff.css" rel="stylesheet" type="text/css"/>
 <link href="_static/autodoc_pydantic.css" rel="stylesheet" type="text/css"/>
+<link href="_static/css/rtd_sphinx_search.min.css" rel="stylesheet" type="text/css"/>
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-<script src="_static/jquery.js"></script>
-<script src="_static/underscore.js"></script>
 <script src="_static/doctools.js"></script>
+<script src="_static/sphinx_highlight.js"></script>
+<script src="_static/js/rtd_search_config.js"></script>
+<script src="_static/js/rtd_sphinx_search.min.js"></script>
 <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
 <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
 <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -56,7 +58,7 @@
 <span> additional_samples_with_very_long_name </span>
 </div>
 <div class="navbar-end">
-<span class="navbar-item nav-search is-hidden-mobile">
+<span class="navbar-item nav-search is-hidden-mobile" role="search">
 <form action="search.html" method="GET" name="search">
 <div class="control has-icons-right">
 <span class="icon is-small is-right">
@@ -107,7 +109,7 @@
                 OpenFF Sphinx theme
               </h1>
 </a>
-<div class="py-3">
+<div class="py-3" role="search">
 <form action="search.html" method="GET" name="search">
 <div class="control has-icons-right">
 <span class="icon is-small is-right">
@@ -121,6 +123,9 @@
 <nav class="menu ff-globaltoc">
 <p class="menu-label"><span class="caption-text">Basic Use</span></p>
 <ul class="menu-list">
+<li>
+<a class="" href="index.html">Overview</a>
+</li>
 <li>
 <a class="" href="customization.html">Customization</a>
 </li>
@@ -181,24 +186,24 @@
 <div class="column is-8-desktop is-9-tablet">
 <article class="content">
 <section id="additional-samples-with-very-long-name">
-<h1><code class="docutils literal notranslate"><span class="pre">additional_samples_with_very_long_name</span></code><a class="headerlink" href="#additional-samples-with-very-long-name" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">additional_samples_with_very_long_name</span></code><a class="headerlink" href="#additional-samples-with-very-long-name" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
 <p>Various examples of styling applied to Sphinx constructs. You can
 view the <a class="reference external" href="./_sources/examples.txt">source</a> of this page to see the specific
 reStructuredText used to create these examples.</p>
 <section id="headings">
-<h2>Headings<a class="headerlink" href="#headings" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Headings<a class="headerlink" href="#headings" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>This is a second level heading (<code class="docutils literal notranslate"><span class="pre">h2</span></code>).</p>
 <section id="sub-heading">
-<h3>Sub-Heading<a class="headerlink" href="#sub-heading" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Sub-Heading<a class="headerlink" href="#sub-heading" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <p>This is a third level heading (<code class="docutils literal notranslate"><span class="pre">h3</span></code>).</p>
 <section id="sub-sub-heading">
-<h4>Sub-Sub-Heading<a class="headerlink" href="#sub-sub-heading" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
+<h4>Sub-Sub-Heading<a class="headerlink" href="#sub-sub-heading" title="Permalink to this heading"><i class="fas fa-link"></i></a></h4>
 <p>This is a fourth level heading (<code class="docutils literal notranslate"><span class="pre">h4</span></code>).</p>
 </section>
 </section>
 </section>
 <section id="code">
-<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>The theme uses pygments for <code class="docutils literal notranslate"><span class="pre">inline</span> <span class="pre">code</span> <span class="pre">text</span></code> and</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">multiline</span>
 <span class="n">code</span> <span class="n">text</span>
@@ -398,7 +403,7 @@ reStructuredText used to create these examples.</p>
 <span class="linenos">191</span><span class="k">def</span> <span class="nf">ul_to_list</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">bs4</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">Tag</span><span class="p">,</span> <span class="n">fix_root</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">page_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
 <span class="linenos">192</span>    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="linenos">193</span>    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">"li"</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="linenos">194</span>        <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">isspace</span><span class="p">)</span> <span class="ow">and</span> <span class="n">child</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+<span class="linenos">194</span>        <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">isspace</span><span class="p">)</span> <span class="ow">and</span> <span class="n">child</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
 <span class="linenos">195</span>            <span class="k">continue</span>
 <span class="linenos">196</span>        <span class="n">formatted</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="linenos">197</span>        <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -423,7 +428,7 @@ reStructuredText used to create these examples.</p>
 <span class="linenos">216</span>    <span class="k">try</span><span class="p">:</span>
 <span class="linenos">217</span>        <span class="n">toc</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">toc_text</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s2">"html.parser"</span><span class="p">)</span>
 <span class="linenos">218</span>        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">toc</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-<span class="linenos">219</span>            <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">isspace</span><span class="p">)</span> <span class="ow">and</span> <span class="n">child</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+<span class="linenos">219</span>            <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">isspace</span><span class="p">)</span> <span class="ow">and</span> <span class="n">child</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
 <span class="linenos">220</span>                <span class="k">continue</span>
 <span class="linenos">221</span>            <span class="k">if</span> <span class="n">child</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"p"</span><span class="p">:</span>
 <span class="linenos">222</span>                <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"caption"</span><span class="p">:</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">contents</span><span class="p">))})</span>
@@ -485,73 +490,86 @@ reStructuredText used to create these examples.</p>
 </div>
 </section>
 <section id="admonitions">
-<h2>Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>The theme uses the <code class="docutils literal notranslate"><span class="pre">admonition</span></code> classes for the standard Sphinx admonitions.</p>
 <section id="warning">
-<h3>Warning<a class="headerlink" href="#warning" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Warning<a class="headerlink" href="#warning" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This is a <strong>warning</strong>.</p>
 </div>
 </section>
 <section id="attention">
-<h3>Attention<a class="headerlink" href="#attention" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Attention<a class="headerlink" href="#attention" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Do I have your <strong>attention</strong>?</p>
 </div>
 </section>
 <section id="caution">
-<h3>Caution<a class="headerlink" href="#caution" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Caution<a class="headerlink" href="#caution" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>Use <strong>caution</strong>!</p>
 </div>
 </section>
 <section id="danger">
-<h3>Danger<a class="headerlink" href="#danger" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Danger<a class="headerlink" href="#danger" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
 <p>This is <strong>danger</strong>-ous.</p>
 </div>
 </section>
 <section id="error">
-<h3>Error<a class="headerlink" href="#error" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Error<a class="headerlink" href="#error" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition error">
 <p class="admonition-title">Error</p>
 <p>You have made a grave <strong>error</strong>.</p>
 </div>
 </section>
 <section id="hint">
-<h3>Hint<a class="headerlink" href="#hint" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Hint<a class="headerlink" href="#hint" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Can you take a <strong>hint</strong>?</p>
 </div>
 </section>
 <section id="important">
-<h3>Important<a class="headerlink" href="#important" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Important<a class="headerlink" href="#important" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>It is <strong>important</strong> to correctly use admonitions.</p>
 </div>
 </section>
 <section id="note">
-<h3>Note<a class="headerlink" href="#note" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Note<a class="headerlink" href="#note" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is a <strong>note</strong>.</p>
 </div>
 </section>
 <section id="tip">
-<h3>Tip<a class="headerlink" href="#tip" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Tip<a class="headerlink" href="#tip" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Please <strong>tip</strong> your waiter.</p>
 </div>
 </section>
+<section id="deprecated">
+<h3>Deprecated<a class="headerlink" href="#deprecated" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 999.999.999: </span>This API point was <strong>deprecated</strong>.</p>
+</div>
+</section>
+<section id="todo">
+<h3>Todo<a class="headerlink" href="#todo" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>This is something we are yet <strong>to do</strong>.</p>
+</div>
+</section>
 <section id="custom-admonitions">
-<h3>Custom Admonitions<a class="headerlink" href="#custom-admonitions" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Custom Admonitions<a class="headerlink" href="#custom-admonitions" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="admonition-an-admonition-of-my-own-making admonition">
 <p class="admonition-title">An admonition of my own making</p>
 <p>You can create your own admonitions with the accent color.</p>
@@ -572,24 +590,31 @@ reStructuredText used to create these examples.</p>
 <p class="admonition-title">Success</p>
 <p>Woohoo!</p>
 </div>
+<div class="admonition-experimental admonition">
+<p class="admonition-title">Experimental</p>
+<p>Experiments are the heart of science</p>
+</div>
 </section>
 </section>
 <section id="footnotes">
-<h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>I have footnoted a first item <a class="footnote-reference brackets" href="#f1" id="id1">1</a> and second item <a class="footnote-reference brackets" href="#f2" id="id2">2</a>.
-This also references the second item <a class="footnote-reference brackets" href="#f2" id="id3">2</a>.</p>
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<p>I have footnoted a first item <a class="footnote-reference brackets" href="#f1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> and second item <a class="footnote-reference brackets" href="#f2" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.
+This also references the second item <a class="footnote-reference brackets" href="#f2" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
 <p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>My first footnote.</p>
-</dd>
-<dt class="label" id="f2"><span class="brackets">2</span><span class="fn-backref">(<a href="#id2">1</a>,<a href="#id3">2</a>)</span></dt>
-<dd><p>My second footnote.</p>
-</dd>
-</dl>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a href="#id2" role="doc-backlink">1</a><span class="fn-bracket">]</span></span>
+<p>My first footnote.</p>
+</aside>
+<aside class="footnote brackets" id="f2" role="note">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a href="#id3" role="doc-backlink">1</a>,<a href="#id4" role="doc-backlink">2</a>)</span>
+<p>My second footnote.</p>
+</aside>
+</aside>
 </section>
 <section id="icons">
-<h2>Icons<a class="headerlink" href="#icons" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Icons<a class="headerlink" href="#icons" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p><a class="reference external" href="https://fontawesome.com">Font Awesome</a> and <a class="reference external" href="https://jpswalsh.github.io/academicons/">Academicons</a> are both available:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">"fa fa-camera-retro fa-lg"</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">"fa fa-camera-retro fa-2x"</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
@@ -608,19 +633,13 @@ This also references the second item <a class="footnote-reference brackets" href
 <i class="ai ai-google-scholar-square ai-3x"></i>
 <i class="ai ai-zenodo ai-3x" style="color: red"></i></section>
 <section id="tables">
-<h2>Tables<a class="headerlink" href="#tables" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Tables<a class="headerlink" href="#tables" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>Here are some examples of Sphinx
 <a class="reference external" href="http://www.sphinx-doc.org/rest.html#rst-tables">tables</a>.</p>
 <section id="grid">
-<h3>Grid<a class="headerlink" href="#grid" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Grid<a class="headerlink" href="#grid" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <p>A grid table:</p>
 <div class="table-container docutils align-default"><table class="docutils align-default">
-<colgroup>
-<col style="width: 43%"/>
-<col style="width: 21%"/>
-<col style="width: 18%"/>
-<col style="width: 18%"/>
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Header1</p></th>
 <th class="head"><p>Header2</p></th>
@@ -648,14 +667,9 @@ This also references the second item <a class="footnote-reference brackets" href
 </table></div>
 </section>
 <section id="simple">
-<h3>Simple<a class="headerlink" href="#simple" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<h3>Simple<a class="headerlink" href="#simple" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
 <p>A simple table:</p>
 <div class="table-container docutils align-default"><table class="docutils align-default">
-<colgroup>
-<col style="width: 29%"/>
-<col style="width: 29%"/>
-<col style="width: 41%"/>
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>H1</p></th>
 <th class="head"><p>H2</p></th>
@@ -679,13 +693,9 @@ This also references the second item <a class="footnote-reference brackets" href
 </table></div>
 </section>
 <section id="list-tables">
-<h3>List Tables<a class="headerlink" href="#list-tables" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<div class="table-container docutils align-default"><table class="docutils align-default" id="id5">
-<caption><span class="caption-text">A List Table</span><a class="headerlink" href="#id5" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
-</colgroup>
+<h3>List Tables<a class="headerlink" href="#list-tables" title="Permalink to this heading"><i class="fas fa-link"></i></a></h3>
+<div class="table-container docutils align-default"><table class="docutils align-default" id="id6">
+<caption><span class="caption-text">A List Table</span><a class="headerlink" href="#id6" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Column 1</p></th>
 <th class="head"><p>Column 2</p></th>
@@ -697,11 +707,11 @@ This also references the second item <a class="footnote-reference brackets" href
 </tr>
 </tbody>
 </table></div>
-<div class="table-container colwidths-given docutils align-default"><table class="colwidths-given docutils align-default" id="id6" style="width: 50%">
-<caption><span class="caption-text">50% width list table</span><a class="headerlink" href="#id6" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
+<div class="table-container docutils align-default"><table class="docutils align-default" id="id7" style="width: 50%">
+<caption><span class="caption-text">50% width list table</span><a class="headerlink" href="#id7" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
 <colgroup>
-<col style="width: 20%"/>
-<col style="width: 80%"/>
+<col style="width: 20.0%"/>
+<col style="width: 80.0%"/>
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>One fifth width column</p></th>
@@ -715,13 +725,9 @@ This also references the second item <a class="footnote-reference brackets" href
 </tbody>
 </table></div>
 <section id="alignment">
-<h4>Alignment<a class="headerlink" href="#alignment" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
-<div class="table-container docutils align-left"><table class="docutils align-left" id="id7">
-<caption><span class="caption-text">Left Aligned</span><a class="headerlink" href="#id7" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
-</colgroup>
+<h4>Alignment<a class="headerlink" href="#alignment" title="Permalink to this heading"><i class="fas fa-link"></i></a></h4>
+<div class="table-container docutils align-left"><table class="docutils align-left" id="id8">
+<caption><span class="caption-text">Left Aligned</span><a class="headerlink" href="#id8" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Column 1</p></th>
 <th class="head"><p>Column 2</p></th>
@@ -733,12 +739,8 @@ This also references the second item <a class="footnote-reference brackets" href
 </tr>
 </tbody>
 </table></div>
-<div class="table-container docutils align-center"><table class="docutils align-center" id="id8">
-<caption><span class="caption-text">Center Aligned</span><a class="headerlink" href="#id8" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
-</colgroup>
+<div class="table-container docutils align-center"><table class="docutils align-center" id="id9">
+<caption><span class="caption-text">Center Aligned</span><a class="headerlink" href="#id9" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Column 1</p></th>
 <th class="head"><p>Column 2</p></th>
@@ -750,12 +752,8 @@ This also references the second item <a class="footnote-reference brackets" href
 </tr>
 </tbody>
 </table></div>
-<div class="table-container docutils align-right"><table class="docutils align-right" id="id9">
-<caption><span class="caption-text">Right Aligned</span><a class="headerlink" href="#id9" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
-<colgroup>
-<col style="width: 50%"/>
-<col style="width: 50%"/>
-</colgroup>
+<div class="table-container docutils align-right"><table class="docutils align-right" id="id10">
+<caption><span class="caption-text">Right Aligned</span><a class="headerlink" href="#id10" title="Permalink to this table"><i class="fas fa-link"></i></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Treat</p></th>
 <th class="head"><p>Quantity</p></th>
@@ -777,14 +775,14 @@ This also references the second item <a class="footnote-reference brackets" href
 </section>
 </section>
 <section id="code-documentation">
-<h2>Code Documentation<a class="headerlink" href="#code-documentation" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Code Documentation<a class="headerlink" href="#code-documentation" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>An example Python function.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="format_exception">
 <span class="sig-name descname"><span class="pre">format_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">etype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tb</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">limit=None</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#format_exception" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Format the exception with a traceback.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>etype</strong> – exception type</p></li>
 <li><p><strong>value</strong> – exception value</p></li>
@@ -792,8 +790,8 @@ This also references the second item <a class="footnote-reference brackets" href
 <li><p><strong>limit</strong> (<em>integer</em><em> or </em><em>None</em>) – maximum number of stack frames to show</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list of strings</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a> of strings</p>
 </dd>
 </dl>
 </dd></dl>
@@ -802,7 +800,7 @@ This also references the second item <a class="footnote-reference brackets" href
 <dt class="sig sig-object js" id="MyAnimal">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="n"><span class="pre">MyAnimal</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">age</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#MyAnimal" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Arguments</dt>
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The name of the animal</p></li>
 <li><p><strong>age</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – an optional age for the animal</p></li>
@@ -812,8 +810,8 @@ This also references the second item <a class="footnote-reference brackets" href
 </dd></dl>
 </section>
 <section id="glossaries">
-<h2>Glossaries<a class="headerlink" href="#glossaries" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<dl class="glossary simple">
+<h2>Glossaries<a class="headerlink" href="#glossaries" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<dl class="simple glossary">
 <dt id="term-environment">environment<a class="headerlink" href="#term-environment" title="Permalink to this term"><i class="fas fa-link"></i></a></dt><dd><p>A structure where information about all documents under the root is
 saved, and used for cross-referencing.  The environment is pickled
 after the parsing stage, so that successive runs only need to read
@@ -825,7 +823,7 @@ source files for one Sphinx project.</p>
 </dl>
 </section>
 <section id="math">
-<h2>Math<a class="headerlink" href="#math" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Math<a class="headerlink" href="#math" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <div class="math notranslate nohighlight">
 \[ \begin{align}\begin{aligned}(a + b)^2 = a^2 + 2ab + b^2\\(a - b)^2 = a^2 - 2ab + b^2\end{aligned}\end{align} \]</div>
 <div class="math notranslate nohighlight">
@@ -837,14 +835,14 @@ source files for one Sphinx project.</p>
    f(x) &amp; = &amp; x^2 + 2xy + y^2
 \end{eqnarray}</div></section>
 <section id="production-lists">
-<h2>Production Lists<a class="headerlink" href="#production-lists" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<h2>Production Lists<a class="headerlink" href="#production-lists" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <pre>
-<strong id="grammar-token-try_stmt"><span id="grammar-token-try-stmt"></span>try_stmt </strong> ::=  try1_stmt | try2_stmt
-<strong id="grammar-token-try1_stmt"><span id="grammar-token-try1-stmt"></span>try1_stmt</strong> ::=  "try" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>
+<strong id="grammar-token-try_stmt">try_stmt </strong> ::=  try1_stmt | try2_stmt
+<strong id="grammar-token-try1_stmt">try1_stmt</strong> ::=  "try" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>
                ("except" [<code class="xref docutils literal notranslate"><span class="pre">expression</span></code> ["," <code class="xref docutils literal notranslate"><span class="pre">target</span></code>]] ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>)+
                ["else" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>]
                ["finally" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>]
-<strong id="grammar-token-try2_stmt"><span id="grammar-token-try2-stmt"></span>try2_stmt</strong> ::=  "try" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>
+<strong id="grammar-token-try2_stmt">try2_stmt</strong> ::=  "try" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>
                "finally" ":" <code class="xref docutils literal notranslate"><span class="pre">suite</span></code>
 </pre>
 </section>
@@ -874,6 +872,8 @@ source files for one Sphinx project.</p>
 <li><a class="reference internal" href="#important">Important</a></li>
 <li><a class="reference internal" href="#note">Note</a></li>
 <li><a class="reference internal" href="#tip">Tip</a></li>
+<li><a class="reference internal" href="#deprecated">Deprecated</a></li>
+<li><a class="reference internal" href="#todo">Todo</a></li>
 <li><a class="reference internal" href="#custom-admonitions">Custom Admonitions</a></li>
 </ul>
 </li>
@@ -888,7 +888,11 @@ source files for one Sphinx project.</p>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#code-documentation">Code Documentation</a></li>
+<li><a class="reference internal" href="#code-documentation">Code Documentation</a><ul>
+<li><a class="reference internal" href="#format_exception"><code class="docutils literal notranslate"><span class="pre">format_exception()</span></code></a></li>
+<li><a class="reference internal" href="#MyAnimal"><code class="docutils literal notranslate"><span class="pre">MyAnimal</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#glossaries">Glossaries</a></li>
 <li><a class="reference internal" href="#math">Math</a></li>
 <li><a class="reference internal" href="#production-lists">Production Lists</a></li>
@@ -930,10 +934,10 @@ source files for one Sphinx project.</p>
               
           </div>
           Last updated on
-            Mar 23, 2023.
+            May 04, 2023.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>
