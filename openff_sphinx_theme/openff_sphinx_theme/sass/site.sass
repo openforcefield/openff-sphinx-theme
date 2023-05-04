@@ -31,6 +31,7 @@
 @import "bulma/sass/utilities/functions.sass"
 @import "utilities/_convert"
 @import "utilities/_z-depth"
+@import "utilities/_overflow"
 
 $openff-blue: rgb(1, 84, 128)
 $openff-toolkit-blue: rgb(47, 158, 210)
@@ -131,6 +132,8 @@ $breadcrumb-item-separator-color-light: findColorInvert($breadcrumb-item-separat
 html
     scroll-padding-top: $navbar-height + $below-navbar-spacing
 
+.column
+    container: column / inline-size
 .content
     @import "material-content.scss"
     @import "sphinx-content.scss"
