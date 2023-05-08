@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+  <link rel="icon" type="image/svg" href="../_static/images/favicon.svg" />
+  <link rel="apple-touch-icon" type="image/svg" href="../_static/images/favicon.svg" />
+  
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../_static/site.css"/>
+  
+  <meta name="theme-color" content="#015480;">
+  
+  
+    <title>Overview: module code &#8212; OpenFF Sphinx theme</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/openff.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/rtd_sphinx_search.min.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/rtd_search_config.js"></script>
+    <script src="../_static/js/rtd_sphinx_search.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-accent=openff-toolkit-blue
+        class="has-navbar-fixed-top">
+  <header data-md-component="header">
+  <nav class="navbar is-primary is-fixed-top is-flex-touch has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a href="../index.html" title="OpenFF Sphinx theme" class="navbar-item is-hidden-mobile">
+        
+          <img src="../_static/images/logos/openforcefield_v1_white.png" alt="OpenFF Sphinx theme logo">
+        
+      </a>
+    </div>
+
+    <div class="has-text-light is-hidden-mobile nav-title">
+      <div class="breadcrumb">
+  <ul>
+        <li><a href="../index.html">OpenFF Sphinx theme</a></li>
+      <li class="is-active"><a href="#">Overview: module code</a></li>
+  </ul>
+</div>
+    </div>
+    <div class="has-text-light is-hidden-tablet nav-title">
+      <span> Overview: module code </span>
+    </div>
+
+    <div class="navbar-end">
+      <span class="navbar-item nav-search is-hidden-mobile" role="search">
+        <form action="../search.html" method="GET" name="search">
+  <div class="control has-icons-right">
+    <span class="icon is-small is-right">
+      <i class="fas fa-search"></i>
+    </span>
+    <input class="input is-primary" type="text"  name="q" placeholder="Search"
+         autocapitalize="off" autocomplete="off" spellcheck="false">
+  </div>
+</form>
+      </span>
+      
+        <a href="https://github.com/openforcefield/openff-sphinx-theme/" class="is-family-monospace navbar-item is-hidden-touch has-text-light">
+          
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>
+          
+            openff-sphinx-theme
+          
+            </span>
+          </span>
+          
+        </a>
+      
+      <a href="https://docs.openforcefield.org/" class="navbar-item is-hidden-touch">
+        <img
+          src="../_static/images/logos/openforcefield_v2_white.png"
+          alt="Open Force Field Initiative logo"
+        >
+      </a>
+    </div>
+    <span class="navbar-burger-spacer is-hidden-tablet"></span>
+  </nav>
+
+  
+
+  <div class="level is-hidden-mobile nav-tabs">
+      
+      <div class="level-item has-text-centered"><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div>
+      
+      <div class="level-item has-text-centered"><a href="https://bashtage.github.io/sphinx-material/">Material for Sphinx</a></div>
+      
+      <div class="level-item has-text-centered"><a href="https://openforcefield.org">The OpenFF Initiative</a></div>
+      
+      <div class="level-item has-text-centered"><a href="https://github.com/openforcefield/openff-sphinx-theme/">openff-sphinx-theme on GitHub</a></div>
+  </div>
+
+</header>
+
+  
+  <main class="mb-6">
+      <div class="columns">
+        <input type="checkbox" id="drawer-toggle" class="is-hidden">
+        <label for="drawer-toggle" role="button" class="navbar-burger burger is-light is-hidden-tablet">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </label>
+
+        <aside class="column is-2-desktop is-3-tablet" id="drawer">
+          <div class="is-hidden-tablet clip-siblings">
+            <a href="../index.html" title="OpenFF Sphinx theme">
+              <h1>
+                OpenFF Sphinx theme
+              </h1>
+            </a>
+            
+              <div class="py-3" role="search">
+                <form action="../search.html" method="GET" name="search">
+  <div class="control has-icons-right">
+    <span class="icon is-small is-right">
+      <i class="fas fa-search"></i>
+    </span>
+    <input class="input is-primary" type="text"  name="q" placeholder="Search"
+         autocapitalize="off" autocomplete="off" spellcheck="false">
+  </div>
+</form>
+              </div>
+            
+          </div>
+          
+<nav class="menu ff-globaltoc">
+          
+          <p class="menu-label"><span class="caption-text">Basic Use</span></p>
+          <ul class="menu-list">
+        
+      
+          
+          <li>
+            <a href="../customization.html" class="">Customization</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../specimen.html" class="">Specimen</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../additional_samples.html" class=""><code class="docutils literal notranslate"><span class="pre">additional_samples_with_very_long_name</span></code></a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../subpage/index.html" class=""><code class="docutils literal notranslate"><span class="pre">Level</span> <span class="pre">1</span></code> page</a>
+            
+            </li>
+          
+        
+      
+          
+            </ul>
+          
+          <p class="menu-label"><span class="caption-text">Other Examples and Uses</span></p>
+          <ul class="menu-list">
+        
+      
+          
+          <li>
+            <a href="../pymethod.html" class="">Python Methods</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../numpydoc_example.html" class="">NumPy Docstrings</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../autodoc_pydantic_example.html" class="">autodoc_pydantic API Docs</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../numpydoc.html" class="">Openff-toolkit example</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../pydantic.html" class="">Pydantic API docs</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../notebook.html" class="">Jupyter Notebooks</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../markdown.html" class="">Markdown</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../rst-cheatsheet/rst-cheatsheet.html" class="">rst Cheatsheet</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../primer.html" class="">reStructuredText Primer</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../expanded-tables.html" class="">Expanded tables</a>
+            
+            </li>
+          
+        
+      
+          
+            </ul>
+          
+          <p class="menu-label"><span class="caption-text">Changes and License</span></p>
+          <ul class="menu-list">
+        
+      
+          
+          <li>
+            <a href="../change-log.html" class="">Change Log</a>
+            
+            </li>
+          
+        
+      
+          
+          <li>
+            <a href="../license.html" class="">License</a>
+            
+            </li>
+          
+            </ul>
+          
+        
+      
+    </ul>
+  </nav>
+
+        </aside>
+
+        <div class="column is-8-desktop is-9-tablet">
+          <article class="content">
+            
+  <h1>All modules for which code is available</h1>
+<ul><li><a href="numpydoc_example.html">numpydoc_example</a></li>
+<li><a href="openff/qcsubmit/common_structures.html">openff.qcsubmit.common_structures</a></li>
+<li><a href="openff/qcsubmit/datasets/datasets.html">openff.qcsubmit.datasets.datasets</a></li>
+<li><a href="openff/toolkit/topology/molecule.html">openff.toolkit.topology.molecule</a></li>
+<li><a href="openff/toolkit/utils/serialization.html">openff.toolkit.utils.serialization</a></li>
+<li><a href="pydantic/main.html">pydantic.main</a></li>
+<li><a href="pydantic_example.html">pydantic_example</a></li>
+</ul>
+
+          </article>
+        </div>
+
+        <aside class="column is-hidden-touch is-2">
+          
+        </aside>
+      </div>
+  </main>
+  <footer class="footer">
+  <div class="footer-content">
+    <div class="columns">
+      <div class="fineprint column">
+          <div class="copyright">
+              &#169; Copyright 2021, Open Force Field Initiative.
+              
+          </div>
+          Last updated on
+            May 08, 2023.
+          <br/>
+          Created using
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+           and
+          <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
+      </div>
+      <div class="socials column">
+        <p class="pb-3">An <a href="https://openforcefield.org/" class="has-text-white">Open Force Field Initiative</a> project.</p>
+        <div>
+          
+            
+              
+                <a href="https://zenodo.org/communities/openforcefield/" class="icon has-text-light is-medium" title="OpenFF on Zenodo">
+                  <i class="fa-lg ai-lg ai ai-zenodo"></i>
+                </a>
+              
+            
+              
+                <a href="https://www.youtube.com/channel/UCh0aJSUm_sYr7nuTzhW806g" class="icon has-text-light is-medium" title="OpenFF on YouTube">
+                  <i class="fa-lg ai-lg fab fa-youtube"></i>
+                </a>
+              
+            
+              
+                <a href="https://github.com/openforcefield" class="icon has-text-light is-medium" title="OpenFF on GitHub">
+                  <i class="fa-lg ai-lg fab fa-github"></i>
+                </a>
+              
+            
+              
+                <a href="https://twitter.com/openforcefield" class="icon has-text-light is-medium" title="OpenFF on Twitter">
+                  <i class="fa-lg ai-lg fab fa-twitter"></i>
+                </a>
+              
+            
+              
+                <a href="https://www.linkedin.com/company/openforcefield/" class="icon has-text-light is-medium" title="OpenFF on LinkedIn">
+                  <i class="fa-lg ai-lg fab fa-linkedin"></i>
+                </a>
+              
+            
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>
