@@ -2,7 +2,7 @@ name: docs
 channels:
   - conda-forge
 dependencies:
-  - python >= 3.7
+  - python >= 3.9
   - pip
   - openff-qcsubmit
   - openff-toolkit
@@ -17,11 +17,12 @@ dependencies:
   - nbconvert
   - ipykernel
   - autodoc-pydantic
-  - myst-parser>=0.13.6
+  - myst-parser~=1.0
   - pandoc
   - wheel
   - sphinx-autobuild
-  - sphinx>=5.2,<7
+  - sphinx>=6.2.1,<7
   - pip:
     - readthedocs-sphinx-search
+    - git+https://github.com/Yoshanuikabundi/MyST-NB.git@upgrade-to-1
 
