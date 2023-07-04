@@ -34,14 +34,17 @@
     <title>openff.toolkit.topology.molecule &#8212; OpenFF Sphinx theme</title>
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/openff.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/autodoc_pydantic.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/rtd_sphinx_search.min.css" />
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/rtd_search_config.js"></script>
     <script src="../../../../_static/js/rtd_sphinx_search.min.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
    
@@ -379,6 +382,8 @@
     <span class="n">BondExistsError</span><span class="p">,</span>
     <span class="n">HierarchySchemeNotFoundException</span><span class="p">,</span>
     <span class="n">HierarchySchemeWithIteratorNameAlreadyRegisteredException</span><span class="p">,</span>
+    <span class="n">IncompatibleShapeError</span><span class="p">,</span>
+    <span class="n">IncompatibleTypeError</span><span class="p">,</span>
     <span class="n">IncompatibleUnitError</span><span class="p">,</span>
     <span class="n">InvalidAtomMetadataError</span><span class="p">,</span>
     <span class="n">InvalidBondOrderError</span><span class="p">,</span>
@@ -413,18 +418,6 @@
 <span class="c1">#       Only support OEAroModel_MDL in RDKit version?</span>
 
 <span class="n">TKR</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">ToolkitRegistry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">]</span>
-
-
-<span class="k">def</span> <span class="nf">_molecule_deprecation</span><span class="p">(</span><span class="n">old_method</span><span class="p">,</span> <span class="n">new_method</span><span class="p">):</span>
-    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Molecule.</span><span class="si">{</span><span class="n">old_method</span><span class="si">}</span><span class="s2"> is deprecated. Use Molecule.</span><span class="si">{</span><span class="n">new_method</span><span class="si">}</span><span class="s2"> instead.&quot;</span><span class="p">,</span>
-        <span class="n">MoleculeDeprecationWarning</span><span class="p">,</span>
-        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">MoleculeDeprecationWarning</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Warning for deprecated portions of the Molecule API.&quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">Particle</span><span class="p">(</span><span class="n">Serializable</span><span class="p">):</span>
@@ -465,7 +458,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the index of this particle in its molecule</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_molecule</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -641,8 +634,8 @@
 <span class="sd">        Set the atom&#39;s formal charge. Accepts either ints or unit-wrapped ints with units of charge.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_formal_charge</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_formal_charge</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Quantity</span><span class="p">):</span>
             <span class="c1"># Faster to check equality than convert, so short-circuit</span>
             <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">units</span> <span class="ow">is</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">formal_charge</span> <span class="o">=</span> <span class="n">other</span>
@@ -697,14 +690,14 @@
                 <span class="s2">&quot;please raise an issue describing your use case.&quot;</span>
             <span class="p">)</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charge</span><span class="p">,</span> <span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charge</span><span class="p">,</span> <span class="p">(</span><span class="n">Quantity</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Cannot set partial charge with an object that is not a openff.unit.Quantity or float. &quot;</span>
                 <span class="sa">f</span><span class="s2">&quot;Found object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">charge</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charge</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
-            <span class="n">charge</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">charge</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="p">)</span>
+            <span class="n">charge</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">charge</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charge</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -1341,7 +1334,11 @@
                     <span class="n">loaded</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="c1"># TODO: Make this compatible with file-like objects (I couldn&#39;t figure out how to make an oemolistream</span>
             <span class="c1"># from a fileIO object)</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s2">&quot;read&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">loaded</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">))</span>
+                <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s2">&quot;read&quot;</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="ow">not</span> <span class="n">loaded</span>
+            <span class="p">):</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">mol</span> <span class="o">=</span> <span class="n">Molecule</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span>
                         <span class="n">other</span><span class="p">,</span>
@@ -1565,7 +1562,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="kn">from</span> <span class="nn">openff.toolkit.utils.utils</span> <span class="kn">import</span> <span class="n">deserialize_numpy</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span>
                 <span class="n">deserialize_numpy</span><span class="p">(</span><span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;partial_charges&quot;</span><span class="p">],</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,)),</span>
                 <span class="n">unit</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;partial_charge_unit&quot;</span><span class="p">]),</span>
             <span class="p">)</span>
@@ -1576,7 +1573,7 @@
             <span class="kn">from</span> <span class="nn">openff.toolkit.utils.utils</span> <span class="kn">import</span> <span class="n">deserialize_numpy</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
+                <span class="n">Quantity</span><span class="p">(</span>
                     <span class="n">deserialize_numpy</span><span class="p">(</span><span class="n">ser_conf</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
                     <span class="n">unit</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="n">molecule_dict</span><span class="p">[</span><span class="s2">&quot;conformers_unit&quot;</span><span class="p">]),</span>
                 <span class="p">)</span>
@@ -2261,8 +2258,9 @@
 <span class="sd">            The second molecule to test for isomorphism.</span>
 
 <span class="sd">        return_atom_map: bool, default=False, optional</span>
-<span class="sd">            Return a ``dict`` containing the atomic mapping instead of a</span>
-<span class="sd">            ``bool``.</span>
+<span class="sd">            Return a ``dict`` containing the atomic mapping, otherwise ``None``.</span>
+<span class="sd">            Only processed if inputs are isomorphic, will always return ``None`` if</span>
+<span class="sd">            inputs are not isomorphic.</span>
 
 <span class="sd">        aromatic_matching: bool, default=True, optional</span>
 <span class="sd">            If ``False``, aromaticity of graph nodes and edges are ignored for</span>
@@ -2345,7 +2343,10 @@
         <span class="c1"># Do a quick check to see whether the inputs are totally identical (including being in the same atom order)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">FrozenMolecule</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol2</span><span class="p">,</span> <span class="n">FrozenMolecule</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">mol1</span><span class="o">.</span><span class="n">_is_exactly_the_same_as</span><span class="p">(</span><span class="n">mol2</span><span class="p">):</span>
-                <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mol1</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">)}</span>
+                <span class="k">if</span> <span class="n">return_atom_map</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mol1</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">)}</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">None</span>
 
         <span class="c1"># Build the user defined matching functions</span>
         <span class="k">def</span> <span class="nf">node_match_func</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -2720,7 +2721,7 @@
         <span class="n">conformers</span><span class="p">[:,</span> <span class="n">cooh_indices</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">cooh_xyz</span>
 
         <span class="c1"># Return conformers to original type</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span> <span class="o">=</span> <span class="p">[</span><span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span> <span class="k">for</span> <span class="n">conf</span> <span class="ow">in</span> <span class="n">conformers</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span> <span class="o">=</span> <span class="p">[</span><span class="n">Quantity</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span> <span class="k">for</span> <span class="n">conf</span> <span class="ow">in</span> <span class="n">conformers</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">apply_elf_conformer_selection</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -3317,7 +3318,7 @@
                 <span class="sa">f</span><span class="s2">&quot;Given </span><span class="si">{</span><span class="n">coordinates</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">Quantity</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">is_compatible_with</span><span class="p">(</span><span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">IncompatibleUnitError</span><span class="p">(</span>
                     <span class="s2">&quot;Coordinates passed to Molecule._add_conformer with incompatible units. &quot;</span>
@@ -3349,7 +3350,7 @@
                 <span class="sa">f</span><span class="s2">&quot;openmm.unit.Quantity and openff.units.unit.Quantity, found type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
             <span class="p">)</span>
 
-        <span class="n">tmp_conf</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
+        <span class="n">tmp_conf</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span>
             <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span>
         <span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
@@ -3389,36 +3390,57 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">charges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">elif</span> <span class="n">charges</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,):</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charges</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">charges</span><span class="o">.</span><span class="n">units</span> <span class="ow">in</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="o">.</span><span class="n">compatible_units</span><span class="p">():</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">=</span> <span class="n">charges</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">charges</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">):</span>
-                <span class="kn">from</span> <span class="nn">openmm</span> <span class="kn">import</span> <span class="n">unit</span> <span class="k">as</span> <span class="n">openmm_unit</span>
+            <span class="k">return</span>
 
-                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charges</span><span class="p">,</span> <span class="n">openmm_unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">charges</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">IncompatibleTypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Unsupported type passed to partial_charges setter. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Found object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">charges</span><span class="p">)</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="s2">&quot;Expected openff.units.unit.Quantity&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">charges</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,):</span>
+            <span class="k">raise</span> <span class="n">IncompatibleShapeError</span><span class="p">(</span>
+                <span class="s2">&quot;Unsupported shape passed to partial_charges setter. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Found shape </span><span class="si">{</span><span class="n">charges</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charges</span><span class="p">,</span> <span class="n">Quantity</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">charges</span><span class="o">.</span><span class="n">units</span> <span class="ow">in</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="o">.</span><span class="n">compatible_units</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">=</span> <span class="n">charges</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">IncompatibleUnitError</span><span class="p">(</span>
+                    <span class="s2">&quot;Unsupported unit passed to partial_charges setter. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Found unit </span><span class="si">{</span><span class="n">charges</span><span class="o">.</span><span class="n">units</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">charges</span><span class="p">,</span> <span class="s2">&quot;unit&quot;</span><span class="p">):</span>
+            <span class="kn">from</span> <span class="nn">openmm</span> <span class="kn">import</span> <span class="n">unit</span> <span class="k">as</span> <span class="n">openmm_unit</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charges</span><span class="p">,</span> <span class="n">openmm_unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">IncompatibleUnitError</span><span class="p">(</span>
+                    <span class="s2">&quot;Unsupported type passed to partial_charges setter. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Found object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">charges</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">openff.units.openmm</span> <span class="kn">import</span> <span class="n">from_openmm</span>
+
+                <span class="n">converted</span> <span class="o">=</span> <span class="n">from_openmm</span><span class="p">(</span><span class="n">charges</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">converted</span><span class="o">.</span><span class="n">units</span> <span class="ow">in</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="o">.</span><span class="n">compatible_units</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">=</span> <span class="n">converted</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="n">IncompatibleUnitError</span><span class="p">(</span>
-                        <span class="s2">&quot;Unsupported type passed to partial_charges setter. &quot;</span>
-                        <span class="s2">&quot;Found object of type {type(charges)}.&quot;</span>
+                        <span class="s2">&quot;Unsupported unit passed to partial_charges setter. &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;Found unit </span><span class="si">{</span><span class="n">converted</span><span class="o">.</span><span class="n">units</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
 
-                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">charges</span><span class="p">,</span> <span class="n">openmm_unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">):</span>
-                    <span class="kn">from</span> <span class="nn">openff.units.openmm</span> <span class="kn">import</span> <span class="n">from_openmm</span>
-
-                    <span class="n">converted</span> <span class="o">=</span> <span class="n">from_openmm</span><span class="p">(</span><span class="n">charges</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">converted</span><span class="o">.</span><span class="n">units</span> <span class="ow">in</span> <span class="n">unit</span><span class="o">.</span><span class="n">elementary_charge</span><span class="o">.</span><span class="n">compatible_units</span><span class="p">():</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">=</span> <span class="n">converted</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_particles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 0.11.0</span>
-<span class="sd">            This property has been deprecated and will soon be removed. Use</span>
-<span class="sd">            :meth:`Molecule.n_atoms` instead.</span>
-<span class="sd">        ..</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_molecule_deprecation</span><span class="p">(</span><span class="s2">&quot;n_particles&quot;</span><span class="p">,</span> <span class="s2">&quot;n_atoms&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">IncompatibleTypeError</span><span class="p">(</span>
+                <span class="s2">&quot;Unsupported type passed to partial_charges setter. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Found object of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">charges</span><span class="p">)</span><span class="si">}</span><span class="s2">, &quot;</span>
+                <span class="s2">&quot;expected openff.units.unit.Quantity&quot;</span>
+            <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -3432,7 +3454,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of Bond objects in the molecule.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_bonds</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_angles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -3457,35 +3479,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="p">),</span> <span class="s2">&quot;_construct_torsions always sets _impropers to a set&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">particles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Atom</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 0.11.0</span>
-<span class="sd">            This property has been deprecated and will soon be removed. Use</span>
-<span class="sd">            :meth:`Molecule.atoms` instead.</span>
-<span class="sd">        ..</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_molecule_deprecation</span><span class="p">(</span><span class="s2">&quot;particles&quot;</span><span class="p">,</span> <span class="s2">&quot;atoms&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span>
-
-    <span class="k">def</span> <span class="nf">particle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Atom</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 0.11.0</span>
-<span class="sd">            This method has been deprecated and will soon be removed. Use</span>
-<span class="sd">            :meth:`Molecule.atom` instead.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_molecule_deprecation</span><span class="p">(</span><span class="s2">&quot;particle&quot;</span><span class="p">,</span> <span class="s2">&quot;atom&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">particle_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">particle</span><span class="p">:</span> <span class="n">Atom</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        .. deprecated:: 0.11.0</span>
-<span class="sd">            This method has been deprecated and will soon be removed. Use</span>
-<span class="sd">            :meth:`Molecule.atom_index` instead.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_molecule_deprecation</span><span class="p">(</span><span class="s2">&quot;particle_index&quot;</span><span class="p">,</span> <span class="s2">&quot;atom_index&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom_index</span><span class="p">(</span><span class="n">particle</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -3625,9 +3618,7 @@
 <span class="sd">        smirnoff_impropers, amber_impropers</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_construct_torsions</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">),</span> <span class="s2">&quot;_construct_torsions always sets _impropers to a set&quot;</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span>
 
     <span class="nd">@property</span>
@@ -3665,16 +3656,11 @@
 <span class="sd">        impropers, amber_impropers</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Replace with non-cheminformatics-toolkit method</span>
-        <span class="c1">#       (ie. just looping over all atoms and finding ones that have 3 bonds?)</span>
-
-        <span class="n">smirnoff_improper_smarts</span> <span class="o">=</span> <span class="s2">&quot;[*:1]~[X3:2](~[*:3])~[*:4]&quot;</span>
-        <span class="n">improper_idxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_environment_matches</span><span class="p">(</span><span class="n">smirnoff_improper_smarts</span><span class="p">)</span>
-        <span class="n">smirnoff_impropers</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">imp</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">imp</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">imp</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">imp</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
-            <span class="k">for</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">improper_idxs</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">improper</span>
+            <span class="k">for</span> <span class="n">improper</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">impropers</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">improper</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="o">==</span> <span class="mi">3</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">smirnoff_impropers</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">amber_impropers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]:</span>
@@ -3703,15 +3689,12 @@
 <span class="sd">        impropers, smirnoff_impropers</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Replace with non-cheminformatics-toolkit method</span>
-        <span class="c1">#       (ie. just looping over all atoms and finding ones that have 3 bonds?)</span>
-        <span class="n">amber_improper_smarts</span> <span class="o">=</span> <span class="s2">&quot;[X3:1](~[*:2])(~[*:3])~[*:4]&quot;</span>
-        <span class="n">improper_idxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_environment_matches</span><span class="p">(</span><span class="n">amber_improper_smarts</span><span class="p">)</span>
-        <span class="n">amber_impropers</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">imp</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">imp</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">imp</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">atom</span><span class="p">(</span><span class="n">imp</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
-            <span class="k">for</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">improper_idxs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_construct_torsions</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="p">(</span><span class="n">improper</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">improper</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">improper</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">improper</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">improper</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">smirnoff_impropers</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">amber_impropers</span>
 
     <span class="k">def</span> <span class="nf">nth_degree_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_degrees</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -4049,7 +4032,7 @@
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">file_path</span><span class="p">,</span>
+        <span class="n">file_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">TextIO</span><span class="p">],</span>
         <span class="n">file_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -4064,7 +4047,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        file_path : str or file-like object</span>
+<span class="sd">        file_path : str, pathlib.Path, or file-like object</span>
 <span class="sd">            The path to the file or file-like object to stream one or more molecules from.</span>
 <span class="sd">        file_format : str, optional, default=None</span>
 <span class="sd">            Format specifier, usually file suffix (eg. &#39;MOL2&#39;, &#39;SMI&#39;)</span>
@@ -4174,7 +4157,9 @@
 
         <span class="n">mols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">):</span>
+                <span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
             <span class="n">mols</span> <span class="o">=</span> <span class="n">toolkit</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span>
                 <span class="n">file_path</span><span class="p">,</span>
                 <span class="n">file_format</span><span class="o">=</span><span class="n">file_format</span><span class="p">,</span>
@@ -4201,7 +4186,7 @@
     <span class="nd">@requires_package</span><span class="p">(</span><span class="s2">&quot;openmm&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">from_polymer_pdb</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">file_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TextIO</span><span class="p">],</span>
+        <span class="n">file_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">TextIO</span><span class="p">],</span>
         <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">GLOBAL_TOOLKIT_REGISTRY</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">):</span>
@@ -4255,11 +4240,20 @@
 <span class="sd">            multiple chains or molecules.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">io</span>
+
         <span class="kn">import</span> <span class="nn">openmm.unit</span> <span class="k">as</span> <span class="nn">openmm_unit</span>
         <span class="kn">from</span> <span class="nn">openmm.app</span> <span class="kn">import</span> <span class="n">PDBFile</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">,</span> <span class="n">ToolkitWrapper</span><span class="p">):</span>
             <span class="n">toolkit_registry</span> <span class="o">=</span> <span class="n">ToolkitRegistry</span><span class="p">([</span><span class="n">toolkit_registry</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">io</span><span class="o">.</span><span class="n">TextIOWrapper</span><span class="p">)):</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">):</span>
+            <span class="n">file_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="n">pdb</span> <span class="o">=</span> <span class="n">PDBFile</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
 
@@ -4277,7 +4271,7 @@
             <span class="n">substructure_dictionary</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">coords</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span>
             <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
                 <span class="p">[</span>
                     <span class="p">[</span><span class="o">*</span><span class="n">vec3</span><span class="o">.</span><span class="n">value_in_unit</span><span class="p">(</span><span class="n">openmm_unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)]</span>
@@ -4332,7 +4326,7 @@
         <span class="c1"># If we do not have a conformer make one with all zeros</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_conformers</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">conformers</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
+                <span class="n">Quantity</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span> <span class="n">unit</span><span class="o">.</span><span class="n">angstrom</span><span class="p">)</span>
             <span class="p">]</span>
 
         <span class="k">else</span><span class="p">:</span>
@@ -4913,7 +4907,7 @@
 <span class="sd">        &gt;&gt;&gt; from qcportal import FractalClient</span>
 <span class="sd">        &gt;&gt;&gt; client = FractalClient()</span>
 <span class="sd">        &gt;&gt;&gt; offmol = Molecule.from_qcschema(</span>
-<span class="sd">        ...     client.query_molecules(molecular_formula=&quot;C16H20N3O5&quot;)[0]</span>
+<span class="sd">        ...     client.query_molecules(molecular_formula=&quot;C7H12N2O4&quot;)[0]</span>
 <span class="sd">        ... )</span>
 
 <span class="sd">        Get Molecule from a QCArchive optimization entry:</span>
@@ -5008,7 +5002,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">mol</span> <span class="o">=</span> <span class="n">molecule</span>
 
-            <span class="n">geometry</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">Quantity</span><span class="p">(</span>
+            <span class="n">geometry</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span>
                 <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mol</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">],</span> <span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">unit</span><span class="o">.</span><span class="n">bohr</span>
             <span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
@@ -5330,16 +5324,14 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get an iterator over all i-j-k angles.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Build Angle objects instead of tuple of atoms.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_angles&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_construct_bonded_atoms_list</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_angles</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">atom1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]:</span>
-                    <span class="k">for</span> <span class="n">atom3</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]:</span>
+                    <span class="k">for</span> <span class="n">atom3</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]:</span>
                         <span class="k">if</span> <span class="n">atom1</span> <span class="o">==</span> <span class="n">atom3</span><span class="p">:</span>
                             <span class="k">continue</span>
-                        <span class="c1"># TODO: Encapsulate this logic into an Angle class.</span>
                         <span class="k">if</span> <span class="n">atom1</span><span class="o">.</span><span class="n">molecule_atom_index</span> <span class="o">&lt;</span> <span class="n">atom3</span><span class="o">.</span><span class="n">molecule_atom_index</span><span class="p">:</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_angles</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">atom1</span><span class="p">,</span> <span class="n">atom2</span><span class="p">,</span> <span class="n">atom3</span><span class="p">))</span>
                         <span class="k">else</span><span class="p">:</span>
@@ -5348,19 +5340,20 @@
     <span class="k">def</span> <span class="nf">_construct_torsions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct sets containing the atoms improper and proper torsions</span>
+
+<span class="sd">        Impropers are constructed with the central atom listed second</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: Build Proper/ImproperTorsion objects instead of tuple of atoms.</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_torsions&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_construct_bonded_atoms_list</span><span class="p">()</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">atom1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]:</span>
-                    <span class="k">for</span> <span class="n">atom3</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]:</span>
+                    <span class="k">for</span> <span class="n">atom3</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]:</span>
                         <span class="k">if</span> <span class="n">atom1</span> <span class="o">==</span> <span class="n">atom3</span><span class="p">:</span>
                             <span class="k">continue</span>
-                        <span class="k">for</span> <span class="n">atom4</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom3</span><span class="p">]:</span>
+                        <span class="k">for</span> <span class="n">atom4</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom3</span><span class="p">]:</span>
                             <span class="k">if</span> <span class="n">atom4</span> <span class="o">==</span> <span class="n">atom2</span><span class="p">:</span>
                                 <span class="k">continue</span>
                             <span class="c1"># Exclude i-j-k-i</span>
@@ -5374,7 +5367,7 @@
 
                             <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">torsion</span><span class="p">)</span>
 
-                        <span class="k">for</span> <span class="n">atom3i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]:</span>
+                        <span class="k">for</span> <span class="n">atom3i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]:</span>
                             <span class="k">if</span> <span class="n">atom3i</span> <span class="o">==</span> <span class="n">atom3</span><span class="p">:</span>
                                 <span class="k">continue</span>
                             <span class="k">if</span> <span class="n">atom3i</span> <span class="o">==</span> <span class="n">atom1</span><span class="p">:</span>
@@ -5391,16 +5384,15 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO: Add this to cached_properties</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_bondedAtoms&quot;</span><span class="p">):</span>
-            <span class="c1"># self._atoms = [ atom for atom in self.atoms() ]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_bonded_atoms&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="nb">set</span><span class="p">[</span><span class="n">Atom</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonds</span><span class="p">:</span>
                 <span class="n">atom1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">bond</span><span class="o">.</span><span class="n">atom1_index</span><span class="p">]</span>
                 <span class="n">atom2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">bond</span><span class="o">.</span><span class="n">atom2_index</span><span class="p">]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">atom2</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">atom1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">atom2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">atom1</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_is_bonded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_index_1</span><span class="p">,</span> <span class="n">atom_index_2</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True if atoms are bonded, False if not.</span>
@@ -5421,7 +5413,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_construct_bonded_atoms_list</span><span class="p">()</span>
         <span class="n">atom1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">[</span><span class="n">atom_index_1</span><span class="p">]</span>
         <span class="n">atom2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">[</span><span class="n">atom_index_2</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bondedAtoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">get_bond_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;Atom&quot;</span><span class="p">],</span> <span class="n">j</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;Atom&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;Bond&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the bond between two atoms</span>
@@ -6365,10 +6357,10 @@
               
           </div>
           Last updated on
-            May 04, 2023.
+            Jul 04, 2023.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>

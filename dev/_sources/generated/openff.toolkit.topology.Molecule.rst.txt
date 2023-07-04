@@ -58,8 +58,6 @@
       ~Molecule.is_isomorphic_with
       ~Molecule.nth_degree_neighbors
       ~Molecule.ordered_connection_table_hash
-      ~Molecule.particle
-      ~Molecule.particle_index
       ~Molecule.perceive_residues
       ~Molecule.remap
       ~Molecule.strip_atom_stereochemistry
@@ -107,11 +105,9 @@
       ~Molecule.n_bonds
       ~Molecule.n_conformers
       ~Molecule.n_impropers
-      ~Molecule.n_particles
       ~Molecule.n_propers
       ~Molecule.name
       ~Molecule.partial_charges
-      ~Molecule.particles
       ~Molecule.propers
       ~Molecule.properties
       ~Molecule.smirnoff_impropers
