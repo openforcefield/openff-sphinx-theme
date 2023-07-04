@@ -116,7 +116,7 @@
     // Rules: layout
     // ----------------------------------------------------------------------------
     // Admonition
-    .admonition, div.deprecated
+    .admonition, div.deprecated, div.alert
       margin: $admonition-margin 0
       padding: 0 0.75rem
       overflow: hidden
@@ -165,7 +165,7 @@
           @include material_admonitions($grey, "Font Awesome 5 Free", "\f06e")
       &.admonition-abstract, &.admonition-summary, &.admonition-tldr
           @include material_admonitions($cyan, "Font Awesome 5 Free", "\f543")
-      &.admonition-info
+      &.admonition-info, &.alert-info
           @include material_admonitions($blue, "Font Awesome 5 Free", "\f129")
       &.admonition-todo
           @include material_admonitions($yellow, "Font Awesome 5 Free", "\f249")
@@ -173,19 +173,17 @@
           @include material_admonitions($turquoise, "Font Awesome 5 Free", "\f06d")
       &.important, &.admonition-important
           @include material_admonitions($green, "Font Awesome 5 Free", "\f06a")
-      &.admonition-success, &.admonition-check, &.admonition-done
+      &.admonition-success, &.admonition-check, &.admonition-done, &.alert-success
           @include material_admonitions($green, "Font Awesome 5 Free", "\f058")
       &.admonition-question, &.admonition-help, &.admonition-faq
           @include material_admonitions($cyan, "Font Awesome 5 Free", "\f059")
-      &.warning, &.caution, &.attention, &.admonition-warning, &.admonition-caution, &.admonition-attention
+      &.warning, &.caution, &.attention, &.admonition-warning, &.admonition-caution, &.admonition-attention, &.alert-warning
           @include material_admonitions($orange, "Font Awesome 5 Free", "\f071")
-      &.warning, &.admonition-warning
-          @include material_admonitions($red, "Font Awesome 5 Free", "\f071")
       &.attention, &.admonition-attention
           @include material_admonitions($yellow, "Font Awesome 5 Free", "\f071")
       &.error, &.admonition-failure, &.admonition-fail, &.admonition-missing, &.admonition-error
           @include material_admonitions($red, "Font Awesome 5 Free", "\f057")
-      &.danger, &.admonition-danger
+      &.danger, &.admonition-danger, &.alert-danger
           @include material_admonitions($red, "Font Awesome 5 Free", "\f7b9")
       &.admonition-bug
           @include material_admonitions($purple, "Font Awesome 5 Free", "\f188")
