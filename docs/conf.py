@@ -40,7 +40,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
     # "nbsphinx",
-    "myst_parser",
+    # "myst_parser",
     "myst_nb",
     "openff_sphinx_theme",
     "sphinxcontrib.autodoc_pydantic",
