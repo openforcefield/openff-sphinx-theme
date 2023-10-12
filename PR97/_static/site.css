@@ -10515,7 +10515,28 @@ main > .columns {
   color: inherit;
 }
 
-.rst-versions {
-  position: static;
+#rtd-versions-container-header .rst-versions, #rtd-versions-container-burger .rst-versions {
+  position: relative;
+}
+
+#rtd-versions-container-header .rst-versions {
+  background: none;
+}
+
+#rtd-versions-container-header .rst-versions .rst-current-version {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background: none;
+}
+
+#rtd-versions-container-header .rst-versions .rst-other-versions {
+  background: #1f1d1d;
+  bottom: 0;
+  right: 0;
+}
+
+#rtd-versions-container-header .rst-versions.shift-up .rst-other-versions {
+  position: fixed;
 }
 
