@@ -10239,6 +10239,7 @@ header, .navbar.is-primary.has-shadow {
     position: fixed;
     display: block;
     z-index: 12;
+    padding: 0;
   }
   #drawer .ff-globaltoc {
     position: unset;
@@ -10523,6 +10524,10 @@ main > .columns {
   right: auto;
 }
 
+#rtd-versions-container-header .rst-versions.shift-up, #rtd-versions-container-burger .rst-versions.shift-up {
+  text-align: center;
+}
+
 #rtd-versions-container-header .rst-versions {
   background: none;
 }
@@ -10532,15 +10537,20 @@ main > .columns {
   flex-direction: column;
   height: auto;
   background: none;
+  color: whitesmoke;
 }
 
 #rtd-versions-container-header .rst-versions .rst-other-versions {
   background: #1f1d1d;
-  bottom: 0;
+  top: 4rem;
   right: 0;
 }
 
 #rtd-versions-container-header .rst-versions.shift-up .rst-other-versions {
-  position: fixed;
+  position: absolute;
+}
+
+#rtd-versions-container-burger .rst-versions {
+  max-width: none;
 }
 
