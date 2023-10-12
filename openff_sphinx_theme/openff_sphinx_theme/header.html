@@ -22,21 +22,12 @@
         {% include "searchbox.html" %}
       </span>
       {% if theme_repo_url %}
-        <a href="{{ theme_repo_url }}" class="is-family-monospace navbar-item is-hidden-touch has-text-light">
-          {% if theme_repo_type %}
-          <span class="icon-text">
-            <span class="icon">
-              <i class="fab fa-{{theme_repo_type | lower() }}"></i>
-            </span>
-            <span>
-          {% endif %}
-            {{ theme_repo_name }}
-          {% if theme_repo_type %}
-            </span>
-          </span>
-          {% endif %}
-        </a>
+        <span class="navbar-item is-hidden-touch has-text-light">
+          {% include "repo.html" %}
+        </span>
       {% endif %}
+      <span id=rtd-versions-container>
+      </span>
       <a href="https://docs.openforcefield.org/" class="navbar-item is-hidden-touch">
         <img
           src="{{ pathto('_static/images/logos/openforcefield_v2_white.png', 1) }}"

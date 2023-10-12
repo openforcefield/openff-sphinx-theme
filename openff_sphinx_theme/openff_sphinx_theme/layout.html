@@ -69,6 +69,11 @@
                 {{ shorttitle|striptags|e }}
               </h1>
             </a>
+            {% if theme_repo_url %}
+              {% include "repo.html" %}
+            {% endif %}
+            <span id=rtd-versions-container>
+            </span>
             {% if sidebars is not defined or 'searchbox.html' in sidebars %}
               <div class="py-3" role="search">
                 {% include "searchbox.html" %}
