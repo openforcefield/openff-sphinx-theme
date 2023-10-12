@@ -10517,6 +10517,10 @@ main > .columns {
 
 #rtd-versions-container-header .rst-versions, #rtd-versions-container-burger .rst-versions {
   position: relative;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  right: auto;
 }
 
 #rtd-versions-container-header .rst-versions {
