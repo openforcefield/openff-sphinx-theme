@@ -10515,3 +10515,7 @@ main > .columns {
   color: inherit;
 }
 
+.rst-versions {
+  position: static;
+}
+
