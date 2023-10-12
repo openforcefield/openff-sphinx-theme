@@ -64,18 +64,20 @@
 
         <aside class="column is-2-desktop is-3-tablet" id="drawer">
           <div class="is-hidden-tablet clip-siblings">
-            <a href="{{ pathto(master_doc)|e }}" title="{{ docstitle|e }}">
+            <a href="{{ pathto(master_doc)|e }}" title="{{ docstitle|e }}" class="p-3">
               <h1>
                 {{ shorttitle|striptags|e }}
               </h1>
             </a>
             {% if theme_repo_url %}
-              {% include "repo.html" %}
+              <div  class="p-3">
+                {% include "repo.html" %}
+              </div>
             {% endif %}
             <span id=rtd-versions-container-burger>
             </span>
             {% if sidebars is not defined or 'searchbox.html' in sidebars %}
-              <div class="py-3" role="search">
+              <div class="p-3" role="search">
                 {% include "searchbox.html" %}
               </div>
             {% endif %}

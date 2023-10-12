@@ -5,6 +5,9 @@
         left: auto;
         bottom: auto;
         right: auto;
+        &.shift-up {
+            text-align: center;
+        }
     }
 }
 
@@ -16,14 +19,28 @@
             flex-direction: column;
             height: auto;
             background: none;
+            color: whitesmoke;
         }
         .rst-other-versions {
             background: #1f1d1d;
-            bottom: 0;
+            top: $navbar-height;
             right: 0;
         }
         &.shift-up .rst-other-versions {
-            position: fixed;
+            position: absolute;
         }
     }
 }
+
+#rtd-versions-container-burger {
+    .rst-versions {
+        max-width: none;
+        .rst-current-version {
+        }
+        .rst-other-versions {
+        }
+        &.shift-up .rst-other-versions {
+        }
+    }
+}
+
