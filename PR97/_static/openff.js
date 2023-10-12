@@ -66,7 +66,7 @@ function initRTDObserver() {
       }
       if (mutation.addedNodes[0].data.search("Inserted RTD Footer") != -1) {
         mutation.addedNodes.forEach((node) => {
-          document.getElementById("rtd-versions-container-header").append(node);
+          document.getElementById("rtd-versions-container-header").append(node.cloneNode());
           document.getElementById("rtd-versions-container-burger").append(node);
         });
       }
