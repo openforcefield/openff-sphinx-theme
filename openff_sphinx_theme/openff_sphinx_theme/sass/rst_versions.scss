@@ -1,3 +1,25 @@
-.rst-versions {
-    position: static;
+#rtd-versions-container-header, #rtd-versions-container-burger {
+    .rst-versions {
+        position: relative;
+    }
+}
+
+#rtd-versions-container-header {
+    .rst-versions {
+        background: none;
+        .rst-current-version {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            background: none;
+        }
+        .rst-other-versions {
+            background: #1f1d1d;
+            bottom: 0;
+            right: 0;
+        }
+        &.shift-up .rst-other-versions {
+            position: fixed;
+        }
+    }
 }
