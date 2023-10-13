@@ -22,9 +22,9 @@
         {% include "searchbox.html" %}
       </span>
       {% if theme_repo_url %}
-        <span class="navbar-item is-hidden-touch has-text-light">
+        <a href="{{ theme_repo_url }}" class="navbar-item is-hidden-touch has-text-light is-family-monospace">
           {% include "repo.html" %}
-        </span>
+        </a>
       {% endif %}
       <span id=rtd-versions-container-header class="is-hidden-mobile navbar-item">
       </span>
