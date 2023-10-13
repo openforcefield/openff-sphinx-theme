@@ -10240,6 +10240,8 @@ header, .navbar.is-primary.has-shadow {
     display: block;
     z-index: 12;
     padding: 0;
+    overflow: auto;
+    scrollbar-width: none;
   }
   #drawer .ff-globaltoc {
     position: unset;
@@ -10554,7 +10556,7 @@ main > .columns {
   right: 0;
 }
 
-#rtd-versions-container-header .rst-versions.shift-up .rst-current-versions {
+#rtd-versions-container-header .rst-versions.shift-up .rst-current-version {
   text-align: center;
 }
 
@@ -10570,12 +10572,12 @@ main > .columns {
   max-width: none;
   max-height: 30px;
   transition: max-height 0.2s;
+  overflow: hidden;
 }
 
 #rtd-versions-container-burger .rst-versions .rst-current-version {
   text-align: right;
   height: 30px;
-  overflow: hidden;
 }
 
 #rtd-versions-container-burger .rst-versions .rst-other-versions {
@@ -10585,5 +10587,10 @@ main > .columns {
 #rtd-versions-container-burger .rst-versions.shift-up {
   max-height: 100vh;
   overflow: auto;
+  scrollbar-width: none;
+}
+
+#rtd-versions-container-burger .rst-versions.shift-up .rst-current-version .fa-book {
+  float: none;
 }
 
