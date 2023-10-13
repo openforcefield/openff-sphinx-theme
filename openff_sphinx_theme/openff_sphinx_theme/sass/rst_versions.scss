@@ -10,6 +10,7 @@
 
 #rtd-versions-container-header {
     padding-inline: 0;
+    height: $navbar-height;
     .rst-versions {
         background: none;
         .rst-current-version {
@@ -21,7 +22,6 @@
         }
         .rst-other-versions {
             background: #1f1d1d;
-            top: $navbar-height;
             right: 0;
         }
         &.shift-up .rst-current-version {
