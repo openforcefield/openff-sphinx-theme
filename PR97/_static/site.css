@@ -10354,6 +10354,7 @@ header .navbar > .navbar-end {
   margin-left: auto;
   margin-top: auto;
   margin-bottom: auto;
+  display: flex;
 }
 
 header .nav-search input {
@@ -10531,6 +10532,10 @@ main > .columns {
   right: auto;
 }
 
+#rtd-versions-container-header {
+  padding-inline: 0;
+}
+
 #rtd-versions-container-header .rst-versions {
   background: none;
 }
@@ -10544,29 +10549,41 @@ main > .columns {
 }
 
 #rtd-versions-container-header .rst-versions .rst-other-versions {
-  background: #015480;
+  background: #1f1d1d;
   top: 4rem;
   right: 0;
 }
 
-#rtd-versions-container-header .rst-versions .rst-other-versions small:last-child {
-  background: #1f1d1d;
+#rtd-versions-container-header .rst-versions.shift-up .rst-current-versions {
+  text-align: center;
 }
 
 #rtd-versions-container-header .rst-versions.shift-up .rst-other-versions {
   position: absolute;
-  text-align: center;
 }
 
-#rtd-versions-container-header .rst-versions:hover {
+#rtd-versions-container-header:hover {
   background: #014367;
 }
 
 #rtd-versions-container-burger .rst-versions {
   max-width: none;
+  max-height: 30px;
+  transition: max-height 0.2s;
+}
+
+#rtd-versions-container-burger .rst-versions .rst-current-version {
+  text-align: right;
+  height: 30px;
+  overflow: hidden;
 }
 
 #rtd-versions-container-burger .rst-versions .rst-other-versions {
-  text-align: right;
+  display: block;
+}
+
+#rtd-versions-container-burger .rst-versions.shift-up {
+  max-height: 100vh;
+  overflow: auto;
 }
 
