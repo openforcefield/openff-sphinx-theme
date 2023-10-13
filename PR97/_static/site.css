@@ -10244,6 +10244,13 @@ header, .navbar.is-primary.has-shadow {
   #drawer .ff-globaltoc {
     position: unset;
   }
+  #drawer h1 {
+    font-size: 110%;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 0.4rem;
+  }
   header {
     overflow-wrap: break-word;
   }
@@ -10524,10 +10531,6 @@ main > .columns {
   right: auto;
 }
 
-#rtd-versions-container-header .rst-versions.shift-up, #rtd-versions-container-burger .rst-versions.shift-up {
-  text-align: center;
-}
-
 #rtd-versions-container-header .rst-versions {
   background: none;
 }
@@ -10541,16 +10544,29 @@ main > .columns {
 }
 
 #rtd-versions-container-header .rst-versions .rst-other-versions {
-  background: #1f1d1d;
+  background: #015480;
   top: 4rem;
   right: 0;
 }
 
+#rtd-versions-container-header .rst-versions .rst-other-versions small:last-child {
+  background: #1f1d1d;
+}
+
 #rtd-versions-container-header .rst-versions.shift-up .rst-other-versions {
   position: absolute;
+  text-align: center;
+}
+
+#rtd-versions-container-header .rst-versions:hover {
+  background: #014367;
 }
 
 #rtd-versions-container-burger .rst-versions {
   max-width: none;
+}
+
+#rtd-versions-container-burger .rst-versions .rst-other-versions {
+  text-align: right;
 }
 
