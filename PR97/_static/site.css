@@ -10536,6 +10536,7 @@ main > .columns {
 
 #rtd-versions-container-header {
   padding-inline: 0;
+  height: 4rem;
 }
 
 #rtd-versions-container-header .rst-versions {
@@ -10552,7 +10553,6 @@ main > .columns {
 
 #rtd-versions-container-header .rst-versions .rst-other-versions {
   background: #1f1d1d;
-  top: 4rem;
   right: 0;
 }
 
