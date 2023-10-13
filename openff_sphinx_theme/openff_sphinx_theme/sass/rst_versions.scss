@@ -24,7 +24,7 @@
             top: $navbar-height;
             right: 0;
         }
-        &.shift-up .rst-current-versions {
+        &.shift-up .rst-current-version {
             text-align: center;
         }
         &.shift-up .rst-other-versions {
@@ -41,10 +41,10 @@
         max-width: none;
         max-height: 30px;
         transition: max-height 0.2s;
+        overflow: hidden;
         .rst-current-version {
             text-align: right;
             height: 30px;
-            overflow: hidden;
         }
         .rst-other-versions {
             display: block;
@@ -52,6 +52,10 @@
         &.shift-up {
             max-height: 100vh;
             overflow: auto;
+            scrollbar-width: none;
+            .rst-current-version .fa-book {
+                float: none;
+            }
         }
     }
 }
