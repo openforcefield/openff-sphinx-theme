@@ -87,6 +87,7 @@ or ``theme.conf`` for more details.
     :caption: Basic Use
     :maxdepth: 1
 
+    Overview <self>
     customization
     specimen
     additional_samples
