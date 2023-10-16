@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <link rel="icon" type="image/svg" href="../_static/images/favicon.svg" />
+  <link rel="apple-touch-icon" type="image/svg" href="../_static/images/favicon.svg" />
+
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../_static/site.css"/>
+
+  <meta name="theme-color" content="#015480;">
+
+
+    <title>Search &#8212; OpenFF Sphinx theme</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/openff.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/rtd_sphinx_search.min.css" />
+    <link rel="stylesheet" type="text/css" href="/_/static/css/badge_only.css" />
+
+    <script data-url_root="./" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/rtd_search_config.js"></script>
+    <script src="../_static/js/rtd_sphinx_search.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="/_/static/javascript/readthedocs-doc-embed.js"></script>
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="canonical" href="https://openff-sphinx-theme.readthedocs.io/en/latest/search.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="#" />
+  <script src="../searchindex.js" defer></script>
+
+
+
+
+
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2023-05-04T14:20:25Z", "builder": "sphinx", "canonical_url": null, "commit": "0b1f1ada", "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "search", "programming_language": "words", "project": "openff-sphinx-theme", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "openff_sphinx_theme", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+  <body dir=ltr
+        data-md-color-accent=openff-toolkit-blue
+        class="has-navbar-fixed-top">
+  <header data-md-component="header">
+  <nav class="navbar is-primary is-fixed-top is-flex-touch has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a href="../index.html" title="OpenFF Sphinx theme" class="navbar-item is-hidden-mobile">
+
+          <img src="../_static/images/logos/openforcefield_v1_white.png" alt="OpenFF Sphinx theme logo">
+
+      </a>
+    </div>
+
+    <div class="has-text-light is-hidden-mobile nav-title">
+      <div class="breadcrumb">
+  <ul>
+        <li><a href="../index.html">OpenFF Sphinx theme</a></li>
+      <li class="is-active"><a href="#">Search</a></li>
+  </ul>
+</div>
+    </div>
+    <div class="has-text-light is-hidden-tablet nav-title">
+      <span> Search </span>
+    </div>
+
+    <div class="navbar-end">
+      <span class="navbar-item nav-search is-hidden-mobile" role="search">
+        <form action="#" method="GET" name="search">
+  <div class="control has-icons-right">
+    <span class="icon is-small is-right">
+      <i class="fas fa-search"></i>
+    </span>
+    <input class="input is-primary" type="text"  name="q" placeholder="Search"
+         autocapitalize="off" autocomplete="off" spellcheck="false">
+  </div>
+</form>
+      </span>
+
+        <a href="https://github.com/openforcefield/openff-sphinx-theme/" class="is-family-monospace navbar-item is-hidden-touch has-text-light">
+
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>
+
+            openff-sphinx-theme
+
+            </span>
+          </span>
+
+        </a>
+
+      <a href="https://docs.openforcefield.org/" class="navbar-item is-hidden-touch">
+        <img
+          src="../_static/images/logos/openforcefield_v2_white.png"
+          alt="Open Force Field Initiative logo"
+        >
+      </a>
+    </div>
+    <span class="navbar-burger-spacer is-hidden-tablet"></span>
+  </nav>
+
+
+
+  <div class="level is-hidden-mobile nav-tabs">
+
+      <div class="level-item has-text-centered"><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div>
+
+      <div class="level-item has-text-centered"><a href="https://bashtage.github.io/sphinx-material/">Material for Sphinx</a></div>
+
+      <div class="level-item has-text-centered"><a href="https://openforcefield.org">The OpenFF Initiative</a></div>
+
+      <div class="level-item has-text-centered"><a href="https://github.com/openforcefield/openff-sphinx-theme/">openff-sphinx-theme on GitHub</a></div>
+  </div>
+
+</header>
+
+
+  <main class="mb-6">
+      <div class="columns">
+        <input type="checkbox" id="drawer-toggle" class="is-hidden">
+        <label for="drawer-toggle" role="button" class="navbar-burger burger is-light is-hidden-tablet">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </label>
+
+        <aside class="column is-2-desktop is-3-tablet" id="drawer">
+          <div class="is-hidden-tablet clip-siblings">
+            <a href="../index.html" title="OpenFF Sphinx theme">
+              <h1>
+                OpenFF Sphinx theme
+              </h1>
+            </a>
+
+              <div class="py-3" role="search">
+                <form action="#" method="GET" name="search">
+  <div class="control has-icons-right">
+    <span class="icon is-small is-right">
+      <i class="fas fa-search"></i>
+    </span>
+    <input class="input is-primary" type="text"  name="q" placeholder="Search"
+         autocapitalize="off" autocomplete="off" spellcheck="false">
+  </div>
+</form>
+              </div>
+
+          </div>
+
+<nav class="menu ff-globaltoc">
+
+          <p class="menu-label"><span class="caption-text">Basic Use</span></p>
+          <ul class="menu-list">
+
+
+
+          <li>
+            <a href="../customization.html" class="">Customization</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../specimen.html" class="">Specimen</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../additional_samples.html" class=""><code class="docutils literal notranslate"><span class="pre">additional_samples_with_very_long_name</span></code></a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../subpage/index.html" class=""><code class="docutils literal notranslate"><span class="pre">Level</span> <span class="pre">1</span></code> page</a>
+
+            </li>
+
+
+
+
+            </ul>
+
+          <p class="menu-label"><span class="caption-text">Other Examples and Uses</span></p>
+          <ul class="menu-list">
+
+
+
+          <li>
+            <a href="../pymethod.html" class="">Python Methods</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../numpydoc_example.html" class="">NumPy Docstrings</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../autodoc_pydantic_example.html" class="">autodoc_pydantic API Docs</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../numpydoc.html" class="">Openff-toolkit example</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../pydantic.html" class="">Pydantic API docs</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../notebook.html" class="">Jupyter Notebooks</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../markdown.html" class="">Markdown</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../rst-cheatsheet/rst-cheatsheet.html" class="">rst Cheatsheet</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../primer.html" class="">reStructuredText Primer</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../expanded-tables.html" class="">Expanded tables</a>
+
+            </li>
+
+
+
+
+            </ul>
+
+          <p class="menu-label"><span class="caption-text">Changes and License</span></p>
+          <ul class="menu-list">
+
+
+
+          <li>
+            <a href="../change-log.html" class="">Change Log</a>
+
+            </li>
+
+
+
+
+          <li>
+            <a href="../license.html" class="">License</a>
+
+            </li>
+
+            </ul>
+
+
+
+    </ul>
+  </nav>
+
+        </aside>
+
+        <div class="column is-8-desktop is-9-tablet">
+          <article class="content">
+
+  <h1 id="search-documentation">Search</h1>
+
+  <noscript>
+  <div class="admonition warning">
+  <p>
+    Please activate JavaScript to enable the search
+    functionality.
+  </p>
+  </div>
+  </noscript>
+
+
+  <p>
+    Searching for multiple words only shows matches that contain
+    all words.
+  </p>
+
+
+  <form action="#" method="GET" name="search">
+  <div class="control has-icons-right">
+    <span class="icon is-small is-right">
+      <i class="fas fa-search"></i>
+    </span>
+    <input class="input is-primary" type="text"  name="q" placeholder="Search"
+         autocapitalize="off" autocomplete="off" spellcheck="false">
+  </div>
+</form>
+
+
+
+  <div id="search-results">
+
+
+  <h2>Search Results</h2><p class="search-summary">Search finished, found 3 page(s) matching the search query.</p><ul class="search"><li><a href="/en/latest/generated/openff.toolkit.topology.Molecule.html?highlight=pdb">openff.toolkit.topology.Molecule</a><div class="context"><div><a href="/en/latest/generated/openff.toolkit.topology.Molecule.html?highlight=pdb#openff.toolkit.topology.Molecule.from_pdb_and_smiles">classmethod from_pdb_and_smiles(file_path, smiles, allow_undefined_stereo=False, name='')</a></div><div>... Parameters: file_path (str) – <span class="highlighted">PDB</span> file path smiles (str) – a valid smiles string for the <span class="highlighted">pdb</span>, used for ...</div></div><div class="rtd_search_hits_spacing"></div><div class="context"><div><a href="/en/latest/generated/openff.toolkit.topology.Molecule.html?highlight=pdb#openff.toolkit.topology.Molecule.from_polymer_pdb">classmethod from_polymer_pdb(file_path: str | TextIO, toolkit_registry=GLOBAL_TOOLKIT_REGISTRY, name: str = '')</a></div><div>... Loads a polymer from a <span class="highlighted">PDB</span> file. ...</div></div><div class="rtd_search_hits_spacing"></div><div class="context"><div><a href="/en/latest/generated/openff.toolkit.topology.Molecule.html?highlight=pdb#openff.toolkit.topology.Molecule.to_file">to_file(file_path, file_format, toolkit_registry=GLOBAL_TOOLKIT_REGISTRY)</a></div><div>... path to the file to be written. file_format (str) – Format specifier, one of [‘MOL2’, ‘MOL2H’, ‘SDF’, ‘<span class="highlighted">PDB</span> ...</div></div><div class="rtd_search_hits_spacing"></div><div class="context"><div><a href="/en/latest/generated/openff.toolkit.topology.Molecule.html?highlight=pdb#openff.toolkit.topology.Molecule.from_polymer_pdb">[py:method]: openff.toolkit.topology.Molecule.from_polymer_<span class="highlighted">pdb</span></a></div><div></div></div><div class="rtd_search_hits_spacing"></div><div class="context"><div><a href="/en/latest/generated/openff.toolkit.topology.Molecule.html?highlight=pdb#openff.toolkit.topology.Molecule.from_pdb_and_smiles">[py:method]: openff.toolkit.topology.Molecule.from_<span class="highlighted">pdb</span>_and_smiles</a></div><div></div></div></li><li><a href="/en/latest/expanded-tables.html?highlight=pdb">Expanded tables</a><div class="context"><div><a href="/en/latest/expanded-tables.html?highlight=pdb#not-expanded">Not expanded</a></div><div>... Toolkit residue_name residue_number chain_id <span class="highlighted">PDB</span> file ATOM/HETATM columns Columns 18-20 (resName) Columns ...</div></div><div class="rtd_search_hits_spacing"></div><div class="context"><div><a href="/en/latest/expanded-tables.html?highlight=pdb#expanded">Expanded</a></div><div>... Toolkit residue_name residue_number chain_id <span class="highlighted">PDB</span> file ATOM/HETATM columns Columns 18-20 (resName) Columns ...</div></div></li><li><a href="/en/latest/_modules/openff/toolkit/topology/molecule.html?highlight=pdb">openff.toolkit.topology.molecule</a><div class="context"><div><a href="/en/latest/_modules/openff/toolkit/topology/molecule.html?highlight=pdb#">Source code for openff.toolkit.topology.molecule</a></div><div>... The <span class="highlighted">PDB</span> file must include all atoms with the correct standard atom names described in the `<span class="highlighted">PDB</span> Chemical ...</div></div></li></ul>
+  </div>
+
+
+          </article>
+        </div>
+
+        <aside class="column is-hidden-touch is-2">
+
+        </aside>
+      </div>
+  </main>
+  <footer class="footer">
+  <div class="footer-content">
+    <div class="columns">
+      <div class="fineprint column">
+          <div class="copyright">
+              &#169; Copyright 2021, Open Force Field Initiative.
+
+          </div>
+          Last updated on
+            May 04, 2023.
+          <br/>
+          Created using
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+           and
+          <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
+      </div>
+      <div class="socials column">
+        <p class="pb-3">An <a href="https://openforcefield.org/" class="has-text-white">Open Force Field Initiative</a> project.</p>
+        <div>
+
+
+
+                <a href="https://zenodo.org/communities/openforcefield/" class="icon has-text-light is-medium" title="OpenFF on Zenodo">
+                  <i class="fa-lg ai-lg ai ai-zenodo"></i>
+                </a>
+
+
+
+                <a href="https://www.youtube.com/channel/UCh0aJSUm_sYr7nuTzhW806g" class="icon has-text-light is-medium" title="OpenFF on YouTube">
+                  <i class="fa-lg ai-lg fab fa-youtube"></i>
+                </a>
+
+
+
+                <a href="https://github.com/openforcefield" class="icon has-text-light is-medium" title="OpenFF on GitHub">
+                  <i class="fa-lg ai-lg fab fa-github"></i>
+                </a>
+
+
+
+                <a href="https://twitter.com/openforcefield" class="icon has-text-light is-medium" title="OpenFF on Twitter">
+                  <i class="fa-lg ai-lg fab fa-twitter"></i>
+                </a>
+
+
+
+                <a href="https://www.linkedin.com/company/openforcefield/" class="icon has-text-light is-medium" title="OpenFF on LinkedIn">
+                  <i class="fa-lg ai-lg fab fa-linkedin"></i>
+                </a>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+  </body>
+</html>

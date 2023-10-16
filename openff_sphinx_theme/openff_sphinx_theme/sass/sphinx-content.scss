@@ -192,21 +192,17 @@ section, .section {
   // Allow large, scrollable tables to be expanded
   &.expanded {
     @include z-depth(2);
-    @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1) {
-      margin-left: calc(-0.5 * (#{$expanded-table-widescreen-width} - #{$para-width}));
-      width: $expanded-table-widescreen-width;
-      max-width: $expanded-table-widescreen-width;
-      table {
-        min-width: $expanded-table-widescreen-width;
-      }
-    }
-    @media screen and (min-width: $fullhd) {
-      margin-left: -0.5 * ($expanded-table-fullhd-width - $para-width);
-      width: $expanded-table-fullhd-width;
-      max-width: $expanded-table-fullhd-width;
-      table {
-        min-width: $expanded-table-fullhd-width;
-      }
+    @include center-in-container(95cqw);
+    &::before {
+      content: "";
+      height: 1px;
+      display: block;
+      background: linear-gradient(
+        to right,
+        transparent calc(50% - #{$para-width}/2),
+        rgba(0, 0, 0, .18) calc(50% - #{$para-width}/2) calc(50% + #{$para-width}/2),
+        transparent calc(50% + #{$para-width}/2)
+      );
     }
   }
   table {

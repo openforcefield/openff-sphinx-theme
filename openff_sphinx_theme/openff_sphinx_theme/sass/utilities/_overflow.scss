@@ -1,0 +1,10 @@
+// Tools for sizing elements larger than their containers
+
+@mixin center-in-container($width: 100cqw) {
+    $clamped-width: clamp(100%, $width, 100cqw);
+    width: $clamped-width;
+    overflow-x: visible;
+    margin-left: calc(50% - #{$clamped-width}/2);
+    max-width: unset;
+    min-width: unset;
+}

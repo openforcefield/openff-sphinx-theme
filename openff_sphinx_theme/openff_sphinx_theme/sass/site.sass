@@ -31,6 +31,7 @@
 @import "bulma/sass/utilities/functions.sass"
 @import "utilities/_convert"
 @import "utilities/_z-depth"
+@import "utilities/_overflow"
 
 $openff-blue: rgb(1, 84, 128)
 $openff-toolkit-blue: rgb(47, 158, 210)
@@ -94,8 +95,6 @@ $code-widescreen-width: $para-width
 $code-fullhd-width: $para-width
 $api-widescreen-width: 52.5vw
 $api-fullhd-width: 46.2rem
-$expanded-table-widescreen-width: 66vw
-$expanded-table-fullhd-width: 58rem
 
 // @import "bulma/bulma.sass"
 // Important that we exclude the .section class, as it clashes with Sphinx 4+
@@ -131,11 +130,15 @@ $breadcrumb-item-separator-color-light: findColorInvert($breadcrumb-item-separat
 html
     scroll-padding-top: $navbar-height + $below-navbar-spacing
 
+.column
+    container: column / inline-size
 .content
     @import "material-content.scss"
     @import "sphinx-content.scss"
     @import "admonitions.sass"
     @import "sphinx-api.scss"
+    #search-results
+        @import "sphinx-search-results.scss"
     font-size: px2rem(16px)
     line-height: 1.6
     color-adjust: exact
