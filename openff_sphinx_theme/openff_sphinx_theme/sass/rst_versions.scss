@@ -5,6 +5,11 @@
         left: auto;
         bottom: auto;
         right: auto;
+        .rst-other-versions dd, & {
+            a:hover {
+                color: $link-hover;
+            }
+        }
     }
 }
 
