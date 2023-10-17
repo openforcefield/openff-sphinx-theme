@@ -10534,6 +10534,10 @@ main > .columns {
   right: auto;
 }
 
+#rtd-versions-container-header .rst-versions .rst-other-versions dd a:hover, #rtd-versions-container-header .rst-versions a:hover, #rtd-versions-container-burger .rst-versions .rst-other-versions dd a:hover, #rtd-versions-container-burger .rst-versions a:hover {
+  color: #2f9ed2;
+}
+
 #rtd-versions-container-header {
   padding-inline: 0;
   height: 4rem;
@@ -10554,6 +10558,22 @@ main > .columns {
 #rtd-versions-container-header .rst-versions .rst-other-versions {
   background: #1f1d1d;
   right: 0;
+}
+
+#rtd-versions-container-header .rst-versions.shift-up {
+  z-index: 12;
+}
+
+#rtd-versions-container-header .rst-versions.shift-up::before {
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: auto;
+  z-index: 11;
 }
 
 #rtd-versions-container-header .rst-versions.shift-up .rst-current-version {
