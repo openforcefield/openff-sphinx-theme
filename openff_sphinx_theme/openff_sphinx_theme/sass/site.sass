@@ -202,6 +202,7 @@ $drawer-transition-time: 0.5s
             span:nth-child(4)
                 opacity: 50%
                 pointer-events: auto
+                touch-action: none
 
     #drawer
         left: -$drawer-width
@@ -226,8 +227,9 @@ $drawer-transition-time: 0.5s
             padding-top: 1rem
             padding-bottom: 0.4rem
 
-
-
+    // Prevent scrolling while drawer is open
+    html:has(#drawer-toggle:checked)
+        overflow: hidden
 
     header
         overflow-wrap: break-word
