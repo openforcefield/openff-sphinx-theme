@@ -30,20 +30,22 @@
             right: 0;
         }
         &.shift-up {
-            z-index: 12;
-            &::before {
-                content: "";
-                display: block;
-                position: fixed;
-                left: 0;
-                right: 0;
-                width: 100vw;
-                height: 100vh;
-                pointer-events: auto;
-                z-index: 11;
+            &, * {
+                z-index: 12;
             }
             .rst-current-version {
                 text-align: center;
+                &::before {
+                    content: "";
+                    display: block;
+                    position: fixed;
+                    left: 0;
+                    right: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    pointer-events: auto;
+                    z-index: 1;
+                }
             }
             .rst-other-versions {
                 position: absolute;
