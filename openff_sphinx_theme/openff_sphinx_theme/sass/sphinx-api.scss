@@ -136,8 +136,8 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             > .pre {
                 color: $api-param-name-color;
             }
-            // Push line breaks before a symbol (except the type annotation colon)
-            > .o, > .n:not(:nth-child(2)) {
+            // Prevent line breaks immediately after assignment or union operators
+            > .o, > .n:not(:first-child) > .p {
                 + .w {
                     white-space: nowrap;
                 }
