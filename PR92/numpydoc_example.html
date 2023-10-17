@@ -23,16 +23,18 @@
 <title>NumPy Docstrings — OpenFF Sphinx theme</title>
 <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="_static/openff.css" rel="stylesheet" type="text/css"/>
+<link href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css"/>
 <link href="_static/autodoc_pydantic.css" rel="stylesheet" type="text/css"/>
 <link href="_static/css/rtd_sphinx_search.min.css" rel="stylesheet" type="text/css"/>
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
 <script src="_static/doctools.js"></script>
 <script src="_static/sphinx_highlight.js"></script>
 <script src="_static/js/rtd_search_config.js"></script>
 <script src="_static/js/rtd_sphinx_search.min.js"></script>
-<script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-<script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link href="genindex.html" rel="index" title="Index"/>
 <link href="search.html" rel="search" title="Search"/>
 <link href="autodoc_pydantic_example.html" rel="next" title="autodoc_pydantic API Docs"/>
@@ -340,21 +342,21 @@ variables using back-ticks, e.g. <cite>var</cite>.</p>
 <li><p><strong>var1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array_like</span></code>) – Array_like means all those objects – lists, nested lists, etc. –
 that can be converted to an array.  We can also refer to
 variables like <cite>var1</cite>.</p></li>
-<li><p><strong>var2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The type above can either refer to an actual Python type
+<li><p><strong>var2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The type above can either refer to an actual Python type
 (e.g. <code class="docutils literal notranslate"><span class="pre">int</span></code>), or describe the type of the variable in more
 detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</span> <span class="pre">ndarray</span></code> or <code class="docutils literal notranslate"><span class="pre">array_like</span></code>.</p></li>
 <li><p><strong>*args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code>) – Other arguments.</p></li>
 <li><p><strong>long_var_name</strong> (<code class="docutils literal notranslate"><span class="pre">{'hi',</span> <span class="pre">'ho'}</span></code>, <em>optional</em>) – Choices in brackets, default first when optional.</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Keyword arguments.</p></li>
-<li><p><strong>only_seldom_used_keywords</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
-<li><p><strong>common_parameters_listed_above</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Keyword arguments.</p></li>
+<li><p><strong>only_seldom_used_keywords</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
+<li><p><strong>common_parameters_listed_above</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p></p><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> – Explanation of anonymous return value of type <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p></li>
-<li><p><strong>describe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of return value named <cite>describe</cite>.</p></li>
-<li><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of <cite>out</cite>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> – Explanation of anonymous return value of type <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p></li>
+<li><p><strong>describe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of return value named <cite>describe</cite>.</p></li>
+<li><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of <cite>out</cite>.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">type_without_description</span></code></p></li>
 </ul>
 </dd>
@@ -456,10 +458,10 @@ use the function.</p>
               
           </div>
           Last updated on
-            May 08, 2023.
+            Oct 17, 2023.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>

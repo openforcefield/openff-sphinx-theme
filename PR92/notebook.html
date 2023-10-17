@@ -23,17 +23,18 @@
 <title>Jupyter Notebooks — OpenFF Sphinx theme</title>
 <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="_static/openff.css" rel="stylesheet" type="text/css"/>
+<link href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css"/>
 <link href="_static/autodoc_pydantic.css" rel="stylesheet" type="text/css"/>
 <link href="_static/css/rtd_sphinx_search.min.css" rel="stylesheet" type="text/css"/>
-<link href="_static/nbsphinx-code-cells.css" rel="stylesheet" type="text/css"/>
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
 <script src="_static/doctools.js"></script>
 <script src="_static/sphinx_highlight.js"></script>
 <script src="_static/js/rtd_search_config.js"></script>
 <script src="_static/js/rtd_sphinx_search.min.js"></script>
-<script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-<script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link href="genindex.html" rel="index" title="Index"/>
 <link href="search.html" rel="search" title="Search"/>
 <link href="markdown.html" rel="next" title="Markdown"/>
@@ -183,27 +184,26 @@
 </aside>
 <div class="column is-8-desktop is-9-tablet">
 <article class="content">
-<section id="Jupyter-Notebooks">
-<h1>Jupyter Notebooks<a class="headerlink" href="#Jupyter-Notebooks" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
-<p>The <a class="reference external" href="https://github.com/spatialaudio/nbsphinx">nbsphinx extension</a> allow notebooks to be seemlessly integrated into a Sphinx website. This page demonstrates how notebooks are rendered.</p>
-<section id="Mathematics">
-<h2>Mathematics<a class="headerlink" href="#Mathematics" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
-<p><a class="reference external" href="https://www.mathjax.org">MathJax</a> can use used to render mathematical equations. Equations can be rendered either in their own line using double dollar signs</p>
+<section id="jupyter-notebooks">
+<h1>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
+<p>The <a class="reference external" href="https://github.com/executablebooks/myst-nb">MyST-NB extension</a> allow notebooks to be seemlessly integrated into a Sphinx website.  This page demonstrates how notebooks are rendered.</p>
+<section id="mathematics">
+<h2>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<p><a class="reference external" href="https://www.mathjax.org">MathJax</a> can use used to render mathematical equations. Equations can
+be rendered either in their own line using double dollar signs</p>
 <div class="math notranslate nohighlight">
-\[y_{it} = \alpha_i + \gamma_t + \beta x_{it} + \epsilon_{it}\]</div>
+\[ y_{it} = \alpha_i + \gamma_t + \beta x_{it} + \epsilon_{it} \]</div>
 <p>or inline using single dollar signs (<span class="math notranslate nohighlight">\(\LaTeX\)</span>).</p>
 </section>
-<section id="DataFrames">
-<h2>DataFrames<a class="headerlink" href="#DataFrames" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<section id="dataframes">
+<h2>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>pandas DataFrames are rendered with useful markup.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'ints'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">'ints'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
                    <span class="s1">'floats'</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
                    <span class="s1">'strings'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'aardvark'</span><span class="p">,</span> <span class="s1">'bananarama'</span><span class="p">,</span> <span class="s1">'charcuterie'</span> <span class="p">]})</span>
 
@@ -211,12 +211,8 @@
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -260,18 +256,16 @@
 </tr>
 </tbody>
 </table></div>
-</div></div>
+</div></div></div>
 </div>
 </section>
-<section id="Plots-and-Figures">
-<h2>Plots and Figures<a class="headerlink" href="#Plots-and-Figures" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<section id="plots-and-figures">
+<h2>Plots and Figures<a class="headerlink" href="#plots-and-figures" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
 <p>matplotlib can be used to produce plots in notebooks</p>
 <p>This example comes from the <a class="reference external" href="https://matplotlib.org/3.1.1/gallery/ticks_and_spines/colorbar_tick_labelling_demo.html#sphx-glr-gallery-ticks-and-spines-colorbar-tick-labelling-demo-py">matplotlib gallery</a>.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -292,139 +286,105 @@
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/notebook_5_0.png" src="_images/notebook_5_0.png"/>
+<div class="cell_output docutils container">
+<img alt="_images/fb290364a7ceffe1be749ff615e714931842a2095969f376d7c71536e06f2ade.png" src="_images/fb290364a7ceffe1be749ff615e714931842a2095969f376d7c71536e06f2ade.png"/>
 </div>
 </div>
 </section>
-<section id="STDERR-and-STDOUT">
-<h2>STDERR and STDOUT<a class="headerlink" href="#STDERR-and-STDOUT" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<section id="stderr-and-stdout">
+<h2>STDERR and STDOUT<a class="headerlink" href="#stderr-and-stdout" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)))</span>
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)))</span>
-</pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[3], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">ValueError</span>(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">, </span><span style="color: rgb(175,0,0)">"</span><span style="color: rgb(98,98,98)">.</span>join(<span style="color: rgb(0,135,0)">str</span>(i) <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> i <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">range</span>(<span style="color: rgb(98,98,98)">100</span>)))
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="nn">----&gt; 1 raise ValueError(", ".join(str(i) for i</span> in <span class="ni">range</span><span class="nt">(100)))</span>
 
-<span class="ansi-red-fg">ValueError</span>: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<span class="ne">ValueError</span>: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"hi"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-hi
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hi
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"hi, this is stderr"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"hi, this is stderr"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"hi, this is stdout"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
 <span class="s2">"this is a return value"</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-hi, this is stdout
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-hi, this is stderr
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hi, this is stdout
 </pre></div>
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-'this is a return value'
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hi, this is stderr
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"hi, this is stderr"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'this is a return value'
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"hi, this is stderr"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"hi, this is stdout"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"this is an error"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hi, this is stdout
+</pre></div>
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-hi, this is stdout
-</pre></div></div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hi, this is stderr
+</pre></div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-hi, this is stderr
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[6], line 3</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">hi, this is stderr</span><span style="color: rgb(175,0,0)">"</span>, file<span style="color: rgb(98,98,98)">=</span>sys<span style="color: rgb(98,98,98)">.</span>stderr)
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">hi, this is stdout</span><span style="color: rgb(175,0,0)">"</span>, file<span style="color: rgb(98,98,98)">=</span>sys<span style="color: rgb(98,98,98)">.</span>stdout)
-<span class="ansi-green-fg">----&gt; 3</span> <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">ValueError</span>(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">this is an error</span><span style="color: rgb(175,0,0)">"</span>)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s2">"hi, this is stderr"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="s2">"hi, this is stdout"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"this is an error"</span><span class="p">)</span>
 
-<span class="ansi-red-fg">ValueError</span>: this is an error
-</pre></div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<span class="ne">ValueError</span>: this is an error
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This cell has no output</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This cell has no output</span>
 </pre></div>
+</div>
 </div>
 </div>
 </section>
+<section id="alerts">
+<h2>Alerts<a class="headerlink" href="#alerts" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Alerts are the Jupyter Notebook version of admonitions</p>
+<div class="alert alert-info"> <b>NOTE</b> Use blue boxes for Tips and notes. </div>
+<div class="alert alert-success"> Use green boxes sparingly, and only for some specific purpose that the other boxes can't cover. For example, if you have a lot of related content to link to, maybe you decide to use green boxes for related links from each section of a notebook. </div>
+<div class="alert alert-warning"> Use yellow boxes for examples that are not inside code cells, or use for mathematical formulas if needed. </div>
+<div class="alert alert-danger"> In general, just avoid the red boxes. </div></section>
 </section>
 </article>
 </div>
@@ -433,10 +393,11 @@ Cell <span class="ansi-green-fg">In[6], line 3</span>
 <p class="menu-label">Contents</p>
 <ul>
 <li><a class="reference internal" href="#">Jupyter Notebooks</a><ul>
-<li><a class="reference internal" href="#Mathematics">Mathematics</a></li>
-<li><a class="reference internal" href="#DataFrames">DataFrames</a></li>
-<li><a class="reference internal" href="#Plots-and-Figures">Plots and Figures</a></li>
-<li><a class="reference internal" href="#STDERR-and-STDOUT">STDERR and STDOUT</a></li>
+<li><a class="reference internal" href="#mathematics">Mathematics</a></li>
+<li><a class="reference internal" href="#dataframes">DataFrames</a></li>
+<li><a class="reference internal" href="#plots-and-figures">Plots and Figures</a></li>
+<li><a class="reference internal" href="#stderr-and-stdout">STDERR and STDOUT</a></li>
+<li><a class="reference internal" href="#alerts">Alerts</a></li>
 </ul>
 </li>
 </ul>
@@ -475,10 +436,10 @@ Cell <span class="ansi-green-fg">In[6], line 3</span>
               
           </div>
           Last updated on
-            May 08, 2023.
+            Oct 17, 2023.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>
