@@ -10227,6 +10227,7 @@ header, .navbar.is-primary.has-shadow {
   #drawer-toggle:checked + .burger span:nth-child(4) {
     opacity: 50%;
     pointer-events: auto;
+    touch-action: none;
   }
   #drawer {
     left: -20rem;
@@ -10252,6 +10253,9 @@ header, .navbar.is-primary.has-shadow {
     text-align: center;
     padding-top: 1rem;
     padding-bottom: 0.4rem;
+  }
+  html:has(#drawer-toggle:checked) {
+    overflow: hidden;
   }
   header {
     overflow-wrap: break-word;
