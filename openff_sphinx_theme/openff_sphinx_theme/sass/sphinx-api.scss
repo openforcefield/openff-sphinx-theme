@@ -136,6 +136,12 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             > .pre {
                 color: $api-param-name-color;
             }
+            // Push line breaks before a symbol (except the type annotation colon)
+            > .o, > .n:not(:nth-child(2)) {
+                + .w {
+                    white-space: nowrap;
+                }
+            }
             // Default values of arguments
             > .default_value > .pre {
                 color: $api-param-value-color;
