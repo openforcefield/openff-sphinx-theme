@@ -10580,6 +10580,18 @@ main > .columns {
   cursor: not-allowed;
 }
 
+#rtd-versions-container-header .rst-versions.shift-up .rst-current-version::after {
+  content: "";
+  z-index: 12;
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
 #rtd-versions-container-header .rst-versions.shift-up .rst-other-versions {
   position: absolute;
 }
