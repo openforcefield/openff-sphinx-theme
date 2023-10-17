@@ -29,14 +29,28 @@
             background: #1f1d1d;
             right: 0;
         }
-        &.shift-up .rst-current-version {
-            text-align: center;
-        }
-        &.shift-up .rst-other-versions {
-            position: absolute;
+        &.shift-up {
+            z-index: 12;
+            &::before {
+                content: "";
+                display: block;
+                position: fixed;
+                left: 0;
+                right: 0;
+                width: 100vw;
+                height: 100vh;
+                pointer-events: auto;
+                z-index: 11;
+            }
+            .rst-current-version {
+                text-align: center;
+            }
+            .rst-other-versions {
+                position: absolute;
+            }
         }
         &:hover, &.shift_up {
-            background: bulmaDarken($primary, 5%)
+            background: bulmaDarken($primary, 5%);
         }
     }
 }
