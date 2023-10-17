@@ -30,9 +30,9 @@
         &.shift-up .rst-other-versions {
             position: absolute;
         }
-    }
-    &:hover {
-        background: bulmaDarken($primary, 5%)
+        &:hover, &.shift_up {
+            background: bulmaDarken($primary, 5%)
+        }
     }
 }
 
