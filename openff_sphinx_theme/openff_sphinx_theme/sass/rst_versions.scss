@@ -43,8 +43,8 @@
                     right: 0;
                     width: 100vw;
                     height: 100vh;
-                    pointer-events: auto;
-                    z-index: 1;
+                    z-index: 11;
+                    cursor: not-allowed;
                 }
             }
             .rst-other-versions {
