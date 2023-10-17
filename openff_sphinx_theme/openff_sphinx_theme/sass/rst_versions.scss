@@ -49,7 +49,7 @@
                 position: absolute;
             }
         }
-        &:hover, &.shift_up {
+        &:hover, &.shift-up {
             background: bulmaDarken($primary, 5%);
         }
     }
