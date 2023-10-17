@@ -47,8 +47,9 @@
                     cursor: not-allowed;
                 }
                 &::after {
+                    content: "";
                     z-index: 12;
-                    cursor: not-allowed;
+                    cursor: pointer;
                     position: absolute;
                     display: block;
                     width: 100%;
