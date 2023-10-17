@@ -10564,7 +10564,7 @@ main > .columns {
   position: absolute;
 }
 
-#rtd-versions-container-header:hover {
+#rtd-versions-container-header .rst-versions:hover, #rtd-versions-container-header .rst-versions.shift_up {
   background: #014367;
 }
 
