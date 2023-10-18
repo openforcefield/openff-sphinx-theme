@@ -14,16 +14,19 @@
 }
 
 #rtd-versions-container-header {
-    padding-inline: 0;
-    height: $navbar-height;
     .rst-versions {
+        padding-inline: 0.75rem;
         background: none;
         .rst-current-version {
             display: flex;
             flex-direction: column;
-            height: auto;
+            height: $navbar-height;
             background: none;
             color: whitesmoke;
+            justify-content: center;
+            padding: 0;
+            gap: 0.2rem;
+            line-height: 1;
         }
         .rst-other-versions {
             background: #1f1d1d;
