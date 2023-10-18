@@ -10600,6 +10600,10 @@ main > .columns {
   color: #2f9ed2;
 }
 
+#rtd-versions-container-header {
+  padding: 0;
+}
+
 #rtd-versions-container-header .rst-versions {
   padding-inline: 0.75rem;
   background: none;
