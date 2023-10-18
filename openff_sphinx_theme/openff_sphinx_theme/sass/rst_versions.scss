@@ -60,6 +60,8 @@
             }
             .rst-other-versions {
                 position: absolute;
+                @include z-depth(3);
+                border-radius: 0.125rem;
             }
         }
         &:hover, &.shift-up {
