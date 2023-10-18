@@ -62,6 +62,7 @@
                 position: absolute;
                 @include z-depth(3);
                 border-radius: 0.125rem;
+                border-top-right-radius: 0;
             }
         }
         &:hover, &.shift-up {
