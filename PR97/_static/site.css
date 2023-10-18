@@ -10600,21 +10600,21 @@ main > .columns {
   color: #2f9ed2;
 }
 
-#rtd-versions-container-header {
-  padding-inline: 0;
-  height: 4rem;
-}
-
 #rtd-versions-container-header .rst-versions {
+  padding-inline: 0.75rem;
   background: none;
 }
 
 #rtd-versions-container-header .rst-versions .rst-current-version {
   display: flex;
   flex-direction: column;
-  height: auto;
+  height: 4rem;
   background: none;
   color: whitesmoke;
+  justify-content: center;
+  padding: 0;
+  gap: 0.2rem;
+  line-height: 1;
 }
 
 #rtd-versions-container-header .rst-versions .rst-other-versions {
