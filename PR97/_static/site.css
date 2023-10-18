@@ -8845,10 +8845,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-python .highlight pre, .content .highlight-py .highlight pre, .content .highlight-python3 .highlight pre, .content .highlight-py3 .highlight pre, .content .highlight-pycon .highlight pre {
+  background: none;
 }
 
 .content .highlight-sh, .content .highlight-shell-session, .content .highlight-shell {
@@ -8867,10 +8870,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-sh .highlight pre, .content .highlight-shell-session .highlight pre, .content .highlight-shell .highlight pre {
+  background: none;
 }
 
 .content .highlight-bash {
@@ -8889,10 +8895,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-bash .highlight pre {
+  background: none;
 }
 
 .content .highlight-yaml, .content .highlight-yml {
@@ -8911,10 +8920,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-yaml .highlight pre, .content .highlight-yml .highlight pre {
+  background: none;
 }
 
 .content .highlight-toml {
@@ -8933,10 +8945,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-toml .highlight pre {
+  background: none;
 }
 
 .content .highlight-json {
@@ -8955,10 +8970,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-json .highlight pre {
+  background: none;
 }
 
 .content .highlight-html {
@@ -8977,10 +8995,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-html .highlight pre {
+  background: none;
 }
 
 .content .highlight-xml {
@@ -8999,10 +9020,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-xml .highlight pre {
+  background: none;
 }
 
 .content .highlight-javascript, .content .highlight-js {
@@ -9021,10 +9045,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-javascript .highlight pre, .content .highlight-js .highlight pre {
+  background: none;
 }
 
 .content .highlight-jinja {
@@ -9043,10 +9070,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-jinja .highlight pre {
+  background: none;
 }
 
 .content .highlight-c {
@@ -9065,10 +9095,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-c .highlight pre {
+  background: none;
 }
 
 .content .highlight-cxx, .content .highlight-cpp, .content .highlight-c\+\+ {
@@ -9087,10 +9120,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-cxx .highlight pre, .content .highlight-cpp .highlight pre, .content .highlight-c\+\+ .highlight pre {
+  background: none;
 }
 
 .content .highlight-rs, .content .highlight-rust {
@@ -9109,10 +9145,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-rs .highlight pre, .content .highlight-rust .highlight pre {
+  background: none;
 }
 
 .content .highlight-julia {
@@ -9131,10 +9170,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-julia .highlight pre {
+  background: none;
 }
 
 .content .highlight-r {
@@ -9153,10 +9195,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-r .highlight pre {
+  background: none;
 }
 
 .content .highlight-restructuredtext, .content .highlight-rst, .content .highlight-rest {
@@ -9175,10 +9220,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-restructuredtext .highlight pre, .content .highlight-rst .highlight pre, .content .highlight-rest .highlight pre {
+  background: none;
 }
 
 .content .highlight-md, .content .highlight-markdown {
@@ -9197,10 +9245,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-md .highlight pre, .content .highlight-markdown .highlight pre {
+  background: none;
 }
 
 .content .highlight-tex {
@@ -9219,10 +9270,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-tex .highlight pre {
+  background: none;
 }
 
 .content .highlight-latex {
@@ -9241,10 +9295,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-latex .highlight pre {
+  background: none;
 }
 
 .content .nbinput > .prompt, .content .nboutput > .prompt {
