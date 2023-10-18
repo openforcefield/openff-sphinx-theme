@@ -10601,6 +10601,7 @@ main > .columns {
   position: absolute;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 8px 0 rgba(0, 0, 0, 0.12), 0 3px 3px -2px rgba(0, 0, 0, 0.4);
   border-radius: 0.125rem;
+  border-top-right-radius: 0;
 }
 
 #rtd-versions-container-header .rst-versions:hover, #rtd-versions-container-header .rst-versions.shift-up {
