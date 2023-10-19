@@ -10663,8 +10663,8 @@ main > .columns {
   border-top-right-radius: 0;
 }
 
-#rtd-versions-container-header .rst-versions:hover, #rtd-versions-container-header .rst-versions.shift-up {
-  background: #014367;
+#rtd-versions-container-header .rst-versions:hover .rst-current-version {
+  color: #2f9ed2;
 }
 
 #rtd-versions-container-burger .rst-versions {
