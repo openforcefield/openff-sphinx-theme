@@ -30,6 +30,7 @@
   <meta name="theme-color" content="#015480;">
   {% include "google_analytics.html" %}
   {{ super() }}
+  <script type="text/javascript" src="{{ pathto('_static/openff.js', 1) }}"></script>
 {%- endblock %}
 
 {%- block extrahead %}
@@ -68,8 +69,17 @@
                 {{ shorttitle|striptags|e }}
               </h1>
             </a>
+            {% if theme_repo_url %}
+              <div class="has-text-centered p-3">
+                <a href="{{ theme_repo_url }}" class="is-family-monospace">
+                  {% include "repo.html" %}
+                </a>
+              </div>
+            {% endif %}
+            <span id=rtd-versions-container-burger>
+            </span>
             {% if sidebars is not defined or 'searchbox.html' in sidebars %}
-              <div class="py-3" role="search">
+              <div class="p-3" role="search">
                 {% include "searchbox.html" %}
               </div>
             {% endif %}

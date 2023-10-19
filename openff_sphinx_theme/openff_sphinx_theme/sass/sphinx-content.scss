@@ -313,18 +313,22 @@ a.brackets {
 // Add language identifiers to code blocks
 @mixin language-identifier($langname) {
   position: relative;
-  .highlight::before {
-    @include unselectable;
-    content: $langname;
-    color: #696969;
-    font-size: 80%;
-    font-family: $family-monospace;
-    font-variant: small-caps;
-    position: absolute;
-    z-index: 10;
-    right: $code-lang-ident-padding;
-    top: $code-lang-ident-padding;
-    line-height: 0.8;
+  .highlight {
+    &::before {
+      @include unselectable;
+      content: $langname;
+      color: #696969;
+      font-size: 80%;
+      font-family: $family-monospace;
+      font-variant: small-caps;
+      position: absolute;
+      right: $code-lang-ident-padding;
+      top: $code-lang-ident-padding;
+      line-height: 0.8;
+    }
+    pre {
+      background: none;
+    }
   }
 }
 
