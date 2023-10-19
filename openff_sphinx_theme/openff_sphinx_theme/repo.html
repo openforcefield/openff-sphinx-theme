@@ -1,14 +1,12 @@
-<a href="{{ theme_repo_url }}" class="is-family-monospace">
-  {% if theme_repo_type %}
-  <span class="icon-text">
-    <span class="icon">
-      <i class="fab fa-{{theme_repo_type | lower() }}"></i>
-    </span>
-    <span>
-  {% endif %}
-    {{ theme_repo_name }}
-  {% if theme_repo_type %}
-    </span>
+{% if theme_repo_type %}
+<span class="icon-text">
+  <span class="icon">
+    <i class="fab fa-{{theme_repo_type | lower() }}"></i>
   </span>
-  {% endif %}
-</a>
+  <span>
+{% endif %}
+  {{ theme_repo_name }}
+{% if theme_repo_type %}
+  </span>
+</span>
+{% endif %}

@@ -202,6 +202,8 @@ $drawer-transition-time: 0.5s
             span:nth-child(4)
                 opacity: 50%
                 pointer-events: auto
+                touch-action: none
+                cursor: not-allowed
 
     #drawer
         left: -$drawer-width
@@ -214,8 +216,21 @@ $drawer-transition-time: 0.5s
         position: fixed
         display: block
         z-index: 12
+        padding: 0
+        overflow: auto
+        scrollbar-width: none
         .ff-globaltoc
             position: unset
+        h1
+            font-size: 110%
+            font-weight: 500
+            text-align: center
+            padding-top: 1rem
+            padding-bottom: 0.4rem
+
+    // Prevent scrolling while drawer is open
+    html:has(#drawer-toggle:checked)
+        overflow: hidden
 
     header
         overflow-wrap: break-word
@@ -299,6 +314,7 @@ header
         margin-left: auto
         margin-top: auto
         margin-bottom: auto
+        display: flex
 
     .nav-search
         input
@@ -409,3 +425,8 @@ a:hover:not(.is-active)
 
 main > .columns
     max-width: 100vw
+
+.has-text-inherit
+    color: inherit
+
+@import "rst_versions.scss"

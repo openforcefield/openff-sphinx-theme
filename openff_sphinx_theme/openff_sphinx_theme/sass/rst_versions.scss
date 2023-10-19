@@ -1,0 +1,99 @@
+#rtd-versions-container-header, #rtd-versions-container-burger {
+    .rst-versions {
+        position: relative;
+        top: auto;
+        left: auto;
+        bottom: auto;
+        right: auto;
+        .rst-other-versions dd, & {
+            a:hover {
+                color: $link-hover;
+            }
+        }
+    }
+}
+
+#rtd-versions-container-header {
+    padding: 0;
+    .rst-versions {
+        padding-inline: 0.75rem;
+        .rst-current-version {
+            display: flex;
+            flex-direction: column;
+            height: $navbar-height;
+            background: none;
+            justify-content: center;
+            padding: 0;
+            gap: 0.2rem;
+            line-height: 1;
+        }
+        .rst-other-versions {
+            background: #1f1d1d;
+            right: 0;
+        }
+        &.shift-up {
+            &, * {
+                z-index: 12;
+            }
+            .rst-current-version {
+                text-align: center;
+                &::before {
+                    content: "";
+                    display: block;
+                    position: fixed;
+                    left: 0;
+                    top: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    z-index: 11;
+                    cursor: not-allowed;
+                }
+                &::after {
+                    content: "";
+                    z-index: 12;
+                    cursor: pointer;
+                    position: absolute;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                }
+            }
+            .rst-other-versions {
+                position: absolute;
+                @include z-depth(24);
+                border-radius: 0.125rem;
+                border-top-right-radius: 0;
+            }
+        }
+        &:hover .rst-current-version {
+            color: $link-hover;
+        }
+    }
+}
+
+#rtd-versions-container-burger {
+    .rst-versions {
+        max-width: none;
+        max-height: 30px;
+        transition: max-height 0.2s;
+        overflow: hidden;
+        .rst-current-version {
+            text-align: right;
+            height: 30px;
+        }
+        .rst-other-versions {
+            display: block;
+        }
+        &.shift-up {
+            max-height: 100vh;
+            overflow: auto;
+            scrollbar-width: none;
+            .rst-current-version .fa-book {
+                float: none;
+            }
+        }
+    }
+}
+
