@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.19: https://docutils.sourceforge.io/" name="generator"/>
+<link href="_static/images/favicon.svg" rel="icon" type="image/svg"/>
+<link href="_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="Copy to clipboard" name="lang:clipboard.copy"/>
+<meta content="Copied to clipboard" name="lang:clipboard.copied"/>
+<meta content="en" name="lang:search.language"/>
+<meta content="True" name="lang:search.pipeline.stopwords"/>
+<meta content="True" name="lang:search.pipeline.trimmer"/>
+<meta content="No matching documents" name="lang:search.result.none"/>
+<meta content="1 matching document" name="lang:search.result.one"/>
+<meta content="# matching documents" name="lang:search.result.other"/>
+<meta content="[\s\-]+" name="lang:search.tokenizer"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" integrity="sha512-b1ASx0WHgVFL5ZQhTgiPWX+68KjS38Jk87jg7pe+qC7q9YkEtFq0z7xCglv7qGIs/68d3mAp+StfC8WKC5SSAg==" referrerpolicy="no-referrer" rel="stylesheet"/>
+<link href="_static/site.css" rel="stylesheet"/>
+<meta content="#015480;" name="theme-color"/>
+<title>NumPy Docstrings — OpenFF Sphinx theme</title>
+<script src="_static/openff.js" type="text/javascript"></script>
+<link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
+<link href="_static/openff.css" rel="stylesheet" type="text/css"/>
+<link href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css"/>
+<link href="_static/autodoc_pydantic.css" rel="stylesheet" type="text/css"/>
+<link href="_static/css/rtd_sphinx_search.min.css" rel="stylesheet" type="text/css"/>
+<script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+<script src="_static/jquery.js"></script>
+<script src="_static/underscore.js"></script>
+<script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+<script src="_static/doctools.js"></script>
+<script src="_static/sphinx_highlight.js"></script>
+<script src="_static/js/rtd_search_config.js"></script>
+<script src="_static/js/rtd_sphinx_search.min.js"></script>
+<script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="autodoc_pydantic_example.html" rel="next" title="autodoc_pydantic API Docs"/>
+<link href="pymethod.html" rel="prev" title="Python Methods"/>
+</head>
+<body class="has-navbar-fixed-top" data-md-color-accent="openff-toolkit-blue" dir="ltr">
+<header data-md-component="header">
+<nav aria-label="main navigation" class="navbar is-primary is-fixed-top is-flex-touch has-shadow" role="navigation">
+<div class="navbar-brand">
+<a class="navbar-item is-hidden-mobile" href="https://docs.openforcefield.org/">
+<img alt="OpenFF Sphinx theme logo" src="_static/images/logos/openforcefield_v1_white.png"/>
+</a>
+</div>
+<div class="has-text-light is-hidden-mobile nav-title">
+<div class="breadcrumb">
+<ul>
+<li><a href="index.html">OpenFF Sphinx theme</a></li>
+<li class="is-active"><a href="#">NumPy Docstrings</a></li>
+</ul>
+</div>
+</div>
+<div class="has-text-light is-hidden-tablet nav-title">
+<span> NumPy Docstrings </span>
+</div>
+<div class="navbar-end">
+<span class="navbar-item nav-search is-hidden-mobile" role="search">
+<form action="search.html" method="GET" name="search">
+<div class="control has-icons-right">
+<span class="icon is-small is-right">
+<i class="fas fa-search"></i>
+</span>
+<input autocapitalize="off" autocomplete="off" class="input is-primary" name="q" placeholder="Search" spellcheck="false" type="text"/>
+</div>
+</form>
+</span>
+<a class="navbar-item is-hidden-touch has-text-light is-family-monospace" href="https://github.com/openforcefield/openff-sphinx-theme/">
+<span class="icon-text">
+<span class="icon">
+<i class="fab fa-github"></i>
+</span>
+<span>
+
+  openff-sphinx-theme
+
+  </span>
+</span>
+</a>
+<span class="is-hidden-mobile navbar-item" id="rtd-versions-container-header">
+</span>
+</div>
+<span class="navbar-burger-spacer is-hidden-tablet"></span>
+</nav>
+<div class="level is-hidden-mobile nav-tabs">
+<div class="level-item has-text-centered"><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div>
+<div class="level-item has-text-centered"><a href="https://bashtage.github.io/sphinx-material/">Material for Sphinx</a></div>
+<div class="level-item has-text-centered"><a href="https://openforcefield.org">The OpenFF Initiative</a></div>
+<div class="level-item has-text-centered"><a href="https://github.com/openforcefield/openff-sphinx-theme/">openff-sphinx-theme on GitHub</a></div>
+</div>
+</header>
+<main class="mb-6">
+<div class="columns">
+<input class="is-hidden" id="drawer-toggle" type="checkbox"/>
+<label class="navbar-burger burger is-light is-hidden-tablet" for="drawer-toggle" role="button">
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+</label>
+<aside class="column is-2-desktop is-3-tablet" id="drawer">
+<div class="is-hidden-tablet clip-siblings">
+<a href="index.html" title="OpenFF Sphinx theme">
+<h1>
+                OpenFF Sphinx theme
+              </h1>
+</a>
+<div class="has-text-centered p-3">
+<a class="is-family-monospace" href="https://github.com/openforcefield/openff-sphinx-theme/">
+<span class="icon-text">
+<span class="icon">
+<i class="fab fa-github"></i>
+</span>
+<span>
+
+  openff-sphinx-theme
+
+  </span>
+</span>
+</a>
+</div>
+<span id="rtd-versions-container-burger">
+</span>
+<div class="p-3" role="search">
+<form action="search.html" method="GET" name="search">
+<div class="control has-icons-right">
+<span class="icon is-small is-right">
+<i class="fas fa-search"></i>
+</span>
+<input autocapitalize="off" autocomplete="off" class="input is-primary" name="q" placeholder="Search" spellcheck="false" type="text"/>
+</div>
+</form>
+</div>
+</div>
+<nav class="menu ff-globaltoc">
+<p class="menu-label"><span class="caption-text">Basic Use</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="customization.html">Customization</a>
+</li>
+<li>
+<a class="" href="specimen.html">Specimen</a>
+</li>
+<li>
+<a class="" href="additional_samples.html"><code class="docutils literal notranslate"><span class="pre">additional_samples_with_very_long_name</span></code></a>
+</li>
+<li>
+<a class="" href="subpage/index.html"><code class="docutils literal notranslate"><span class="pre">Level</span> <span class="pre">1</span></code> page</a>
+</li>
+</ul>
+<p class="menu-label"><span class="caption-text">Other Examples and Uses</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="pymethod.html">Python Methods</a>
+</li>
+<li>
+<a class="is-active" href="#">NumPy Docstrings</a>
+</li>
+<li>
+<a class="" href="autodoc_pydantic_example.html">autodoc_pydantic API Docs</a>
+</li>
+<li>
+<a class="" href="numpydoc.html">Openff-toolkit example</a>
+</li>
+<li>
+<a class="" href="pydantic.html">Pydantic API docs</a>
+</li>
+<li>
+<a class="" href="notebook.html">Jupyter Notebooks</a>
+</li>
+<li>
+<a class="" href="markdown.html">Markdown</a>
+</li>
+<li>
+<a class="" href="rst-cheatsheet/rst-cheatsheet.html">rst Cheatsheet</a>
+</li>
+<li>
+<a class="" href="primer.html">reStructuredText Primer</a>
+</li>
+<li>
+<a class="" href="expanded-tables.html">Expanded tables</a>
+</li>
+</ul>
+<p class="menu-label"><span class="caption-text">Changes and License</span></p>
+<ul class="menu-list">
+<li>
+<a class="" href="change-log.html">Change Log</a>
+</li>
+<li>
+<a class="" href="license.html">License</a>
+</li>
+</ul>
+</nav>
+</aside>
+<div class="column is-8-desktop is-9-tablet">
+<article class="content">
+<section id="numpy-docstrings">
+<span id="numpydoc-example"></span><h1>NumPy Docstrings<a class="headerlink" href="#numpy-docstrings" title="Permalink to this heading"><i class="fas fa-link"></i></a></h1>
+<section id="source">
+<h2>Source<a class="headerlink" href="#source" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="sd">"""Docstring for the example.py module.</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="sd">Modules names should have short, all-lowercase names.  The module name may</span>
+<span class="linenos">  4</span><span class="sd">have underscores if this improves readability.</span>
+<span class="linenos">  5</span>
+<span class="linenos">  6</span><span class="sd">Every module should have a docstring at the very top of the file.  The</span>
+<span class="linenos">  7</span><span class="sd">module's docstring may extend over multiple lines.  If your docstring does</span>
+<span class="linenos">  8</span><span class="sd">extend over multiple lines, the closing three quotation marks must be on</span>
+<span class="linenos">  9</span><span class="sd">a line by itself, preferably preceded by a blank line.</span>
+<span class="linenos"> 10</span>
+<span class="linenos"> 11</span><span class="sd">"""</span>
+<span class="linenos"> 12</span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># standard library imports first</span>
+<span class="linenos"> 15</span>
+<span class="linenos"> 16</span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="linenos"> 17</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="linenos"> 18</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="c1"># Do NOT import using *, e.g. from numpy import *</span>
+<span class="linenos"> 21</span><span class="c1">#</span>
+<span class="linenos"> 22</span><span class="c1"># Import the module using</span>
+<span class="linenos"> 23</span><span class="c1">#</span>
+<span class="linenos"> 24</span><span class="c1">#   import numpy</span>
+<span class="linenos"> 25</span><span class="c1">#</span>
+<span class="linenos"> 26</span><span class="c1"># instead or import individual functions as needed, e.g</span>
+<span class="linenos"> 27</span><span class="c1">#</span>
+<span class="linenos"> 28</span><span class="c1">#  from numpy import array, zeros</span>
+<span class="linenos"> 29</span><span class="c1">#</span>
+<span class="linenos"> 30</span><span class="c1"># If you prefer the use of abbreviated module names, we suggest the</span>
+<span class="linenos"> 31</span><span class="c1"># convention used by NumPy itself::</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span><span class="c1"># These abbreviated names are not to be used in docstrings; users must</span>
+<span class="linenos"> 35</span><span class="c1"># be able to paste and execute docstrings after importing only the</span>
+<span class="linenos"> 36</span><span class="c1"># numpy module itself, unabbreviated.</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">long_var_name</span><span class="o">=</span><span class="s2">"hi"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="linenos"> 40</span><span class="w">    </span><span class="sa">r</span><span class="sd">"""Summarize the function in one line.</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span><span class="sd">    Several sentences providing an extended description. Refer to</span>
+<span class="linenos"> 43</span><span class="sd">    variables using back-ticks, e.g. `var`.</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="sd">    Parameters</span>
+<span class="linenos"> 46</span><span class="sd">    ----------</span>
+<span class="linenos"> 47</span><span class="sd">    var1 : array_like</span>
+<span class="linenos"> 48</span><span class="sd">        Array_like means all those objects -- lists, nested lists, etc. --</span>
+<span class="linenos"> 49</span><span class="sd">        that can be converted to an array.  We can also refer to</span>
+<span class="linenos"> 50</span><span class="sd">        variables like `var1`.</span>
+<span class="linenos"> 51</span><span class="sd">    var2 : int</span>
+<span class="linenos"> 52</span><span class="sd">        The type above can either refer to an actual Python type</span>
+<span class="linenos"> 53</span><span class="sd">        (e.g. ``int``), or describe the type of the variable in more</span>
+<span class="linenos"> 54</span><span class="sd">        detail, e.g. ``(N,) ndarray`` or ``array_like``.</span>
+<span class="linenos"> 55</span><span class="sd">    *args : iterable</span>
+<span class="linenos"> 56</span><span class="sd">        Other arguments.</span>
+<span class="linenos"> 57</span><span class="sd">    long_var_name : {'hi', 'ho'}, optional</span>
+<span class="linenos"> 58</span><span class="sd">        Choices in brackets, default first when optional.</span>
+<span class="linenos"> 59</span><span class="sd">    **kwargs : dict</span>
+<span class="linenos"> 60</span><span class="sd">        Keyword arguments.</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="sd">    Returns</span>
+<span class="linenos"> 63</span><span class="sd">    -------</span>
+<span class="linenos"> 64</span><span class="sd">    type</span>
+<span class="linenos"> 65</span><span class="sd">        Explanation of anonymous return value of type ``type``.</span>
+<span class="linenos"> 66</span><span class="sd">    describe : type</span>
+<span class="linenos"> 67</span><span class="sd">        Explanation of return value named `describe`.</span>
+<span class="linenos"> 68</span><span class="sd">    out : type</span>
+<span class="linenos"> 69</span><span class="sd">        Explanation of `out`.</span>
+<span class="linenos"> 70</span><span class="sd">    type_without_description</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="sd">    Other Parameters</span>
+<span class="linenos"> 73</span><span class="sd">    ----------------</span>
+<span class="linenos"> 74</span><span class="sd">    only_seldom_used_keywords : type</span>
+<span class="linenos"> 75</span><span class="sd">        Explanation.</span>
+<span class="linenos"> 76</span><span class="sd">    common_parameters_listed_above : type</span>
+<span class="linenos"> 77</span><span class="sd">        Explanation.</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="sd">    Raises</span>
+<span class="linenos"> 80</span><span class="sd">    ------</span>
+<span class="linenos"> 81</span><span class="sd">    BadException</span>
+<span class="linenos"> 82</span><span class="sd">        Because you shouldn't have done that.</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="sd">    See Also</span>
+<span class="linenos"> 85</span><span class="sd">    --------</span>
+<span class="linenos"> 86</span><span class="sd">    numpy.array : Relationship (optional).</span>
+<span class="linenos"> 87</span><span class="sd">    numpy.ndarray : Relationship (optional), which could be fairly long, in</span>
+<span class="linenos"> 88</span><span class="sd">                    which case the line wraps here.</span>
+<span class="linenos"> 89</span><span class="sd">    numpy.dot, numpy.linalg.norm, numpy.eye</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="sd">    Notes</span>
+<span class="linenos"> 92</span><span class="sd">    -----</span>
+<span class="linenos"> 93</span><span class="sd">    Notes about the implementation algorithm (if needed).</span>
+<span class="linenos"> 94</span>
+<span class="linenos"> 95</span><span class="sd">    This can have multiple paragraphs.</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="sd">    You may include some math:</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span><span class="sd">    .. math:: X(e^{j\omega } ) = x(n)e^{ - j\omega n}</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="sd">    And even use a Greek symbol like :math:`\omega` inline.</span>
+<span class="linenos">102</span>
+<span class="linenos">103</span><span class="sd">    References</span>
+<span class="linenos">104</span><span class="sd">    ----------</span>
+<span class="linenos">105</span><span class="sd">    Cite the relevant literature, e.g. [1]_.  You may also cite these</span>
+<span class="linenos">106</span><span class="sd">    references in the notes section above.</span>
+<span class="linenos">107</span>
+<span class="linenos">108</span><span class="sd">    .. [1] O. McNoleg, "The integration of GIS, remote sensing,</span>
+<span class="linenos">109</span><span class="sd">       expert systems and adaptive co-kriging for environmental habitat</span>
+<span class="linenos">110</span><span class="sd">       modelling of the Highland Haggis using object-oriented, fuzzy-logic</span>
+<span class="linenos">111</span><span class="sd">       and neural-network techniques," Computers &amp; Geosciences, vol. 22,</span>
+<span class="linenos">112</span><span class="sd">       pp. 585-588, 1996.</span>
+<span class="linenos">113</span>
+<span class="linenos">114</span><span class="sd">    Examples</span>
+<span class="linenos">115</span><span class="sd">    --------</span>
+<span class="linenos">116</span><span class="sd">    These are written in doctest format, and should illustrate how to</span>
+<span class="linenos">117</span><span class="sd">    use the function.</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span><span class="sd">    &gt;&gt;&gt; a = [1, 2, 3]</span>
+<span class="linenos">120</span><span class="sd">    &gt;&gt;&gt; print([x + 3 for x in a])</span>
+<span class="linenos">121</span><span class="sd">    [4, 5, 6]</span>
+<span class="linenos">122</span><span class="sd">    &gt;&gt;&gt; print("a\nb")</span>
+<span class="linenos">123</span><span class="sd">    a</span>
+<span class="linenos">124</span><span class="sd">    b</span>
+<span class="linenos">125</span><span class="sd">    """</span>
+<span class="linenos">126</span>    <span class="c1"># After closing class docstring, there should be one blank line to</span>
+<span class="linenos">127</span>    <span class="c1"># separate following codes (according to PEP257).</span>
+<span class="linenos">128</span>    <span class="c1"># But for function, method and module, there should be no blank lines</span>
+<span class="linenos">129</span>    <span class="c1"># after closing the docstring.</span>
+<span class="linenos">130</span>    <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="module-numpydoc_example">
+<span id="rendered"></span><h2>Rendered<a class="headerlink" href="#module-numpydoc_example" title="Permalink to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Docstring for the example.py module.</p>
+<p>Modules names should have short, all-lowercase names.  The module name may
+have underscores if this improves readability.</p>
+<p>Every module should have a docstring at the very top of the file.  The
+module’s docstring may extend over multiple lines.  If your docstring does
+extend over multiple lines, the closing three quotation marks must be on
+a line by itself, preferably preceded by a blank line.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="numpydoc_example.foo">
+<span class="sig-prename descclassname"><span class="pre">numpydoc_example.</span></span><span class="sig-name descname"><span class="pre">foo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hi'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/numpydoc_example.html#foo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#numpydoc_example.foo" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd><p>Summarize the function in one line.</p>
+<p>Several sentences providing an extended description. Refer to
+variables using back-ticks, e.g. <cite>var</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array_like</span></code>) – Array_like means all those objects – lists, nested lists, etc. –
+that can be converted to an array.  We can also refer to
+variables like <cite>var1</cite>.</p></li>
+<li><p><strong>var2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The type above can either refer to an actual Python type
+(e.g. <code class="docutils literal notranslate"><span class="pre">int</span></code>), or describe the type of the variable in more
+detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</span> <span class="pre">ndarray</span></code> or <code class="docutils literal notranslate"><span class="pre">array_like</span></code>.</p></li>
+<li><p><strong>*args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code>) – Other arguments.</p></li>
+<li><p><strong>long_var_name</strong> (<code class="docutils literal notranslate"><span class="pre">{'hi',</span> <span class="pre">'ho'}</span></code>, <em>optional</em>) – Choices in brackets, default first when optional.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Keyword arguments.</p></li>
+<li><p><strong>only_seldom_used_keywords</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
+<li><p><strong>common_parameters_listed_above</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> – Explanation of anonymous return value of type <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p></li>
+<li><p><strong>describe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of return value named <cite>describe</cite>.</p></li>
+<li><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of <cite>out</cite>.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">type_without_description</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>BadException</strong> – Because you shouldn’t have done that.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.array</span></code></dt><dd><p>Relationship (optional).</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></dt><dd><p>Relationship (optional), which could be fairly long, in which case the line wraps here.</p>
+</dd>
+</dl>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.dot</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.linalg.norm</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.eye</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>Notes about the implementation algorithm (if needed).</p>
+<p>This can have multiple paragraphs.</p>
+<p>You may include some math:</p>
+<div class="math notranslate nohighlight">
+\[X(e^{j\omega } ) = x(n)e^{ - j\omega n}\]</div>
+<p>And even use a Greek symbol like <span class="math notranslate nohighlight">\(\omega\)</span> inline.</p>
+<p class="rubric">References</p>
+<p>Cite the relevant literature, e.g. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.  You may also cite these
+references in the notes section above.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a href="#id1" role="doc-backlink">1</a><span class="fn-bracket">]</span></span>
+<p>O. McNoleg, “The integration of GIS, remote sensing,
+expert systems and adaptive co-kriging for environmental habitat
+modelling of the Highland Haggis using object-oriented, fuzzy-logic
+and neural-network techniques,” Computers &amp; Geosciences, vol. 22,
+pp. 585-588, 1996.</p>
+</aside>
+</aside>
+<p class="rubric">Examples</p>
+<p>These are written in doctest format, and should illustrate how to
+use the function.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">([</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">])</span>
+<span class="go">[4, 5, 6]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">"a</span><span class="se">\n</span><span class="s2">b"</span><span class="p">)</span>
+<span class="go">a</span>
+<span class="go">b</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</section>
+</article>
+</div>
+<aside class="column is-hidden-touch is-2">
+<nav class="ff-localtoc menu">
+<p class="menu-label">Contents</p>
+<ul>
+<li><a class="reference internal" href="#">NumPy Docstrings</a><ul>
+<li><a class="reference internal" href="#source">Source</a></li>
+<li><a class="reference internal" href="#module-numpydoc_example">Rendered</a><ul>
+<li><a class="reference internal" href="#numpydoc_example.foo"><code class="docutils literal notranslate"><span class="pre">foo()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</div>
+</main>
+<footer class="footer">
+<div class="footer-content">
+<nav class="level">
+<div class="level-left">
+<div class="level-item">
+<a class="icon-text" href="pymethod.html" rel="prev" title="Python Methods">
+<span class="icon">
+<i class="fas fa-arrow-left"></i>
+</span>
+<span class="is-size-5">Python Methods</span>
+</a>
+</div>
+</div>
+<div class="level-right">
+<div class="level-item">
+<a class="icon-text" href="autodoc_pydantic_example.html" rel="next" title="autodoc_pydantic API Docs">
+<span class="is-size-5">autodoc_pydantic API Docs</span>
+<span class="icon">
+<i class="fas fa-arrow-right"></i>
+</span>
+</a>
+</div>
+</div>
+</nav>
+<div class="columns">
+<div class="fineprint column">
+<div class="copyright">
+              © Copyright 2021, Open Force Field Initiative.
+              
+          </div>
+          Last updated on
+            Oct 19, 2023.
+          <br/>
+          Created using
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+           and
+          <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
+</div>
+<div class="socials column">
+<p class="pb-3">An <a class="has-text-white" href="https://openforcefield.org/">Open Force Field Initiative</a> project.</p>
+<div>
+<a class="icon has-text-light is-medium" href="https://zenodo.org/communities/openforcefield/" title="OpenFF on Zenodo">
+<i class="fa-lg ai-lg ai ai-zenodo"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://www.youtube.com/channel/UCh0aJSUm_sYr7nuTzhW806g" title="OpenFF on YouTube">
+<i class="fa-lg ai-lg fab fa-youtube"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://github.com/openforcefield" title="OpenFF on GitHub">
+<i class="fa-lg ai-lg fab fa-github"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://twitter.com/openforcefield" title="OpenFF on Twitter">
+<i class="fa-lg ai-lg fab fa-twitter"></i>
+</a>
+<a class="icon has-text-light is-medium" href="https://www.linkedin.com/company/openforcefield/" title="OpenFF on LinkedIn">
+<i class="fa-lg ai-lg fab fa-linkedin"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
