@@ -1,1 +1,2 @@
 sphinx_material/_version.py export-subst
+openff_sphinx_theme/_version.py export-subst
