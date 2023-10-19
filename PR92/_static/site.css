@@ -9984,7 +9984,7 @@ html .content .admonition-title:last-child.versionmodified.deprecated, html .con
   color: #2f9ed2;
 }
 
-.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .o + .w, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .n:not(:first-child) > .p + .w {
+.content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .o + .w, .content dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list):not(.footnote)[class] > dt > .sig-param > .w + .p + .w {
   white-space: nowrap;
 }
 
