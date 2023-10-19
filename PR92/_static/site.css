@@ -8845,10 +8845,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-python .highlight pre, .content .highlight-py .highlight pre, .content .highlight-python3 .highlight pre, .content .highlight-py3 .highlight pre, .content .highlight-pycon .highlight pre {
+  background: none;
 }
 
 .content .highlight-sh, .content .highlight-shell-session, .content .highlight-shell {
@@ -8867,10 +8870,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-sh .highlight pre, .content .highlight-shell-session .highlight pre, .content .highlight-shell .highlight pre {
+  background: none;
 }
 
 .content .highlight-bash {
@@ -8889,10 +8895,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-bash .highlight pre {
+  background: none;
 }
 
 .content .highlight-yaml, .content .highlight-yml {
@@ -8911,10 +8920,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-yaml .highlight pre, .content .highlight-yml .highlight pre {
+  background: none;
 }
 
 .content .highlight-toml {
@@ -8933,10 +8945,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-toml .highlight pre {
+  background: none;
 }
 
 .content .highlight-json {
@@ -8955,10 +8970,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-json .highlight pre {
+  background: none;
 }
 
 .content .highlight-html {
@@ -8977,10 +8995,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-html .highlight pre {
+  background: none;
 }
 
 .content .highlight-xml {
@@ -8999,10 +9020,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-xml .highlight pre {
+  background: none;
 }
 
 .content .highlight-javascript, .content .highlight-js {
@@ -9021,10 +9045,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-javascript .highlight pre, .content .highlight-js .highlight pre {
+  background: none;
 }
 
 .content .highlight-jinja {
@@ -9043,10 +9070,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-jinja .highlight pre {
+  background: none;
 }
 
 .content .highlight-c {
@@ -9065,10 +9095,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-c .highlight pre {
+  background: none;
 }
 
 .content .highlight-cxx, .content .highlight-cpp, .content .highlight-c\+\+ {
@@ -9087,10 +9120,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-cxx .highlight pre, .content .highlight-cpp .highlight pre, .content .highlight-c\+\+ .highlight pre {
+  background: none;
 }
 
 .content .highlight-rs, .content .highlight-rust {
@@ -9109,10 +9145,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-rs .highlight pre, .content .highlight-rust .highlight pre {
+  background: none;
 }
 
 .content .highlight-julia {
@@ -9131,10 +9170,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-julia .highlight pre {
+  background: none;
 }
 
 .content .highlight-r {
@@ -9153,10 +9195,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-r .highlight pre {
+  background: none;
 }
 
 .content .highlight-restructuredtext, .content .highlight-rst, .content .highlight-rest {
@@ -9175,10 +9220,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-restructuredtext .highlight pre, .content .highlight-rst .highlight pre, .content .highlight-rest .highlight pre {
+  background: none;
 }
 
 .content .highlight-md, .content .highlight-markdown {
@@ -9197,10 +9245,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-md .highlight pre, .content .highlight-markdown .highlight pre {
+  background: none;
 }
 
 .content .highlight-tex {
@@ -9219,10 +9270,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-tex .highlight pre {
+  background: none;
 }
 
 .content .highlight-latex {
@@ -9241,10 +9295,13 @@ html {
   font-family: Cousine, monospace;
   font-variant: small-caps;
   position: absolute;
-  z-index: 10;
   right: 0.18rem;
   top: 0.18rem;
   line-height: 0.8;
+}
+
+.content .highlight-latex .highlight pre {
+  background: none;
 }
 
 .content .nbinput > .prompt, .content .nboutput > .prompt {
@@ -10240,6 +10297,8 @@ header, .navbar.is-primary.has-shadow {
   #drawer-toggle:checked + .burger span:nth-child(4) {
     opacity: 50%;
     pointer-events: auto;
+    touch-action: none;
+    cursor: not-allowed;
   }
   #drawer {
     left: -20rem;
@@ -10252,9 +10311,22 @@ header, .navbar.is-primary.has-shadow {
     position: fixed;
     display: block;
     z-index: 12;
+    padding: 0;
+    overflow: auto;
+    scrollbar-width: none;
   }
   #drawer .ff-globaltoc {
     position: unset;
+  }
+  #drawer h1 {
+    font-size: 110%;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 0.4rem;
+  }
+  html:has(#drawer-toggle:checked) {
+    overflow: hidden;
   }
   header {
     overflow-wrap: break-word;
@@ -10359,6 +10431,7 @@ header .navbar > .navbar-end {
   margin-left: auto;
   margin-top: auto;
   margin-bottom: auto;
+  display: flex;
 }
 
 header .nav-search input {
@@ -10522,5 +10595,114 @@ a:hover:not(.is-active) code, a:hover:not(.is-active) pre {
 
 main > .columns {
   max-width: 100vw;
+}
+
+.has-text-inherit {
+  color: inherit;
+}
+
+#rtd-versions-container-header .rst-versions, #rtd-versions-container-burger .rst-versions {
+  position: relative;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  right: auto;
+}
+
+#rtd-versions-container-header .rst-versions .rst-other-versions dd a:hover, #rtd-versions-container-header .rst-versions a:hover, #rtd-versions-container-burger .rst-versions .rst-other-versions dd a:hover, #rtd-versions-container-burger .rst-versions a:hover {
+  color: #2f9ed2;
+}
+
+#rtd-versions-container-header {
+  padding: 0;
+}
+
+#rtd-versions-container-header .rst-versions {
+  padding-inline: 0.75rem;
+}
+
+#rtd-versions-container-header .rst-versions .rst-current-version {
+  display: flex;
+  flex-direction: column;
+  height: 4rem;
+  background: none;
+  justify-content: center;
+  padding: 0;
+  gap: 0.2rem;
+  line-height: 1;
+}
+
+#rtd-versions-container-header .rst-versions .rst-other-versions {
+  background: #1f1d1d;
+  right: 0;
+}
+
+#rtd-versions-container-header .rst-versions.shift-up, #rtd-versions-container-header .rst-versions.shift-up * {
+  z-index: 12;
+}
+
+#rtd-versions-container-header .rst-versions.shift-up .rst-current-version {
+  text-align: center;
+}
+
+#rtd-versions-container-header .rst-versions.shift-up .rst-current-version::before {
+  content: "";
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 11;
+  cursor: not-allowed;
+}
+
+#rtd-versions-container-header .rst-versions.shift-up .rst-current-version::after {
+  content: "";
+  z-index: 12;
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+#rtd-versions-container-header .rst-versions.shift-up .rst-other-versions {
+  position: absolute;
+  box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14), 0 24px 38px 3px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.4);
+  border-radius: 0.125rem;
+  border-top-right-radius: 0;
+}
+
+#rtd-versions-container-header .rst-versions:hover .rst-current-version {
+  color: #2f9ed2;
+}
+
+#rtd-versions-container-burger .rst-versions {
+  max-width: none;
+  max-height: 30px;
+  transition: max-height 0.2s;
+  overflow: hidden;
+}
+
+#rtd-versions-container-burger .rst-versions .rst-current-version {
+  text-align: right;
+  height: 30px;
+}
+
+#rtd-versions-container-burger .rst-versions .rst-other-versions {
+  display: block;
+}
+
+#rtd-versions-container-burger .rst-versions.shift-up {
+  max-height: 100vh;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+#rtd-versions-container-burger .rst-versions.shift-up .rst-current-version .fa-book {
+  float: none;
 }
 
