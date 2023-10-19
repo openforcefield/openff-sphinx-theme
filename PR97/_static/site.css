@@ -10606,7 +10606,6 @@ main > .columns {
 
 #rtd-versions-container-header .rst-versions {
   padding-inline: 0.75rem;
-  background: none;
 }
 
 #rtd-versions-container-header .rst-versions .rst-current-version {
@@ -10614,7 +10613,6 @@ main > .columns {
   flex-direction: column;
   height: 4rem;
   background: none;
-  color: whitesmoke;
   justify-content: center;
   padding: 0;
   gap: 0.2rem;
