@@ -21,6 +21,7 @@
 <link href="_static/site.css" rel="stylesheet"/>
 <meta content="#015480;" name="theme-color"/>
 <title>Python Methods — OpenFF Sphinx theme</title>
+<script src="_static/openff.js" type="text/javascript"></script>
 <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="_static/openff.css" rel="stylesheet" type="text/css"/>
 <link href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css"/>
@@ -43,7 +44,7 @@
 <header data-md-component="header">
 <nav aria-label="main navigation" class="navbar is-primary is-fixed-top is-flex-touch has-shadow" role="navigation">
 <div class="navbar-brand">
-<a class="navbar-item is-hidden-mobile" href="index.html" title="OpenFF Sphinx theme">
+<a class="navbar-item is-hidden-mobile" href="https://docs.openforcefield.org/">
 <img alt="OpenFF Sphinx theme logo" src="_static/images/logos/openforcefield_v1_white.png"/>
 </a>
 </div>
@@ -69,21 +70,20 @@
 </div>
 </form>
 </span>
-<a class="is-family-monospace navbar-item is-hidden-touch has-text-light" href="https://github.com/openforcefield/openff-sphinx-theme/">
+<a class="navbar-item is-hidden-touch has-text-light is-family-monospace" href="https://github.com/openforcefield/openff-sphinx-theme/">
 <span class="icon-text">
 <span class="icon">
 <i class="fab fa-github"></i>
 </span>
 <span>
-          
-            openff-sphinx-theme
-          
-            </span>
+
+  openff-sphinx-theme
+
+  </span>
 </span>
 </a>
-<a class="navbar-item is-hidden-touch" href="https://docs.openforcefield.org/">
-<img alt="Open Force Field Initiative logo" src="_static/images/logos/openforcefield_v2_white.png"/>
-</a>
+<span class="is-hidden-mobile navbar-item" id="rtd-versions-container-header">
+</span>
 </div>
 <span class="navbar-burger-spacer is-hidden-tablet"></span>
 </nav>
@@ -110,7 +110,23 @@
                 OpenFF Sphinx theme
               </h1>
 </a>
-<div class="py-3" role="search">
+<div class="has-text-centered p-3">
+<a class="is-family-monospace" href="https://github.com/openforcefield/openff-sphinx-theme/">
+<span class="icon-text">
+<span class="icon">
+<i class="fab fa-github"></i>
+</span>
+<span>
+
+  openff-sphinx-theme
+
+  </span>
+</span>
+</a>
+</div>
+<span id="rtd-versions-container-burger">
+</span>
+<div class="p-3" role="search">
 <form action="search.html" method="GET" name="search">
 <div class="control has-icons-right">
 <span class="icon is-small is-right">
@@ -202,9 +218,9 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sender</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The person sending the message</p></li>
-<li><p><strong>recipient</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The recipient of the message</p></li>
-<li><p><strong>message_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The body of the message</p></li>
+<li><p><strong>sender</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The person sending the message</p></li>
+<li><p><strong>recipient</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The recipient of the message</p></li>
+<li><p><strong>message_body</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The body of the message</p></li>
 <li><p><strong>priority</strong> (<em>integer</em><em> or </em><em>None</em>) – The priority of the message, can be a number 1-5</p></li>
 </ul>
 </dd>
@@ -212,12 +228,12 @@
 <dd class="field-even"><p>the message id</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a></p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – if the message_body exceeds 160 characters</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.11)"><strong>TypeError</strong></a> – if the message_body is not a basestring</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – if the message_body exceeds 160 characters</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if the message_body is not a basestring</p></li>
 </ul>
 </dd>
 </dl>
@@ -258,7 +274,7 @@ Otherwise, it is <code class="docutils literal notranslate"><span class="pre">Un
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p><p><strong>Response Syntax</strong></p>
@@ -397,7 +413,7 @@ Otherwise, it is <code class="docutils literal notranslate"><span class="pre">Un
               
           </div>
           Last updated on
-            Jul 04, 2023.
+            Oct 19, 2023.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
