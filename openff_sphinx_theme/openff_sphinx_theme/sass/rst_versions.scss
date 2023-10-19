@@ -67,8 +67,8 @@
                 border-top-right-radius: 0;
             }
         }
-        &:hover, &.shift-up {
-            background: bulmaDarken($primary, 5%);
+        &:hover .rst-current-version {
+            color: $link-hover;
         }
     }
 }
