@@ -49,6 +49,13 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             }
         }
 
+        // Hide any naked text nodes at this level
+        // This hides Sphinx's commas so we can put our own in
+        font-size: 0;
+        * {
+            font-size: $api-header-font-size;
+        }
+
         // Indent the argument list
         padding-left: $api-header-padding + $api-arguments-indent;
         > :first-child {
@@ -60,6 +67,32 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             color: $api-property-color;
             font-size: inherit;
 
+        }
+
+        // Name of a parameter
+        .n > .pre {
+            color: $api-param-name-color;
+        }
+        // Symbols; equals sign, asterisk, etc
+        .o > .pre {
+            color: $api-param-symbol-color;
+            padding-left: 0.2em;
+            padding-right: 0.2em;
+        }
+        // Type annotation
+        .p, .p + .n, .p + .w + .n {
+            .pre {
+                color: $api-type-color;
+            }
+        }
+        // Links
+        a {
+            font-weight: 550;
+            &:hover {
+                .pre, pre, code {
+                    color: $link-hover !important;
+                }
+            }
         }
         // Text providing path to the object
         > .sig-prename {
@@ -91,73 +124,45 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
         }
         // Opening and closing parenthesis
         > .sig-paren {
-            font-size: inherit;
 
         }
         // Each parameter
         > .sig-param {
-            font-size: inherit;
             font-style: normal;
+            padding-left: $api-arguments-indent;
+            text-indent:-$api-arguments-indent;
+            display: block;
             // Entire parameter if parsing the parameter has failed. Splits on commas
             > .pre {
                 color: $api-param-name-color;
             }
-            // Name of a parameter
-            > .n > .pre {
-                color: $api-param-name-color;
-            }
-            // Symbols; equals sign, asterisk, etc
-            > .o > .pre {
-                color: $api-param-symbol-color;
-                padding-left: 0.2em;
-                padding-right: 0.2em;
-            }
-            // Type anotation
-            .p, .p + .n, .p + .w + .n {
-                .pre {
-                    color: $api-type-color;
+            // Prevent line breaks immediately after operators
+            > .o, > .w + .p {
+                + .w {
+                    white-space: nowrap;
                 }
             }
             // Default values of arguments
             > .default_value > .pre {
                 color: $api-param-value-color;
             }
-            // After each parameter, newline
-            &::before {
-                content: "\a";
-                white-space: pre;
-            }
-            // Links
-            a {
-                font-weight: 550;
-                &:hover {
-                    .pre, pre, code {
-                        color: $link-hover !important;
-                    }
-                }
+            // After each parameter, comma
+            &::after {
+                content: ",";
             }
         }
         // Brackets [] denoting optional arguments
         // This is redundant information and I am displeased to have to support it
         > .optional {
             // Put optional [] brackets on their own lines
-            &::before {
+            &::after {
                 content: "\a";
                 white-space: pre;
-            }
-            // Optional parameters need extra indentation
-            ~ .sig-param::before {
-                content: "\a    ";
             }
         }
         // Closing parenthesis
         .sig-param, .optional {
             + .sig-paren {
-                &::before {
-                    content: "\a";
-                    white-space: pre;
-                }
-
                 // Unindent closing paren, and everything following (except source link)
                 position: relative;
                 left: -$api-arguments-indent;
@@ -173,6 +178,19 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
                     bottom: $api-header-padding;
                     right: $api-header-padding;
                 }
+            }
+        }
+        // Return arrow
+        .sig-return-icon {
+            font-size: 2em;
+            line-height: 0;
+            margin-left: 0.5rem;
+        }
+        .sig-return-typehint {
+            color: $api-type-color;
+            a {
+                color: $api-type-color;
+                font-weight: 550;
             }
         }
         // Pydantic validator arrow
@@ -201,13 +219,14 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             right: $api-header-padding;
             color: $api-source-link-color;
             font-size: $pre-font-size;
+            font-weight: normal;
             &:hover {
                 color: $link-hover;
             }
         }
         // Permalink to the object (to here)
         > a.headerlink {
-            font-size: 1em;
+            font-size: $api-header-font-size;
             opacity: 1;
             transform: translate(0);
         }
