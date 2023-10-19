@@ -136,8 +136,8 @@ dl:not(.docutils):not(.field-list):not(.simple):not(.citation):not(.option-list)
             > .pre {
                 color: $api-param-name-color;
             }
-            // Prevent line breaks immediately after assignment or union operators
-            > .o, > .n:not(:first-child) > .p {
+            // Prevent line breaks immediately after operators
+            > .o, > .w + .p {
                 + .w {
                     white-space: nowrap;
                 }
