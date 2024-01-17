@@ -23,6 +23,6 @@ dependencies:
   - sphinx-autobuild
   - sphinx>=6.2.1,<7
   - pip:
-    - readthedocs-sphinx-search
+    - readthedocs-sphinx-search >=0.3.2
     - git+https://github.com/Yoshanuikabundi/MyST-NB.git@upgrade-to-1
 
