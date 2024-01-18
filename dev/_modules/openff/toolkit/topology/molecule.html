@@ -398,6 +398,7 @@
 
 <span class="kn">from</span> <span class="nn">openff.toolkit.utils.constants</span> <span class="kn">import</span> <span class="n">DEFAULT_AROMATICITY_MODEL</span>
 <span class="kn">from</span> <span class="nn">openff.toolkit.utils.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AtomMappingWarning</span><span class="p">,</span>
     <span class="n">BondExistsError</span><span class="p">,</span>
     <span class="n">HierarchyIteratorNameConflictError</span><span class="p">,</span>
     <span class="n">HierarchySchemeNotFoundException</span><span class="p">,</span>
@@ -2220,6 +2221,17 @@
                 <span class="sa">f</span><span class="s2">&quot;Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span>
 
+        <span class="k">if</span> <span class="s2">&quot;atom_map&quot;</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">_properties</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">_properties</span><span class="p">[</span><span class="s2">&quot;atom_map&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="n">molecule</span><span class="o">.</span><span class="n">n_atoms</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;Warning! Fully mapped SMILES pattern passed to `from_smiles`. The atom map is &quot;</span>
+                    <span class="s2">&quot;stored as a property in `Molecule._properties`, but these indices are NOT &quot;</span>
+                    <span class="s2">&quot;used to determine atom ordering. To use these indices for atom ordering, use &quot;</span>
+                    <span class="s2">&quot;`Molecule.from_mapped_smiles`.&quot;</span><span class="p">,</span>
+                    <span class="n">AtomMappingWarning</span><span class="p">,</span>
+                    <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="p">)</span>
+
         <span class="k">return</span> <span class="n">molecule</span>
 
     <span class="k">def</span> <span class="nf">_is_exactly_the_same_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -2431,7 +2443,7 @@
                 <span class="c1"># Molecule class instance</span>
                 <span class="k">if</span> <span class="n">strip_pyrimidal_n_atom_stereo</span><span class="p">:</span>
                     <span class="c1"># Make a copy of the molecule so we don&#39;t modify the original</span>
-                    <span class="n">data</span><span class="p">:</span> <span class="n">FrozenMolecule</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
                     <span class="n">data</span><span class="o">.</span><span class="n">strip_atom_stereochemistry</span><span class="p">(</span>
                         <span class="n">SMARTS</span><span class="p">,</span> <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">toolkit_registry</span>
                     <span class="p">)</span>
@@ -3043,16 +3055,14 @@
                 <span class="sa">f</span><span class="s2">&quot;Expected ToolkitRegistry or ToolkitWrapper. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">toolkit_registry</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_invalidate_cached_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_invalidate_cached_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Indicate that the chemical entity has been altered.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># if hasattr(self, &#39;_cached_properties&#39;):</span>
-        <span class="c1">#    delattr(self, &#39;_cached_properties&#39;)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_conformers</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_partial_charges</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atom</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_hill_formula</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cached_smiles</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -3499,18 +3509,12 @@
     <span class="k">def</span> <span class="nf">n_propers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of proper torsions in the molecule.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_construct_torsions</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">),</span> <span class="s2">&quot;_construct_torsions always sets _propers to a set&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_propers</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_impropers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of possible improper torsions in the molecule.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_construct_torsions</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="p">),</span> <span class="s2">&quot;_construct_torsions always sets _impropers to a set&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span><span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -4106,7 +4110,7 @@
 
         <span class="k">if</span> <span class="n">file_format</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">):</span>
-                <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>
+                <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span>  <span class="c1"># type: ignore[no-redef]</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="s2">&quot;If providing a file-like object for reading molecules, the format must be specified&quot;</span>
@@ -4874,12 +4878,18 @@
 
         <span class="c1"># create the molecule from the smiles and check we have the right number of indexes</span>
         <span class="c1"># in the mapped SMILES</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">AtomMappingWarning</span><span class="p">)</span>
+
         <span class="n">offmol</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_smiles</span><span class="p">(</span>
             <span class="n">mapped_smiles</span><span class="p">,</span>
             <span class="n">hydrogens_are_explicit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">toolkit_registry</span><span class="o">=</span><span class="n">toolkit_registry</span><span class="p">,</span>
             <span class="n">allow_undefined_stereo</span><span class="o">=</span><span class="n">allow_undefined_stereo</span><span class="p">,</span>
         <span class="p">)</span>
+
+        <span class="c1"># https://stackoverflow.com/a/53763710</span>
+        <span class="c1"># this might be better: https://docs.python.org/3/library/warnings.html#warnings.catch_warnings</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">AtomMappingWarning</span><span class="p">)</span>
 
         <span class="c1"># check we found some mapping and remove it as we do not want to expose atom maps</span>
         <span class="k">try</span><span class="p">:</span>
@@ -5387,7 +5397,7 @@
                         <span class="k">else</span><span class="p">:</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_angles</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">atom3</span><span class="p">,</span> <span class="n">atom2</span><span class="p">,</span> <span class="n">atom1</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">_construct_torsions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_construct_torsions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct sets containing the atoms improper and proper torsions</span>
 
@@ -5396,8 +5406,9 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_torsions&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_construct_bonded_atoms_list</span><span class="p">()</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Atom</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
             <span class="k">for</span> <span class="n">atom1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_atoms</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom1</span><span class="p">]:</span>
                     <span class="k">for</span> <span class="n">atom3</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bonded_atoms</span><span class="p">[</span><span class="n">atom2</span><span class="p">]:</span>
@@ -5428,7 +5439,7 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_torsions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_propers</span> <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">_impropers</span>
 
-    <span class="k">def</span> <span class="nf">_construct_bonded_atoms_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_construct_bonded_atoms_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Construct list of all atoms each atom is bonded to.</span>
 
@@ -6445,7 +6456,7 @@
               
           </div>
           Last updated on
-            Oct 19, 2023.
+            Jan 18, 2024.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.

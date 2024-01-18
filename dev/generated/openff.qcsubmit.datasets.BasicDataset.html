@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.19: https://docutils.sourceforge.io/" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
 <link href="../_static/images/favicon.svg" rel="icon" type="image/svg"/>
 <link href="../_static/images/favicon.svg" rel="apple-touch-icon" type="image/svg"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
@@ -244,7 +244,7 @@ and a unique index to be identified by.</p>
 <span class="w">                  </span><span class="s2">"wiberg_lowdin_indices"</span><span class="p">,</span>
 <span class="w">                  </span><span class="s2">"mayer_indices"</span>
 <span class="w">               </span><span class="p">],</span>
-<span class="w">               </span><span class="nt">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">               </span><span class="nt">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">         </span><span class="p">},</span>
 <span class="w">         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span>
@@ -257,7 +257,7 @@ and a unique index to be identified by.</p>
 <span class="w">         </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"energy"</span><span class="p">,</span>
 <span class="w">         </span><span class="nt">"allOf"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="p">{</span>
-<span class="w">               </span><span class="nt">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/DriverEnum"</span>
+<span class="w">               </span><span class="nt">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/SinglepointDriver"</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">         </span><span class="p">]</span>
 <span class="w">      </span><span class="p">},</span>
@@ -291,7 +291,7 @@ and a unique index to be identified by.</p>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">"dataset_tagline"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dataset Tagline"</span><span class="p">,</span>
-<span class="w">         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The tagline should be a short description of the dataset which will be displayed by the QCArchive client when the collections are listed."</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The tagline should be a short description of the dataset which will be displayed by the QCArchive client when the datasets are listed."</span><span class="p">,</span>
 <span class="w">         </span><span class="nt">"minLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
 <span class="w">         </span><span class="nt">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[a-zA-Z]"</span><span class="p">,</span>
 <span class="w">         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span>
@@ -316,7 +316,7 @@ and a unique index to be identified by.</p>
 <span class="w">         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The metadata describing the dataset."</span><span class="p">,</span>
 <span class="w">         </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nt">"submitter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"runner"</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">"creation_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-10-19"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"creation_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-18"</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">"collection_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">"dataset_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">"short_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
@@ -370,6 +370,7 @@ and a unique index to be identified by.</p>
 <span class="w">         </span><span class="nt">"enum"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="s2">"all"</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">"orbitals_and_eigenvalues"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"occupations_and_eigenvalues"</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">"return_results"</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">"none"</span>
 <span class="w">         </span><span class="p">],</span>
@@ -566,6 +567,7 @@ and a unique index to be identified by.</p>
 <span class="w">            </span><span class="nt">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">               </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keywords"</span><span class="p">,</span>
 <span class="w">               </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An optional set of program specific computational keywords that should be passed to the program. These may include, for example, DFT grid settings."</span><span class="p">,</span>
+<span class="w">               </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
 <span class="w">               </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span>
 <span class="w">               </span><span class="nt">"additionalProperties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                  </span><span class="nt">"anyOf"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
@@ -592,14 +594,15 @@ and a unique index to be identified by.</p>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">         </span><span class="p">}</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nt">"DriverEnum"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DriverEnum"</span><span class="p">,</span>
-<span class="w">         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The type of calculation that is being performed (e.g., energy, gradient, Hessian, ...)."</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"SinglepointDriver"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SinglepointDriver"</span><span class="p">,</span>
+<span class="w">         </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An enumeration."</span><span class="p">,</span>
 <span class="w">         </span><span class="nt">"enum"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="s2">"energy"</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">"gradient"</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">"hessian"</span><span class="p">,</span>
-<span class="w">            </span><span class="s2">"properties"</span>
+<span class="w">            </span><span class="s2">"properties"</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">"deferred"</span>
 <span class="w">         </span><span class="p">],</span>
 <span class="w">         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span>
 <span class="w">      </span><span class="p">},</span>
@@ -617,7 +620,7 @@ and a unique index to be identified by.</p>
 <span class="w">            </span><span class="nt">"creation_date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">               </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Creation Date"</span><span class="p">,</span>
 <span class="w">               </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The date the dataset was created on, this is automatically generated."</span><span class="p">,</span>
-<span class="w">               </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-10-19"</span><span class="p">,</span>
+<span class="w">               </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-18"</span><span class="p">,</span>
 <span class="w">               </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span>
 <span class="w">               </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span>
 <span class="w">            </span><span class="p">},</span>
@@ -1165,7 +1168,7 @@ and a unique index to be identified by.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>allow_mutation</strong>: <em>bool = True</em></p></li>
 <li><p><strong>arbitrary_types_allowed</strong>: <em>bool = True</em></p></li>
-<li><p><strong>json_encoders</strong>: <em>dict = {&lt;class ‘numpy.ndarray’&gt;: &lt;function DatasetConfig.Config.&lt;lambda&gt; at 0x7f38fe6b98a0&gt;, &lt;enum ‘Enum’&gt;: &lt;function DatasetConfig.Config.&lt;lambda&gt; at 0x7f38fe6d0680&gt;}</em></p></li>
+<li><p><strong>json_encoders</strong>: <em>dict = {&lt;class ‘numpy.ndarray’&gt;: &lt;function DatasetConfig.Config.&lt;lambda&gt; at 0x7f5d184362a0&gt;, &lt;enum ‘Enum’&gt;: &lt;function DatasetConfig.Config.&lt;lambda&gt; at 0x7f5d18437920&gt;}</em></p></li>
 <li><p><strong>validate_assignment</strong>: <em>bool = True</em></p></li>
 </ul>
 </dd>
@@ -1177,7 +1180,7 @@ and a unique index to be identified by.</p>
 <li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dataset_tagline</span> <span class="pre">(openff.qcsubmit.datasets.datasets.ConstrainedStrValue)</span></code></p></li>
 <li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">dataset_tags</span> <span class="pre">(List[str])</span></code></p></li>
 <li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span> <span class="pre">(openff.qcsubmit.datasets.datasets.ConstrainedStrValue)</span></code></p></li>
-<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">driver</span> <span class="pre">(qcportal.models.common_models.DriverEnum)</span></code></p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">driver</span> <span class="pre">(qcportal.singlepoint.record_models.SinglepointDriver)</span></code></p></li>
 <li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">filtered_molecules</span> <span class="pre">(Dict[str,</span> <span class="pre">openff.qcsubmit.datasets.entries.FilterEntry])</span></code></p></li>
 <li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">metadata</span> <span class="pre">(openff.qcsubmit.common_structures.Metadata)</span></code></p></li>
 <li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">priority</span> <span class="pre">(str)</span></code></p></li>
@@ -1486,19 +1489,14 @@ produce the smallest files.</p>
 <dd></dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.submit">
-<span class="sig-name descname"><span class="pre">submit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.12)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FractalClient</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.12)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.12)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a></span></span><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.submit" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<span class="sig-name descname"><span class="pre">submit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PortalClient</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a></span></span><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.submit" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>Submit the dataset to a QCFractal server.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
-<dt>client:</dt><dd><p>The name of the file containing the client information or an actual client instance.</p>
-</dd>
-<dt>processes:</dt><dd><p>Number of processes to use for submission; if <code class="docutils literal notranslate"><span class="pre">None</span></code>, all available processes will be used.</p>
+<dt>client:</dt><dd><p>Instance of a portal client</p>
 </dd>
 <dt>ignore_errors:</dt><dd><p>If the user wants to submit the compute regardless of errors set this to <code class="docutils literal notranslate"><span class="pre">True</span></code>.
 Mainly to override basis coverage.</p>
-</dd>
-<dt>chunk_size:</dt><dd><p>Max number of entries+specs to include in individual <cite>client.compute</cite> calls.
-If <code class="docutils literal notranslate"><span class="pre">None</span></code>, will use <code class="docutils literal notranslate"><span class="pre">query_limit</span></code> from <code class="docutils literal notranslate"><span class="pre">client</span></code>.</p>
 </dd>
 <dt>verbose:</dt><dd><p>If progress bars and submission statistics should be printed <code class="docutils literal notranslate"><span class="pre">True</span></code> or not <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
@@ -1545,8 +1543,8 @@ If <code class="docutils literal notranslate"><span class="pre">None</span></cod
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.dataset_tagline">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset_tagline</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ConstrainedStrValue</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.dataset_tagline" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
-<dd><p>The tagline should be a short description of the dataset which will be displayed by the QCArchive client when the collections are listed.</p>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset_tagline</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">constr(min_length=8,</span> <span class="pre">regex='[a-zA-Z]')</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.dataset_tagline" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<dd><p>The tagline should be a short description of the dataset which will be displayed by the QCArchive client when the datasets are listed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Constraints<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1558,7 +1556,7 @@ If <code class="docutils literal notranslate"><span class="pre">None</span></cod
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.description">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ConstrainedStrValue</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.description" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">constr(min_length=8,</span> <span class="pre">regex='[a-zA-Z]')</span></em><em class="property"> <span class="pre">[Required]</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.description" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>A long description of the datasets purpose and details about the molecules within.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Constraints<span class="colon">:</span></dt>
@@ -1571,27 +1569,27 @@ If <code class="docutils literal notranslate"><span class="pre">None</span></cod
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.metadata">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Metadata</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Metadata(submitter='runner',</span> <span class="pre">creation_date=datetime.date(2023,</span> <span class="pre">10,</span> <span class="pre">19),</span> <span class="pre">collection_type=None,</span> <span class="pre">dataset_name=None,</span> <span class="pre">short_description=None,</span> <span class="pre">long_description_url=None,</span> <span class="pre">long_description=None,</span> <span class="pre">elements=set())</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.metadata" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Metadata</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Metadata(submitter='runner',</span> <span class="pre">creation_date=datetime.date(2024,</span> <span class="pre">1,</span> <span class="pre">18),</span> <span class="pre">collection_type=None,</span> <span class="pre">dataset_name=None,</span> <span class="pre">short_description=None,</span> <span class="pre">long_description_url=None,</span> <span class="pre">long_description=None,</span> <span class="pre">elements=set())</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.metadata" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The metadata describing the dataset.</p>
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.provenance">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provenance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.provenance" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provenance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.provenance" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>A dictionary of the software and versions used to generate the dataset.</p>
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.dataset">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DatasetEntry</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.dataset" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DatasetEntry</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.dataset" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The actual dataset to be stored in QCArchive.</p>
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.filtered_molecules">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filtered_molecules</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FilterEntry</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.filtered_molecules" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filtered_molecules</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FilterEntry</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.filtered_molecules" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The set of workflow components used to generate the dataset with any filtered molecules.</p>
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.driver">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">driver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DriverEnum</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">DriverEnum.energy</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.driver" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">driver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SinglepointDriver</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">SinglepointDriver.energy</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.driver" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The type of single point calculations which will be computed. Note some services require certain calculations for example optimizations require graident calculations.</p>
 </dd></dl>
 <dl class="py attribute pydantic_field">
@@ -1601,7 +1599,7 @@ If <code class="docutils literal notranslate"><span class="pre">None</span></cod
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.dataset_tags">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset_tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['openff']</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.dataset_tags" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset_tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['openff']</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.dataset_tags" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The dataset tags which help identify the dataset.</p>
 </dd></dl>
 <dl class="py attribute pydantic_field">
@@ -1611,7 +1609,7 @@ If <code class="docutils literal notranslate"><span class="pre">None</span></cod
 </dd></dl>
 <dl class="py attribute pydantic_field">
 <dt class="sig sig-object py" id="openff.qcsubmit.datasets.BasicDataset.qc_specifications">
-<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">qc_specifications</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">QCSpec</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'default':</span> <span class="pre">QCSpec(method='B3LYP-D3BJ',</span> <span class="pre">basis='DZVP',</span> <span class="pre">program='psi4',</span> <span class="pre">spec_name='default',</span> <span class="pre">spec_description='Standard</span> <span class="pre">OpenFF</span> <span class="pre">optimization</span> <span class="pre">quantum</span> <span class="pre">chemistry</span> <span class="pre">specification.',</span> <span class="pre">store_wavefunction=&lt;WavefunctionProtocolEnum.none:</span> <span class="pre">'none'&gt;,</span> <span class="pre">implicit_solvent=None,</span> <span class="pre">maxiter=200,</span> <span class="pre">scf_properties=[&lt;SCFProperties.Dipole:</span> <span class="pre">'dipole'&gt;,</span> <span class="pre">&lt;SCFProperties.Quadrupole:</span> <span class="pre">'quadrupole'&gt;,</span> <span class="pre">&lt;SCFProperties.WibergLowdinIndices:</span> <span class="pre">'wiberg_lowdin_indices'&gt;,</span> <span class="pre">&lt;SCFProperties.MayerIndices:</span> <span class="pre">'mayer_indices'&gt;],</span> <span class="pre">keywords=None)}</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.qc_specifications" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
+<em class="property"><span class="pre">field</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">qc_specifications</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">QCSpec</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'default':</span> <span class="pre">QCSpec(method='B3LYP-D3BJ',</span> <span class="pre">basis='DZVP',</span> <span class="pre">program='psi4',</span> <span class="pre">spec_name='default',</span> <span class="pre">spec_description='Standard</span> <span class="pre">OpenFF</span> <span class="pre">optimization</span> <span class="pre">quantum</span> <span class="pre">chemistry</span> <span class="pre">specification.',</span> <span class="pre">store_wavefunction=&lt;WavefunctionProtocolEnum.none:</span> <span class="pre">'none'&gt;,</span> <span class="pre">implicit_solvent=None,</span> <span class="pre">maxiter=200,</span> <span class="pre">scf_properties=[&lt;SCFProperties.Dipole:</span> <span class="pre">'dipole'&gt;,</span> <span class="pre">&lt;SCFProperties.Quadrupole:</span> <span class="pre">'quadrupole'&gt;,</span> <span class="pre">&lt;SCFProperties.WibergLowdinIndices:</span> <span class="pre">'wiberg_lowdin_indices'&gt;,</span> <span class="pre">&lt;SCFProperties.MayerIndices:</span> <span class="pre">'mayer_indices'&gt;],</span> <span class="pre">keywords={})}</span></em><a class="headerlink" href="#openff.qcsubmit.datasets.BasicDataset.qc_specifications" title="Permalink to this definition"><i class="fas fa-link"></i></a></dt>
 <dd><p>The QCSpecifications which will be computed for this dataset.</p>
 </dd></dl>
 </dd></dl>
@@ -1709,7 +1707,7 @@ If <code class="docutils literal notranslate"><span class="pre">None</span></cod
               
           </div>
           Last updated on
-            Oct 19, 2023.
+            Jan 18, 2024.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.

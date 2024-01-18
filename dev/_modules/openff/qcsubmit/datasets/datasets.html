@@ -357,20 +357,21 @@
 
 <span class="kn">import</span> <span class="nn">qcelemental</span> <span class="k">as</span> <span class="nn">qcel</span>
 <span class="kn">import</span> <span class="nn">qcportal</span> <span class="k">as</span> <span class="nn">ptl</span>
-<span class="kn">import</span> <span class="nn">tqdm</span>
 <span class="kn">from</span> <span class="nn">openff.toolkit</span> <span class="kn">import</span> <span class="n">topology</span> <span class="k">as</span> <span class="n">off</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">constr</span><span class="p">,</span> <span class="n">validator</span>
 <span class="kn">from</span> <span class="nn">qcelemental.models</span> <span class="kn">import</span> <span class="n">AtomicInput</span><span class="p">,</span> <span class="n">OptimizationInput</span>
-<span class="kn">from</span> <span class="nn">qcelemental.models.procedures</span> <span class="kn">import</span> <span class="n">QCInputSpecification</span>
-<span class="kn">from</span> <span class="nn">qcportal.models.common_models</span> <span class="kn">import</span> <span class="n">DriverEnum</span><span class="p">,</span> <span class="n">QCSpecification</span>
+<span class="kn">from</span> <span class="nn">qcelemental.models.procedures</span> <span class="kn">import</span> <span class="n">OptimizationProtocols</span><span class="p">,</span> <span class="n">QCInputSpecification</span>
+<span class="kn">from</span> <span class="nn">qcportal</span> <span class="kn">import</span> <span class="n">PortalClient</span><span class="p">,</span> <span class="n">PortalRequestError</span>
+<span class="kn">from</span> <span class="nn">qcportal.optimization</span> <span class="kn">import</span> <span class="n">OptimizationDatasetNewEntry</span><span class="p">,</span> <span class="n">OptimizationSpecification</span>
+<span class="kn">from</span> <span class="nn">qcportal.singlepoint</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">QCSpecification</span><span class="p">,</span>
+    <span class="n">SinglepointDatasetNewEntry</span><span class="p">,</span>
+    <span class="n">SinglepointDriver</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qcportal.torsiondrive</span> <span class="kn">import</span> <span class="n">TorsiondriveDatasetNewEntry</span><span class="p">,</span> <span class="n">TorsiondriveSpecification</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
 
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.common_structures</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">CommonBase</span><span class="p">,</span>
-    <span class="n">Metadata</span><span class="p">,</span>
-    <span class="n">MoleculeAttributes</span><span class="p">,</span>
-    <span class="n">QCSpec</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">openff.qcsubmit.common_structures</span> <span class="kn">import</span> <span class="n">CommonBase</span><span class="p">,</span> <span class="n">Metadata</span><span class="p">,</span> <span class="n">MoleculeAttributes</span>
 <span class="kn">from</span> <span class="nn">openff.qcsubmit.constraints</span> <span class="kn">import</span> <span class="n">Constraints</span>
 <span class="kn">from</span> <span class="nn">openff.qcsubmit.datasets.entries</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DatasetEntry</span><span class="p">,</span>
@@ -381,20 +382,16 @@
 <span class="kn">from</span> <span class="nn">openff.qcsubmit.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DatasetCombinationError</span><span class="p">,</span>
     <span class="n">MissingBasisCoverageError</span><span class="p">,</span>
-    <span class="n">QCSpecificationError</span><span class="p">,</span>
     <span class="n">UnsupportedFiletypeError</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">openff.qcsubmit.procedures</span> <span class="kn">import</span> <span class="n">GeometricProcedure</span>
 <span class="kn">from</span> <span class="nn">openff.qcsubmit.serializers</span> <span class="kn">import</span> <span class="n">deserialize</span><span class="p">,</span> <span class="n">serialize</span>
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.utils</span> <span class="kn">import</span> <span class="n">chunk_generator</span>
 <span class="kn">from</span> <span class="nn">openff.qcsubmit.utils.smirnoff</span> <span class="kn">import</span> <span class="n">smirnoff_coverage</span>
 <span class="kn">from</span> <span class="nn">openff.qcsubmit.utils.visualize</span> <span class="kn">import</span> <span class="n">molecules_to_pdf</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">openff.toolkit.typing.engines.smirnoff</span> <span class="kn">import</span> <span class="n">ForceField</span>
-    <span class="kn">from</span> <span class="nn">qcportal</span> <span class="kn">import</span> <span class="n">FractalClient</span>
     <span class="kn">from</span> <span class="nn">qcportal.collections.collection</span> <span class="kn">import</span> <span class="n">Collection</span>
-    <span class="kn">from</span> <span class="nn">qcportal.models.common_models</span> <span class="kn">import</span> <span class="n">OptimizationSpecification</span>
 
 <span class="n">C</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;Collection&quot;</span><span class="p">)</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">DatasetEntry</span><span class="p">)</span>
@@ -411,7 +408,7 @@
     <span class="p">)</span>
     <span class="n">dataset_tagline</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="s2">&quot;[a-zA-Z]&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># noqa</span>
         <span class="o">...</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The tagline should be a short description of the dataset which will be displayed by the QCArchive client when the collections are listed.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The tagline should be a short description of the dataset which will be displayed by the QCArchive client when the datasets are listed.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;_BaseDataset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="s2">&quot;_BaseDataset&quot;</span><span class="p">,</span>
@@ -460,7 +457,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;FractalClient&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">C</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">C</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate the corresponding QCFractal Collection for this Dataset.</span>
 
 <span class="sd">        Each QCSubmit Dataset class corresponds to and wraps</span>
@@ -479,7 +476,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_get_procedure_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OptimizationSpecification&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OptimizationSpecification&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the procedure spec, if applicable, for this Dataset.</span>
 
 <span class="sd">        If the dataset has no concept of procedure specs, this method</span>
@@ -492,52 +489,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_get_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Shim method to get indices from different Collection types.</span>
-
-<span class="sd">        The mechanism for getting indices from different QCFractal Collections</span>
-<span class="sd">        is inconsistent. This method wraps the required calls to the given</span>
-<span class="sd">        Collection to yield these indices.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        collection : Collection</span>
-<span class="sd">            Collection instance corresponding to this Dataset.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        indices : List[str]</span>
-<span class="sd">            Indices from the entries in the Collection.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
-
-    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_compute_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">:</span> <span class="n">QCSpec</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a dict giving the full arguments to the Collection&#39;s</span>
-<span class="sd">        `compute` method.</span>
-
-<span class="sd">        This requires the compute spec defining the compute operations,</span>
-<span class="sd">        as well as the set of indices to operate on.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        spec : QCSpec</span>
-<span class="sd">            The method, basis, program, and other parameters for compute execution.</span>
-<span class="sd">        indices : List[str]</span>
-<span class="sd">            List of entry indices to apply the compute spec to.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        spec_kwargs : Dict[str, Any]</span>
-<span class="sd">            A dict giving the full arguments to the compute method of this</span>
-<span class="sd">            Dataset&#39;s corresponding Collection.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
-
-    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_add_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">C</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add entries to the Dataset&#39;s corresponding Collection.</span>
 
 <span class="sd">        This method allows for handling of e.g. generating the index/name for</span>
@@ -545,65 +497,10 @@
 <span class="sd">        each item may feature more than one conformer, appropriate handling</span>
 <span class="sd">        differs between e.g. `OptimizationDataset` and `TorsiondriveDataset`</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        collection : Collection</span>
-<span class="sd">            Collection instance corresponding to this Dataset.</span>
-
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        indices : List[str]</span>
-<span class="sd">            A list of the entry indices added.</span>
-<span class="sd">        new_entries : int</span>
-<span class="sd">            The number of new entries added.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span>
-
-    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_add_entry</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">qcel</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">E</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Attempt to add a molecule from the local dataset to the QCArchive instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-
-    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_add_dataset_specification</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">spec</span><span class="p">:</span> <span class="n">QCSpec</span><span class="p">,</span>
-        <span class="n">dataset</span><span class="p">:</span> <span class="n">C</span><span class="p">,</span>
-        <span class="n">procedure_spec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;OptimizationSpecification&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the given compute spec to this Datasets&#39;s corresponding Collection.</span>
-
-<span class="sd">        This will check if a spec under this name has already been added and if it should be overwritten.</span>
-
-<span class="sd">        If a specification is already stored under this name in the collection we have options:</span>
-<span class="sd">            - If a spec with the same name but different details has been added and used we must raise an error to change the name of the new spec</span>
-<span class="sd">            - If the spec has been added and has not been used then overwrite it.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        spec : QCSpec</span>
-<span class="sd">            The QCSpec we are trying to add to the Collection.</span>
-<span class="sd">        procedure_spec : OptimizationSpecification</span>
-<span class="sd">            The procedure spec to add, in this case an `OptimizationSpecification`.</span>
-<span class="sd">        dataset : Collection</span>
-<span class="sd">            The Collection to add this compute spec to.</span>
-
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        bool</span>
-<span class="sd">            `True` if the specification is present in the collection</span>
-<span class="sd">            and is exactly the same as what we are trying to add.</span>
-
-<span class="sd">        Raises</span>
-<span class="sd">        ------</span>
-<span class="sd">        QCSpecificationError</span>
-<span class="sd">            If a specification with the same name is already added to the collection but has different settings.</span>
+<span class="sd">        :</span>
+<span class="sd">            List of new entries to add to the dataset on the server</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span>
 
@@ -615,27 +512,17 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">client</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;FractalClient&quot;</span><span class="p">],</span>
-        <span class="n">processes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">ignore_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">chunk_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Submit the dataset to a QCFractal server.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            client:</span>
-<span class="sd">                The name of the file containing the client information or an actual client instance.</span>
-<span class="sd">            processes:</span>
-<span class="sd">                Number of processes to use for submission; if ``None``, all available processes will be used.</span>
+<span class="sd">                Instance of a portal client</span>
 <span class="sd">            ignore_errors:</span>
 <span class="sd">                If the user wants to submit the compute regardless of errors set this to ``True``.</span>
 <span class="sd">                Mainly to override basis coverage.</span>
-<span class="sd">            chunk_size:</span>
-<span class="sd">                Max number of entries+specs to include in individual `client.compute` calls.</span>
-<span class="sd">                If ``None``, will use ``query_limit`` from ``client``.</span>
 <span class="sd">            verbose:</span>
 <span class="sd">                If progress bars and submission statistics should be printed ``True`` or not ``False``.</span>
 
@@ -647,8 +534,7 @@
 <span class="sd">                If the chosen basis set does not cover some of the elements in the dataset.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">chunk_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">query_limit</span>
+        <span class="kn">from</span> <span class="nn">openff.qcsubmit.datasets</span> <span class="kn">import</span> <span class="n">legacy_qcsubmit_ds_type_to_next_qcf_ds_type</span>
 
         <span class="c1"># pre submission checks</span>
         <span class="c1"># make sure we have some QCSpec to submit</span>
@@ -656,101 +542,43 @@
         <span class="c1"># basis set coverage check</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_get_missing_basis_coverage</span><span class="p">(</span><span class="n">raise_errors</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">ignore_errors</span><span class="p">))</span>
 
-        <span class="c1"># get client instance</span>
-        <span class="n">target_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_activate_client</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
         <span class="c1"># see if collection already exists</span>
         <span class="c1"># if so, we&#39;ll extend it</span>
         <span class="c1"># if not, we&#39;ll create a new one</span>
+
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">collection</span> <span class="o">=</span> <span class="n">target_client</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">qcf_ds_type</span> <span class="o">=</span> <span class="n">legacy_qcsubmit_ds_type_to_next_qcf_ds_type</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">]</span>
+            <span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="n">qcf_ds_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PortalRequestError</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">validate_metadata</span><span class="p">(</span><span class="n">raise_errors</span><span class="o">=</span><span class="ow">not</span> <span class="n">ignore_errors</span><span class="p">)</span>
-            <span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_collection</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">target_client</span><span class="p">)</span>
+            <span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_collection</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
 
         <span class="c1"># create specifications</span>
-        <span class="n">procedure_spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_procedure_spec</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_add_dataset_specification</span><span class="p">(</span>
-                <span class="n">spec</span><span class="o">=</span><span class="n">spec</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">collection</span><span class="p">,</span> <span class="n">procedure_spec</span><span class="o">=</span><span class="n">procedure_spec</span>
+        <span class="c1"># TODO - check if specifications already exist</span>
+        <span class="n">specs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_specifications</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">spec_name</span><span class="p">,</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">specs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># Send the new specifications to the server</span>
+            <span class="n">collection</span><span class="o">.</span><span class="n">add_specification</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">spec_name</span><span class="p">,</span>
+                <span class="n">specification</span><span class="o">=</span><span class="n">spec</span><span class="p">,</span>
+                <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="p">[</span><span class="n">spec_name</span><span class="p">]</span><span class="o">.</span><span class="n">spec_description</span><span class="p">,</span>
             <span class="p">)</span>
 
-        <span class="c1"># add the molecules to the database</span>
-        <span class="n">indices</span><span class="p">,</span> <span class="n">new_entries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_entries</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
+        <span class="c1"># add the molecules/entries to the database</span>
+        <span class="n">entries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_entries</span><span class="p">()</span>
+
+        <span class="c1"># TODO - check if entries already exist</span>
+        <span class="n">insert_metadata</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">add_entries</span><span class="p">(</span><span class="n">entries</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of new entries: </span><span class="si">{</span><span class="n">new_entries</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_records</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Number of new entries: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">insert_metadata</span><span class="o">.</span><span class="n">inserted_idx</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_records</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
 
-        <span class="c1"># if we have no indices, such as with a pure compute submission,</span>
-        <span class="c1"># then get all of the existing ones and use these</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">indices</span><span class="p">:</span>
-            <span class="n">indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_indices</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
-
-        <span class="n">responses</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="c1"># set up process pool for compute submission</span>
-        <span class="c1"># if processes == 1, perform in-process, no pool</span>
-        <span class="k">if</span> <span class="n">processes</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">processes</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">multiprocessing.pool</span> <span class="kn">import</span> <span class="n">Pool</span>
-
-            <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">processes</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
-                <span class="c1"># add compute specs to the collection</span>
-                <span class="k">for</span> <span class="n">spec_name</span><span class="p">,</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="n">spec_tasks</span> <span class="o">=</span> <span class="mi">0</span>
-                    <span class="n">work_list</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">for</span> <span class="n">mol_chunk</span> <span class="ow">in</span> <span class="n">chunk_generator</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">):</span>
-                        <span class="n">spec_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_kwargs</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">mol_chunk</span><span class="p">)</span>
-                        <span class="n">work_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                            <span class="n">pool</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">compute</span><span class="p">,</span> <span class="o">**</span><span class="n">spec_kwargs</span><span class="p">)</span>
-                        <span class="p">)</span>
-
-                    <span class="k">for</span> <span class="n">work</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
-                        <span class="n">work_list</span><span class="p">,</span>
-                        <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">work_list</span><span class="p">),</span>
-                        <span class="n">ncols</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
-                        <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Creating tasks for: </span><span class="si">{</span><span class="n">spec_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                        <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">verbose</span><span class="p">,</span>
-                    <span class="p">):</span>
-                        <span class="n">result</span> <span class="o">=</span> <span class="n">work</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">spec_tasks</span> <span class="o">+=</span> <span class="n">result</span>
-                        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                            <span class="n">spec_tasks</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">ids</span><span class="p">)</span>
-
-                    <span class="n">responses</span><span class="p">[</span><span class="n">spec_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">spec_tasks</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">spec_name</span><span class="p">,</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">spec_tasks</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">mol_chunk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
-                    <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span>
-                        <span class="n">chunk_generator</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">),</span>
-                        <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">/</span> <span class="n">chunk_size</span><span class="p">,</span>
-                        <span class="n">ncols</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
-                        <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Creating tasks for: </span><span class="si">{</span><span class="n">spec_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-                        <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">verbose</span><span class="p">,</span>
-                    <span class="p">)</span>
-                <span class="p">):</span>
-                    <span class="n">spec_kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_kwargs</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">mol_chunk</span><span class="p">)</span>
-
-                    <span class="c1"># PERFORMANCE HACK: only call save on the first compute call to add spec,</span>
-                    <span class="c1"># but not on subsequent calls for basic Datasets</span>
-                    <span class="k">if</span> <span class="n">collection</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;Dataset&quot;</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                            <span class="n">spec_kwargs</span><span class="p">[</span><span class="s2">&quot;save&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-                        <span class="k">else</span><span class="p">:</span>
-                            <span class="n">spec_kwargs</span><span class="p">[</span><span class="s2">&quot;save&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-
-                    <span class="n">result</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">**</span><span class="n">spec_kwargs</span><span class="p">)</span>
-                    <span class="c1"># datasets give a compute response, but opt and torsiondrives give ints</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">spec_tasks</span> <span class="o">+=</span> <span class="n">result</span>
-                    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                        <span class="n">spec_tasks</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">ids</span><span class="p">)</span>
-
-                <span class="c1"># one last call to `save` to push collection object to server</span>
-                <span class="n">collection</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-                <span class="n">responses</span><span class="p">[</span><span class="n">spec_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">spec_tasks</span>
-
-        <span class="k">return</span> <span class="n">responses</span>
+        <span class="k">return</span> <span class="n">collection</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+            <span class="n">tag</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_tag</span><span class="p">,</span>
+            <span class="n">priority</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">priority</span><span class="p">,</span>
+            <span class="c1"># find_existing=find_existing</span>
+        <span class="p">)</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;_BaseDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;_BaseDataset&quot;</span><span class="p">:</span>
@@ -1036,7 +864,7 @@
                     <span class="n">basis</span> <span class="o">=</span> <span class="n">psi4_converter</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
                     <span class="c1"># here we need to apply conversions for special characters to match bse</span>
                     <span class="c1"># replace the *</span>
-                    <span class="n">basis</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;\*&quot;</span><span class="p">,</span> <span class="s2">&quot;_st_&quot;</span><span class="p">,</span> <span class="n">basis</span><span class="p">)</span>
+                    <span class="n">basis</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;\*&quot;</span><span class="p">,</span> <span class="s2">&quot;_st_&quot;</span><span class="p">,</span> <span class="n">basis</span><span class="p">)</span>  <span class="c1"># noqa</span>
                     <span class="c1"># replace any /</span>
                     <span class="n">basis</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_sl_&quot;</span><span class="p">,</span> <span class="n">basis</span><span class="p">)</span>
                     <span class="c1"># check for heavy tags</span>
@@ -1098,12 +926,6 @@
                     <span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">raise_errors</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">basis_report</span>
-
-    <span class="k">def</span> <span class="nf">_get_spec_keywords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">:</span> <span class="n">QCSpec</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">KeywordSet</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Build a keyword set which is specific to this QC specification and accounts for implicit solvent when requested.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ptl</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">KeywordSet</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">export_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">compression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1264,6 +1086,7 @@
         <span class="k">return</span> <span class="n">inchikey</span>
 
 
+<span class="c1"># TODO: SinglepointDataset</span>
 <div class="viewcode-block" id="BasicDataset"><a class="viewcode-back" href="../../../../generated/openff.qcsubmit.datasets.BasicDataset.html#openff.qcsubmit.datasets.BasicDataset">[docs]</a><span class="k">class</span> <span class="nc">BasicDataset</span><span class="p">(</span><span class="n">_BaseDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The general QCFractal dataset class which contains all of the molecules and information about them prior to</span>
@@ -1323,123 +1146,63 @@
 
         <span class="k">return</span> <span class="n">new_dataset</span>
 
-    <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;FractalClient&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">Dataset</span><span class="p">:</span>
-        <span class="n">collection</span> <span class="o">=</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">singlepoint</span><span class="o">.</span><span class="n">SinglepointDataset</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">add_dataset</span><span class="p">(</span>
+            <span class="n">dataset_type</span><span class="o">=</span><span class="s2">&quot;singlepoint&quot;</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span>
-            <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
-            <span class="n">default_driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span>
-            <span class="n">default_program</span><span class="o">=</span><span class="s2">&quot;psi4&quot;</span><span class="p">,</span>
             <span class="n">tagline</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_tagline</span><span class="p">,</span>
             <span class="n">tags</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_tags</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
             <span class="n">provenance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provenance</span><span class="p">,</span>
+            <span class="n">default_tag</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_tag</span><span class="p">,</span>
+            <span class="n">default_priority</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">priority</span><span class="p">,</span>
             <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">collection</span>
 
-    <span class="k">def</span> <span class="nf">_get_procedure_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QCSpecification</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Needed for `submit` usage.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">_get_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collection</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">molecule_id</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">collection</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">records</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">_add_dataset_specification</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">spec</span><span class="p">:</span> <span class="n">QCSpec</span><span class="p">,</span>
-        <span class="n">dataset</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
-        <span class="n">procedure_spec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;OptimizationSpecification&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the given compute spec to this Datasets&#39;s corresponding Collection.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            spec:</span>
-<span class="sd">                The QCSpec we are trying to add to the dataset in the QCArchive instance.</span>
-<span class="sd">            dataset:</span>
-<span class="sd">                The dataset to add this compute spec to.</span>
-<span class="sd">            procedure_spec:</span>
-<span class="sd">                The procedure spec to add; ignored for ``BasicDataset``.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            ``True`` if the specification successfully added, ``False`` otherwise.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># generate the keyword set</span>
-        <span class="n">kw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_spec_keywords</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">spec</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># try and add the keywords; if present then continue</span>
-            <span class="n">dataset</span><span class="o">.</span><span class="n">add_keywords</span><span class="p">(</span>
-                <span class="n">alias</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span><span class="p">,</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">spec_name</span><span class="p">,</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">spec_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">QCSpecification</span><span class="p">(</span>
+                <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                <span class="n">basis</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">,</span>
                 <span class="n">program</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
-                <span class="n">keyword</span><span class="o">=</span><span class="n">kw</span><span class="p">,</span>
-                <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">protocols</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="p">},</span>
             <span class="p">)</span>
-            <span class="n">dataset</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">_compute_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
-        <span class="n">spec_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_tag</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">priority</span><span class="p">)</span>
-        <span class="n">spec_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">spec</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="s2">&quot;basis&quot;</span><span class="p">,</span> <span class="s2">&quot;program&quot;</span><span class="p">}))</span>
-        <span class="n">spec_kwargs</span><span class="p">[</span><span class="s2">&quot;keywords&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span>
-        <span class="n">spec_kwargs</span><span class="p">[</span><span class="s2">&quot;protocols&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="o">.</span><span class="n">value</span><span class="p">}</span>
-        <span class="n">spec_kwargs</span><span class="p">[</span><span class="s2">&quot;subset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">indices</span>
-        <span class="k">return</span> <span class="n">spec_kwargs</span>
+        <span class="k">return</span> <span class="n">ret</span>
 
-    <span class="k">def</span> <span class="nf">_add_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
-        <span class="n">new_entries</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">SinglepointDatasetNewEntry</span><span class="p">]:</span>
+        <span class="n">entries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SinglepointDatasetNewEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">entry_name</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="c1"># check if the index has a number tag</span>
                 <span class="c1"># if so, start from this tag</span>
-                <span class="n">index</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+                <span class="n">index</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">entry_name</span><span class="p">)</span>
 
-                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">):</span>
                     <span class="n">name</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;-</span><span class="si">{</span><span class="n">tag</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="n">new_entries</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_add_entry</span><span class="p">(</span>
-                            <span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span>
+                    <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">SinglepointDatasetNewEntry</span><span class="p">(</span>
+                            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">attributes</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
-                    <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">new_entries</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_add_entry</span><span class="p">(</span>
-                        <span class="n">molecule</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                        <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
-                        <span class="n">name</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
-                        <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">SinglepointDatasetNewEntry</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="n">entry_name</span><span class="p">,</span>
+                        <span class="n">molecule</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                        <span class="n">attributes</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">attributes</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
-                <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 
-        <span class="c1"># upload collection object to server</span>
-        <span class="n">dataset</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-        <span class="c1"># we have to convert the indices to the object ids</span>
-        <span class="n">object_ids</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">entry</span><span class="o">.</span><span class="n">molecule_id</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">records</span> <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">indices</span>
-        <span class="p">]</span>
-
-        <span class="k">return</span> <span class="n">object_ids</span><span class="p">,</span> <span class="n">new_entries</span>
-
-    <span class="k">def</span> <span class="nf">_add_entry</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">molecule</span><span class="p">:</span> <span class="n">qcel</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span>
-        <span class="n">dataset</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">Dataset</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">data</span><span class="p">:</span> <span class="n">DatasetEntry</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Attempt to add molecule the dataset.</span>
-<span class="sd">        Return `True` if successful, `False` otherwise.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">dataset</span><span class="o">.</span><span class="n">add_entry</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">entries</span>
 
 <div class="viewcode-block" id="BasicDataset.to_tasks"><a class="viewcode-back" href="../../../../generated/openff.qcsubmit.datasets.BasicDataset.html#openff.qcsubmit.datasets.BasicDataset.to_tasks">[docs]</a>    <span class="k">def</span> <span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">AtomicInput</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1475,14 +1238,18 @@
 <span class="k">class</span> <span class="nc">OptimizationDataset</span><span class="p">(</span><span class="n">BasicDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An optimisation dataset class which handles submission of settings differently from the basic dataset, and creates</span>
-<span class="sd">    optimization datasets in the public or local qcarcive instance.</span>
+<span class="sd">    optimization datasets in the public or local qcarchive instance.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;OptimizationDataset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;OptimizationDataset&quot;</span>
-    <span class="n">driver</span><span class="p">:</span> <span class="n">DriverEnum</span> <span class="o">=</span> <span class="n">DriverEnum</span><span class="o">.</span><span class="n">gradient</span>
+    <span class="n">driver</span><span class="p">:</span> <span class="n">SinglepointDriver</span> <span class="o">=</span> <span class="n">SinglepointDriver</span><span class="o">.</span><span class="n">deferred</span>
     <span class="n">optimization_procedure</span><span class="p">:</span> <span class="n">GeometricProcedure</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">GeometricProcedure</span><span class="p">(),</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The optimization program and settings that should be used.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">protocols</span><span class="p">:</span> <span class="n">OptimizationProtocols</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">OptimizationProtocols</span><span class="p">(),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Protocols regarding the manipulation of Optimization output data.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">OptimizationEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -1492,10 +1259,8 @@
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;driver&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_check_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make sure that the driver is set to gradient only and not changed.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">driver</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="s2">&quot;gradient&quot;</span><span class="p">:</span>
-            <span class="n">driver</span> <span class="o">=</span> <span class="n">DriverEnum</span><span class="o">.</span><span class="n">gradient</span>
-        <span class="k">return</span> <span class="n">driver</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make sure that the driver is set to deferred only and not changed.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">SinglepointDriver</span><span class="o">.</span><span class="n">deferred</span>
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;OptimizationDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OptimizationDataset&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1576,179 +1341,78 @@
 
         <span class="k">return</span> <span class="n">new_dataset</span>
 
-    <span class="k">def</span> <span class="nf">_add_keywords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;FractalClient&quot;</span><span class="p">,</span> <span class="n">spec</span><span class="p">:</span> <span class="n">QCSpec</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add the keywords to the client and return the index number of the keyword set.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            kw_id: The keyword index number in the client.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">kw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_spec_keywords</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">spec</span><span class="p">)</span>
-        <span class="n">kw_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">add_keywords</span><span class="p">([</span><span class="n">kw</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">kw_id</span>
-
-    <span class="k">def</span> <span class="nf">get_qc_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">keyword_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QCSpecification</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create the QC specification for the computation.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            spec_name: The name of the spec we want to convert to a QCSpecification</span>
-<span class="sd">            keyword_id: The string of the keyword set id number.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The dictionary representation of the QC specification</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="p">[</span><span class="n">spec_name</span><span class="p">]</span>
-        <span class="n">qc_spec</span> <span class="o">=</span> <span class="n">QCSpecification</span><span class="p">(</span>
-            <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span>
-            <span class="n">method</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
-            <span class="n">basis</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span>
-            <span class="n">keywords</span><span class="o">=</span><span class="n">keyword_id</span><span class="p">,</span>
-            <span class="n">program</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
-            <span class="n">protocols</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="p">},</span>
-        <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">qc_spec</span>
-
-    <span class="k">def</span> <span class="nf">_add_dataset_specification</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">spec</span><span class="p">:</span> <span class="n">QCSpec</span><span class="p">,</span>
-        <span class="n">dataset</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">OptimizationDataset</span><span class="p">,</span>
-        <span class="n">procedure_spec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;OptimizationSpecification&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the given compute spec to this Datasets&#39;s corresponding Collection.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            spec:</span>
-<span class="sd">                The QCSpec we are trying to add to the collection</span>
-<span class="sd">            dataset:</span>
-<span class="sd">                The QCArchive dataset this specification should be added to</span>
-<span class="sd">            procedure_spec:</span>
-<span class="sd">                The qcportal style optimization spec</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            QCSpecificationError: If a specification with the same name is already added to the collection but has different settings.</span>
-
-<span class="sd">        Note:</span>
-<span class="sd">            If a specification is already stored under this name in the collection we have options:</span>
-<span class="sd">            - If a spec with the same name but different details has been added and used we must raise an error to change the name of the new spec</span>
-<span class="sd">            - If the spec has been added and has not been used then overwrite it.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># build the qcportal version of our spec</span>
-        <span class="n">kw_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_add_keywords</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">spec</span><span class="o">=</span><span class="n">spec</span><span class="p">)</span>
-        <span class="n">qcportal_spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_qc_spec</span><span class="p">(</span><span class="n">spec_name</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span><span class="p">,</span> <span class="n">keyword_id</span><span class="o">=</span><span class="n">kw_id</span><span class="p">)</span>
-
-        <span class="c1"># see if the spec is in the history</span>
-        <span class="k">if</span> <span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">history</span><span class="p">:</span>
-            <span class="n">collection_spec</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_specification</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span><span class="p">)</span>
-            <span class="c1"># check they are the same</span>
-            <span class="k">if</span> <span class="p">(</span>
-                <span class="n">collection_spec</span><span class="o">.</span><span class="n">optimization_spec</span> <span class="o">==</span> <span class="n">procedure_spec</span>
-                <span class="ow">and</span> <span class="n">qcportal_spec</span> <span class="o">==</span> <span class="n">collection_spec</span><span class="o">.</span><span class="n">qc_spec</span>
-            <span class="p">):</span>
-                <span class="c1"># the spec is already there and is the same so just skip adding it</span>
-                <span class="k">return</span> <span class="kc">True</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;A specification with the name </span><span class="si">{</span><span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span><span class="si">}</span><span class="s2"> is already registered with the collection but has different settings and has already been used and should not be overwriten. &quot;</span>
-                    <span class="sa">f</span><span class="s2">&quot;Please change the name of this specification to continue.&quot;</span>
-                <span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># the spec either has not been added or has not been used so set the new default</span>
-            <span class="n">dataset</span><span class="o">.</span><span class="n">add_specification</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span><span class="p">,</span>
-                <span class="n">optimization_spec</span><span class="o">=</span><span class="n">procedure_spec</span><span class="p">,</span>
-                <span class="n">qc_spec</span><span class="o">=</span><span class="n">qcportal_spec</span><span class="p">,</span>
-                <span class="n">description</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">spec_description</span><span class="p">,</span>
-                <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="p">)</span>
-            <span class="k">return</span> <span class="kc">True</span>
-
     <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;FractalClient&quot;</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">OptimizationDataset</span><span class="p">:</span>
-        <span class="n">collection</span> <span class="o">=</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">OptimizationDataset</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">optimization</span><span class="o">.</span><span class="n">OptimizationDataset</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">add_dataset</span><span class="p">(</span>
+            <span class="n">dataset_type</span><span class="o">=</span><span class="s2">&quot;optimization&quot;</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span>
-            <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
             <span class="n">tagline</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_tagline</span><span class="p">,</span>
             <span class="n">tags</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_tags</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
             <span class="n">provenance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provenance</span><span class="p">,</span>
+            <span class="n">default_tag</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_tag</span><span class="p">,</span>
+            <span class="n">default_priority</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">priority</span><span class="p">,</span>
             <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">collection</span>
 
-    <span class="k">def</span> <span class="nf">_get_procedure_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimization_procedure</span><span class="o">.</span><span class="n">get_optimzation_spec</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">OptimizationSpecification</span><span class="p">]:</span>
+        <span class="n">opt_kw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimization_procedure</span><span class="o">.</span><span class="n">get_optimzation_keywords</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_get_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collection</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">collection</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span> <span class="nf">_compute_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
-        <span class="n">spec_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tag</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_tag</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">priority</span><span class="p">)</span>
-        <span class="n">spec_kwargs</span><span class="p">[</span><span class="s2">&quot;subset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">indices</span>
-        <span class="n">spec_kwargs</span><span class="p">[</span><span class="s2">&quot;specification&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">spec_name</span>
-        <span class="k">return</span> <span class="n">spec_kwargs</span>
+        <span class="k">for</span> <span class="n">spec_name</span><span class="p">,</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">qc_spec</span> <span class="o">=</span> <span class="n">QCSpecification</span><span class="p">(</span>
+                <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                <span class="n">basis</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">,</span>
+                <span class="n">program</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
+                <span class="n">protocols</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="p">},</span>
+            <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_add_entries</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">OptimizationDataset</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
-        <span class="n">new_entries</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">spec_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">OptimizationSpecification</span><span class="p">(</span>
+                <span class="n">program</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">optimization_procedure</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
+                <span class="n">qc_specification</span><span class="o">=</span><span class="n">qc_spec</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">opt_kw</span><span class="p">,</span>
+                <span class="n">protocols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">protocols</span><span class="p">,</span>
+            <span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span> <span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationDatasetNewEntry</span><span class="p">]:</span>
+        <span class="n">entries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationDatasetNewEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">entry_name</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># TODO this probably needs even more keywords</span>
+            <span class="n">opt_kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">constraints</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">constraints</span><span class="p">)</span>
+            <span class="n">opt_kw</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">keywords</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="c1"># check if the index has a number tag</span>
                 <span class="c1"># if so, start from this tag</span>
-                <span class="n">index</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
+                <span class="n">index</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clean_index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">entry_name</span><span class="p">)</span>
 
-                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">):</span>
                     <span class="n">name</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;-</span><span class="si">{</span><span class="n">tag</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="n">new_entries</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_add_entry</span><span class="p">(</span>
-                            <span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span>
+                    <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">OptimizationDatasetNewEntry</span><span class="p">(</span>
+                            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                            <span class="n">initial_molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span>
+                            <span class="n">additional_keywords</span><span class="o">=</span><span class="n">opt_kw</span><span class="p">,</span>
+                            <span class="n">attributes</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">attributes</span><span class="p">,</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
-                    <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">new_entries</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_add_entry</span><span class="p">(</span>
-                        <span class="n">molecule</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                        <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
-                        <span class="n">name</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
-                        <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">OptimizationDatasetNewEntry</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="n">entry_name</span><span class="p">,</span>
+                        <span class="n">initial_molecule</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                        <span class="n">additional_keywords</span><span class="o">=</span><span class="n">opt_kw</span><span class="p">,</span>
+                        <span class="n">attributes</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">attributes</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
-                <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 
-        <span class="c1"># upload remainder molecules to the server</span>
-        <span class="n">dataset</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">indices</span><span class="p">,</span> <span class="n">new_entries</span>
-
-    <span class="k">def</span> <span class="nf">_add_entry</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">molecule</span><span class="p">:</span> <span class="n">qcel</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span>
-        <span class="n">dataset</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">OptimizationDataset</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">data</span><span class="p">:</span> <span class="n">OptimizationEntry</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a molecule to the given optimization dataset and return the ids and the result of adding the molecule.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">dataset</span><span class="o">.</span><span class="n">add_entry</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-                <span class="n">initial_molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span>
-                <span class="n">attributes</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
-                <span class="n">additional_keywords</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">formatted_keywords</span><span class="p">,</span>
-                <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="p">)</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">entries</span>
 
     <span class="k">def</span> <span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationInput</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1760,7 +1424,10 @@
             <span class="n">qc_model</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">qc_model</span>
             <span class="n">qc_keywords</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span>
             <span class="n">qc_spec</span> <span class="o">=</span> <span class="n">QCInputSpecification</span><span class="p">(</span>
-                <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">qc_model</span><span class="p">,</span> <span class="n">keywords</span><span class="o">=</span><span class="n">qc_keywords</span>
+                <span class="c1"># TODO: self.driver is now set to &quot;deferred&quot; - is it safe to put &quot;gradient&quot; here?</span>
+                <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;gradient&quot;</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">=</span><span class="n">qc_model</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">qc_keywords</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">opt_spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimization_procedure</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;program&quot;</span><span class="p">})</span>
             <span class="c1"># this needs to be the single point calculation program</span>
@@ -1777,6 +1444,7 @@
                             <span class="n">keywords</span><span class="o">=</span><span class="n">opt_spec</span><span class="p">,</span>
                             <span class="n">input_specification</span><span class="o">=</span><span class="n">qc_spec</span><span class="p">,</span>
                             <span class="n">initial_molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span>
+                            <span class="n">protocols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">protocols</span><span class="p">,</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
 
@@ -1786,7 +1454,7 @@
 <span class="k">class</span> <span class="nc">TorsiondriveDataset</span><span class="p">(</span><span class="n">OptimizationDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An torsiondrive dataset class which handles submission of settings differently from the basic dataset, and creates</span>
-<span class="sd">    torsiondrive datasets in the public or local qcarcive instance.</span>
+<span class="sd">    torsiondrive datasets in the public or local qcarchive instance.</span>
 
 <span class="sd">    Important:</span>
 <span class="sd">        The dihedral_ranges for the whole dataset can be defined here or if different scan ranges are required on a case</span>
@@ -1891,65 +1559,77 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;FractalClient&quot;</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">TorsionDriveDataset</span><span class="p">:</span>
-        <span class="n">collection</span> <span class="o">=</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">TorsionDriveDataset</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">torsiondrive</span><span class="o">.</span><span class="n">TorsiondriveDataset</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">add_dataset</span><span class="p">(</span>
+            <span class="n">dataset_type</span><span class="o">=</span><span class="s2">&quot;torsiondrive&quot;</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="p">,</span>
-            <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span>
             <span class="n">tagline</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_tagline</span><span class="p">,</span>
             <span class="n">tags</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_tags</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
             <span class="n">provenance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provenance</span><span class="p">,</span>
+            <span class="n">default_tag</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compute_tag</span><span class="p">,</span>
+            <span class="n">default_priority</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">priority</span><span class="p">,</span>
             <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">collection</span>
 
-    <span class="k">def</span> <span class="nf">_add_entries</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">TorsionDriveDataset</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
-        <span class="n">new_entries</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TorsiondriveSpecification</span><span class="p">]:</span>
+        <span class="n">td_kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">grid_spacing</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_spacing</span><span class="p">,</span>
+            <span class="n">dihedral_ranges</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dihedral_ranges</span><span class="p">,</span>
+            <span class="n">energy_decrease_thresh</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">energy_decrease_thresh</span><span class="p">,</span>
+            <span class="n">energy_upper_limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">energy_upper_limit</span><span class="p">,</span>
+        <span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="n">new_entries</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_add_entry</span><span class="p">(</span>
-                    <span class="n">data</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">spec_name</span><span class="p">,</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">qc_spec</span> <span class="o">=</span> <span class="n">QCSpecification</span><span class="p">(</span>
+                <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                <span class="n">basis</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">,</span>
+                <span class="n">program</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
+                <span class="n">protocols</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="p">},</span>
+            <span class="p">)</span>
+            <span class="n">spec</span> <span class="o">=</span> <span class="n">OptimizationSpecification</span><span class="p">(</span>
+                <span class="n">program</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">optimization_procedure</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
+                <span class="n">qc_specification</span><span class="o">=</span><span class="n">qc_spec</span><span class="p">,</span>
+                <span class="n">protocols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">protocols</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">ret</span><span class="p">[</span><span class="n">spec_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">TorsiondriveSpecification</span><span class="p">(</span>
+                <span class="n">optimization_specification</span><span class="o">=</span><span class="n">spec</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">td_kw</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span> <span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TorsiondriveDatasetNewEntry</span><span class="p">]:</span>
+        <span class="n">entries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TorsiondriveDatasetNewEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">entry_name</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">td_keywords</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">grid_spacing</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_spacing</span><span class="p">,</span>
+                <span class="n">energy_upper_limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">energy_upper_limit</span><span class="p">,</span>
+                <span class="n">energy_decrease_thresh</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">energy_decrease_thresh</span><span class="p">,</span>
+                <span class="n">dihedral_ranges</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dihedral_ranges</span><span class="p">,</span>
+                <span class="n">dihedrals</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">dihedrals</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">td_keywords</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">exclude_defaults</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+            <span class="n">opt_keywords</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">constraints</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">constraints</span><span class="p">)</span>
+
+            <span class="n">entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">TorsiondriveDatasetNewEntry</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">entry_name</span><span class="p">,</span>
+                    <span class="n">initial_molecules</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">,</span>
+                    <span class="n">additional_keywords</span><span class="o">=</span><span class="n">td_keywords</span><span class="p">,</span>
+                    <span class="n">additional_optimization_keywords</span><span class="o">=</span><span class="n">opt_keywords</span><span class="p">,</span>
+                    <span class="n">attributes</span><span class="o">=</span><span class="n">entry</span><span class="o">.</span><span class="n">attributes</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-            <span class="n">indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 
-        <span class="c1"># upload remainder molecules to the server</span>
-        <span class="n">dataset</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-        <span class="k">return</span> <span class="n">indices</span><span class="p">,</span> <span class="n">new_entries</span>
-
-    <span class="k">def</span> <span class="nf">_add_entry</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">molecule</span><span class="p">:</span> <span class="n">qcel</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span>
-        <span class="n">dataset</span><span class="p">:</span> <span class="n">ptl</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">TorsionDriveDataset</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">data</span><span class="p">:</span> <span class="n">TorsionDriveEntry</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a molecule to the given torsiondrive dataset and return the id and</span>
-<span class="sd">        the result of adding the molecule.&quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">dataset</span><span class="o">.</span><span class="n">add_entry</span><span class="p">(</span>
-                <span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
-                <span class="n">initial_molecules</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">initial_molecules</span><span class="p">,</span>
-                <span class="n">dihedrals</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">dihedrals</span><span class="p">,</span>
-                <span class="n">grid_spacing</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">grid_spacing</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_spacing</span><span class="p">,</span>
-                <span class="n">energy_upper_limit</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">energy_upper_limit</span>
-                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_upper_limit</span><span class="p">,</span>
-                <span class="n">additional_keywords</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">formatted_keywords</span><span class="p">,</span>
-                <span class="n">attributes</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
-                <span class="n">energy_decrease_thresh</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">energy_decrease_thresh</span>
-                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy_decrease_thresh</span><span class="p">,</span>
-                <span class="n">dihedral_ranges</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">keywords</span><span class="o">.</span><span class="n">dihedral_ranges</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">dihedral_ranges</span><span class="p">,</span>
-            <span class="p">)</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">entries</span>
 
     <span class="k">def</span> <span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationInput</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a list of QCEngine procedure tasks which correspond to this dataset.&quot;&quot;&quot;</span>
@@ -1974,7 +1654,7 @@
               
           </div>
           Last updated on
-            Oct 19, 2023.
+            Jan 18, 2024.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.

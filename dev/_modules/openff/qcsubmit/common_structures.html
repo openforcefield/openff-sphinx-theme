@@ -361,7 +361,6 @@
 <span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">qcportal</span> <span class="k">as</span> <span class="nn">ptl</span>
 <span class="kn">from</span> <span class="nn">openff.toolkit.topology</span> <span class="kn">import</span> <span class="n">Molecule</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BaseModel</span><span class="p">,</span>
@@ -378,7 +377,7 @@
 <span class="kn">from</span> <span class="nn">qcelemental</span> <span class="kn">import</span> <span class="n">constants</span>
 <span class="kn">from</span> <span class="nn">qcelemental.models.common_models</span> <span class="kn">import</span> <span class="n">Model</span>
 <span class="kn">from</span> <span class="nn">qcelemental.models.results</span> <span class="kn">import</span> <span class="n">WavefunctionProtocolEnum</span>
-<span class="kn">from</span> <span class="nn">qcportal.models.common_models</span> <span class="kn">import</span> <span class="n">DriverEnum</span>
+<span class="kn">from</span> <span class="nn">qcportal.singlepoint</span> <span class="kn">import</span> <span class="n">SinglepointDriver</span>
 
 <span class="kn">from</span> <span class="nn">openff.qcsubmit.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DatasetInputError</span><span class="p">,</span>
@@ -770,12 +769,11 @@
         <span class="p">],</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The SCF properties which should be extracted after every single point calculation.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">keywords</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
-        <span class="n">Dict</span><span class="p">[</span>
-            <span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">StrictFloat</span><span class="p">]]</span>
-        <span class="p">]</span>
+    <span class="n">keywords</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span>
+        <span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrictStr</span><span class="p">,</span> <span class="n">StrictInt</span><span class="p">,</span> <span class="n">StrictFloat</span><span class="p">,</span> <span class="n">StrictBool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">StrictFloat</span><span class="p">]]</span>
     <span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span>
+        <span class="p">{},</span>
+        <span class="c1"># None,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;An optional set of program specific computational keywords that &quot;</span>
         <span class="s2">&quot;should be passed to the program. These may include, for example, DFT grid &quot;</span>
         <span class="s2">&quot;settings.&quot;</span><span class="p">,</span>
@@ -873,6 +871,9 @@
                 <span class="k">raise</span> <span class="n">QCSpecificationError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;The method </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> is not supported for the program </span><span class="si">{</span><span class="n">program</span><span class="si">}</span><span class="s2"> with basis </span><span class="si">{</span><span class="n">basis</span><span class="si">}</span><span class="s2">, please chose from </span><span class="si">{</span><span class="n">allowed_methods</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">keywords</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">keywords</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
             <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">,</span>
@@ -1073,38 +1074,6 @@
         <span class="k">return</span> <span class="n">core</span><span class="p">,</span> <span class="n">tag</span>
 
 
-<span class="k">class</span> <span class="nc">ClientHandler</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This mixin class offers the ability to handle activating qcportal Fractal client instances.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">_activate_client</span><span class="p">(</span><span class="n">client</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">FractalClient</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Make the fractal client and connect to the requested instance.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            client: The name of the file containing the client information or the client instance.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            A qcportal.FractalClient instance.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">qcfractal.interface</span> <span class="kn">import</span> <span class="n">FractalClient</span> <span class="k">as</span> <span class="n">QCFractalClient</span>
-        <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
-            <span class="n">QCFractalClient</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">ptl</span><span class="o">.</span><span class="n">FractalClient</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">client</span>
-        <span class="k">elif</span> <span class="n">QCFractalClient</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">QCFractalClient</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">client</span>
-        <span class="k">elif</span> <span class="n">client</span> <span class="o">==</span> <span class="s2">&quot;public&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ptl</span><span class="o">.</span><span class="n">FractalClient</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ptl</span><span class="o">.</span><span class="n">FractalClient</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
-
 <span class="k">class</span> <span class="nc">Metadata</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A general metadata class which is required to be filled in before submitting a dataset to the qcarchive.</span>
@@ -1276,13 +1245,13 @@
         <span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">CommonBase</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">,</span> <span class="n">IndexCleaner</span><span class="p">,</span> <span class="n">ClientHandler</span><span class="p">,</span> <span class="n">QCSpecificationHandler</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">CommonBase</span><span class="p">(</span><span class="n">DatasetConfig</span><span class="p">,</span> <span class="n">IndexCleaner</span><span class="p">,</span> <span class="n">QCSpecificationHandler</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A common base structure which the dataset and factory classes derive from.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">driver</span><span class="p">:</span> <span class="n">DriverEnum</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="n">DriverEnum</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span>
+    <span class="n">driver</span><span class="p">:</span> <span class="n">SinglepointDriver</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">SinglepointDriver</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The type of single point calculations which will be computed. Note some services require certain calculations for example optimizations require graident calculations.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">priority</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1325,7 +1294,7 @@
               
           </div>
           Last updated on
-            Oct 19, 2023.
+            Jan 18, 2024.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
