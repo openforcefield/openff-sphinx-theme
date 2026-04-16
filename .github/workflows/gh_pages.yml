@@ -38,9 +38,7 @@ jobs:
           conda list
 
       - name: Build Sphinx documentation
-        run: |
-          cd docs
-          make html
+        run: sphinx-build -j auto docs docs/_build/html
 
       - name: Checkout gh-pages
         if: success()
