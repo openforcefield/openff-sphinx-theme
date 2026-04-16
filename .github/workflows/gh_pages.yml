@@ -106,5 +106,5 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            Example docs for this PR [rendered here](https://openforcefield.github.io/openff-sphinx-theme/PR${{ github.event.number }})
+            Example docs for this PR [rendered here](https://openforcefield.github.io/openff-sphinx-theme/PR${{ github.event.number }}/index.html)
           edit-mode: replace
