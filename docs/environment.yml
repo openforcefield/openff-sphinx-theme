@@ -6,7 +6,7 @@ dependencies:
   - pip
   - openff-toolkit
   - openff-qcsubmit
-  - pydantic<2
+  - pydantic>=2
   - numpy>=1.16
   - pandas
   - matplotlib
