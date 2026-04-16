@@ -1,0 +1,72 @@
+﻿openff.qcsubmit.datasets.BasicDataset
+=====================================
+
+.. currentmodule:: openff.qcsubmit.datasets
+
+.. autoclass:: BasicDataset
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BasicDataset.__init__
+      ~BasicDataset.add_molecule
+      ~BasicDataset.add_qc_spec
+      ~BasicDataset.clear_qcspecs
+      ~BasicDataset.construct
+      ~BasicDataset.copy
+      ~BasicDataset.coverage_report
+      ~BasicDataset.dict
+      ~BasicDataset.export_dataset
+      ~BasicDataset.filter_molecules
+      ~BasicDataset.from_orm
+      ~BasicDataset.get_molecule_entry
+      ~BasicDataset.json
+      ~BasicDataset.molecules_to_file
+      ~BasicDataset.parse_file
+      ~BasicDataset.parse_obj
+      ~BasicDataset.parse_raw
+      ~BasicDataset.remove_qcspec
+      ~BasicDataset.schema
+      ~BasicDataset.schema_json
+      ~BasicDataset.submit
+      ~BasicDataset.to_tasks
+      ~BasicDataset.update_forward_refs
+      ~BasicDataset.validate
+      ~BasicDataset.visualize
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BasicDataset.components
+      ~BasicDataset.filtered
+      ~BasicDataset.molecules
+      ~BasicDataset.n_components
+      ~BasicDataset.n_filtered
+      ~BasicDataset.n_molecules
+      ~BasicDataset.n_qc_specs
+      ~BasicDataset.n_records
+      ~BasicDataset.type
+      ~BasicDataset.dataset_name
+      ~BasicDataset.dataset_tagline
+      ~BasicDataset.description
+      ~BasicDataset.metadata
+      ~BasicDataset.provenance
+      ~BasicDataset.dataset
+      ~BasicDataset.filtered_molecules
+      ~BasicDataset.driver
+      ~BasicDataset.priority
+      ~BasicDataset.dataset_tags
+      ~BasicDataset.compute_tag
+      ~BasicDataset.qc_specifications
+   
+   
