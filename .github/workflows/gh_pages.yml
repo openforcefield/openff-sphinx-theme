@@ -12,7 +12,6 @@ on:
     types: [published]
   workflow_dispatch:
 
-
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -29,15 +28,10 @@ jobs:
           path: ~/conda_pkgs_dir
           key: ${{ runner.os }}-conda-${{hashFiles('docs/environment.yml') }}
 
-      - uses: conda-incubator/setup-miniconda@v3
+      - uses: mamba-org/setup-micromamba@v2
         name: Install dependencies
         with:
           environment-file: docs/environment.yml
-          activate-environment: docs
-          auto-activate-base: false
-          miniforge-version: latest
-          miniforge-variant: Mambaforge
-          use-mamba: true
 
       - name: Install current theme in dev mode
         run: |
@@ -59,7 +53,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: gh-pages
-          path: 'deploy'
+          path: "deploy"
           clean: false
 
       - name: Prepare development deployment
@@ -106,7 +100,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
+          comment-author: "github-actions[bot]"
           body-includes: Example docs for this PR
 
       - name: Create or update comment
