@@ -22,12 +22,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Cache conda
-        uses: actions/cache@v3.3.1
-        with:
-          path: ~/conda_pkgs_dir
-          key: ${{ runner.os }}-conda-${{hashFiles('docs/environment.yml') }}
-
       - uses: mamba-org/setup-micromamba@v2
         name: Install dependencies
         with:
