@@ -35,10 +35,12 @@ jobs:
         run: |
           pwd
           ls
-          conda list
+          micromamba info
+          micromamba list
 
       - name: Build Sphinx documentation
-        run: sphinx-build -j auto docs docs/_build/html
+        run: |
+          sphinx-build -j auto docs docs/_build/html
 
       - name: Checkout gh-pages
         if: success()
