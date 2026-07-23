@@ -377,7 +377,6 @@
     <span class="n">Any</span><span class="p">,</span>
     <span class="n">Literal</span><span class="p">,</span>
     <span class="n">TextIO</span><span class="p">,</span>
-    <span class="n">TypeAlias</span><span class="p">,</span>
     <span class="n">TypeVar</span><span class="p">,</span>
     <span class="n">Union</span><span class="p">,</span>
     <span class="n">overload</span><span class="p">,</span>
@@ -442,8 +441,8 @@
 
 <span class="c1"># TODO: These aliases are duplicated in a few places, might make sense to consolidate them</span>
 <span class="c1">#       into a single location, but that&#39;d weirdly nudge them towards first-class existence</span>
-<span class="n">TKR</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">ToolkitRegistry</span> <span class="o">|</span> <span class="n">ToolkitWrapper</span>
-<span class="n">MoleculeLike</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Molecule&quot;</span><span class="p">,</span> <span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">,</span> <span class="s2">&quot;_SimpleMolecule&quot;</span><span class="p">]</span>
+<span class="nb">type</span> <span class="n">TKR</span> <span class="o">=</span> <span class="n">ToolkitRegistry</span> <span class="o">|</span> <span class="n">ToolkitWrapper</span>
+<span class="nb">type</span> <span class="n">MoleculeLike</span> <span class="o">=</span> <span class="s2">&quot;Molecule&quot;</span> <span class="o">|</span> <span class="s2">&quot;FrozenMolecule&quot;</span> <span class="o">|</span> <span class="s2">&quot;_SimpleMolecule&quot;</span>
 <span class="n">FM</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;FM&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;FrozenMolecule&quot;</span><span class="p">)</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;Particle&quot;</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;Atom&quot;</span><span class="p">)</span>
@@ -463,7 +462,6 @@
 
 <span class="sd">    A particle object could be an ``Atom`` or similar.</span>
 
-<span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_molecule</span><span class="p">:</span> <span class="s2">&quot;FrozenMolecule&quot;</span>
@@ -550,7 +548,6 @@
 <span class="sd">         quantities (such as ``id`` or ``serial`` index in a PDB file),</span>
 <span class="sd">         or string labels (such as Lennard-Jones types)?</span>
 
-<span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -979,8 +976,6 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Chemical bond representation.</span>
 
-<span class="sd">    .. warning :: This API is experimental and subject to change.</span>
-
 <span class="sd">    .. todo :: Allow bonds to have associated properties.</span>
 
 <span class="sd">    Attributes</span>
@@ -995,8 +990,6 @@
 <span class="sd">        The fractional bond order, or partial bond order of this bond.</span>
 <span class="sd">    stereochemstry</span>
 <span class="sd">        A string representing this stereochemistry of this bond.</span>
-
-<span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1226,9 +1219,6 @@
 <span class="sd">    Create a molecule from SMILES</span>
 
 <span class="sd">    &gt;&gt;&gt; molecule = FrozenMolecule.from_smiles(&#39;Cc1ccccc1&#39;)</span>
-
-<span class="sd">    .. warning :: This API is experimental and subject to change.</span>
-
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1588,8 +1578,9 @@
         <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="p">:</span>
             <span class="nb">id</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bond</span><span class="o">.</span><span class="n">bond_order</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">bond</span><span class="o">.</span><span class="n">stereochemistry</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">bond</span><span class="o">.</span><span class="n">atom1_index</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">bond</span><span class="o">.</span><span class="n">atom2_index</span><span class="si">}</span><span class="s2">__&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_connection_table_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha3_224</span><span class="p">(</span><span class="nb">id</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_connection_table_hash</span>
+        <span class="c1"># at this point, it&#39;s no longer a union type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_connection_table_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha3_224</span><span class="p">(</span><span class="nb">id</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>  <span class="c1"># type: ignore[assignment]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_connection_table_hash</span>  <span class="c1"># type: ignore[return-value]</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">FM</span><span class="p">],</span> <span class="n">molecule_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FM</span><span class="p">:</span>
@@ -2333,8 +2324,6 @@
 <span class="sd">        By default, all attributes are checked, but stereochemistry around</span>
 <span class="sd">        pyrimidal nitrogen is ignored.</span>
 
-<span class="sd">        .. warning :: This API is experimental and subject to change.</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        mol1</span>
@@ -2552,8 +2541,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if the molecule is isomorphic with the other molecule which can be an openff.toolkit.topology.Molecule</span>
 <span class="sd">        or nx.Graph(). Full matching is done using the options described bellow.</span>
-
-<span class="sd">        .. warning :: This API is experimental and subject to change.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -3089,8 +3076,6 @@
 <span class="sd">        Bond orders are stored on each bond, in the</span>
 <span class="sd">        ``bond.fractional_bond_order`` attribute.</span>
 
-<span class="sd">        .. warning :: This API is experimental and subject to change.</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        toolkit_registry</span>
@@ -3147,6 +3132,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_hill_formula</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cached_smiles</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="c1"># TODO: Clear fractional bond orders</span>
+
+        <span class="c1"># TODO: deleting this attribute instead of setting it to None would be cleaner</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ordered_connection_table_hash</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">:</span>
@@ -4771,8 +4758,6 @@
 <span class="sd">        * ``extras[&quot;canonical_isomeric_explicit_hydrogen_mapped_smiles&quot;]``</span>
 <span class="sd">        * ``identifiers[&quot;canonical_isomeric_explicit_hydrogen_mapped_smiles&quot;]``</span>
 
-<span class="sd">        .. warning :: This API is experimental and subject to change.</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        multiplicity</span>
@@ -4864,8 +4849,6 @@
 <span class="sd">        are ordered according to the mapping. Each atom must be mapped exactly</span>
 <span class="sd">        once; any duplicate, missing, or out-of-range mappings will cause the</span>
 <span class="sd">        method to fail.</span>
-
-<span class="sd">        .. warning :: This API is experimental and subject to change.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -5112,8 +5095,6 @@
 
 <span class="sd">        Requires RDKit to be installed.</span>
 
-<span class="sd">        .. warning :: This API is experimental and subject to change.</span>
-
 <span class="sd">        The molecule is created and sanitised based on the SMILES string, we then find a mapping</span>
 <span class="sd">        between this molecule and one from the PDB based only on atomic number and connections.</span>
 <span class="sd">        The SMILES molecule is then reindexed to match the PDB, the conformer is attached, and the</span>
@@ -5161,8 +5142,6 @@
 <span class="sd">        order may change from toolkit version to toolkit version or between</span>
 <span class="sd">        toolkits.</span>
 
-<span class="sd">        .. warning :: This API is experimental and subject to change.</span>
-
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        toolkit_registry</span>
@@ -5188,13 +5167,13 @@
             <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">remap</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">FM</span><span class="p">,</span>
         <span class="n">mapping_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
         <span class="n">current_to_new</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">partial</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FM</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Reorder the atoms in the molecule according to the given mapping dict.</span>
+<span class="sd">        Return a copy of this molecule with the atoms reordered according to the given mapping dict.</span>
 
 <span class="sd">        The mapping dict must be a dictionary mapping atom indices to atom</span>
 <span class="sd">        indices. Each atom index must be an integer in the half-open interval</span>
@@ -5210,10 +5189,10 @@
 <span class="sd">        ``current_to_new`` argument.</span>
 
 <span class="sd">        The keys of the ``self.properties[&quot;atom_map&quot;]`` property are updated for</span>
-<span class="sd">        the new ordering. Other values of the properties dictionary are</span>
+<span class="sd">        the new ordering. Other values of the ``.properties`` dictionary are</span>
 <span class="sd">        transferred unchanged.</span>
 
-<span class="sd">        .. warning :: This API is experimental and subject to change.</span>
+<span class="sd">        Partial charges and conformers are remapped according to the mapping dict.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -5556,8 +5535,6 @@
 <span class="sd">    Create a molecule from SMILES</span>
 
 <span class="sd">    &gt;&gt;&gt; molecule = Molecule.from_smiles(&#39;Cc1ccccc1&#39;)</span>
-
-<span class="sd">    .. warning :: This API is experimental and subject to change.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -6014,7 +5991,8 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The graph must be a NetworkX graph.&quot;</span><span class="p">)</span>
 
-    <span class="n">atom_nums</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;atomic_number&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">atom_nums</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">atomic_number</span> <span class="k">for</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">atomic_number</span><span class="p">)</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;atomic_number&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>  <span class="c1"># type: ignore[misc]</span>
+
     <span class="k">return</span> <span class="n">_atom_nums_to_hill_formula</span><span class="p">(</span><span class="n">atom_nums</span><span class="p">)</span>  <span class="c1"># type:ignore[arg-type]</span>
 
 
@@ -6456,7 +6434,7 @@
               
           </div>
           Last updated on
-            Apr 16, 2026.
+            Jul 23, 2026.
           <br/>
           Created using
           <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
