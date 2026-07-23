@@ -3,17 +3,19 @@ version: 2
 sphinx:
   configuration: docs/conf.py
 build:
-  # NOTE: Read the Docs picks the environment solver from the *prefix* of the
-  # tool name below, not from what the distribution ships:
-  #   mambaforge-*  -> mamba  (fast, low memory)
-  #   miniforge3-*  -> classic conda  (slow, OOMs on the openff stack)
-  #   miniconda3-*  -> classic conda  (slow, OOMs on the openff stack)
-  # mambaforge is marked "deprecated" in RTD's tool list but is the only value
-  # that gives us mamba, which is what keeps the solve under the memory limit.
-  # (The tool is fetched at build time via asdf, so it is not tied to the OS
-  # image.)
-  os: ubuntu-26.04
+  # Stay on ubuntu-24.04: it is the newest image Read the Docs actually
+  # supports for conda tools. On ubuntu-26.04 the conda-family tools install
+  # but then immediately fail with
+  #   EnvironmentLocationNotFound: Not a conda environment: .../conda/<ver>
+  # (breaks miniconda3 *and* mambaforge alike), so it is unusable here.
+  os: ubuntu-24.04
   tools:
+    # Read the Docs decides mamba vs conda from the *prefix* of this value:
+    #   mambaforge-*  -> mamba  (lower peak memory; what we want)
+    #   miniforge3-*  -> conda front-end (higher memory; OOMs the openff stack)
+    #   miniconda3-*  -> conda front-end (higher memory; OOMs the openff stack)
+    # mambaforge is deprecated but still resolves, and is the only value that
+    # gives us mamba.
     python: "mambaforge-latest"
 python:
   install:
