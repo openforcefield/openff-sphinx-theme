@@ -5,7 +5,7 @@ sphinx:
 build:
   os: ubuntu-26.04
   tools:
-    python: "miniforge3-26.3"
+    python: "miniconda3-3.12-24.9"
 python:
   install:
   - method: uv
