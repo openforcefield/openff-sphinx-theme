@@ -6,7 +6,7 @@ dependencies:
   - python==3.12
   - pip
   - openff-toolkit
-  - openff-qcsubmit
+  - openff-qcsubmit==0.57.0
   - pydantic>=2
   - pydantic-settings
   - numpy>=1.16
