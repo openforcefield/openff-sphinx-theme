@@ -1,25 +1,32 @@
 # https://docs.readthedocs.io/en/stable/config-file/v2.html
+#
+# We do NOT use Read the Docs' built-in `conda:` integration here. Locally, we
+# find that modern micromamba can easily solve this environment within RTD's
+# time and space provisions, so we're just using it.
 version: 2
-sphinx:
-  configuration: docs/conf.py
+
 build:
-  # Stay on ubuntu-24.04: it is the newest image Read the Docs actually
-  # supports for conda tools. On ubuntu-26.04 the conda-family tools install
-  # but then immediately fail with
-  #   EnvironmentLocationNotFound: Not a conda environment: .../conda/<ver>
-  # (breaks miniconda3 *and* mambaforge alike), so it is unusable here.
-  os: ubuntu-24.04
+  os: ubuntu-26.04
   tools:
-    # Read the Docs decides mamba vs conda from the *prefix* of this value:
-    #   mambaforge-*  -> mamba  (lower peak memory; what we want)
-    #   miniforge3-*  -> conda front-end (higher memory; OOMs the openff stack)
-    #   miniconda3-*  -> conda front-end (higher memory; OOMs the openff stack)
-    # mambaforge is deprecated but still resolves, and is the only value that
-    # gives us mamba.
-    python: "mambaforge-latest"
-python:
-  install:
-  - method: pip
-    path: .
-conda:
-  environment: docs/environment.yml
+    # Only needed so RTD has a tool to set up; the docs env comes from
+    # micromamba below.
+    python: "3.14"
+  jobs:
+    create_environment:
+      - mkdir -p $HOME/micromamba
+      - >-
+        curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/2.8.1
+        | tar -xj -C $HOME/micromamba bin/micromamba
+      - >-
+        $HOME/micromamba/bin/micromamba create --yes
+        --prefix $HOME/micromamba/envs/docs
+        --file $READTHEDOCS_REPOSITORY_PATH/docs/environment.yml
+    install:
+      - >-
+        $HOME/micromamba/bin/micromamba run --prefix $HOME/micromamba/envs/docs
+        python -m pip install -e $READTHEDOCS_REPOSITORY_PATH
+    build:
+      html:
+        - >-
+          $HOME/micromamba/bin/micromamba run --prefix $HOME/micromamba/envs/docs
+          sphinx-build -W --keep-going -T -b html $READTHEDOCS_REPOSITORY_PATH/docs $READTHEDOCS_OUTPUT/html
