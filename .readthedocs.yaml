@@ -8,7 +8,8 @@ build:
     python: "miniforge3-26.3"
 python:
   install:
-  - method: pip
+  - method: uv
+    command: pip
     path: .
 conda:
   environment: docs/environment.yml
