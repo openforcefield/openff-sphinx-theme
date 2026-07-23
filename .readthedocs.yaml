@@ -3,13 +3,21 @@ version: 2
 sphinx:
   configuration: docs/conf.py
 build:
+  # NOTE: Read the Docs picks the environment solver from the *prefix* of the
+  # tool name below, not from what the distribution ships:
+  #   mambaforge-*  -> mamba  (fast, low memory)
+  #   miniforge3-*  -> classic conda  (slow, OOMs on the openff stack)
+  #   miniconda3-*  -> classic conda  (slow, OOMs on the openff stack)
+  # mambaforge is marked "deprecated" in RTD's tool list but is the only value
+  # that gives us mamba, which is what keeps the solve under the memory limit.
+  # (The tool is fetched at build time via asdf, so it is not tied to the OS
+  # image.)
   os: ubuntu-26.04
   tools:
-    python: "miniconda3-3.12-24.9"
+    python: "mambaforge-latest"
 python:
   install:
-  - method: uv
-    command: pip
+  - method: pip
     path: .
 conda:
   environment: docs/environment.yml
