@@ -12,7 +12,6 @@ on:
     types: [published]
   workflow_dispatch:
 
-
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -21,23 +20,12 @@ jobs:
         shell: bash -l {0}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
-      - name: Cache conda
-        uses: actions/cache@v3.3.1
-        with:
-          path: ~/conda_pkgs_dir
-          key: ${{ runner.os }}-conda-${{hashFiles('docs/environment.yml') }}
-
-      - uses: conda-incubator/setup-miniconda@v3
+      - uses: mamba-org/setup-micromamba@v2
         name: Install dependencies
         with:
           environment-file: docs/environment.yml
-          activate-environment: docs
-          auto-activate-base: false
-          miniforge-version: latest
-          miniforge-variant: Mambaforge
-          use-mamba: true
 
       - name: Install current theme in dev mode
         run: |
@@ -47,19 +35,19 @@ jobs:
         run: |
           pwd
           ls
-          conda list
+          micromamba info
+          micromamba list
 
       - name: Build Sphinx documentation
         run: |
-          cd docs
-          make html
+          sphinx-build -j auto docs docs/_build/html
 
       - name: Checkout gh-pages
         if: success()
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
         with:
           ref: gh-pages
-          path: 'deploy'
+          path: "deploy"
           clean: false
 
       - name: Prepare development deployment
@@ -90,7 +78,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         if: success()
-        uses: crazy-max/ghaction-github-pages@v3
+        uses: crazy-max/ghaction-github-pages@v5
         with:
           target_branch: gh-pages
           build_dir: deploy
@@ -106,7 +94,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
+          comment-author: "github-actions[bot]"
           body-includes: Example docs for this PR
 
       - name: Create or update comment
@@ -118,5 +106,5 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            Example docs for this PR [rendered here](https://openforcefield.github.io/openff-sphinx-theme/PR${{ github.event.number }})
+            Example docs for this PR [rendered here](https://openforcefield.github.io/openff-sphinx-theme/PR${{ github.event.number }}/index.html)
           edit-mode: replace

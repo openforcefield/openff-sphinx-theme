@@ -1,14 +1,32 @@
 # https://docs.readthedocs.io/en/stable/config-file/v2.html
+#
+# We do NOT use Read the Docs' built-in `conda:` integration here. Locally, we
+# find that modern micromamba can easily solve this environment within RTD's
+# time and space provisions, so we're just using it.
 version: 2
-sphinx:
-  configuration: docs/conf.py
+
 build:
-  os: ubuntu-20.04
+  os: ubuntu-26.04
   tools:
-    python: "mambaforge-4.10"
-python:
-  install:
-  - method: setuptools
-    path: .
-conda:
-  environment: docs/environment.yml
+    # Only needed so RTD has a tool to set up; the docs env comes from
+    # micromamba below.
+    python: "3.14"
+  jobs:
+    create_environment:
+      - mkdir -p $HOME/micromamba
+      - >-
+        curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/2.8.1
+        | tar -xj -C $HOME/micromamba bin/micromamba
+      - >-
+        $HOME/micromamba/bin/micromamba create --yes
+        --prefix $HOME/micromamba/envs/docs
+        --file $READTHEDOCS_REPOSITORY_PATH/docs/environment.yml
+    install:
+      - >-
+        $HOME/micromamba/bin/micromamba run --prefix $HOME/micromamba/envs/docs
+        python -m pip install -e $READTHEDOCS_REPOSITORY_PATH
+    build:
+      html:
+        - >-
+          $HOME/micromamba/bin/micromamba run --prefix $HOME/micromamba/envs/docs
+          sphinx-build -j auto -T -b html $READTHEDOCS_REPOSITORY_PATH/docs $READTHEDOCS_OUTPUT/html
