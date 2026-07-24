@@ -24,13 +24,10 @@
 <script src="_static/openff.js" type="text/javascript"></script>
 <link href="_static/pygments.css" rel="stylesheet" type="text/css"/>
 <link href="_static/openff.css" rel="stylesheet" type="text/css"/>
-<link href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css"/>
+<link href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" rel="stylesheet" type="text/css"/>
 <link href="_static/autodoc_pydantic.css" rel="stylesheet" type="text/css"/>
 <link href="_static/css/rtd_sphinx_search.min.css" rel="stylesheet" type="text/css"/>
 <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-<script src="_static/jquery.js"></script>
-<script src="_static/underscore.js"></script>
-<script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
 <script src="_static/doctools.js"></script>
 <script src="_static/sphinx_highlight.js"></script>
 <script src="_static/js/rtd_search_config.js"></script>
@@ -215,13 +212,13 @@
 <span class="linenos">  9</span><span class="sd">a line by itself, preferably preceded by a blank line.</span>
 <span class="linenos"> 10</span>
 <span class="linenos"> 11</span><span class="sd">"""</span>
-<span class="linenos"> 12</span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
+<span class="linenos"> 12</span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span>
 <span class="linenos"> 13</span>
-<span class="linenos"> 14</span><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># standard library imports first</span>
+<span class="linenos"> 14</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  <span class="c1"># standard library imports first</span>
 <span class="linenos"> 15</span>
-<span class="linenos"> 16</span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="linenos"> 17</span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="linenos"> 18</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 16</span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="linenos"> 17</span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="linenos"> 18</span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="linenos"> 19</span>
 <span class="linenos"> 20</span><span class="c1"># Do NOT import using *, e.g. from numpy import *</span>
 <span class="linenos"> 21</span><span class="c1">#</span>
@@ -242,7 +239,7 @@
 <span class="linenos"> 36</span><span class="c1"># numpy module itself, unabbreviated.</span>
 <span class="linenos"> 37</span>
 <span class="linenos"> 38</span>
-<span class="linenos"> 39</span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">long_var_name</span><span class="o">=</span><span class="s2">"hi"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="linenos"> 39</span><span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">long_var_name</span><span class="o">=</span><span class="s2">"hi"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="linenos"> 40</span><span class="w">    </span><span class="sa">r</span><span class="sd">"""Summarize the function in one line.</span>
 <span class="linenos"> 41</span>
 <span class="linenos"> 42</span><span class="sd">    Several sentences providing an extended description. Refer to</span>
@@ -358,21 +355,21 @@ variables using back-ticks, e.g. <cite>var</cite>.</p>
 <li><p><strong>var1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">array_like</span></code>) – Array_like means all those objects – lists, nested lists, etc. –
 that can be converted to an array.  We can also refer to
 variables like <cite>var1</cite>.</p></li>
-<li><p><strong>var2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The type above can either refer to an actual Python type
+<li><p><strong>var2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – The type above can either refer to an actual Python type
 (e.g. <code class="docutils literal notranslate"><span class="pre">int</span></code>), or describe the type of the variable in more
 detail, e.g. <code class="docutils literal notranslate"><span class="pre">(N,)</span> <span class="pre">ndarray</span></code> or <code class="docutils literal notranslate"><span class="pre">array_like</span></code>.</p></li>
 <li><p><strong>*args</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">iterable</span></code>) – Other arguments.</p></li>
 <li><p><strong>long_var_name</strong> (<code class="docutils literal notranslate"><span class="pre">{'hi',</span> <span class="pre">'ho'}</span></code>, <em>optional</em>) – Choices in brackets, default first when optional.</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Keyword arguments.</p></li>
-<li><p><strong>only_seldom_used_keywords</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
-<li><p><strong>common_parameters_listed_above</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Keyword arguments.</p></li>
+<li><p><strong>only_seldom_used_keywords</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
+<li><p><strong>common_parameters_listed_above</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p></p><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> – Explanation of anonymous return value of type <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p></li>
-<li><p><strong>describe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of return value named <cite>describe</cite>.</p></li>
-<li><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of <cite>out</cite>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a> – Explanation of anonymous return value of type <code class="docutils literal notranslate"><span class="pre">type</span></code>.</p></li>
+<li><p><strong>describe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of return value named <cite>describe</cite>.</p></li>
+<li><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>) – Explanation of <cite>out</cite>.</p></li>
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">type_without_description</span></code></p></li>
 </ul>
 </dd>
@@ -474,10 +471,10 @@ use the function.</p>
               
           </div>
           Last updated on
-            Jan 18, 2024.
+            Jul 24, 2026.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
 </div>

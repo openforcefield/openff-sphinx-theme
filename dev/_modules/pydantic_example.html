@@ -35,13 +35,10 @@
   <script type="text/javascript" src="../_static/openff.js"></script>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/openff.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/rtd_sphinx_search.min.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/rtd_search_config.js"></script>
@@ -338,45 +335,36 @@
           <article class="content">
             
   <h1>Source code for pydantic_example</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseSettings</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">validator</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">validator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span>
 
 
-<div class="viewcode-block" id="ExampleSettings"><a class="viewcode-back" href="../autodoc_pydantic_example.html#pydantic_example.ExampleSettings">[docs]</a><span class="k">class</span> <span class="nc">ExampleSettings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Document your project settings very conveniently. Applies like wise</span>
-<span class="sd">    to pydantic models.</span>
+<div class="viewcode-block" id="ExampleSettings"><a class="viewcode-back" href="../autodoc_pydantic_example.html#pydantic_example.ExampleSettings">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">ExampleSettings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Document your project settings very conveniently.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    Applies like wise to pydantic models.&quot;&quot;&quot;</span>
 
     <span class="n">field_plain_with_validator</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Show standard field with type annotation.&quot;&quot;&quot;</span>
 
-    <span class="n">field_plain</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show standard field without type annotation.&quot;&quot;&quot;</span>
-
     <span class="n">field_with_validator_and_alias</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;FooBar&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;BarFoo&quot;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;BarFoo&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Shows corresponding validator with link/anchor.&quot;&quot;&quot;</span>
-
-    <span class="n">field_with_validator_and_alias_typeless</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;FooBar&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;BarFoo&quot;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="s2">&quot;BarFoo&quot;</span>
-    <span class="p">)</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Shows corresponding validator with link/anchor but without type annotation.&quot;&quot;&quot;</span>
 
     <span class="n">field_with_constraints_and_description</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Shows constraints within doc string.&quot;</span>
     <span class="p">)</span>
 
 <div class="viewcode-block" id="ExampleSettings.check_max_length_ten"><a class="viewcode-back" href="../autodoc_pydantic_example.html#pydantic_example.ExampleSettings.check_max_length_ten">[docs]</a>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;field_with_validator_and_alias&quot;</span><span class="p">,</span> <span class="s2">&quot;field_plain_with_validator&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">check_max_length_ten</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_max_length_ten</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Show corresponding field with link/anchor.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No more than 10 characters allowed&quot;</span><span class="p">)</span></div>
 
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
-        <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">&quot;foo_&quot;</span>
-        <span class="n">allow_mutation</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="viewcode-block" id="ExampleSettings.Config"><a class="viewcode-back" href="../autodoc_pydantic_example.html#pydantic_example.ExampleSettings.Config">[docs]</a>    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+        <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">&quot;foo_&quot;</span></div>
 
-<div class="viewcode-block" id="ExampleSettings.method_without_sig"><a class="viewcode-back" href="../autodoc_pydantic_example.html#pydantic_example.ExampleSettings.method_without_sig">[docs]</a>    <span class="k">def</span> <span class="nf">method_without_sig</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseSettings</span><span class="p">:</span>
+<div class="viewcode-block" id="ExampleSettings.method_without_sig"><a class="viewcode-back" href="../autodoc_pydantic_example.html#pydantic_example.ExampleSettings.method_without_sig">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">method_without_sig</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BaseSettings</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">BaseSettings</span><span class="p">()</span></div></div>
 </pre></div>
 
@@ -397,10 +385,10 @@
               
           </div>
           Last updated on
-            Jan 18, 2024.
+            Jul 24, 2026.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>

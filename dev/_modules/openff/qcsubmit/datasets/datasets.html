@@ -35,13 +35,10 @@
   <script type="text/javascript" src="../../../../_static/openff.js"></script>
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/openff.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/autodoc_pydantic.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/css/rtd_sphinx_search.min.css" />
     <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-    <script src="../../../../_static/jquery.js"></script>
-    <script src="../../../../_static/underscore.js"></script>
-    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/rtd_search_config.js"></script>
@@ -338,10 +335,10 @@
           <article class="content">
             
   <h1>Source code for openff.qcsubmit.datasets.datasets</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">abc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">TYPE_CHECKING</span><span class="p">,</span>
     <span class="n">Any</span><span class="p">,</span>
     <span class="n">Dict</span><span class="p">,</span>
@@ -355,49 +352,49 @@
     <span class="n">Union</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">qcelemental</span> <span class="k">as</span> <span class="nn">qcel</span>
-<span class="kn">import</span> <span class="nn">qcportal</span> <span class="k">as</span> <span class="nn">ptl</span>
-<span class="kn">from</span> <span class="nn">openff.toolkit</span> <span class="kn">import</span> <span class="n">topology</span> <span class="k">as</span> <span class="n">off</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">constr</span><span class="p">,</span> <span class="n">validator</span>
-<span class="kn">from</span> <span class="nn">qcelemental.models</span> <span class="kn">import</span> <span class="n">AtomicInput</span><span class="p">,</span> <span class="n">OptimizationInput</span>
-<span class="kn">from</span> <span class="nn">qcelemental.models.procedures</span> <span class="kn">import</span> <span class="n">OptimizationProtocols</span><span class="p">,</span> <span class="n">QCInputSpecification</span>
-<span class="kn">from</span> <span class="nn">qcportal</span> <span class="kn">import</span> <span class="n">PortalClient</span><span class="p">,</span> <span class="n">PortalRequestError</span>
-<span class="kn">from</span> <span class="nn">qcportal.optimization</span> <span class="kn">import</span> <span class="n">OptimizationDatasetNewEntry</span><span class="p">,</span> <span class="n">OptimizationSpecification</span>
-<span class="kn">from</span> <span class="nn">qcportal.singlepoint</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qcelemental</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">qcel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qcportal</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ptl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.toolkit</span><span class="w"> </span><span class="kn">import</span> <span class="n">topology</span> <span class="k">as</span> <span class="n">off</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qcelemental.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">AtomicInput</span><span class="p">,</span> <span class="n">OptimizationInput</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qcelemental.models.procedures</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimizationProtocols</span><span class="p">,</span> <span class="n">QCInputSpecification</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qcportal</span><span class="w"> </span><span class="kn">import</span> <span class="n">PortalClient</span><span class="p">,</span> <span class="n">PortalRequestError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qcportal.optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimizationDatasetNewEntry</span><span class="p">,</span> <span class="n">OptimizationSpecification</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qcportal.singlepoint</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">QCSpecification</span><span class="p">,</span>
     <span class="n">SinglepointDatasetNewEntry</span><span class="p">,</span>
     <span class="n">SinglepointDriver</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">qcportal.torsiondrive</span> <span class="kn">import</span> <span class="n">TorsiondriveDatasetNewEntry</span><span class="p">,</span> <span class="n">TorsiondriveSpecification</span>
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Literal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qcportal.torsiondrive</span><span class="w"> </span><span class="kn">import</span> <span class="n">TorsiondriveDatasetNewEntry</span><span class="p">,</span> <span class="n">TorsiondriveSpecification</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
 
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.common_structures</span> <span class="kn">import</span> <span class="n">CommonBase</span><span class="p">,</span> <span class="n">Metadata</span><span class="p">,</span> <span class="n">MoleculeAttributes</span>
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.constraints</span> <span class="kn">import</span> <span class="n">Constraints</span>
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.datasets.entries</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit._pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">constr</span><span class="p">,</span> <span class="n">validator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.common_structures</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommonBase</span><span class="p">,</span> <span class="n">Metadata</span><span class="p">,</span> <span class="n">MoleculeAttributes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.constraints</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constraints</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.datasets.entries</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DatasetEntry</span><span class="p">,</span>
     <span class="n">FilterEntry</span><span class="p">,</span>
     <span class="n">OptimizationEntry</span><span class="p">,</span>
     <span class="n">TorsionDriveEntry</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.exceptions</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">DatasetCombinationError</span><span class="p">,</span>
     <span class="n">MissingBasisCoverageError</span><span class="p">,</span>
     <span class="n">UnsupportedFiletypeError</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.procedures</span> <span class="kn">import</span> <span class="n">GeometricProcedure</span>
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.serializers</span> <span class="kn">import</span> <span class="n">deserialize</span><span class="p">,</span> <span class="n">serialize</span>
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.utils.smirnoff</span> <span class="kn">import</span> <span class="n">smirnoff_coverage</span>
-<span class="kn">from</span> <span class="nn">openff.qcsubmit.utils.visualize</span> <span class="kn">import</span> <span class="n">molecules_to_pdf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.procedures</span><span class="w"> </span><span class="kn">import</span> <span class="n">GeometricProcedure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.serializers</span><span class="w"> </span><span class="kn">import</span> <span class="n">deserialize</span><span class="p">,</span> <span class="n">serialize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.utils.smirnoff</span><span class="w"> </span><span class="kn">import</span> <span class="n">smirnoff_coverage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.utils.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">molecules_to_pdf</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">openff.toolkit.typing.engines.smirnoff</span> <span class="kn">import</span> <span class="n">ForceField</span>
-    <span class="kn">from</span> <span class="nn">qcportal.collections.collection</span> <span class="kn">import</span> <span class="n">Collection</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">openff.toolkit.typing.engines.smirnoff</span><span class="w"> </span><span class="kn">import</span> <span class="n">ForceField</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">qcportal.collections.collection</span><span class="w"> </span><span class="kn">import</span> <span class="n">Collection</span>
 
 <span class="n">C</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;Collection&quot;</span><span class="p">)</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">DatasetEntry</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_BaseDataset</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">CommonBase</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_BaseDataset</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">CommonBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A general base model for QCSubmit datasets which act as wrappers around a corresponding QFractal collection.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -434,7 +431,7 @@
     <span class="p">)</span>
     <span class="n">_file_writers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;json&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make sure the metadata has been assigned correctly if not autofill some information.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -453,11 +450,11 @@
 
     <span class="nd">@classmethod</span>
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_entry_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">E</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_entry_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">E</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">C</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_collection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">C</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate the corresponding QCFractal Collection for this Dataset.</span>
 
 <span class="sd">        Each QCSubmit Dataset class corresponds to and wraps</span>
@@ -476,7 +473,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OptimizationSpecification&quot;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OptimizationSpecification&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the procedure spec, if applicable, for this Dataset.</span>
 
 <span class="sd">        If the dataset has no concept of procedure specs, this method</span>
@@ -489,7 +486,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add entries to the Dataset&#39;s corresponding Collection.</span>
 
 <span class="sd">        This method allows for handling of e.g. generating the index/name for</span>
@@ -505,13 +502,13 @@
         <span class="k">pass</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">AtomicInput</span><span class="p">,</span> <span class="n">OptimizationInput</span><span class="p">]]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">AtomicInput</span><span class="p">,</span> <span class="n">OptimizationInput</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a dictionary of QCengine tasks which correspond to this dataset stored by the program which should be used for the task.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">submit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -534,7 +531,7 @@
 <span class="sd">                If the chosen basis set does not cover some of the elements in the dataset.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">openff.qcsubmit.datasets</span> <span class="kn">import</span> <span class="n">legacy_qcsubmit_ds_type_to_next_qcf_ds_type</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">legacy_qcsubmit_ds_type_to_next_qcf_ds_type</span>
 
         <span class="c1"># pre submission checks</span>
         <span class="c1"># make sure we have some QCSpec to submit</span>
@@ -581,14 +578,14 @@
         <span class="p">)</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;_BaseDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;_BaseDataset&quot;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;_BaseDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;_BaseDataset&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add two Basicdatasets together.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a Dataset object from a compressed json file.</span>
 
@@ -598,7 +595,7 @@
         <span class="n">data</span> <span class="o">=</span> <span class="n">deserialize</span><span class="p">(</span><span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_molecule_entry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_molecule_entry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Search through the dataset for a molecule and return the dataset index of any exact molecule matches.</span>
 
@@ -624,7 +621,7 @@
         <span class="k">return</span> <span class="n">hits</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">filtered</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filtered</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A generator which yields a openff molecule representation for each molecule filtered while creating this dataset.</span>
 
@@ -638,7 +635,7 @@
                 <span class="k">yield</span> <span class="n">offmol</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_filtered</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_filtered</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the total number of molecules filtered by the components used in a workflow to create this dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -648,7 +645,7 @@
         <span class="k">return</span> <span class="n">filtered</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_records</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_records</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the total number of records that will be created on submission of the dataset.</span>
 
@@ -661,7 +658,7 @@
         <span class="k">return</span> <span class="n">n_records</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_molecules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_molecules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the number of unique molecules to be submitted.</span>
 
@@ -691,7 +688,7 @@
         <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">molecules</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">molecules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">molecules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A generator that creates an openforcefield.topology.Molecule one by one from the dataset.</span>
 
@@ -704,7 +701,7 @@
             <span class="k">yield</span> <span class="n">molecule_data</span><span class="o">.</span><span class="n">get_off_molecule</span><span class="p">(</span><span class="n">include_conformers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the amount of components that have been ran during generating the dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -713,7 +710,7 @@
         <span class="k">return</span> <span class="n">n_filtered</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gather the details of the components that were ran during the creation of this dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -724,7 +721,7 @@
 
         <span class="k">return</span> <span class="n">components</span>
 
-    <span class="k">def</span> <span class="nf">filter_molecules</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filter_molecules</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">molecules</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">]],</span>
         <span class="n">component</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -765,7 +762,7 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">filtered_molecules</span><span class="p">[</span><span class="n">filter_data</span><span class="o">.</span><span class="n">component</span><span class="p">]</span> <span class="o">=</span> <span class="n">filter_data</span>
 
-    <span class="k">def</span> <span class="nf">add_molecule</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_molecule</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">index</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">molecule</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">off</span><span class="o">.</span><span class="n">Molecule</span><span class="p">],</span>
@@ -822,7 +819,7 @@
                 <span class="n">component_provenance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">provenance</span><span class="p">,</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_missing_basis_coverage</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_missing_basis_coverage</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -832,15 +829,11 @@
 <span class="sd">        Args:</span>
 <span class="sd">            raise_errors: If `True` the function will raise an error for missing basis coverage, else we return the missing data and just print warnings.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">re</span>
-        <span class="kn">import</span> <span class="nn">warnings</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-        <span class="kn">import</span> <span class="nn">basis_set_exchange</span> <span class="k">as</span> <span class="nn">bse</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">openmm.app</span> <span class="kn">import</span> <span class="n">Element</span>
-        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">simtk.openmm.app</span> <span class="kn">import</span> <span class="n">Element</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">basis_set_exchange</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bse</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">openff.units.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">SYMBOLS</span>
 
         <span class="n">basis_report</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -882,13 +875,13 @@
                     <span class="n">elements</span> <span class="o">=</span> <span class="n">basis_meta</span><span class="p">[</span><span class="s2">&quot;versions&quot;</span><span class="p">][</span><span class="n">basis_meta</span><span class="p">[</span><span class="s2">&quot;latest_version&quot;</span><span class="p">]][</span>
                         <span class="s2">&quot;elements&quot;</span>
                     <span class="p">]</span>
-                    <span class="n">covered_elements</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
-                        <span class="p">[</span>
-                            <span class="n">Element</span><span class="o">.</span><span class="n">getByAtomicNumber</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="p">))</span><span class="o">.</span><span class="n">symbol</span>
-                            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span>
-                        <span class="p">]</span>
-                    <span class="p">)</span>
+
+                    <span class="n">covered_elements</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">SYMBOLS</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="p">)]</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span>
+                    <span class="p">}</span>
+
                     <span class="n">difference</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">covered_elements</span><span class="p">)</span>
+
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># the basis is wrote with the method so print a warning about validation</span>
                     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
@@ -900,6 +893,7 @@
             <span class="k">elif</span> <span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;openmm&quot;</span><span class="p">:</span>
                 <span class="c1"># smirnoff covered elements</span>
                 <span class="n">covered_elements</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;Cl&quot;</span><span class="p">,</span> <span class="s2">&quot;Br&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">}</span>
+
                 <span class="n">difference</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">covered_elements</span><span class="p">)</span>
 
             <span class="k">elif</span> <span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;rdkit&quot;</span><span class="p">:</span>
@@ -927,7 +921,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">raise_errors</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">basis_report</span>
 
-    <span class="k">def</span> <span class="nf">export_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">compression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">export_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">compression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Export the dataset to file so that it can be used to make another dataset quickly.</span>
 
@@ -969,7 +963,7 @@
 
         <span class="n">serialize</span><span class="p">(</span><span class="n">serializable</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">coverage_report</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">coverage_report</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">force_field</span><span class="p">:</span> <span class="s2">&quot;ForceField&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a summary of how many molecules within this dataset would be assigned</span>
@@ -991,7 +985,7 @@
 
         <span class="k">return</span> <span class="n">smirnoff_coverage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecules</span><span class="p">,</span> <span class="n">force_field</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">visualize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">columns</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
@@ -1022,7 +1016,7 @@
 
         <span class="n">molecules_to_pdf</span><span class="p">(</span><span class="n">molecules</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">toolkit</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">molecules_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">molecules_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Write the molecules to the requested file type.</span>
 
@@ -1059,7 +1053,7 @@
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_writers</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">.&quot;</span>
             <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_molecules_to_smiles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_molecules_to_smiles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a list of molecules canonical isomeric smiles.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1069,7 +1063,7 @@
         <span class="p">]</span>
         <span class="k">return</span> <span class="n">smiles</span>
 
-    <span class="k">def</span> <span class="nf">_molecules_to_inchi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_molecules_to_inchi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a list of the molecules standard InChI.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1077,7 +1071,7 @@
         <span class="n">inchi</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">standard_inchi</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
         <span class="k">return</span> <span class="n">inchi</span>
 
-    <span class="k">def</span> <span class="nf">_molecules_to_inchikey</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_molecules_to_inchikey</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a list of the molecules standard InChIKey.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1087,7 +1081,7 @@
 
 
 <span class="c1"># TODO: SinglepointDataset</span>
-<div class="viewcode-block" id="BasicDataset"><a class="viewcode-back" href="../../../../generated/openff.qcsubmit.datasets.BasicDataset.html#openff.qcsubmit.datasets.BasicDataset">[docs]</a><span class="k">class</span> <span class="nc">BasicDataset</span><span class="p">(</span><span class="n">_BaseDataset</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicDataset"><a class="viewcode-back" href="../../../../generated/openff.qcsubmit.datasets.BasicDataset.html#openff.qcsubmit.datasets.BasicDataset">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">BasicDataset</span><span class="p">(</span><span class="n">_BaseDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The general QCFractal dataset class which contains all of the molecules and information about them prior to</span>
 <span class="sd">    submission.</span>
@@ -1103,11 +1097,11 @@
     <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;DataSet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DataSet&quot;</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_entry_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">DatasetEntry</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_entry_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">DatasetEntry</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">DatasetEntry</span>
 
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;BasicDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;BasicDataset&quot;</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">copy</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;BasicDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;BasicDataset&quot;</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
         <span class="c1"># make sure the dataset types match</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
@@ -1146,7 +1140,7 @@
 
         <span class="k">return</span> <span class="n">new_dataset</span>
 
-    <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_collection</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">singlepoint</span><span class="o">.</span><span class="n">SinglepointDataset</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">add_dataset</span><span class="p">(</span>
@@ -1161,7 +1155,7 @@
             <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QCSpecification</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">QCSpecification</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Needed for `submit` usage.&quot;&quot;&quot;</span>
 
         <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1170,14 +1164,14 @@
                 <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span>
                 <span class="n">method</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
                 <span class="n">basis</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span>
-                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">==</span> <span class="s2">&quot;properties&quot;</span><span class="p">),</span>
                 <span class="n">program</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
                 <span class="n">protocols</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="p">},</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">ret</span>
 
-    <span class="k">def</span> <span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">SinglepointDatasetNewEntry</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">SinglepointDatasetNewEntry</span><span class="p">]:</span>
         <span class="n">entries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SinglepointDatasetNewEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">entry_name</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1204,7 +1198,7 @@
 
         <span class="k">return</span> <span class="n">entries</span>
 
-<div class="viewcode-block" id="BasicDataset.to_tasks"><a class="viewcode-back" href="../../../../generated/openff.qcsubmit.datasets.BasicDataset.html#openff.qcsubmit.datasets.BasicDataset.to_tasks">[docs]</a>    <span class="k">def</span> <span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">AtomicInput</span><span class="p">]]:</span>
+<div class="viewcode-block" id="BasicDataset.to_tasks"><a class="viewcode-back" href="../../../../generated/openff.qcsubmit.datasets.BasicDataset.html#openff.qcsubmit.datasets.BasicDataset.to_tasks">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">AtomicInput</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Build a dictionary of single QCEngine tasks that correspond to this dataset organised by program name. The tasks can be passed directly</span>
 <span class="sd">        to qcengine.compute.</span>
@@ -1212,7 +1206,7 @@
         <span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">qc_model</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">qc_model</span>
-            <span class="n">keywords</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span>
+            <span class="n">keywords</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">==</span> <span class="s2">&quot;properties&quot;</span><span class="p">)</span>
             <span class="n">protocols</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="o">.</span><span class="n">value</span><span class="p">}</span>
             <span class="n">program</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1235,7 +1229,7 @@
         <span class="k">return</span> <span class="n">data</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">OptimizationDataset</span><span class="p">(</span><span class="n">BasicDataset</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">OptimizationDataset</span><span class="p">(</span><span class="n">BasicDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An optimisation dataset class which handles submission of settings differently from the basic dataset, and creates</span>
 <span class="sd">    optimization datasets in the public or local qcarchive instance.</span>
@@ -1254,21 +1248,21 @@
     <span class="n">dataset</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">OptimizationEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_entry_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">OptimizationEntry</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_entry_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">OptimizationEntry</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">OptimizationEntry</span>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;driver&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_check_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_driver</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Make sure that the driver is set to deferred only and not changed.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SinglepointDriver</span><span class="o">.</span><span class="n">deferred</span>
 
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;OptimizationDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OptimizationDataset&quot;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;OptimizationDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OptimizationDataset&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add two Optimization datasets together, if the constraints are different then the entries are considered different.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">copy</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
-        <span class="kn">from</span> <span class="nn">openff.qcsubmit.utils</span> <span class="kn">import</span> <span class="n">remap_list</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">openff.qcsubmit.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">remap_list</span>
 
         <span class="c1"># make sure the dataset types match</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
@@ -1341,7 +1335,7 @@
 
         <span class="k">return</span> <span class="n">new_dataset</span>
 
-    <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_collection</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">optimization</span><span class="o">.</span><span class="n">OptimizationDataset</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">add_dataset</span><span class="p">(</span>
@@ -1356,7 +1350,7 @@
             <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">OptimizationSpecification</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">OptimizationSpecification</span><span class="p">]:</span>
         <span class="n">opt_kw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimization_procedure</span><span class="o">.</span><span class="n">get_optimzation_keywords</span><span class="p">()</span>
 
         <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1366,7 +1360,7 @@
                 <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span>
                 <span class="n">method</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
                 <span class="n">basis</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span>
-                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
                 <span class="n">program</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
                 <span class="n">protocols</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="p">},</span>
             <span class="p">)</span>
@@ -1380,7 +1374,7 @@
 
         <span class="k">return</span> <span class="n">ret</span>
 
-    <span class="k">def</span> <span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationDatasetNewEntry</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationDatasetNewEntry</span><span class="p">]:</span>
         <span class="n">entries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationDatasetNewEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">entry_name</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1414,7 +1408,7 @@
 
         <span class="k">return</span> <span class="n">entries</span>
 
-    <span class="k">def</span> <span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationInput</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationInput</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Build a list of QCEngine optimisation inputs organised by the optimisation engine which should be used to run the task.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1422,7 +1416,7 @@
         <span class="n">opt_program</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimization_procedure</span><span class="o">.</span><span class="n">program</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">qc_specifications</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">qc_model</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">qc_model</span>
-            <span class="n">qc_keywords</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span>
+            <span class="n">qc_keywords</span> <span class="o">=</span> <span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">qc_spec</span> <span class="o">=</span> <span class="n">QCInputSpecification</span><span class="p">(</span>
                 <span class="c1"># TODO: self.driver is now set to &quot;deferred&quot; - is it safe to put &quot;gradient&quot; here?</span>
                 <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;gradient&quot;</span><span class="p">,</span>
@@ -1451,7 +1445,7 @@
         <span class="k">return</span> <span class="n">data</span>
 
 
-<span class="k">class</span> <span class="nc">TorsiondriveDataset</span><span class="p">(</span><span class="n">OptimizationDataset</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TorsiondriveDataset</span><span class="p">(</span><span class="n">OptimizationDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An torsiondrive dataset class which handles submission of settings differently from the basic dataset, and creates</span>
 <span class="sd">    torsiondrive datasets in the public or local qcarchive instance.</span>
@@ -1484,14 +1478,14 @@
     <span class="p">)</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_entry_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">TorsionDriveEntry</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_entry_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">TorsionDriveEntry</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">TorsionDriveEntry</span>
 
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;TorsiondriveDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TorsiondriveDataset&quot;</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;TorsiondriveDataset&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TorsiondriveDataset&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add two TorsiondriveDatasets together, if the central bond in the dihedral is the same the entries are considered the same.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">copy</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
         <span class="c1"># make sure the dataset types match</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
@@ -1552,13 +1546,13 @@
         <span class="k">return</span> <span class="n">new_dataset</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">n_records</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_records</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate the number of records that will be submitted.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_generate_collection</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_collection</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;PortalClient&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ptl</span><span class="o">.</span><span class="n">torsiondrive</span><span class="o">.</span><span class="n">TorsiondriveDataset</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">add_dataset</span><span class="p">(</span>
@@ -1573,7 +1567,7 @@
             <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TorsiondriveSpecification</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_specifications</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TorsiondriveSpecification</span><span class="p">]:</span>
         <span class="n">td_kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
             <span class="n">grid_spacing</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_spacing</span><span class="p">,</span>
             <span class="n">dihedral_ranges</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dihedral_ranges</span><span class="p">,</span>
@@ -1587,7 +1581,7 @@
                 <span class="n">driver</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span>
                 <span class="n">method</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
                 <span class="n">basis</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">basis</span><span class="p">,</span>
-                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">,</span>
+                <span class="n">keywords</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">qc_keywords</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
                 <span class="n">program</span><span class="o">=</span><span class="n">spec</span><span class="o">.</span><span class="n">program</span><span class="p">,</span>
                 <span class="n">protocols</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;wavefunction&quot;</span><span class="p">:</span> <span class="n">spec</span><span class="o">.</span><span class="n">store_wavefunction</span><span class="p">},</span>
             <span class="p">)</span>
@@ -1603,7 +1597,7 @@
 
         <span class="k">return</span> <span class="n">ret</span>
 
-    <span class="k">def</span> <span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TorsiondriveDatasetNewEntry</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TorsiondriveDatasetNewEntry</span><span class="p">]:</span>
         <span class="n">entries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">TorsiondriveDatasetNewEntry</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">entry_name</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1631,7 +1625,7 @@
 
         <span class="k">return</span> <span class="n">entries</span>
 
-    <span class="k">def</span> <span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationInput</span><span class="p">]]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">OptimizationInput</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a list of QCEngine procedure tasks which correspond to this dataset.&quot;&quot;&quot;</span>
 
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
@@ -1654,10 +1648,10 @@
               
           </div>
           Last updated on
-            Jan 18, 2024.
+            Jul 24, 2026.
           <br/>
           Created using
-          <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+          <a href="http://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
            and
           <a href="https://github.com/openforcefield/openff-sphinx-theme/">the Open Force Field Sphinx theme</a>
       </div>
