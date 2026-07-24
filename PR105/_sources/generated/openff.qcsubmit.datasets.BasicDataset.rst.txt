@@ -1,12 +1,41 @@
-﻿openff.qcsubmit.datasets.BasicDataset
-=====================================
+﻿``BasicDataset``
+================
 
 .. currentmodule:: openff.qcsubmit.datasets
 
 .. autoclass:: BasicDataset
 
    
-   .. automethod:: __init__
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BasicDataset.components
+      ~BasicDataset.filtered
+      ~BasicDataset.molecules
+      ~BasicDataset.n_components
+      ~BasicDataset.n_filtered
+      ~BasicDataset.n_molecules
+      ~BasicDataset.n_qc_specs
+      ~BasicDataset.n_records
+      ~BasicDataset.type
+      ~BasicDataset.dataset_name
+      ~BasicDataset.dataset_tagline
+      ~BasicDataset.description
+      ~BasicDataset.metadata
+      ~BasicDataset.provenance
+      ~BasicDataset.dataset
+      ~BasicDataset.filtered_molecules
+      ~BasicDataset.driver
+      ~BasicDataset.priority
+      ~BasicDataset.dataset_tags
+      ~BasicDataset.compute_tag
+      ~BasicDataset.qc_specifications
+   
+   
+
+   
 
    
    .. rubric:: Methods
@@ -38,35 +67,83 @@
       ~BasicDataset.update_forward_refs
       ~BasicDataset.validate
       ~BasicDataset.visualize
-   
-   
 
    
+   .. automethod:: __init__
+    :noindex:
    
-   .. rubric:: Attributes
+   .. automethod:: add_molecule
+    :noindex:
+   
+   .. automethod:: add_qc_spec
+    :noindex:
+   
+   .. automethod:: clear_qcspecs
+    :noindex:
+   
+   .. automethod:: construct
+    :noindex:
+   
+   .. automethod:: copy
+    :noindex:
+   
+   .. automethod:: coverage_report
+    :noindex:
+   
+   .. automethod:: dict
+    :noindex:
+   
+   .. automethod:: export_dataset
+    :noindex:
+   
+   .. automethod:: filter_molecules
+    :noindex:
+   
+   .. automethod:: from_orm
+    :noindex:
+   
+   .. automethod:: get_molecule_entry
+    :noindex:
+   
+   .. automethod:: json
+    :noindex:
+   
+   .. automethod:: molecules_to_file
+    :noindex:
+   
+   .. automethod:: parse_file
+    :noindex:
+   
+   .. automethod:: parse_obj
+    :noindex:
+   
+   .. automethod:: parse_raw
+    :noindex:
+   
+   .. automethod:: remove_qcspec
+    :noindex:
+   
+   .. automethod:: schema
+    :noindex:
+   
+   .. automethod:: schema_json
+    :noindex:
+   
+   .. automethod:: submit
+    :noindex:
+   
+   .. automethod:: to_tasks
+    :noindex:
+   
+   .. automethod:: update_forward_refs
+    :noindex:
+   
+   .. automethod:: validate
+    :noindex:
+   
+   .. automethod:: visualize
+    :noindex:
+   
 
-   .. autosummary::
-   
-      ~BasicDataset.components
-      ~BasicDataset.filtered
-      ~BasicDataset.molecules
-      ~BasicDataset.n_components
-      ~BasicDataset.n_filtered
-      ~BasicDataset.n_molecules
-      ~BasicDataset.n_qc_specs
-      ~BasicDataset.n_records
-      ~BasicDataset.type
-      ~BasicDataset.dataset_name
-      ~BasicDataset.dataset_tagline
-      ~BasicDataset.description
-      ~BasicDataset.metadata
-      ~BasicDataset.provenance
-      ~BasicDataset.dataset
-      ~BasicDataset.filtered_molecules
-      ~BasicDataset.driver
-      ~BasicDataset.priority
-      ~BasicDataset.dataset_tags
-      ~BasicDataset.compute_tag
-      ~BasicDataset.qc_specifications
    
    

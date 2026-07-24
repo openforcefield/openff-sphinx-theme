@@ -1,12 +1,42 @@
-﻿openff.toolkit.topology.Molecule
-================================
+﻿``Molecule``
+============
 
 .. currentmodule:: openff.toolkit.topology
 
 .. autoclass:: Molecule
 
    
-   .. automethod:: __init__
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Molecule.amber_impropers
+      ~Molecule.angles
+      ~Molecule.atoms
+      ~Molecule.bonds
+      ~Molecule.conformers
+      ~Molecule.has_unique_atom_names
+      ~Molecule.hierarchy_schemes
+      ~Molecule.hill_formula
+      ~Molecule.impropers
+      ~Molecule.n_angles
+      ~Molecule.n_atoms
+      ~Molecule.n_bonds
+      ~Molecule.n_conformers
+      ~Molecule.n_impropers
+      ~Molecule.n_propers
+      ~Molecule.name
+      ~Molecule.partial_charges
+      ~Molecule.propers
+      ~Molecule.properties
+      ~Molecule.smirnoff_impropers
+      ~Molecule.torsions
+      ~Molecule.total_charge
+   
+   
+
+   
 
    
    .. rubric:: Methods
@@ -84,36 +114,221 @@
       ~Molecule.to_yaml
       ~Molecule.update_hierarchy_schemes
       ~Molecule.visualize
-   
-   
 
    
+   .. automethod:: __init__
+    :noindex:
    
-   .. rubric:: Attributes
+   .. automethod:: add_atom
+    :noindex:
+   
+   .. automethod:: add_bond
+    :noindex:
+   
+   .. automethod:: add_conformer
+    :noindex:
+   
+   .. automethod:: add_default_hierarchy_schemes
+    :noindex:
+   
+   .. automethod:: add_hierarchy_scheme
+    :noindex:
+   
+   .. automethod:: apply_elf_conformer_selection
+    :noindex:
+   
+   .. automethod:: are_isomorphic
+    :noindex:
+   
+   .. automethod:: assign_fractional_bond_orders
+    :noindex:
+   
+   .. automethod:: assign_partial_charges
+    :noindex:
+   
+   .. automethod:: atom
+    :noindex:
+   
+   .. automethod:: atom_index
+    :noindex:
+   
+   .. automethod:: bond
+    :noindex:
+   
+   .. automethod:: canonical_order_atoms
+    :noindex:
+   
+   .. automethod:: chemical_environment_matches
+    :noindex:
+   
+   .. automethod:: clear_conformers
+    :noindex:
+   
+   .. automethod:: delete_hierarchy_scheme
+    :noindex:
+   
+   .. automethod:: enumerate_protomers
+    :noindex:
+   
+   .. automethod:: enumerate_stereoisomers
+    :noindex:
+   
+   .. automethod:: enumerate_tautomers
+    :noindex:
+   
+   .. automethod:: find_rotatable_bonds
+    :noindex:
+   
+   .. automethod:: from_bson
+    :noindex:
+   
+   .. automethod:: from_dict
+    :noindex:
+   
+   .. automethod:: from_file
+    :noindex:
+   
+   .. automethod:: from_inchi
+    :noindex:
+   
+   .. automethod:: from_iupac
+    :noindex:
+   
+   .. automethod:: from_json
+    :noindex:
+   
+   .. automethod:: from_mapped_smiles
+    :noindex:
+   
+   .. automethod:: from_messagepack
+    :noindex:
+   
+   .. automethod:: from_openeye
+    :noindex:
+   
+   .. automethod:: from_pdb_and_smiles
+    :noindex:
+   
+   .. automethod:: from_pickle
+    :noindex:
+   
+   .. automethod:: from_polymer_pdb
+    :noindex:
+   
+   .. automethod:: from_qcschema
+    :noindex:
+   
+   .. automethod:: from_rdkit
+    :noindex:
+   
+   .. automethod:: from_smiles
+    :noindex:
+   
+   .. automethod:: from_toml
+    :noindex:
+   
+   .. automethod:: from_topology
+    :noindex:
+   
+   .. automethod:: from_xml
+    :noindex:
+   
+   .. automethod:: from_yaml
+    :noindex:
+   
+   .. automethod:: generate_conformers
+    :noindex:
+   
+   .. automethod:: generate_unique_atom_names
+    :noindex:
+   
+   .. automethod:: get_available_charge_methods
+    :noindex:
+   
+   .. automethod:: get_bond_between
+    :noindex:
+   
+   .. automethod:: is_isomorphic_with
+    :noindex:
+   
+   .. automethod:: nth_degree_neighbors
+    :noindex:
+   
+   .. automethod:: ordered_connection_table_hash
+    :noindex:
+   
+   .. automethod:: perceive_residues
+    :noindex:
+   
+   .. automethod:: remap
+    :noindex:
+   
+   .. automethod:: strip_atom_stereochemistry
+    :noindex:
+   
+   .. automethod:: to_bson
+    :noindex:
+   
+   .. automethod:: to_dict
+    :noindex:
+   
+   .. automethod:: to_file
+    :noindex:
+   
+   .. automethod:: to_hill_formula
+    :noindex:
+   
+   .. automethod:: to_inchi
+    :noindex:
+   
+   .. automethod:: to_inchikey
+    :noindex:
+   
+   .. automethod:: to_iupac
+    :noindex:
+   
+   .. automethod:: to_json
+    :noindex:
+   
+   .. automethod:: to_messagepack
+    :noindex:
+   
+   .. automethod:: to_networkx
+    :noindex:
+   
+   .. automethod:: to_openeye
+    :noindex:
+   
+   .. automethod:: to_pickle
+    :noindex:
+   
+   .. automethod:: to_qcschema
+    :noindex:
+   
+   .. automethod:: to_rdkit
+    :noindex:
+   
+   .. automethod:: to_smiles
+    :noindex:
+   
+   .. automethod:: to_toml
+    :noindex:
+   
+   .. automethod:: to_topology
+    :noindex:
+   
+   .. automethod:: to_xml
+    :noindex:
+   
+   .. automethod:: to_yaml
+    :noindex:
+   
+   .. automethod:: update_hierarchy_schemes
+    :noindex:
+   
+   .. automethod:: visualize
+    :noindex:
+   
 
-   .. autosummary::
-   
-      ~Molecule.amber_impropers
-      ~Molecule.angles
-      ~Molecule.atoms
-      ~Molecule.bonds
-      ~Molecule.conformers
-      ~Molecule.has_unique_atom_names
-      ~Molecule.hierarchy_schemes
-      ~Molecule.hill_formula
-      ~Molecule.impropers
-      ~Molecule.n_angles
-      ~Molecule.n_atoms
-      ~Molecule.n_bonds
-      ~Molecule.n_conformers
-      ~Molecule.n_impropers
-      ~Molecule.n_propers
-      ~Molecule.name
-      ~Molecule.partial_charges
-      ~Molecule.propers
-      ~Molecule.properties
-      ~Molecule.smirnoff_impropers
-      ~Molecule.torsions
-      ~Molecule.total_charge
    
    
