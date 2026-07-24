@@ -20,7 +20,7 @@ jobs:
         shell: bash -l {0}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - uses: mamba-org/setup-micromamba@v2
         name: Install dependencies
@@ -44,7 +44,7 @@ jobs:
 
       - name: Checkout gh-pages
         if: success()
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: "deploy"
