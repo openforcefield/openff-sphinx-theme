@@ -29,4 +29,4 @@ build:
       html:
         - >-
           $HOME/micromamba/bin/micromamba run --prefix $HOME/micromamba/envs/docs
-          sphinx-build -W --keep-going -T -b html $READTHEDOCS_REPOSITORY_PATH/docs $READTHEDOCS_OUTPUT/html
+          sphinx-build -j auto -T -b html $READTHEDOCS_REPOSITORY_PATH/docs $READTHEDOCS_OUTPUT/html
