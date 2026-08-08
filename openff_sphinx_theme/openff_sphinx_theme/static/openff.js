@@ -1,7 +1,9 @@
+
+
 /*******************************************************************************
  * MutationObserver to move the ReadTheDocs button
  *
- * Code taken from pydata-sphinx-theme
+ * Code adapted from pydata-sphinx-theme
  * https://github.com/pydata/pydata-sphinx-theme/blob/185a37aa36820f77bffa4c87a772092e9e7cc380/src/pydata_sphinx_theme/assets/scripts/pydata-sphinx-theme.js#L505-L534
  *
  * BSD 3-Clause License
